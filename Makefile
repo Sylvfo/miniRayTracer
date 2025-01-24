@@ -1,4 +1,4 @@
-NAME := sphere
+NAME := minirt
 CC := cc
 CFLAGS := #-Wall -Wextra -Werror
 RM := rm -rf
@@ -14,7 +14,7 @@ MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 SRCS =	${shell find ${SRC_DIR} -type f -name '*.c'}\
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-$(OBJ_DIR)/%.o: %.c minirt.h
+$(OBJ_DIR)/%.o: %.c #minirt.h
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -C $(MLX_INC) -c $< -o $@
 

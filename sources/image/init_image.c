@@ -6,11 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/01/06 16:31:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/24 16:09:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
 
 t_image *init_image(t_view *global)
 {
@@ -31,7 +31,7 @@ t_image *init_image(t_view *global)
 			&ima->line_length, &ima->endian);
 	mlx_put_image_to_window(ima->mlx_ptr, ima->mlx_win, ima->img, 0, 0);
 	// vient d ajouter
-	mlx_mouse_hook(vars.win, mouse_hook, &vars)
+//	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	return (ima);
 }
 

@@ -6,11 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:49:29 by sforster          #+#    #+#             */
-/*   Updated: 2025/01/06 16:25:13 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/24 16:04:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
 
 /*
 void	put_pixels(x, y, int color)
