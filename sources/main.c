@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 15:38:19 by sforster          #+#    #+#             */
-/*   Updated: 2025/01/24 15:31:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:23:44 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int main(void)
 {
 	t_pix	***pix;// data struc des pixels
-	t_image *ima;
-	char *string;
+	t_image *ima; // gestion de l image
+	char *string; // a effacer. cest la chenille qui parle :)
 
 	string = malloc(60 * sizeof(char));
 	string = "See you",
@@ -27,14 +27,6 @@ int main(void)
 //	color_image(pix[0][0]->global, ima);
 	ray_tracing(pix, ima);
 	mlx_string_put(ima->mlx_ptr, ima->mlx_win, 600, 500, 0xff8000, string);
-//	mlx_string_put(ima->mlx_ptr, ima->win_ptr, int 20, int 20, int color, char *string)
 	image_hooks(ima);
 	printf("Hello new thing\n");
 }
-/*
-define raymin and raymax
-
-#define RAY_T_MIN 0.0001f
-
-vector unit
-*/

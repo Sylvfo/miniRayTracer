@@ -6,11 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 19:26:51 by syl               #+#    #+#             */
-/*   Updated: 2024/12/27 17:40:53 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:09:59 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
 
 float ComputeLighting(t_pix *pix, float closestt, t_sphere *closest_sphere)
 {

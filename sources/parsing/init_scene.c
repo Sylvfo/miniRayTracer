@@ -6,12 +6,14 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:31:47 by syl               #+#    #+#             */
-/*   Updated: 2024/12/27 22:17:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:06:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
 
+// pas trop trop classe tout ça ;)
+// ce sera remplacé par le parsing
 t_scene *init_scene(void)
 {
 	t_scene	*scene;
@@ -40,7 +42,7 @@ t_scene *init_scene(void)
 	scene->sphere[2]->center->x = 0;
 	scene->sphere[2]->center->y = 50;
 	scene->sphere[2]->center->z = 1300;
-	scene->sphere[2]->color = 7536700;
+	scene->sphere[2]->color = 201;
 	scene->sphere[2]->radius = 140;
 
 	scene->sphere[3] = malloc(sizeof(t_sphere));
@@ -72,7 +74,7 @@ t_scene *init_scene(void)
 	scene->sphere[6]->center->x = -530;
 	scene->sphere[6]->center->y = -120;
 	scene->sphere[6]->center->z = 960;
-	scene->sphere[6]->color = 404040;
+	scene->sphere[6]->color = 201;
 	scene->sphere[6]->radius = 20;
 
 	scene->sphere[7] = malloc(sizeof(t_sphere));
@@ -98,7 +100,7 @@ t_scene *init_scene(void)
 	scene->plane->color = 0x65985c;
 
 	
-	scene->ambient_light_ratio = 0.4;
+	scene->ambient_light_ratio = 0.1;
 //	scene->ambient_light_color = 0.5;
 	return (scene);
 }

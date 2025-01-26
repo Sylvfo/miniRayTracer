@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/01/24 16:09:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:22:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,49 @@
 # define RAY_T_MIN 0.0001f // not to interract with the last object touched. no neg value. 1 is for safety
 # define RAY_T_MAX 0.0e30f // really large floating number. So it means 1.0 × 10³⁰ (10 puissance 30) 1 suivi de 30 zeros
 
+//////////////////////
+/// VECTEURS
+
+// point 3d
 typedef struct s_3dpoint {
 	float	x;
 	float	y;
 	float   z;
 } t_3dpoint;
 
+// !!!vector unit
+//vecteur 3d
 typedef struct s_vect3d { //vector
 	float	x;
 	float	y;
 	float   z;
 } t_vect3d;
 
+
+//////////////////////
+/// OBJETS
+// spheres
 typedef struct	s_sphere {
 	t_3dpoint		*center;
 	int				radius;
 	int				color;
 }				t_sphere;
 
+// lampe
 typedef struct s_spotlight { //bulb??
 	t_3dpoint	*coord;
 	float		ratio;
 //	int			color;	not in mandatory part
 } t_spotlight;
 
+//plan
 typedef struct	s_plane {
 	t_3dpoint		*point;
 	t_vect3d		*normal; // normal, so 90° from the point
 	int				color;
 }	t_plane;
 
+//cylindre
 typedef struct	s_cyl {
 	t_3dpoint		*center;
 	t_vect3d		*axis;
@@ -61,6 +74,12 @@ typedef struct	s_cyl {
 	int				color;
 }	t_cyl;
 
+//////////////////////
+/// GENERALE
+
+//fusionner scene + view??? pour une structure globale
+// sur laquelle les pixels vont tous pointer...???
+//a avoir si on a une scene camera et une scene normale...
 typedef struct s_scene {
 	t_sphere	**sphere;
 	float		ambient_light_ratio;
@@ -70,6 +89,7 @@ typedef struct s_scene {
 	//autres formes
 } t_scene;
 
+// data stuct globale.
 typedef struct	s_view {//global
 	t_3dpoint	*cam;
 	float	caneva_width;
@@ -82,7 +102,12 @@ typedef struct	s_view {//global
 	// calculer rapport en canveva et view??
 }				t_view;
 
-// data struc = array of pixels. 
+//////////////////////
+/// PIXELS
+// data struc = array of pixels.
+
+//chaque pixel devra pointer vers l'objet le plus proche. 
+// comme ça on peut sélectionner avec la souris
 typedef struct	s_pix {
 	int			Cx; //axe x sur le canvas
 	int			Cy;  //axe y sur la canvas
@@ -95,6 +120,10 @@ typedef struct	s_pix {
 //	float		light_int;
 } t_pix;
 
+//////////////////////
+///	IMAGE
+
+// data struct pour les images et minilibx. 
 typedef struct s_image {
 	void			*img;
 	char			*addr;
@@ -105,6 +134,13 @@ typedef struct s_image {
 	void			*mlx_win;
 	t_view			*global;
 }	t_image;
+
+
+//////////////////////
+///	FONCTIONS
+
+// j'aime bien ranger les fonctions par ficher comme ça on se retrouve plus facilement
+
 
 //main.c
 
@@ -151,12 +187,11 @@ float 	compute_spotlight(t_3dpoint *P, t_vect3d *N, t_pix *pix, t_spotlight *lig
 
 float 	compute_ambient(t_pix *pix);
 
-//bitwise.c
+//color_bitwise.c
 unsigned int modify_color(int color, float intensity);
 
 //intersect
 void intersectrayplane(t_pix *pix, t_plane *plane);
-
 
 //print
 void print3dvect(t_vect3d *va);

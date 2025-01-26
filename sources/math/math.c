@@ -6,11 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:28:57 by sforster          #+#    #+#             */
-/*   Updated: 2025/01/24 15:32:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 14:06:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
 
 float dot_product(t_vect3d *va, t_vect3d *vb)
 {

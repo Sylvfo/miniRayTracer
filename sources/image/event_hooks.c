@@ -6,12 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/01/24 16:03:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 14:08:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "minirt.h"
 # include "../minirt.h"
+
 int	ft_keys(int keycode, t_image *ima)
 {
 	printf("keycode: %d\n", keycode);

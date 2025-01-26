@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise.c                                          :+:      :+:    :+:   */
+/*   bitwise_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:32:29 by syl               #+#    #+#             */
-/*   Updated: 2025/01/24 15:49:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:25:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "minirt.h"
-# include "minirt.h"
+# include "../minirt.h"
 
 //	color = 256 * 256 * red + 256 * green + blue;
 unsigned int modify_color(int color, float intensity)
@@ -39,6 +38,7 @@ unsigned int modify_color(int color, float intensity)
 //	return (0xffffff);
 	return (colorback);
 }
+
 
 int modify_color_rgb(int color)
 {

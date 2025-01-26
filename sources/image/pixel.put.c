@@ -6,20 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:49:29 by sforster          #+#    #+#             */
-/*   Updated: 2025/01/24 16:04:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:07:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../minirt.h"
 
 /*
-void	put_pixels(x, y, int color)
-{
-	
-}
-
-
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;

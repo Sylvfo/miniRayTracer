@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing.c                                       :+:      :+:    :+:   */
+/*   raytracer_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:55:44 by sforster          #+#    #+#             */
-/*   Updated: 2024/12/27 22:12:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:31:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
 
 //	int 	*O; // position de la camera DATAS COMMUN
 //	int 	Cw; // largeur x du canvas DATAS COMMUN
 //	int 	Ch; // hauteur y du canvas DATAS COMMUN
 //	int 	D[3]; // coordonnees 3D du viewport. Dans DATAS PIX
 //	O = (0, 0, 0);
+
+//pour tout le raytracing je me suis basée sur les pages 14-62 
+// du livre Computer Graphics from scratch
 
 void ray_tracing(t_pix ***pix, t_image *ima)
 {
@@ -27,6 +30,7 @@ void ray_tracing(t_pix ***pix, t_image *ima)
 
 	x = 0;
 	y = 0;
+	//page 15
 	Cx = (pix[0][0]->global->caneva_width / 2) * -1;
 	while (x < pix[0][0]->global->caneva_width)
 	{
@@ -94,46 +98,6 @@ void TraceRay(t_pix *pix)
 //	pix->color = closest_col;
 	//	pix->color = closest_sphere->color;
 }
-
-/*
-void TraceRay(t_pix *pix)
-{
-	// find what object it intersect with
-	float closestt = INT_MAX;
-	t_sphere *closest_sphere; // data struc or malloc?? non c est un pointeur
-	int i = 0;
-
-	closest_sphere = NULL;
-//rajouter pour plusieures spheres
-	while (i < 1)
-	{
-		intersectrayplane(pix, pix->scene->plane);
-		
-	//	IntersectRaySphere(pix, pix->global->scene->sphere[i]);
-		if (pix->t1 < closestt && pix->t1 > 1)
-		{
-			closestt = pix->t1;
-			closest_sphere = pix->global->scene->sphere[i];
-		}
-		if (pix->t2 < closestt && pix->t2 > 1)
-		{
-			closestt = pix->t2;
-			closest_sphere = pix->global->scene->sphere[i];
-		}
-		i++;
-	}
-		//bool function intersection
-		// so if intersection == false. pix col = background
-	if (closest_sphere == NULL)
-	{
-		pix->color = modify_color(pix->global->backgroundcolor, pix->scene->ambient_light_ratio);	
-		return ;
-	}
-	ComputeLighting(pix, closestt, closest_sphere);		
-	//	pix->color = closest_sphere->color;
-}
-*/
-
 
 void	CanvasToViewport(float Cx, float Cy, t_pix *pix)  // mettre data dedans Cx et Cy c est les points x y sur le canvas
 {

@@ -6,11 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 09:31:43 by sforster          #+#    #+#             */
-/*   Updated: 2024/12/27 22:21:21 by syl              ###   ########.fr       */
+/*   Updated: 2025/01/26 15:24:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minirt.h"
+# include "../minirt.h"
+
+//fait à la sauvage. A revoir avec le parsing....
 
 t_pix	***init_data(void)
 {
