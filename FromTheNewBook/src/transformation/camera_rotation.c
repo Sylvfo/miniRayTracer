@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print.c                                       :+:      :+:    :+:   */
+/*   camera_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 15:36:21 by syl               #+#    #+#             */
-/*   Updated: 2025/02/06 17:20:48 by sforster         ###   ########.fr       */
+/*   Created: 2025/02/07 15:55:23 by syl               #+#    #+#             */
+/*   Updated: 2025/02/07 21:34:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minirt.h"
+#include "../inc/minirt.h"
 
 /*
-typedef	struct s_3Dcoord {
-	float x;
-	float y;
-	float z;
-	int	t;// type 0 for vector and 1 for point. //w like in the book?
-}	t_3Dcoord;
+1 vector between object and camera
+2 normalize it
+3 cross product with v3 - wich is... 
 */
 
-void print3dvect(t_3Dcoord va)
-{
-	printf("vx %f, vy %f, vz %f\n", va->x, va->y, va->z);
-}
 
