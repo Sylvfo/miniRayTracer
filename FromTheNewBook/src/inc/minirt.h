@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/07 22:13:04 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/11 17:22:06 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdbool.h>
 
 # include "minirt_data_struct.h"
+# include "minirt_colors.h"
 
 
 //create_point_vector.c
