@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/07 21:30:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 10:13:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,33 @@
 //	s_coord p_exemplepoint;
 //	s_coord v_exemplevector;
 //	s_coord vn_exemplenormedvector;
+//	s_color c_color;
 typedef	struct s_coord {
 	float x;
 	float y;
 	float z;
 	int	t;// type 0 for vector and 1 for point.
 }	t_coord;
+
+typedef struct s_color{
+	float r;
+	float g;
+	float b;
+} t_color;
+
+/*
+If a color is especially bright
+or dark somewhere in your scene, it may go through multiple transformations
+before reaching your virtual “eye,” dropping it to less than 0 or increasing it
+to greater than 1 at any point along the way. Limiting the color prematurely
+can make parts of your scene too bright or dark in the final image.
+
+typedef struct s_color{
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+} t_color;
+*/
 
 //////////////////////
 /// OBJETS
