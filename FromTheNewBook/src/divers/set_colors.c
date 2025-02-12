@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 15:14:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 15:54:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,26 @@ static int	float_to_byte(float f)
     if (f >= 1.0f)
         return (255);
     return ((int)(f * 255.0f + 0.5f));
+}
+
+
+/**
+ * @brief change the color already allocated
+ * 
+ * NOT VERIFIED
+ * 
+ * in float 0.0 to 1.0 (1 = 255)
+ * 
+ * @param r red int 0-255
+ * @param g green 0-255
+ * @param b blue 0-255
+ * 
+ * @return -- change in database
+ */
+void change_color(t_color *c_color, int r, int g, int b)
+{
+	c_color->r = int_to_float(r);
+	c_color->g = int_to_float(g);
+	c_color->b = int_to_float(b);
+    c_color->rgb = 0;
 }

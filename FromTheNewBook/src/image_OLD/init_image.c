@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 14:56:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 15:35:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,7 @@ t_image *init_image(void)
 	return (ima);
 }
 
-void image_hooks(t_image *ima)
-{
-	mlx_hook(ima->mlx_win, 2, 1L << 0, ft_keys, ima);
-	mlx_loop(ima->mlx_ptr);
-}
-//POUR LIVRE
-/*
-void	color_image(t_image *ima)
-{
-	return;
-	
-	int x = 0;
-	int y = 0;
 
-	while (x < 1600)
-	{
-		y = 0;
-		while (y < 1200)
-		{
-//			mlx_pixel_put(ima->mlx_ptr, ima->mlx_win, x, y, 155);
-			my_mlx_pixel_put(ima, x, y, 2545);
-			y++;
-		}
-		x++;
-	}
-}
-*/
 
 // my_mlx_pixel_put(ima, (int)round(p->l1), (int)round(p->l2), color);
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color)

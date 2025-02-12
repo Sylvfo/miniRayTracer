@@ -6,11 +6,17 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 10:28:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 15:36:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+void image_hooks(t_image *ima)
+{
+	mlx_hook(ima->mlx_win, 2, 1L << 0, ft_keys, ima);
+	mlx_loop(ima->mlx_ptr);
+}
 
 int	ft_keys(int keycode, t_image *ima)
 {

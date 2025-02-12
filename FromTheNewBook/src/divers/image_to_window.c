@@ -6,22 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 15:22:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 15:28:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-
 void pix_to_window(t_pix ***pix)
-{
-	/// ici qu on va faire le raytracer etc...
-	color_pixels(pix);
-	
-	color_image_wind(pix);
-}
-
-void color_image_wind(t_pix ***pix)
 {
 	int x;
 	int y;
@@ -40,21 +31,3 @@ void color_image_wind(t_pix ***pix)
 	}
 }
 
-void color_pixels(t_pix ***pix)
-{
-	int x;
-	int y;
-
-	x = 0;
-	while(x < 1600)//1600 = canva width
-	{
-		y = 0; 
-		while (y < 1200) // 1200 = canva height
-		{
-			scalar_mult_color(pix[x][y]->col, 0.3);
-			pix[x][y]->color = 200;
-			y++;
-		}
-		x++;
-	}
-}

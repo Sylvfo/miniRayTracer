@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:00:02 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 15:18:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 16:33:29 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ And c.blue = 1.7
  * 
  * @return new color
  */
+void	addition_color(t_color *c_1, t_color *c_2)
+{
+	c_1->r += c_2->r;
+	c_1->g += c_2->g;
+	c_1->b += c_2->b;
+}
+/*
 t_color *addition_color(t_color *c_1, t_color *c_2)
 {
 	t_color *c_newcolor;
@@ -51,6 +58,7 @@ t_color *addition_color(t_color *c_1, t_color *c_2)
 	c_newcolor->b = c_1->b + c_2->b;
 	return (c_newcolor);	
 }
+*/
 
 /**
  * @brief subtr 2 colors
@@ -103,13 +111,28 @@ void scalar_mult_color(t_color *c_1, float scale)
  * @brief multiply 2 colors
  * 
  * Hadamard product (or Schur product)
- * 	NOT VERIFIED
+ * 	NOT VERIFIED -FONCTIONNE PAS?????
  * 
  * @param c_1 first color
  * @param c_2 secondc color
  * 
- * @return new color
+ * @return 
  */
+void	multipling_color(t_color *c_1, t_color *c_2)
+{
+	if (!c_1 || !c_2)
+	{
+		printf("miss a colour \n");
+		return ;
+	}
+//	printf("Color 1: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n",c_1->r, c_1->g, c_1->b, c_1->rgb);
+//	printf("Color 2: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n", c_2->r, c_2->g, c_2->b, c_2->rgb);
+	c_1->r *= c_2->r;
+	c_1->g *= c_2->g;
+	c_1->b *= c_2->b;
+	color_float_to_int(c_1);
+}
+/* pareil mais malloc
 t_color *multipling_color(t_color *c_1, t_color *c_2)
 {
 	t_color *c_newcolor;
@@ -122,6 +145,7 @@ t_color *multipling_color(t_color *c_1, t_color *c_2)
 	c_newcolor->b = c_1->b * c_2->b;
 	return (c_newcolor);	
 }
+*/
 
 //pareil mais malloc....
 /*

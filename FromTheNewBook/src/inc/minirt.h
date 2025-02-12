@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 15:20:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 16:44:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,40 @@ t_color *create_color(int r, int g, int b);
 static float int_to_float(int value);
 void    color_float_to_int(t_color *c_color);
 static int	float_to_byte(float f);
+void	change_color(t_color *c_color, int r, int g, int b);
 
 //color_operations.c
-t_color *addition_color(t_color *c_1, t_color *c_2);
+void	addition_color(t_color *c_1, t_color *c_2);
 t_color *substraction_color(t_color *c_1, t_color *c_2);
 void 	scalar_mult_color(t_color *c_1, float scale) ;
+void	multipling_color(t_color *c_1, t_color *c_2);
 
 // avant parsingdsf
 t_pix ***init_data_test(void);
 t_pix ***init_pix_test(t_pix ***pix);
-t_image *init_image(void);
 void	link_pix_ima(t_pix ***pix, t_image *ima);
+//void	color_image(t_image *ima);
+void	pix_to_window(t_pix ***pix);
+
+//////// DRAWINGS ////////////
+void	pix_drawings(t_pix ***pix);
+void color_pixels2(t_pix ***pix);
+void	color_pixels(t_pix ***pix);
+void color_pixels3(t_pix ***pix);
+
+///////// EXERCICES BOOK ////////////
+void projectile(t_pix ***pix);
+
+
+/////// IMAGE /////////
+
+//event_hooks
 void	image_hooks(t_image *ima);
 int		ft_keys(int keycode, t_image *ima);
 int		ft_exit(t_image *ima);
-void	color_image(t_image *ima);
+
+//init_image.c
+t_image *init_image(void);
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color);
-void	color_pixels(t_pix ***pix);
-void	pix_to_window(t_pix ***pix);
-void	color_image_wind(t_pix ***pix);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 15:22:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 16:30:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_pix ***init_pix_test(t_pix ***pix)
 			pix[x][y] = (t_pix *)malloc(sizeof(t_pix));
             if (!pix[x][y])
                 return NULL;//free...
-			pix[x][y]->col = create_color(30, 40, 200);
+			pix[x][y]->col = create_color(255, 0, 0);
 			y++;
 		}
 		x++;
