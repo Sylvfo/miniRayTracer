@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 10:13:54 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/12 15:02:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ typedef	struct s_coord {
 }	t_coord;
 
 typedef struct s_color{
-	float r;
-	float g;
-	float b;
+	float 	r;
+	float 	g;
+	float 	b;
+	int		rgb;
 } t_color;
 
 /*
@@ -125,11 +126,13 @@ typedef struct s_image {
 	void			*mlx_win;
 }	t_image;
 
+
+//
 // 2Darray of pointers
 typedef struct	s_pix {
 	//same for all
 	t_camera	*camera;
-	t_image		*img;
+	t_image		*ima;
 //	t_objects	***scene;
 //	t_lights	***lux;
 
@@ -137,6 +140,7 @@ typedef struct	s_pix {
 	//in each pixel. 
 	t_coord		*D; // vecteur entre camera et coordonnes sur viewport
 	int			color;
+	t_color		*col;
 // closest object
 
 // 	data for calculation	

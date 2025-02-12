@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   color_operation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:00:02 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/11 18:01:28 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:18:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,7 @@ And c.blue = 1.7
 //	t_color c_exemplecolor;
 
 
-/**
- * @brief create a new color
- * 
- * NOT VERIFIED
- * 
- * @param r red
- * @param g green
- * @param b blue
- * 
- * @return new color
- */
-t_color *coloring(float r, float g, float b)
-{
-	// si plus grand que 255?? plus petit que zero??
-	t_color *c_newcolor;
 
-	c_newcolor = malloc(sizeof(t_color));
-	if (!c_newcolor)
-		return (NULL);
-	c_newcolor->r = r;
-	c_newcolor->g = g;
-	c_newcolor->b = b;
-
-	return(c_newcolor);
-}
 
 /**
  * @brief add 2 colors
@@ -109,22 +85,19 @@ t_color *substraction_color(t_color *c_1, t_color *c_2)
  * @param c_1 a color
  * @param scale
  * 
- * @return new vector
+ * @return -- change in data base
  */
-t_color *scalar_mult_color(t_color *c_1, float scale) 
+void scalar_mult_color(t_color *c_1, float scale) 
 {
-	t_color *c_newcolor;
-
-// check size scale...not neg, not too big...
-	c_newcolor = malloc(sizeof(t_color));
-	if (!c_newcolor)
-		return (NULL);
-	c_newcolor->r = scale * c_1->r;
-	c_newcolor->g = scale * c_1->g;
-	c_newcolor->b = scale * c_1->b;
-	return (c_newcolor);
+	if (scale < 0) //too big??
+	{
+		printf("negative scale \n");
+		return;
+	}
+	c_1->r *= scale;
+	c_1->g *= scale;
+	c_1->b *= scale;
 }
-
 
 /**
  * @brief multiply 2 colors
@@ -149,3 +122,21 @@ t_color *multipling_color(t_color *c_1, t_color *c_2)
 	c_newcolor->b = c_1->b * c_2->b;
 	return (c_newcolor);	
 }
+
+//pareil mais malloc....
+/*
+t_color *scalar_mult_color(t_color *c_1, float scale) 
+{
+	t_color *c_newcolor;
+
+// check size scale...not neg, not too big...
+	c_newcolor = malloc(sizeof(t_color));
+	if (!c_newcolor)
+		return (NULL);
+	c_newcolor->r = scale * c_1->r;
+	c_newcolor->g = scale * c_1->g;
+	c_newcolor->b = scale * c_1->b;
+	free (c_1);///A VOIR...
+	return (c_newcolor);
+}
+*/

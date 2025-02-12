@@ -1,6 +1,6 @@
 NAME := minirt
-CC := cc
-CFLAGS := -Wall -Wextra -Werror
+CC := cc -fsanitize=address
+CFLAGS := #-Wall -Wextra -Werror
 RM := rm -rf
 
 OBJ_DIR = obj
