@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pixel.put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 10:27:19 by syl              ###   ########.fr       */
+/*   Created: 2024/12/18 16:49:29 by sforster          #+#    #+#             */
+/*   Updated: 2025/02/12 10:28:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./inc/minirt.h"
+#include "../inc/minirt.h"
 
-//Docstring
-
-int main(void)
+/*
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-///	t_pix ***pix;
-	t_coord *v_vector;
+	char	*dst;
 
-//	check_file
-//	pix = parsing();
-
-	v_vector = create_vector(5, 12, 3);
-	print_vector(v_vector);
-	free(v_vector);
-//	terminate()
-	return (0);
+	if (!x || !y)
+		return ;
+	if (x >= 2200)
+		return ;
+	if (y >= 1300)
+		return ;
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
+*/
+

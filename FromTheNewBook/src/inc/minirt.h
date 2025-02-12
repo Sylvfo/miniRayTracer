@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/11 17:22:06 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:32:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 //# include "librairies/libft/libft.h"
-//# include <mlx.h>
+# include <mlx.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -22,8 +22,6 @@
 # include <stdbool.h>
 
 # include "minirt_data_struct.h"
-# include "minirt_colors.h"
-
 
 //create_point_vector.c
 t_coord *create_vector(float x, float y, float z);
