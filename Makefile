@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/12 08:32:46 by cmegret          ###   ########.fr        #
+#    Updated: 2025/02/12 10:53:48 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,17 +43,28 @@ NAME = minirt
 # Compilateur
 CC = cc
 
+# Flags de compilation
 CFLAGS = -Wall -Wextra -Werror -Iincludes
+LIBFLAGS = -Llib/libft -lft
 
+# Fichiers sources
 SRCS = \
 		srcs/main/main.c \
 		srcs/parsing/parse.c
 
+# Bibliothèques
+LIBFT = lib/libft/libft.a
 MLX_DIR := lib/minilibx-linux
 MLX_INC := -I$(MLX_DIR)
 MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm 
 
+# Fichiers objets
 OBJ = $(SRCS:.c=.o)
+
+# Fichiers de test
+TEST_SRCS = tests/test_validate_ambient.c $(filter-out srcs/main/main.c, $(SRCS))
+TEST_OBJS = $(TEST_SRCS:.c=.o)
+TEST_NAME = test_fonction
 
 all: start norm $(MLX_DIR)/libmlx.a $(NAME)
 
@@ -86,16 +97,27 @@ $(MLX_DIR)/libmlx.a:
 	@echo "$(BLUE)Compiling MinilibX...$(RESET)"
 	@$(MAKE) -s -C $(MLX_DIR) $(REDIRECT)
 
+# Règle pour compiler la libft
+$(LIBFT):
+	@echo "$(BLUE)Compiling: lib/libft$(RESET)"
+	@$(MAKE) -C ./lib/libft -f Makefile $(REDIRECT)
+
 # Règle pour l'exécutable final
-$(NAME): $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
 	@echo "$(BLUE)Linking: $@$(RESET)"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX_LNK)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFLAGS) $(MLX_LNK)
 	@echo "$(GREEN)\nCompilation successful!\n$(RESET)"
 
 # Règle pour les fichiers objets
 %.o: %.c
 	@echo "$(BLUE)Compiling: $<$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Règle pour compiler les tests
+$(TEST_NAME): $(TEST_OBJS) $(LIBFT) $(MLX_DIR)/libmlx.a
+	@echo "$(BLUE)Linking: $@$(RESET)"
+	@$(CC) $(CFLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFLAGS) $(MLX_LNK)
+	@echo "$(GREEN)\nCompilation des tests réussie!\n$(RESET)"
 
 # Règle pour la norminette
 norm:
@@ -117,17 +139,27 @@ norm:
 debug: CFLAGS += -g
 debug: re
 
+# Règle pour exécuter les tests
+test: $(TEST_NAME)
+	@echo "$(BLUE)Running tests...$(RESET)"
+	@./$(TEST_NAME)
+
 # Règle pour nettoyer les fichiers objets
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
-	@rm -rf $(OBJ_DIR)
 	@echo "$(RED)Cleaning MinilibX...$(RESET)"
+	@echo "$(RED)Cleaning libft...$(RESET)"
+	@$(MAKE) -C lib/libft/ clean $(REDIRECT)
 	@$(MAKE) -s -C $(MLX_DIR) clean $(REDIRECT)
+	@rm -f $(OBJ)
+	@rm -f $(TEST_OBJS)
 
 # Règle pour nettoyer tout
 fclean: clean
 	@echo "$(RED)Cleaning executable(s)...$(RESET)"
 	@rm -f $(NAME)
+	@rm -f $(TEST_NAME)
+	@$(MAKE) -C lib/libft/ fclean $(REDIRECT)
 	@sleep 1
 	clear
 
@@ -135,4 +167,4 @@ fclean: clean
 re: fclean all
 
 # Règle pour rendre le makefile "phony"
-.PHONY: all clean fclean re norm start debug
+.PHONY: all clean fclean re norm start debug test

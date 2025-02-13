@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 09:56:56 by cmegret          ###   ########.fr       */
+/*   Created: 2023/11/27 10:21:13 by sforster          #+#    #+#             */
+/*   Updated: 2024/03/28 13:39:18 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "libft.h"
 
-# include "../lib/minilibx-linux/mlx_int.h"
-# include "../lib/libft/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*result;
 
-# include "minirt_data_struct.h"
-
-int		main(int argc, char **argv);
-void	parse_scene_file(const char *filename);
-
-#endif
+	result = malloc(sizeof(t_list));
+	if (!result)
+		return (NULL);
+	result->content = content;
+	result->next = NULL;
+	return (result);
+}

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 09:56:56 by cmegret          ###   ########.fr       */
+/*   Created: 2023/11/03 15:53:23 by sforster          #+#    #+#             */
+/*   Updated: 2023/11/07 14:49:10 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+// write to a file descriptor
+// ecrit un caractere dans le (fd) file descriptor
 
-# include "../lib/minilibx-linux/mlx_int.h"
-# include "../lib/libft/libft.h"
+#include <unistd.h>
+#include "libft.h"
 
-# include "minirt_data_struct.h"
-
-int		main(int argc, char **argv);
-void	parse_scene_file(const char *filename);
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
+}

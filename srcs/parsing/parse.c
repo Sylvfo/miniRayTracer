@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:33:08 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/12 09:33:08 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:58:53 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,40 @@ int	validate_ambient(char *line)
 	int		g;
 	int		b;
 
-	if (sscanf(line, "A %f %d,%d,%d", &ratio, &r, &g, &b) != 4)
+	if (line[0] != 'A' || line[1] != ' ')
 		return (0);
+	line += 2;
+	ratio = ft_atof(line);
+	while (*line && *line != ' ')
+		line++;
+	if (*line == '\0' || *(++line) == '\0')
+		return (0);
+	r = ft_atoi(line);
+	while (*line && *line != ',')
+		line++;
+	if (*line != ',')
+		return (0);
+	line++; // passe la virgule
+	g = ft_atoi(line);
+	while (*line && *line != ',')
+		line++;
+	if (*line != ',')
+		return (0);
+	line++; // passe la virgule
+	b = ft_atoi(line);
+	// Avancez le pointeur en sautant les chiffres de b
+	while (*line >= '0' && *line <= '9')
+		line++;
+	// Si on rencontre une virgule après le dernier nombre, c'est une erreur
+	if (*line == ',')
+		return (0);
+	// S'assurer qu'il ne reste que des espaces
+	while (*line)
+	{
+		if (*line != ' ')
+			return (0);
+		line++;
+	}
 	if (ratio < 0.0f || ratio > 1.0f)
 		return (0);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
@@ -48,7 +80,8 @@ void	read_file(int fd)
 	int		ret;
 	int		i;
 
-	while ((ret = read(fd, buf, 255)) > 0)
+	ret = read(fd, buf, 255);
+	while (ret > 0)
 	{
 		buf[ret] = '\0';
 		line = buf;
@@ -61,6 +94,7 @@ void	read_file(int fd)
 			parse_line(line);
 			line += i + 1;
 		}
+		ret = read(fd, buf, 255);
 	}
 	if (ret == -1)
 	{
