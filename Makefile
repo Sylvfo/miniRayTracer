@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/12 10:53:48 by cmegret          ###   ########.fr        #
+#    Updated: 2025/02/13 15:37:52 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 OBJ = $(SRCS:.c=.o)
 
 # Fichiers de test
-TEST_SRCS = tests/test_validate_ambient.c $(filter-out srcs/main/main.c, $(SRCS))
+TEST_SRCS = tests/run_test.c tests/test_validate_ambient.c tests/test_validate_light.c tests/test_validate_camera.c $(filter-out srcs/main/main.c, $(SRCS))
 TEST_OBJS = $(TEST_SRCS:.c=.o)
 TEST_NAME = test_fonction
 
