@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 16:44:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/13 15:32:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 # include "minirt_data_struct.h"
 
+// voir quelle taille....
+#define EPSILON 0.01
+
 //create_point_vector.c
 t_coord *create_vector(float x, float y, float z);
 t_coord *create_point(float x, float y, float z);
@@ -30,6 +33,21 @@ t_coord *create_point(float x, float y, float z);
 //utils_print.c
 void print_vector(t_coord *v_vector);
 void print_point(t_coord *p_point);
+
+////////////MATH/////////////
+
+// matrix_creation.c
+float **create_matrix(unsigned int row, unsigned int col);
+void error_alloc_matrix(int i, float **m_matrix);
+void	init_matrix_zero(float **m_matrix, unsigned int row, unsigned int col);
+
+//matrix_fill_44_33_22.c
+void matrix_44_fill(float **m_matrix, int row, int column, float number);
+void matrix_33_fill(float **m_matrix, int row, int column, float number);
+void matrix_22_fill(float **m_matrix, int row, int column, float number);
+
+//matrix_print.c
+void print_matrix(float **m_matrix, unsigned int row, unsigned int col);
 
 // check_type_coord.c
 bool is_vector(t_coord *v_vector);
@@ -48,9 +66,6 @@ t_coord *normalize_vector(t_coord *v_1);
 t_coord *negat(t_coord *v_1); 
 float dot_product(t_coord *v_1, t_coord *v_2);
 t_coord *cross_product(t_coord *v_1, t_coord *v_2);
-
-//image_old...
-
 
 //set_colors.c
 t_color *create_color(int r, int g, int b);
@@ -92,5 +107,11 @@ int		ft_exit(t_image *ima);
 //init_image.c
 t_image *init_image(void);
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color);
+
+/////// TERMINATE /////////
+void	free_matrix_44(float **m_matrix);
+void	free_matrix_33(float **m_matrix);
+void	free_matrix_22(float **m_matrix);
+//void	free_matrix(float **m_matrix);
 
 #endif

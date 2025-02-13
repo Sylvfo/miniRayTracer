@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:26:24 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 16:33:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/13 13:24:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pix_drawings(t_pix ***pix)
 {
-	color_pixels3(pix);
+	color_pixels(pix);
 }
 
 void color_pixels(t_pix ***pix)
@@ -34,7 +34,7 @@ void color_pixels(t_pix ***pix)
 		x++;
 	}
 }
-
+/*
 // degradé
 void color_pixels2(t_pix ***pix)
 {
@@ -87,4 +87,4 @@ void color_pixels3(t_pix ***pix)
 		}
 		x++;
 	}
-}
+}*/

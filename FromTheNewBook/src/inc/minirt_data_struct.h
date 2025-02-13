@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 15:02:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/13 11:20:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ typedef struct	s_pix {
 
 	//in each pixel. 
 	t_coord		*D; // vecteur entre camera et coordonnes sur viewport
-	int			color;
 	t_color		*col;
 // closest object
 

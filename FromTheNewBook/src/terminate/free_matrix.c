@@ -1,33 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_to_window.c                                  :+:      :+:    :+:   */
+/*   free_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/13 15:32:33 by syl              ###   ########.fr       */
+/*   Created: 2025/02/13 14:19:22 by syl               #+#    #+#             */
+/*   Updated: 2025/02/13 15:17:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void pix_to_window(t_pix ***pix)
+void	free_matrix_44(float **m_matrix)
 {
-	int x;
-	int y;
+	int a;
 
-	x = 0;
-	while(x < 1600)//1600 = canva width
+	a = 0;
+	while(a < 4)
 	{
-		y = 0; 
-		while (y < 1200) // 1200 = canva height
-		{
-			color_float_to_int(pix[x][y]->col);
-			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win, x, y, pix[x][y]->col->rgb);
-			y++;
-		}
-		x++;
+		free(m_matrix[a]);
+		a++;
 	}
+	free(m_matrix);
 }
 
+void	free_matrix_33(float **m_matrix)
+{
+	int a;
+
+	a = 0;
+	while(a < 3)
+	{
+		free(m_matrix[a]);
+		a++;
+	}
+	free(m_matrix);
+}
+
+void	free_matrix_22(float **m_matrix)
+{
+	int a;
+
+	a = 0;
+	while(a < 2)
+	{
+		free(m_matrix[a]);
+		a++;
+	}
+	free(m_matrix);
+}

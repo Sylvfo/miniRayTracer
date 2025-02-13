@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:00:02 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 16:33:29 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/13 14:05:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	multipling_color(t_color *c_1, t_color *c_2)
 		printf("miss a colour \n");
 		return ;
 	}
-//	printf("Color 1: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n",c_1->r, c_1->g, c_1->b, c_1->rgb);
+//	f("Color 1: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n",c_1->r, c_1->g, c_1->b, c_1->rgb);
 //	printf("Color 2: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n", c_2->r, c_2->g, c_2->b, c_2->rgb);
 	c_1->r *= c_2->r;
 	c_1->g *= c_2->g;
