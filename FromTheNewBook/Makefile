@@ -1,5 +1,5 @@
 NAME := minirt
-CC := cc -fsanitize=address
+CC := cc #-fsanitize=address
 CFLAGS := #-Wall -Wextra -Werror
 RM := rm -rf
 

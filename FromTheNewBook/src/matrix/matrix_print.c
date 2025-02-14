@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:03:54 by syl               #+#    #+#             */
-/*   Updated: 2025/02/13 15:32:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/14 11:23:53 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void print_matrix(float **m_matrix, unsigned int row, unsigned int col)
 		b = 0;
 		while(b < col)
 		{
-			printf(" %.2f |", m_matrix[a][b]);
+			printf(GREEN1 " %.2f |" RESET, m_matrix[a][b]);
 			b++;
 		}
 		printf("|\n");

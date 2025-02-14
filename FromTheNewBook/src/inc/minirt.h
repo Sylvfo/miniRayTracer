@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/13 15:32:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/14 15:20:46 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 # include <stdbool.h>
 
 # include "minirt_data_struct.h"
+# include "minirt_tests.h"
 
 // voir quelle taille....
-#define EPSILON 0.01
+#define EPSILON 0.001
 
 //create_point_vector.c
 t_coord *create_vector(float x, float y, float z);
@@ -35,19 +36,6 @@ void print_vector(t_coord *v_vector);
 void print_point(t_coord *p_point);
 
 ////////////MATH/////////////
-
-// matrix_creation.c
-float **create_matrix(unsigned int row, unsigned int col);
-void error_alloc_matrix(int i, float **m_matrix);
-void	init_matrix_zero(float **m_matrix, unsigned int row, unsigned int col);
-
-//matrix_fill_44_33_22.c
-void matrix_44_fill(float **m_matrix, int row, int column, float number);
-void matrix_33_fill(float **m_matrix, int row, int column, float number);
-void matrix_22_fill(float **m_matrix, int row, int column, float number);
-
-//matrix_print.c
-void print_matrix(float **m_matrix, unsigned int row, unsigned int col);
 
 // check_type_coord.c
 bool is_vector(t_coord *v_vector);
@@ -66,6 +54,36 @@ t_coord *normalize_vector(t_coord *v_1);
 t_coord *negat(t_coord *v_1); 
 float dot_product(t_coord *v_1, t_coord *v_2);
 t_coord *cross_product(t_coord *v_1, t_coord *v_2);
+
+///////// MATRIX ////////////
+
+//matrix_print.c
+void print_matrix(float **m_matrix, unsigned int row, unsigned int col);
+
+//matrix_creation2.c
+float *create_matrix2(unsigned int row, unsigned int col);
+void	init_matrix_zero2(float *m_matrix);
+void print_matrix2(float *m_matrix);
+void matrix_fill2(float *m_matrix, int row, int col, float number);
+
+//matrix_comparison.c
+bool	matrix_comparision(float *m_a, float *m_b);
+
+//matrix_operations.c
+float *matrix_multiplication_44(float *m_a, float *m_b);
+bool	check_matrix_44_44(float *m_a, float *m_b);
+
+//matrix_mult_matrix_p_v.c
+t_coord *matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);
+bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
+void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
+void fill_point_vector(t_coord *new_point_vector, int count, float sum);
+
+//matrix_testing.c
+bool test_multiplication(void);
+void test_multiplication2(void);
+
+///////// COLORS ////////////
 
 //set_colors.c
 t_color *create_color(int r, int g, int b);

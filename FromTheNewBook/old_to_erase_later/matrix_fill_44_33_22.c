@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_fill_44_33_22.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:12:54 by syl               #+#    #+#             */
-/*   Updated: 2025/02/13 15:32:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/14 11:34:27 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
 
 void matrix_44_fill(float **m_matrix, int row, int column, float number)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_creation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:43:10 by syl               #+#    #+#             */
-/*   Updated: 2025/02/13 15:32:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/14 09:35:56 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,3 @@ void	init_matrix_zero(float **m_matrix, unsigned int row, unsigned int col)
 		i++;
 	}
 }
-

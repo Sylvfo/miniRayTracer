@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt_tests.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/14 15:20:51 by sforster         ###   ########.fr       */
+/*   Created: 2025/02/14 11:12:13 by sforster          #+#    #+#             */
+/*   Updated: 2025/02/14 11:20:41 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./inc/minirt.h"
+#ifndef MINIRT_TESTS_H
+# define MINIRT_TESTS_H
 
-//Docstring
+#define GREEN "\033[0;32m"
+#define RESET "\033[0m"
+#define RESET  "\033[0m"
+#define GREEN1 "\033[0;32m"   // Vert normal
+#define GREEN2 "\033[1;32m"   // Vert clair
+#define GREEN3 "\033[0;92m"   // Vert brillant
+#define GREEN4 "\033[0;36m"   // Cyan-vert
 
-//	row = m_matrix[0];
-//	col = m_matrix[1];
-
-int main(void)
-{
-/*	t_pix ***pix;
-	
-	pix = init_data_test();
-	pix_drawings(pix);
-	pix_to_window(pix);
-	image_hooks(pix[0][0]->ima);*/
-
-	test_multiplication2();
-	return (0);
-}
+#endif
