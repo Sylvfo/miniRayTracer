@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   event_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/02/12 15:36:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/14 19:02:32 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void image_hooks(t_image *ima)
+void	image_hooks(t_image *ima)
 {
 	mlx_hook(ima->mlx_win, 2, 1L << 0, ft_keys, ima);
 	mlx_loop(ima->mlx_ptr);
@@ -44,4 +44,3 @@ int	ft_exit(t_image *ima)
 	exit(0);
 	return (0);
 }
-

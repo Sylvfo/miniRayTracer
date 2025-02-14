@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 15:35:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/14 19:02:30 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ t_image *init_image(void)
 //	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	return (ima);
 }
-
-
 
 // my_mlx_pixel_put(ima, (int)round(p->l1), (int)round(p->l2), color);
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color)
