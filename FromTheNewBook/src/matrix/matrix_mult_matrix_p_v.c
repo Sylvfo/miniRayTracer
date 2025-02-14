@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_mult_matrix_p_v.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:54:35 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/14 15:22:37 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:07:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_coord *matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1)
         sum = 0;
         sum += m_a[2 + count * 4] * coord[0];     
         sum += m_a[2 + count * 4 + 1] * coord[1];  
-        sum += m_a[2 + count * 4 + 2] * coord[2];  
+        sum += m_a[2 + count * 4 + 2] * coord[2];
         sum += m_a[2 + count * 4 + 3] * coord[3];
 		fill_point_vector(new_point_vector, count, sum);
         count++;
