@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/14 16:57:42 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/16 13:37:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,27 @@ bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
 void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
 void fill_point_vector(t_coord *new_point_vector, int count, float sum);
 
+//matrix_identity.c
+float *create_indentity_matrix_44(void);
+
 //matrix_testing.c
 bool test_multiplication(void);
 void test_multiplication2(void);
+void test_multiplication3(void);
+
+//matrix_transposing.c
+void	transposing_matrix_44(float *m_matrix);
+void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
+
+//matrix_check.c
+bool	check_matrix_44(float *m_a);
+
+//matrix_inverting.c
+float determinant_22(float *m_22);
+
+//test_inverting.c
+void test_inverting(void);
+
 
 ///////// COLORS ////////////
 

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:09:13 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/14 16:13:07 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/16 12:58:28 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,47 @@ void test_multiplication2(void)
 
 	print_point(p_point2);
 	free(p_point);
+	free(m_test);
+
+}
+
+void test_multiplication3(void)
+{
+	float *m_test;
+	t_coord *p_point;
+	t_coord *p_point2;
+
+	m_test = create_matrix2(4, 4);
+	matrix_fill2(m_test, 0, 0, 1);
+	matrix_fill2(m_test, 0, 1, 2);
+	matrix_fill2(m_test, 0, 2, 3);
+	matrix_fill2(m_test, 0, 3, 4);
+
+	matrix_fill2(m_test, 1, 0, 2);
+	matrix_fill2(m_test, 1, 1, 4);
+	matrix_fill2(m_test, 1, 2, 4);
+	matrix_fill2(m_test, 1, 3, 2);	
+
+	matrix_fill2(m_test, 2, 0, 8);
+	matrix_fill2(m_test, 2, 1, 6);
+	matrix_fill2(m_test, 2, 2, 4);
+	matrix_fill2(m_test, 2, 3, 1);
+
+	matrix_fill2(m_test, 3, 0, 0);
+	matrix_fill2(m_test, 3, 1, 0);
+	matrix_fill2(m_test, 3, 2, 0);
+	matrix_fill2(m_test, 3, 3, 1);	
+
+
+	print_matrix2(m_test);
+	printf("after=== \n");
+
+	transposing_matrix_44(m_test);
+	print_matrix2(m_test);
+	
+
+
+
 	free(m_test);
 
 }
