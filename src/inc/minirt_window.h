@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:26:47 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 16:49:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 17:03:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 //CE QUI EST EN LIENS AVEC MINILIBX
 // CREATION DE L IMAGE
 // GESTION DES HOOKS...
-
-
 
 //////// DRAWINGS ////////////
 void	pix_drawings(t_pix ***pix);
@@ -34,7 +32,6 @@ int		ft_exit(t_image *ima);
 //init_image.c
 t_image	*init_image(void);
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color);
-
 void	pix_to_window(t_pix ***pix);
 
 #endif

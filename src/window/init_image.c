@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/14 19:02:30 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:06:24 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 //1600 = canva width
 // 1200 = canva height
-t_image *init_image(void)
+t_image	*init_image(void)
 {
-	t_image *ima;
+	t_image	*ima;
 
 	ima = NULL;
 	ima = malloc(sizeof(t_image));
@@ -25,7 +25,6 @@ t_image *init_image(void)
 	ima->mlx_ptr = mlx_init();
 	if (ima->mlx_ptr == NULL)
 		return (0);
-
 	ima->mlx_win = mlx_new_window(ima->mlx_ptr, 1600, 1200, "Fen fen");
 	ima->img = mlx_new_image(ima->mlx_ptr, 1600, 1200); // ca on peut modifier pour avoir des légendes sur l image
 	ima->addr = mlx_get_data_addr(ima->img, &ima->bits_per_pixel,

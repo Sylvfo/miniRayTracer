@@ -6,11 +6,31 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:09:13 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 16:17:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 17:02:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+/*
+avant dans main
+	float *m_identity;
+
+	m_identity = create_indentity_matrix_44();
+	print_matrix(m_identity);
+	test_multiplication3();
+	transposing_matrix_44(m_identity);
+	print_matrix(m_identity);
+	free(m_identity);
+
+	test_inverting();
+	test_submatrix();
+	test_minor_33();
+	test_determinant_33();
+	test_determinant_44();
+	test_invert_44();
+//	test_mult_product_inverse();
+*/
 
 /*
 bool test_multiplication(void)
