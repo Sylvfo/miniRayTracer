@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:26:47 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 22:35:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	color_pixels(t_pix ***pix);
 void	image_hooks(t_image *ima);
 int		ft_keys(int keycode, t_image *ima);
 int		ft_exit(t_image *ima);
+int		mouse_hook(int keycode, t_image *ima);
+int		mouse_position(int x, int y, t_image *ima);
+int position_mouse_pressed(int button, int x, int y, t_image *ima);
 
 //init_image.c
 t_image	*init_image(void);
