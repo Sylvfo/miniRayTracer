@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sforster <sforster@student.42.fr>          +#+  +:+       +#+         #
+#    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/14 19:02:39 by sforster         ###   ########.fr        #
+#    Updated: 2025/02/17 08:14:10 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ MLX_INC := -I$(MLX_DIR)
 MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm 
 
 # Fichiers objets
-OBJ = $(SRCS:.c=.o)
+OBJ_DIR = objs
+OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 # Fichiers de test
 TEST_SRCS = tests/run_test.c tests/test_validate_ambient.c tests/test_validate_light.c tests/test_validate_camera.c $(filter-out srcs/main/main.c, $(SRCS))
@@ -108,7 +109,8 @@ $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(GREEN)\nCompilation successful!\n$(RESET)"
 
 # Règle pour les fichiers objets
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	@echo "$(BLUE)Compiling: $<$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -146,12 +148,12 @@ test: $(TEST_NAME)
 # Règle pour nettoyer les fichiers objets
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
+	@rm -rf $(OBJ_DIR)
+	@rm -f $(TEST_OBJS)
 	@echo "$(RED)Cleaning MinilibX...$(RESET)"
+	@$(MAKE) -s -C $(MLX_DIR) clean $(REDIRECT)
 	@echo "$(RED)Cleaning libft...$(RESET)"
 	@$(MAKE) -C lib/libft/ clean $(REDIRECT)
-	@$(MAKE) -s -C $(MLX_DIR) clean $(REDIRECT)
-	@rm -f $(OBJ)
-	@rm -f $(TEST_OBJS)
 
 # Règle pour nettoyer tout
 fclean: clean
