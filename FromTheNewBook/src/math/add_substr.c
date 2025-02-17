@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:30 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/07 21:28:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 09:26:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
  * 
  * @return new vector
  */
-t_coord *addition(t_coord *p_v_1, t_coord *p_v_2) 
+t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2)
 {
-	t_coord *p_v_new;
+	t_coord	*p_v_new;
 
 	if (is_point(p_v_1) == true && is_point(p_v_2))
 	{
@@ -51,9 +51,9 @@ t_coord *addition(t_coord *p_v_1, t_coord *p_v_2)
  * 
  * @return new vector
  */
-t_coord *substraction(t_coord *p_v_1, t_coord *p_v_2) 
+t_coord	*substraction(t_coord *p_v_1, t_coord *p_v_2)
 {
-	t_coord *v_new;
+	t_coord	*v_new;
 
 	v_new = malloc(sizeof(t_coord));
 	v_new->x = p_v_1->x - p_v_2->x;

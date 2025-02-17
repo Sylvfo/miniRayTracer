@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/16 13:37:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 08:51:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINIRT_H
 
 //# include "librairies/libft/libft.h"
-//# include <mlx.h>
 # include "../../lib/minilibx-linux/mlx_int.h"
 # include <math.h>
 # include <stdio.h>
@@ -24,6 +23,7 @@
 
 # include "minirt_data_struct.h"
 # include "minirt_tests.h"
+# include "minirt_matrix.h"
 
 // voir quelle taille....
 #define EPSILON 0.001
@@ -55,51 +55,6 @@ t_coord *normalize_vector(t_coord *v_1);
 t_coord *negat(t_coord *v_1); 
 float dot_product(t_coord *v_1, t_coord *v_2);
 t_coord *cross_product(t_coord *v_1, t_coord *v_2);
-
-///////// MATRIX ////////////
-
-//matrix_print.c
-void print_matrix(float **m_matrix, unsigned int row, unsigned int col);
-
-//matrix_creation2.c
-float *create_matrix2(unsigned int row, unsigned int col);
-void	init_matrix_zero2(float *m_matrix);
-void print_matrix2(float *m_matrix);
-void matrix_fill2(float *m_matrix, int row, int col, float number);
-
-//matrix_comparison.c
-bool	matrix_comparision(float *m_a, float *m_b);
-
-//matrix_operations.c
-float *matrix_multiplication_44(float *m_a, float *m_b);
-bool	check_matrix_44_44(float *m_a, float *m_b);
-
-//matrix_mult_matrix_p_v.c
-t_coord *matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);
-bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
-void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
-void fill_point_vector(t_coord *new_point_vector, int count, float sum);
-
-//matrix_identity.c
-float *create_indentity_matrix_44(void);
-
-//matrix_testing.c
-bool test_multiplication(void);
-void test_multiplication2(void);
-void test_multiplication3(void);
-
-//matrix_transposing.c
-void	transposing_matrix_44(float *m_matrix);
-void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
-
-//matrix_check.c
-bool	check_matrix_44(float *m_a);
-
-//matrix_inverting.c
-float determinant_22(float *m_22);
-
-//test_inverting.c
-void test_inverting(void);
 
 
 ///////// COLORS ////////////
@@ -146,9 +101,7 @@ t_image *init_image(void);
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color);
 
 /////// TERMINATE /////////
-void	free_matrix_44(float **m_matrix);
-void	free_matrix_33(float **m_matrix);
-void	free_matrix_22(float **m_matrix);
+
 //void	free_matrix(float **m_matrix);
 
 #endif

@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_inverting.c                                   :+:      :+:    :+:   */
+/*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 13:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/02/16 13:41:50 by syl              ###   ########.fr       */
+/*   Created: 2025/02/13 14:03:54 by syl               #+#    #+#             */
+/*   Updated: 2025/02/17 14:35:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void test_inverting(void)
+void	print_matrix(float *m_matrix)
 {
-	float *m_22;
-	float a;
+	int	i;
+	int	k;
 
-	m_22 = create_matrix2(2, 2);
-	matrix_fill2(m_22, 0, 0, 1);
-	matrix_fill2(m_22, 0, 1, 5);
-	matrix_fill2(m_22, 1, 0, -3);
-	matrix_fill2(m_22, 1, 1, 2);
-	print_matrix2(m_22);
-	a = determinant_22(m_22);
-	printf("determinant is %.2f \n", a);
-
-	free(m_22);
+	i = 2;
+	k = (int)m_matrix[0] + 2;
+	printf(GREEN4 "Matrix %.0f - %.0f\n" RESET, m_matrix[0], m_matrix[1]);
+	while (i < ((m_matrix[0] * m_matrix[1]) + 2))
+	{
+		printf(GREEN2 "||" RESET);
+		while (i < k)
+		{
+			printf(GREEN1 " %.5f |" RESET, m_matrix[i]);
+			i++;
+		}
+		printf(GREEN3 "|\n" RESET);
+		k += (int)m_matrix[0];
+	}
 }

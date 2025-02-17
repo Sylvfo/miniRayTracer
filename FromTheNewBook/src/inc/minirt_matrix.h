@@ -1,0 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minirt_matrix.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
+/*   Updated: 2025/02/17 14:50:41 by syl              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MINIRT_MATRIX_H
+# define MINIRT_MATRIX_H
+
+# include "minirt_data_struct.h"
+
+///////// MATRIX ////////////
+
+//matrix_creation.c
+float	*create_matrix(unsigned int row, unsigned int col);
+void	init_matrix_zero(float *m_matrix);
+void	matrix_fill(float *m_matrix, int row, int col, float number);
+
+//matrix_identity.c
+float *create_indentity_matrix_44(void);
+
+//matrix_comparison.c
+bool	matrix_comparision(float *m_a, float *m_b);
+
+//matrix_operations.c
+float	*matrix_multiplication_44(float *m_a, float *m_b);
+void	matrix_division(float *m_matrix, float div);
+
+//matrix_mult_matrix_p_v.c
+t_coord *matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);
+bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
+void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
+void 	fill_point_vector(t_coord *new_point_vector, int count, float sum);
+
+//matrix_utils.c
+void	print_matrix(float *m_matrix);
+
+//matrix_transposing.c
+void	transposing_matrix_44(float *m_matrix);
+void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
+
+//INVERSION///
+//matrix_determinant.c
+float	determinant_22(float *m_22);
+float	determinant_33(float *m_33);
+float	determinant_44(float *m_44);
+
+//matrix_minors.c
+float	minor_33(float *m_matrix, int row, int col);
+float	minor_44(float *m_matrix, int row, int col);
+float	cofactors(int row, int col);
+
+//matrix_submatrix.c
+float		*submatrix(float *m_matrix, int row_to_remove, int col_to_remove);
+static int	get_curr_row(int i, float width);
+static int	get_curr_col(int i, float width);
+static int	check_submatrix(float *m_matrix, int row_rm, int col_rm);
+
+//matrix_check.c
+bool	check_matrix_44(float *m_a);
+bool	check_matrix_33(float *m_a);
+bool	check_matrix_22(float *m_a);
+bool	check_matrix_44_44(float *m_a, float *m_b);
+
+//test_inverting.c
+//void test_inverting(void);
+float *inverted_matrix_44(float *m_matrix);
+//float *matrix_cofactors_44(float *m_matrix);
+void matrix_cofactors_44(float *m_matrix, float *m_cofactors);
+
+
+//matrix_testing.c
+bool test_multiplication(void);
+void test_multiplication2(void);
+void test_multiplication3(void);
+void test_submatrix(void);
+void test_minor_33(void);
+void test_determinant_33(void);
+void test_invert_44(void);
+void test_mult_product_inverse(void);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:00:57 by syl               #+#    #+#             */
-/*   Updated: 2025/02/16 13:03:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 09:48:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,56 @@ bool	check_matrix_44(float *m_a)
 	if (!m_a)
 	{
 		printf("Matrix is missing\n");
-		return (false);		
+		return (false);
 	}
 	if (m_a[0] != 4 || m_a[1] != 4)
 	{
 		printf("Matrix not 4x4\n");
+		return (false);
+	}
+	return (true);
+}
+
+bool	check_matrix_33(float *m_a)
+{
+	if (!m_a)
+	{
+		printf("Matrix is missing\n");
+		return (false);
+	}
+	if (m_a[0] != 3 || m_a[1] != 3)
+	{
+		printf("Matrix not 3x3\n");
+		return (false);
+	}
+	return (true);
+}
+
+bool	check_matrix_22(float *m_a)
+{
+	if (!m_a)
+	{
+		printf("Matrix is missing\n");
+		return (false);
+	}
+	if (m_a[0] != 2 || m_a[1] != 2)
+	{
+		printf("Matrix not 2x2\n");
+		return (false);
+	}
+	return (true);
+}
+
+bool	check_matrix_44_44(float *m_a, float *m_b)
+{
+	if (!m_a || !m_b)
+	{
+		printf("Matrix is missing\n");
+		return (false);
+	}
+	if (m_a[0] != 4 || m_a[1] != 4 || m_b[0] != 4 || m_b[1] != 4)
+	{
+		printf("Matrix not 4x4 in multiplication\n");
 		return (false);
 	}
 	return (true);

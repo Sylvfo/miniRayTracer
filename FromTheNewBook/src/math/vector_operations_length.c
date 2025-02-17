@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/02/11 18:01:29 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:30:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// check size scale...not neg, not too big...
 /**
  * @brief to scale vector 
  * 
@@ -22,11 +23,10 @@
  * 
  * @return new vector
  */
-t_coord *scalar_mult(t_coord *v_1, float scale) 
+t_coord	*scalar_mult(t_coord *v_1, float scale)
 {
-	t_coord *v_new;
+	t_coord	*v_new;
 
-// check size scale...not neg, not too big...
 	if (is_vector(v_1) == false)
 		return (NULL);
 	v_new = malloc(sizeof(t_coord));
@@ -36,8 +36,7 @@ t_coord *scalar_mult(t_coord *v_1, float scale)
 	v_new->y = scale * v_1->y;
 	v_new->y = scale * v_1->z;
 	v_new->t = 0;
-	
-	return (v_new);	
+	return (v_new);
 }
 
 /**
@@ -49,16 +48,16 @@ t_coord *scalar_mult(t_coord *v_1, float scale)
  * 
  * @return the norm of the vector 
  */
-float length_vector(t_coord *v_1)
+float	length_vector(t_coord *v_1)
 {
-	float length;
+	float	length;
 
 	if (is_vector(v_1) == false)
 		return (0);
 //	WHAAAAAAAAAAAAAAT????
 //	length = (float)sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 	length = 2;
-	return (length);	
+	return (length);
 }
 
 /**
@@ -68,9 +67,9 @@ float length_vector(t_coord *v_1)
  * 
  * @return unit vector
  */
-t_coord *normalize_vector(t_coord *v_1)
+t_coord	*normalize_vector(t_coord *v_1)
 {
-	t_coord *v_new;
+	t_coord	*v_new;
 	float	length;
 
 	if (is_vector(v_1) == false)
@@ -89,7 +88,5 @@ t_coord *normalize_vector(t_coord *v_1)
 	v_new->y = v_1->y / length;
 	v_new->z = v_1->z / length;
 	v_new->t = 0;
-
-	return(v_new);
+	return (v_new);
 }
-
