@@ -4,14 +4,13 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-
 		{
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debugminirt",
-			"program": "${workspaceFolder}/FromTheNewBook/minirt",
+			"program": "/home/syl/42/miniRayTracder/FromTheNewBook/minirt",
 			"args": [
-//				"FromTheNewBook/exemple.rt" mettre chemin entier
+				"/home/syl/42/miniRayTracder/FromTheNewBook/minirt"
 			],
 			"cwd": "${workspaceFolder}"
 		}
