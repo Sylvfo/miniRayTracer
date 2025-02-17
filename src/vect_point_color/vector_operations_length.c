@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 09:30:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 17:51:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ float	length_vector(t_coord *v_1)
 
 	if (is_vector(v_1) == false)
 		return (0);
-//	WHAAAAAAAAAAAAAAT????
-//	length = (float)sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
-	length = 2;
+	length = (float)sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 	return (length);
 }
 
@@ -83,10 +81,10 @@ t_coord	*normalize_vector(t_coord *v_1)
 	v_new = malloc(sizeof(t_coord));
 	if (!v_new)
 		return (NULL);
-	// optimiser avec multiplication factor...
-	v_new->x = v_1->x / length;
-	v_new->y = v_1->y / length;
-	v_new->z = v_1->z / length;
+	length = 1 / length; // c est juste??
+	v_new->x = v_1->x * length;
+	v_new->y = v_1->y * length;
+	v_new->z = v_1->z * length;
 	v_new->t = 0;
 	return (v_new);
 }

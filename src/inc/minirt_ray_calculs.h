@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_rotation.c                                  :+:      :+:    :+:   */
+/*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 15:55:23 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:30 by syl              ###   ########.fr       */
+/*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
+/*   Updated: 2025/02/17 17:51:22 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#ifndef MINIRT_RAY_CALCULS_H
+# define MINIRT_RAY_CALCULS_H
 
-/*
-1 vector between object and camera
-2 normalize it
-3 cross product with v3 - wich is... 
-*/
+# include "minirt_data_struct.h"
+
+
+#endif
