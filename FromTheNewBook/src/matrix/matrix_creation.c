@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 09:39:42 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 09:42:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 16:15:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 float	*create_matrix(unsigned int row, unsigned int col)
 {
 	float	*m_matrix;
-	int		i;
 
 	m_matrix = NULL;
 	m_matrix = malloc((row * col + 2) * sizeof(float));
@@ -65,4 +64,16 @@ void	matrix_fill(float *m_matrix, int row, int col, float number)
 	}
 	i = row * (int)m_matrix[1] + col + 2;
 	m_matrix[i] = number;
+}
+
+float	*create_indentity_matrix_44(void)
+{
+	float	*m_identity;
+
+	m_identity = create_matrix(4, 4);
+	matrix_fill(m_identity, 0, 0, 1);
+	matrix_fill(m_identity, 1, 1, 1);
+	matrix_fill(m_identity, 2, 2, 1);
+	matrix_fill(m_identity, 3, 3, 1);
+	return (m_identity);
 }

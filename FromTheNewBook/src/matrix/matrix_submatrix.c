@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 10:19:23 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 10:29:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 16:32:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ float	*submatrix(float *m_matrix, int row_to_rm, int col_to_rm)
 }
 
 //with submatrix
-static int	get_curr_row(int i, float width)
+int	get_curr_row(int i, float width)
 {
 	return ((i - 2) / (int)width);
 }
 
 //with submatrix
-static int	get_curr_col(int i, float width)
+int	get_curr_col(int i, float width)
 {
 	return ((i - 2) % (int)width);
 }
 
 //with submatrix
-static int	check_submatrix(float *m_matrix, int row_rm, int col_rm)
+int	check_submatrix(float *m_matrix, int row_rm, int col_rm)
 {
 	if (!m_matrix || row_rm < 0 || col_rm < 0)
 		return (0);

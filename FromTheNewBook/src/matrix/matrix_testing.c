@@ -6,12 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:09:13 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 14:58:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 16:17:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+/*
 bool test_multiplication(void)
 {
 	float *m_test;
@@ -299,8 +300,9 @@ void test_invert_44(void)
 	free(m_test);
 	free(m_inverted);
 	free(m_3);
-}
+}*/
 
+/*
 void test_mult_product_inverse(void)
 {
 	float *m_testA;
@@ -309,7 +311,7 @@ void test_mult_product_inverse(void)
 	float *m_inverseB;
 	float *m_final;
 
-/*	m_testA = create_matrix(4, 4);
+	m_testA = create_matrix(4, 4);
 	matrix_fill(m_testA, 0, 0, 3);
 	matrix_fill(m_testA, 0, 1, -9);
 	matrix_fill(m_testA, 0, 2, 7);
@@ -357,9 +359,9 @@ void test_mult_product_inverse(void)
 	m_testC = matrix_multiplication_44(m_testA , m_testB);
 	m_inverseB = inverted_matrix_44(m_testB);
 	m_final = matrix_multiplication_44(m_testC, m_inverseB);
-	print_matrix(m_final);*/
+	print_matrix(m_final);
 
 	m_testA = create_indentity_matrix_44();
 	m_testB = inverted_matrix_44(m_testA);
 	print_matrix(m_testB);
-}
+}*/

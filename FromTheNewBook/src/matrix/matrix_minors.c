@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 10:30:15 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 11:40:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 16:15:10 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ float	minor_44(float *m_matrix, int row, int col)
 	float	determinant;
 
 	m_submatrix = submatrix(m_matrix, row, col);
-	if (!submatrix)
+	if (!m_submatrix)
 		return (0.0);
 	determinant = determinant_33(m_submatrix);
 	determinant *= cofactors(row, col);
@@ -37,7 +37,7 @@ float	minor_33(float *m_matrix, int row, int col)
 	float	determinant;
 
 	m_submatrix = submatrix(m_matrix, row, col);
-	if (!submatrix)
+	if (!m_submatrix)
 		return (0.0);
 	determinant = determinant_22(m_submatrix);
 	determinant *= cofactors(row, col);
@@ -45,13 +45,12 @@ float	minor_33(float *m_matrix, int row, int col)
 }
 
 //cofactors are minors that have (possibly) had their sign changed.
-
 float	cofactors(int row, int col)
 {
-	float cofactor;
+	float	cofactor;
 
 	cofactor = 1;
 	if ((row + col) % 2 != 0)
 		cofactor = -1;
-	return(cofactor);
+	return (cofactor);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/14 19:02:35 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:09:19 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
  * 
  * @return new color
  */
+// si plus grand que 255?? plus petit que zero??
 t_color	*create_color(int r, int g, int b)
 {
 	t_color	*c_newcolor;
-	// si plus grand que 255?? plus petit que zero??
 
 	c_newcolor = malloc(sizeof(t_color));
 	if (!c_newcolor)
@@ -55,7 +55,7 @@ t_color	*create_color(int r, int g, int b)
  * 
  * @return new color
  */
-static float	int_to_float(int value)
+float	int_to_float(int value)
 {
 	if (value < 0)
 		return (0.0f);
@@ -104,7 +104,7 @@ void	color_float_to_int(t_color *c_color)
  * 
  * @return --- change in data base pix
  */
-static int	float_to_byte(float f)
+int	float_to_byte(float f)
 {
 	if (f <= 0.0f)
 		return (0);

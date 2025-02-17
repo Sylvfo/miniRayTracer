@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:55:10 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 14:37:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/17 15:42:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ float	*matrix_multiplication_44(float *m_a, float *m_b)
 
 void	matrix_division(float *m_matrix, float div)
 {
-	int i;
+	int	i;
 
 	if (!m_matrix)
 	{

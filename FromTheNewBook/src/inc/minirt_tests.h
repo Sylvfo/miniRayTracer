@@ -3,22 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_tests.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:12:13 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/14 11:20:41 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:06:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_TESTS_H
 # define MINIRT_TESTS_H
 
-#define GREEN "\033[0;32m"
-#define RESET "\033[0m"
-#define RESET  "\033[0m"
-#define GREEN1 "\033[0;32m"   // Vert normal
-#define GREEN2 "\033[1;32m"   // Vert clair
-#define GREEN3 "\033[0;92m"   // Vert brillant
-#define GREEN4 "\033[0;36m"   // Cyan-vert
+///////// EXERCICES BOOK ////////////
+void	projectile(t_pix ***pix);
+
+//matrix_testing.c
+bool	test_multiplication(void);
+void	test_multiplication2(void);
+void	test_multiplication3(void);
+void	test_submatrix(void);
+void	test_minor_33(void);
+void	test_determinant_33(void);
+void	test_invert_44(void);
+void	test_mult_product_inverse(void);
 
 #endif
