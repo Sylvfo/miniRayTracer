@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:06:33 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/12 10:10:22 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 09:09:21 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char			*ft_strnstr(const char *hays, const char *needle, size_t l);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int				ft_isspace(int c);
 // manipulate memory
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
@@ -64,6 +65,7 @@ char			*ft_strdup(const char *s);
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);
 float			ft_atof(const char *str);
+double			ft_strtod(const char *str, char **endptr);
 
 // write to a file descriptor
 void			ft_putchar_fd(char c, int fd);
@@ -83,12 +85,12 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *l, void *(*f)(void *),
 					void (*del)(void *));
 
-char	*get_next_line(int fd);
-int		ft_findline(char *str);
-size_t	ft_strlen_gnl(char *str);
-char	*ft_strndup(char *s, size_t c);
-//void	*ft_bzero(void *s, int n);
-//void	*ft_memset(void *b, int c, int len);
-char	*ft_strjoin_gnl(char *s1, char *s2);
+char			*get_next_line(int fd);
+int				ft_findline(char *str);
+size_t			ft_strlen_gnl(char *str);
+char			*ft_strndup(char *s, size_t c);
+//void			*ft_bzero(void *s, int n);
+//void			*ft_memset(void *b, int c, int len);
+char			*ft_strjoin_gnl(char *s1, char *s2);
 
 #endif

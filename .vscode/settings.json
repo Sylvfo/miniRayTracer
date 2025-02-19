@@ -1,4 +1,8 @@
 {
 	"42header.email": "cmegret@student.42lausanne.ch",
-	"42header.username": "cmegret"
+	"42header.username": "cmegret",
+	"files.associations": {
+		"libft.h": "c",
+		"test_utils.h": "c"
+	}
 }

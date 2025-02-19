@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 10:50:32 by sforster          #+#    #+#              #
-#    Updated: 2025/02/12 10:21:53 by cmegret          ###   ########.fr        #
+#    Updated: 2025/02/19 08:28:16 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS	=	ft_isalpha.c		ft_isdigit.c		ft_isalnum.c\
 			ft_itoa.c			ft_substr.c			ft_strmapi.c\
 			ft_striteri.c		ft_putchar_fd.c		ft_putstr_fd.c\
 			ft_putendl_fd.c		ft_putnbr_fd.c		get_next_line.c\
-			get_next_line_utils.c	ft_atof.c
+			ft_atof.c			ft_strtod.c			get_next_line_utils.c\
+			ft_isspace.c		ft_strtod.c
 			
 SRCS_BONUS =	ft_lstnew_bonus.c		ft_lstadd_front_bonus.c	ft_lstsize.c\
 				ft_lstlast_bonus.c		ft_lstadd_back_bonus.c	ft_lstdelone_bonus.c\

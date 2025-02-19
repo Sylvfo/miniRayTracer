@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/13 15:37:52 by cmegret          ###   ########.fr        #
+#    Updated: 2025/02/19 09:00:20 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,15 @@ LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources
 SRCS = \
-		srcs/main/main.c \
-		srcs/parsing/parse.c
+	srcs/main/main.c \
+	srcs/parsing/parse_main.c \
+	srcs/parsing/parse_ambient.c \
+	srcs/parsing/parse_light.c \
+	srcs/parsing/parse_camera.c \
+	srcs/parsing/parse_utils.c \
+	srcs/parsing/parse_sphere.c \
+	srcs/parsing/parse_plane.c \
+	srcs/parsing/parse_cylinder.c
 
 # Bibliothèques
 LIBFT = lib/libft/libft.a
@@ -62,7 +69,16 @@ MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 OBJ = $(SRCS:.c=.o)
 
 # Fichiers de test
-TEST_SRCS = tests/run_test.c tests/test_validate_ambient.c tests/test_validate_light.c tests/test_validate_camera.c $(filter-out srcs/main/main.c, $(SRCS))
+TEST_SRCS = \
+	tests/run_test.c \
+	tests/test_validate_ambient.c \
+	tests/test_validate_light.c \
+	tests/test_validate_camera.c \
+	tests/test_validate_sphere.c \
+	tests/test_validate_plane.c \
+	tests/test_validate_cylinder.c \
+	$(filter-out srcs/main/main.c, $(SRCS))
+
 TEST_OBJS = $(TEST_SRCS:.c=.o)
 TEST_NAME = test_fonction
 
@@ -140,9 +156,12 @@ debug: CFLAGS += -g
 debug: re
 
 # Règle pour exécuter les tests
-test: $(TEST_NAME)
+test: re $(TEST_NAME)
 	@echo "$(BLUE)Running tests...$(RESET)"
 	@./$(TEST_NAME)
+	@$(MAKE) clean $(REDIRECT)
+	@rm -f $(TEST_NAME)
+	@rm -f $(NAME)
 
 # Règle pour nettoyer les fichiers objets
 clean:

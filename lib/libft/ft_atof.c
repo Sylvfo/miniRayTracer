@@ -6,16 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:05:57 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/12 10:20:03 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 07:21:18 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_isspace(int c)
-{
-    return (c == ' ' || (c >= '\t' && c <= '\r'));
-}
 
 static int	ft_parse_sign(const char **str)
 {
