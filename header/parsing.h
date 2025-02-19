@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/19 14:08:07 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:10:24 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		parse_coordinates(char **line, float *x, float *y, float *z);
 int		parse_color(char **line, int *r, int *g, int *b);
 int		parse_dimension(char **line, float *dimension);
 int		parse_float(char **line, float *value);
+void	process_buffer(char *buf);
 
 /* Validation utilities */
 int		check_only_spaces(char *str);

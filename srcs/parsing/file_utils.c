@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:00:14 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:12:15 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* ----------------------------------------------------------------------------
 	Traite chaque ligne lue depuis le buffer.
 ---------------------------------------------------------------------------- */
-static void	process_buffer(char *buf)
+void	process_buffer(char *buf)
 {
 	char	*line;
 	int		i;
@@ -49,18 +49,4 @@ void	read_file(int fd)
 	}
 	if (ret == -1)
 		error_exit("Failed to read file");
-}
-
-/* ----------------------------------------------------------------------------
-	Ouvre et parse le fichier de scène.
----------------------------------------------------------------------------- */
-void	parse_scene_file(const char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		error_exit("Failed to open file");
-	read_file(fd);
-	close(fd);
 }
