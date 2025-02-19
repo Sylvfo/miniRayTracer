@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 15:57:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/19 16:16:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,13 @@ bool	check_matrix_44(float *m_a);
 bool	check_matrix_33(float *m_a);
 bool	check_matrix_22(float *m_a);
 bool	check_matrix_44_44(float *m_a, float *m_b);
+
+///////// MATRIX TRANSFORMATION ////////////
+
+//matrix_translation.c
+float *create_translation_matrix(float x, float y, float z);
+float *translation(t_coord *p_point, float x, float y, float z);
+t_coord *scaling(t_coord *v_p_old, float x, float y, float z);
+float *create_scaling_matrix(float x, float y, float z);
 
 #endif

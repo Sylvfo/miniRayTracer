@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:12:13 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 16:06:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/19 16:11:18 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,7 @@ void	test_determinant_33(void);
 void	test_invert_44(void);
 void	test_mult_product_inverse(void);
 
+//matrix_transf_testing.c
+void test_transformation(void);
+void test_scaling(void);
 #endif

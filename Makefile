@@ -6,7 +6,7 @@
 #    By: syl <syl@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/17 17:51:42 by syl              ###   ########.fr        #
+#    Updated: 2025/02/19 11:05:41 by syl              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ NAME = minirt
 CC = cc
 
 # Flags de compilation
-CFLAGS = -Wall -Wextra -Werror #-Iincludes
+CFLAGS = #-Wall -Wextra -Werror #-Iincludes
 LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources
