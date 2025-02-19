@@ -1,0 +1,55 @@
+# Compiled object files
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+minirt
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Editor directories and files
+.vscode/
+*~
+\#*\#
+
+# MinilibX related
+lib/minilibx-linux/Makefile.gen
+lib/minilibx-linux/test/mlx-test
+
+# Other
+.DS_STORE
+
+# PDF files
+*.pdf
+
+# Norminette output
+norminette_output.txt

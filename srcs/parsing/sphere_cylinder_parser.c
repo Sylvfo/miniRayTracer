@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_parser.c                                    :+:      :+:    :+:   */
+/*   sphere_cylinder_parser.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 13:51:56 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:33:36 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	validate_sphere(char *line)
 
 	if (line[0] != 's' || line[1] != 'p' || line[2] != ' ')
 		return (1);
-	line += 3;
+	line += 2;
+	skip_whitespace((const char **)&line);
 	if (parse_object_center(&line, &center))
 		return (1);
 	if (parse_dimension(&line, &diameter))
@@ -67,7 +68,8 @@ int	validate_cylinder(char *line)
 
 	if (line[0] != 'c' || line[1] != 'y' || line[2] != ' ')
 		return (1);
-	line += 3;
+	line += 2;
+	skip_whitespace((const char **)&line);
 	if (parse_object_center(&line, &center))
 		return (1);
 	if (parse_cylinder_axis(&line, &axis)

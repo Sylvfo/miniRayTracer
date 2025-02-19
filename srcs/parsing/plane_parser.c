@@ -1,48 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_parser.c                                    :+:      :+:    :+:   */
+/*   plane_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:31:27 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:33:06 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parsing.h"
 
 /* ----------------------------------------------------------------------------
-	Parse et valide le champ de vision de la caméra.
+	Valide un plan.
 ---------------------------------------------------------------------------- */
-static int	parse_camera_fov(char **line, float *fov)
+int	validate_plane(char *line)
 {
-	*fov = ft_strtod(*line, line);
-	return (validate_fov(*fov));
-}
+	t_coord	point;
+	t_coord	normal;
+	t_color	color;
 
-/* ----------------------------------------------------------------------------
-	Parse et valide la caméra.
----------------------------------------------------------------------------- */
-int	validate_camera(char *line)
-{
-	t_coord	position;
-	t_coord	orientation;
-	float	fov;
-
-	if (line[0] != 'C' || line[1] != ' ')
+	if (line[0] != 'p' || line[1] != 'l' || line[2] != ' ')
 		return (1);
-	line++;
+	line += 2;
 	skip_whitespace((const char **)&line);
-	if (parse_coordinates(&line, &position.x, &position.y, &position.z))
+	if (parse_coordinates(&line, &point.x, &point.y, &point.z))
 		return (1);
-	if (parse_coordinates(&line, &orientation.x,
-			&orientation.y, &orientation.z))
+	if (parse_coordinates(&line, &normal.x, &normal.y, &normal.z))
 		return (1);
-	if (validate_orientation_vector(orientation.x, orientation.y,
-			orientation.z))
+	if (validate_orientation_vector(normal.x, normal.y, normal.z))
 		return (1);
-	if (parse_camera_fov(&line, &fov) || check_only_spaces(line))
+	if (parse_color(&line, &color.r, &color.g, &color.b)
+		|| check_only_spaces(line))
 		return (1);
 	return (0);
 }

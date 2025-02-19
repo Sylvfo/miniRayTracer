@@ -6,11 +6,17 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:07:54 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:24:56 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parsing.h"
+
+void	skip_whitespace(const char **str)
+{
+	while (ft_isspace(**str))
+		(*str)++;
+}
 
 /* ----------------------------------------------------------------------------
 	Parse une valeur float et avance le pointeur.
