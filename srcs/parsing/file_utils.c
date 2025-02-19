@@ -1,74 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_main.c                                       :+:      :+:    :+:   */
+/*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 09:33:08 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 08:09:43 by cmegret          ###   ########.fr       */
+/*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
+/*   Updated: 2025/02/19 13:40:44 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minirt.h"
+#include "../../header/parsing.h"
 
 /* ----------------------------------------------------------------------------
-	Parse une ligne du fichier de scène.
----------------------------------------------------------------------------- */
-void	parse_line(char *line)
-{
-	if (line[0] == 'A')
-	{
-		if (validate_ambient(line))
-		{
-			write(2, "Error\nInvalid ambient lighting data\n", 36);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (line[0] == 'L')
-	{
-		if (validate_light(line))
-		{
-			write(2, "Error\nInvalid light data\n", 27);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (line[0] == 'C')
-	{
-		if (validate_camera(line))
-		{
-			write(2, "Error\nInvalid camera data\n", 28);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (line[0] == 's' && line[1] == 'p')
-	{
-		if (validate_sphere(line))
-		{
-			write(2, "Error\nInvalid sphere data\n", 27);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (line[0] == 'p' && line[1] == 'l')
-	{
-		if (validate_plane(line))
-		{
-			write(2, "Error\nInvalid plane data\n", 26);
-			exit(EXIT_FAILURE);
-		}
-	}
-	else if (line[0] == 'c' && line[1] == 'y')
-	{
-		if (validate_cylinder(line))
-		{
-			write(2, "Error\nInvalid cylinder data\n", 29);
-			exit(EXIT_FAILURE);
-		}
-	}
-}
-
-/* ----------------------------------------------------------------------------
-	Traite le tampon lu depuis le fichier.
+	Traite chaque ligne lue depuis le buffer.
 ---------------------------------------------------------------------------- */
 static void	process_buffer(char *buf)
 {
@@ -88,7 +33,7 @@ static void	process_buffer(char *buf)
 }
 
 /* ----------------------------------------------------------------------------
-	Lit le fichier et le traite par blocs.
+	Lit le fichier ligne par ligne et traite les données.
 ---------------------------------------------------------------------------- */
 void	read_file(int fd)
 {
@@ -101,10 +46,7 @@ void	read_file(int fd)
 		process_buffer(buf);
 	}
 	if (ret == -1)
-	{
-		perror("Failed to read file");
-		exit(EXIT_FAILURE);
-	}
+		error_exit("Failed to read file");
 }
 
 /* ----------------------------------------------------------------------------
@@ -116,10 +58,7 @@ void	parse_scene_file(const char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Failed to open file");
-		exit(EXIT_FAILURE);
-	}
+		error_exit("Failed to open file");
 	read_file(fd);
 	close(fd);
 }

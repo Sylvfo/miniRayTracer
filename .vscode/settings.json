@@ -3,6 +3,7 @@
 	"42header.username": "cmegret",
 	"files.associations": {
 		"libft.h": "c",
-		"test_utils.h": "c"
+		"test_utils.h": "c",
+		"parsing.h": "c"
 	}
 }

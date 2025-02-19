@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_data_struct.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/07 21:30:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/19 13:53:20 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ typedef	struct s_coord {
 	float z;
 	int	t;// type 0 for vector and 1 for point.
 }	t_coord;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
+
 
 //////////////////////
 /// OBJETS
