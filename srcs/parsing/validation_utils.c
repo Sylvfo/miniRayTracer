@@ -6,12 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 13:37:55 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:01:13 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parsing.h"
-
 
 void	error_exit(const char *msg)
 {
@@ -34,7 +33,9 @@ int	check_only_spaces(char *str)
 
 int	validate_orientation_vector(float ox, float oy, float oz)
 {
-	if (ox < -1.0f || ox > 1.0f || oy < -1.0f || oy > 1.0f || oz < -1.0f || oz > 1.0f)
+	if (ox < -1.0f || ox > 1.0f
+		|| oy < -1.0f || oy > 1.0f
+		|| oz < -1.0f || oz > 1.0f)
 		return (1);
 	if (ox == 0.0f && oy == 0.0f && oz == 0.0f)
 		return (1);

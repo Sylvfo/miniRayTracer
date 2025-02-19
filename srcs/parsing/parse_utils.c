@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 13:47:45 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:01:27 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,15 @@ int	parse_color(char **line, int *r, int *g, int *b)
 		return (1);
 	if (*r < 0 || *r > 255 || *g < 0 || *g > 255 || *b < 0 || *b > 255)
 		return (1);
+	return (0);
+}
+
+int	parse_dimension(char **line, float *dimension)
+{
+	*dimension = ft_strtod(*line, line);
+	if (*dimension <= 0.0f)
+		return (1);
+	while (**line == ' ')
+		(*line)++;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 13:37:18 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:00:36 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ void	parse_scene_file(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		error_exit("Failed to open file");
-	while ((ret = read(fd, buf, 255)) > 0)
+	ret = read(fd, buf, 255);
+	while (ret > 0)
 	{
 		buf[ret] = '\0';
 		process_buffer(buf);
+		ret = read(fd, buf, 255);
 	}
 	if (ret == -1)
 		error_exit("Failed to read file");
