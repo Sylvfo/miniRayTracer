@@ -6,16 +6,16 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:01:27 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:07:54 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parsing.h"
 
 /* ----------------------------------------------------------------------------
-	Parse une valeur float à partir d'une ligne et avance le pointeur.
+	Parse une valeur float et avance le pointeur.
 ---------------------------------------------------------------------------- */
-static int	parse_float(char **line, float *value)
+int	parse_float(char **line, float *value)
 {
 	*value = ft_strtod(*line, line);
 	while (**line == ' ')

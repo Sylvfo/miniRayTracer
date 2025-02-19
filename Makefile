@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/19 13:58:46 by cmegret          ###   ########.fr        #
+#    Updated: 2025/02/19 14:08:32 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ SRCS = \
 	srcs/main/main.c \
 	srcs/parsing/camera_parser.c \
 	srcs/parsing/file_utils.c \
-	srcs/parsing/lighting_parser.c \
 	srcs/parsing/object_parser.c \
 	srcs/parsing/parse_utils.c \
 	srcs/parsing/scene_parser.c \
