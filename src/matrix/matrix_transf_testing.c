@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transf_testing.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:57:22 by syl               #+#    #+#             */
-/*   Updated: 2025/02/19 16:16:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/20 17:27:44 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void test_transformation(void)
 	new_v = matrix_multiplication_44_coord(m_transl, v_vector);
 	print_vector(new_v);
 
-	free(p_point);
+//	free(p_point);
 	free(m_transl);
-	free(p_result);
+//	free(p_result);
 }
 
+/*
 void test_scaling(void)
 {
 	t_coord	*v_vector;
@@ -50,4 +51,4 @@ void test_scaling(void)
 
 
 
-}
+}*/
