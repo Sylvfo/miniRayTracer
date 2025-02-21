@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 07:18:33 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:25:37 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/21 13:27:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ static double	parse_fractional_part(const char **str)
 	return (fraction / divisor);
 }
 
-double	ft_strtod(const char *str, char **endptr)
+float	ft_strtod(const char *str, char **endptr)
 {
-	double	result;
-	double	fraction;
+	float	result;
+	float	fraction;
 	int		sign;
 
 	skip_whitespace(&str);

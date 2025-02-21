@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:06:33 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/19 09:09:21 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/21 13:27:45 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char			*ft_strdup(const char *s);
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);
 float			ft_atof(const char *str);
-double			ft_strtod(const char *str, char **endptr);
+float			ft_strtod(const char *str, char **endptr);
 
 // write to a file descriptor
 void			ft_putchar_fd(char c, int fd);
