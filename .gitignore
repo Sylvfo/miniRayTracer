@@ -48,8 +48,5 @@ lib/minilibx-linux/test/mlx-test
 # Other
 .DS_STORE
 
-# PDF files
-*.pdf
-
 # Norminette output
 norminette_output.txt
