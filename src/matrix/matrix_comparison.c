@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 08:59:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	matrix_comparision(float *m_a, float *m_b)
 
 	if (m_a[0] != m_b[0] || m_a[1] != m_b[1])
 	{
-		printf("Comparision between matrix not the same size");
+		printf("[matrix_comparision] : Comparision between matrix not the same size\n");
 		return (false);
 	}
 	i = 2;

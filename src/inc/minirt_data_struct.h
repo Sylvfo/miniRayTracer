@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/19 16:16:29 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/21 14:18:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,9 @@ typedef struct s_pix
 	//same for all
 	t_camera	*camera;
 	t_image		*ima;
-//	t_objects	***scene;
-//	t_lights	***lux;
+	t_objects	***scene;
+	// o 1 2 3 
+	t_lights	***lux;
 	//in each pixel. 
 	t_coord		*d; // vecteur entre camera et coordonnes sur viewport
 	t_color		*col;

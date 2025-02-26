@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transformation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/02/20 17:29:00 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:37:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //pas fini...
 //il y a des erreurs!! sur les valeurs de retours... j etais pas bien concentree
 
+/*
 float *create_translation_matrix(float x, float y, float z)
 {
 	float *m_transl;
@@ -66,4 +67,4 @@ float *create_scaling_matrix(float x, float y, float z)
 	matrix_fill(m_scale, 2, 2, z);
 	matrix_fill(m_scale, 3, 3, 1);
 	return (m_scale);
-}
+}*/

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_transf_testing.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:57:22 by syl               #+#    #+#             */
-/*   Updated: 2025/02/20 17:27:44 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:46:43 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+/*
 void test_transformation(void)
 {
 	t_coord *p_point;
@@ -21,13 +22,13 @@ void test_transformation(void)
 	t_coord	*v_vector;
 	t_coord	*new_v;
 
-/*	p_point = create_point(-3, 4, 5);
+	p_point = create_point(-3, 4, 5);
 	m_transl = create_translation_matrix(5, -3, 2);
 	m_inverted = inverted_matrix_44(m_transl);
 	p_result = matrix_multiplication_44_coord(m_inverted, p_point);
 	print_matrix(m_transl);
 	print_point(p_result);
-	*/
+	
 
 	v_vector = create_vector(-3, 4, 5);
 	m_transl = create_translation_matrix(5, -3, 2);
@@ -37,7 +38,7 @@ void test_transformation(void)
 //	free(p_point);
 	free(m_transl);
 //	free(p_result);
-}
+}*/
 
 /*
 void test_scaling(void)
