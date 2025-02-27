@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 16:48:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 13:42:43 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ t_pix	***init_pix_test(t_pix ***pix)
 	int	y;
 
 	x = 0;
-	pix = (t_pix ***)malloc(1600 * sizeof(t_pix **));
+	pix = (t_pix ***)malloc(VIEWP_WIDTH * sizeof(t_pix **));
 	if (!pix)
 		return (NULL);
-	while (x < 1600)
+	while (x < VIEWP_WIDTH)
 	{
 		y = 0;
-		pix[x] = (t_pix **)malloc(1200 * sizeof(t_pix *));
+		pix[x] = (t_pix **)malloc(VIEWP_HIGHT * sizeof(t_pix *));
 		if (!pix[x])
 			return (NULL);
-		while (y < 1200)
+		while (y < VIEWP_HIGHT)
 		{
 			pix[x][y] = (t_pix *)malloc(sizeof(t_pix));
 			if (!pix[x][y])
@@ -60,10 +60,10 @@ void	link_pix_ima(t_pix ***pix, t_image *ima)
 	int	y;
 
 	x = 0;
-	while (x < 1600)
+	while (x < VIEWP_WIDTH)
 	{
 		y = 0;
-		while (y < 1200)
+		while (y < VIEWP_HIGHT)
 		{
 			pix[x][y]->ima = ima;
 			y++;

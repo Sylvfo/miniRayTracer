@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:37:18 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 14:21:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_coord	*create_point(float x, float y, float z)
 	p_point->x = x;
 	p_point->y = y;
 	p_point->z = z;
-	p_point->t = 1;
+	p_point->t = 1.0;
 	return (p_point);
 }
 

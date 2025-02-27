@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 13:40:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_image	*init_image(void)
 	ima->mlx_ptr = mlx_init();
 	if (ima->mlx_ptr == NULL)
 		return (0);
-	ima->mlx_win = mlx_new_window(ima->mlx_ptr, 1600, 1200, "Fen fen");
-	ima->img = mlx_new_image(ima->mlx_ptr, 1600, 1200); // ca on peut modifier pour avoir des légendes sur l image
+	ima->mlx_win = mlx_new_window(ima->mlx_ptr, WND_WIDTH, WND_HIGHT, "Fen fen");
+	ima->img = mlx_new_image(ima->mlx_ptr, WND_WIDTH, WND_HIGHT); // ca on peut modifier pour avoir des légendes sur l image
 	ima->addr = mlx_get_data_addr(ima->img, &ima->bits_per_pixel,
 			&ima->line_length, &ima->endian);
 	mlx_put_image_to_window(ima->mlx_ptr, ima->mlx_win, ima->img, 0, 0); // ca on peut modifier pour avoir des légendes sur l image

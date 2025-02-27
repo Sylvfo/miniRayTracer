@@ -6,17 +6,16 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/02/26 10:50:56 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 09:38:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
 // tout ca c est testé c est bon =).
-
-float *create_translation_matrix(float x, float y, float z)
+float	*create_translation_matrix(float x, float y, float z)
 {
-	float *m_transl;
+	float	*m_transl;
 
 	m_transl = create_indentity_matrix_44();
 	if (!m_transl)
@@ -28,9 +27,9 @@ float *create_translation_matrix(float x, float y, float z)
 	return (m_transl);
 }
 
-t_coord *translation(t_coord *p_point, float x, float y, float z)
+t_coord	*translation(t_coord *p_point, float x, float y, float z)
 {
-	float *m_transl;
+	float	*m_transl;
 	t_coord	*p_newpoint;
 
 	m_transl = create_translation_matrix(x, y, z);
@@ -40,9 +39,9 @@ t_coord *translation(t_coord *p_point, float x, float y, float z)
 	return (p_newpoint);
 }
 
-t_coord *translation_inverse(t_coord *p_point, float x, float y, float z)
+t_coord	*translation_inverse(t_coord *p_point, float x, float y, float z)
 {
-	float *m_transl;
+	float	*m_transl;
 	t_coord	*p_newpoint;
 
 	m_transl = create_translation_matrix(x, y, z);

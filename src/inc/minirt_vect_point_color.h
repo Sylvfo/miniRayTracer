@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:13 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 10:46:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ void	addition_color(t_color *c_1, t_color *c_2);
 t_color	*substraction_color(t_color *c_1, t_color *c_2);
 void	scalar_mult_color(t_color *c_1, float scale);
 void	multipling_color(t_color *c_1, t_color *c_2);
+
+//math.c
+float	simple_sqrt(float x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/26 11:53:29 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 14:46:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int	main(void)
 {
 	t_pix	***pix;
+	(void) pix;
 
 //	pix = parsing;
 
@@ -26,9 +27,8 @@ int	main(void)
 	pix_drawings(pix);
 	pix_to_window(pix);
 	image_hooks(pix[0][0]->ima);*/
-//	test;
-//	test_transformation();
-//	test_scaling();
-	test_rotation();
+
+	sphere_testing();
+	printf("noting\n");
 	return (0);
 }

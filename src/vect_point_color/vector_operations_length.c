@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 14:06:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_coord	*scalar_mult(t_coord *v_1, float scale)
  * @brief find the norm of a vector
  * 
  * the norm the lenght of a vector or its magnitude
+ * A REVERIFIER
  * 
  * @param v_1 a vector
  * 
@@ -54,7 +55,7 @@ float	length_vector(t_coord *v_1)
 
 	if (is_vector(v_1) == false)
 		return (0);
-	length = (float)sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 	return (length);
 }
 

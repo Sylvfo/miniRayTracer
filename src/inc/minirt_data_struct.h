@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/26 14:42:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 16:04:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 //	s_coord v_exemplevector;
 //	s_coord vn_exemplenormedvector;
 //	s_color c_color;
+//  float *m_matrix;
+//	t_ray  *r_ray;
+
 typedef struct s_coord
 {
 	float	x;
@@ -39,12 +42,19 @@ typedef struct s_color
 	int		rgb;
 }	t_color;
 
+typedef struct s_ray
+{
+	t_coord *p_origin;
+	t_coord *v_dir;
+	t_coord *v_norm;
+}	t_ray; 
+
 /*
 If a color is especially bright or dark somewhere in your scene, 
 it may go through multiple transformations before reaching your 
 virtual “eye,” dropping it to less than 0 or increasing it to greater 
 than 1 at any point along the way. Limiting the color prematurely
-can make parts of your scene too bright or dark in the final image.
+can make parts of your scemne too bright or dark in the final image.
 
 typedef struct s_color{
 	uint8_t r;
@@ -136,6 +146,7 @@ typedef struct s_image
 	void			*mlx_ptr;
 	void			*mlx_win;
 }	t_image;
+//rajouter taille image?? L1 L2??
 
 //
 // 2Darray of pointers
@@ -159,5 +170,6 @@ typedef struct s_pix
 
 //CREER MATRIX ROTATIONS DANS BASE DE DONNEE
 // par exemple pix->matrix->rotationy;
+// 
 
 #endif

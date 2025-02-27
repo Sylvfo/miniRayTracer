@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:07:58 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 09:27:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 14:33:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	is_vector(t_coord *v_vector)
 {
 	if (v_vector->t != 0)
 	{
-		printf("Not a vector\n");
+		printf("Not a vector\n");// il faudra effacer
 		return (false);
 	}
 	return (true);
@@ -38,9 +38,9 @@ bool	is_vector(t_coord *v_vector)
  */
 bool	is_point(t_coord *p_point)
 {
-	if (p_point-> t != 1)
+	if (p_point->t != 1.0)
 	{
-		printf("Not a points\n");
+	//	printf("Not a point\n");// il faudra effacer ça
 		return (false);
 	}
 	return (true);

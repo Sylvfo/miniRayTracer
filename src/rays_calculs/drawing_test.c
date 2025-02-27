@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:26:24 by syl               #+#    #+#             */
-/*   Updated: 2025/02/14 19:02:28 by sforster         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:40:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	color_pixels(t_pix ***pix)
 	int	y;
 
 	x = 0;
-	while (x < 1600)
+	while (x < WND_WIDTH)
 	{
 		y = 0;
-		while (y < 1200)
+		while (y < WND_HIGHT)
 		{
 			scalar_mult_color(pix[x][y]->col, 0.3);
 			y++;

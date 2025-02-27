@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/26 14:58:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 10:30:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ float *create_rotation_z_matrix(float radian);
 
 //matrix_rotations_utils.c
 float degree_to_radian(float degree);
-bool check_rotation_values(t_coord *p_point, int axe, int dir,  float degree);
+bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian);
 
 #endif

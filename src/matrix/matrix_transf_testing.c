@@ -6,13 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:57:22 by syl               #+#    #+#             */
-/*   Updated: 2025/02/26 15:04:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 09:39:43 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-
+/*
 void test_transformation(void)
 {
 	t_coord *p_point;
@@ -49,14 +49,14 @@ void test_scaling(void)
 	t_coord *new_point;
 
 
-/*	t_coord *p_point = create_point(-4, 6, 8);
+	t_coord *p_point = create_point(-4, 6, 8);
 	new_point = scaling(p_point, 2, 3, 4);
-	print_point(new_point);*/
+	print_point(new_point);
 
-/*	v_vector = create_vector(-4, 6, 8);
+	v_vector = create_vector(-4, 6, 8);
 //	new_v = scaling(v_vector, 2, 3, 4);
 	new_v = scaling_inverse(v_vector, 2, 3, 4);
-	print_vector(new_v);*/
+	print_vector(new_v);
 
 	t_coord *p_point = create_point(2, 3, 4);
 	new_point = scaling(p_point, -1, 1, 1);
@@ -66,7 +66,7 @@ void test_scaling(void)
 
 void test_rotation(void)
 {
-/*	t_coord *p_point;
+	t_coord *p_point;
 	t_coord *p_new;
 	t_coord *p_new2;
 	float radian;
@@ -83,7 +83,7 @@ void test_rotation(void)
 	print_point(p_new2);
 
 	p_new2 = rotation_axe_x_inverse(p_point, radian);	
-	print_point(p_new2);*/
+	print_point(p_new2);
 	t_coord *p_point;
 	t_coord *p_new;
 	t_coord *p_new2;
@@ -94,11 +94,11 @@ void test_rotation(void)
 	radian2 = ((float)M_PI/2);
 
 	//check y axe
-/*	p_point = create_point(0, 0, 1);
+	p_point = create_point(0, 0, 1);
 	p_new = rotations(p_point, axe_y, left_h, radian);
 	p_new2 = rotations(p_point, axe_y, left_h, radian2);
 	print_point(p_new);
-	print_point(p_new2);*/
+	print_point(p_new2);
 
 	//check z axe
 	p_point = create_point(0, 1, 0);
@@ -107,4 +107,4 @@ void test_rotation(void)
 	print_point(p_new);
 	print_point(p_new2);
 
-}
+}*/

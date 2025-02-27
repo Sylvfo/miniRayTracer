@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/27 13:40:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	pix_to_window(t_pix ***pix)
 	int	y;
 
 	x = 0;
-	while (x < 1600)
+	while (x < WND_WIDTH)
 	{
 		y = 0;
-		while (y < 1200)
+		while (y < WND_HIGHT)
 		{
 			color_float_to_int(pix[x][y]->col);
 			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win,
