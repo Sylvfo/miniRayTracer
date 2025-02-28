@@ -6,12 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:42:30 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 15:16:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/28 13:22:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
+/*
 t_sphere *init_sphere(void) // a effacer
 {
 	t_sphere *sphere;
@@ -59,4 +59,4 @@ void	intersect_sphere(t_sphere *sphere, t_ray *r_ray)
 	pix->t1 =(-b + sqrt(discriminant)) / (2*a);
 	pix->t2 = (-b - sqrt(discriminant)) / (2*a);
 	return ();
-}
+}*/

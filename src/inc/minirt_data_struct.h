@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 16:04:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/28 13:17:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_ray
 	t_coord *p_origin;
 	t_coord *v_dir;
 	t_coord *v_norm;
-}	t_ray; 
+}	t_ray;
 
 /*
 If a color is especially bright or dark somewhere in your scene, 
