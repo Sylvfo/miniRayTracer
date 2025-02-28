@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:12:15 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/28 09:14:25 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,4 @@ void	process_buffer(char *buf)
 		parse_line(line);
 		line += i + 1;
 	}
-}
-
-/* ----------------------------------------------------------------------------
-	Lit le fichier ligne par ligne et traite les données.
----------------------------------------------------------------------------- */
-void	read_file(int fd)
-{
-	char	buf[256];
-	int		ret;
-
-	ret = read(fd, buf, 255);
-	while (ret > 0)
-	{
-		buf[ret] = '\0';
-		process_buffer(buf);
-		ret = read(fd, buf, 255);
-	}
-	if (ret == -1)
-		error_exit("Failed to read file");
 }
