@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/28 13:20:04 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/28 12:37:13 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@
 int	main(void)
 {
 	t_pix	***pix;
-	(void) pix;
+	(void)	pix;
+
+	if (argc != 2)
+	{
+		printf("Usage: %s <scene_file.rt>\n", argv[0]);
+		return (EXIT_FAILURE);
+	}
+	parse_scene_file(argv[1]);
 
 //	pix = parsing;
 
@@ -29,6 +36,5 @@ int	main(void)
 	image_hooks(pix[0][0]->ima);*/
 
 //	sphere_testing();
-	printf("noting\n");
 	return (0);
 }

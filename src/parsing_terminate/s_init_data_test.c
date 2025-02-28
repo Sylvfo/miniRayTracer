@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data_test.c                                   :+:      :+:    :+:   */
+/*   s_init_data_test.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 13:42:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/02/28 12:49:58 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ t_pix	***init_pix_test(t_pix ***pix)
 	int	y;
 
 	x = 0;
-	pix = (t_pix ***)malloc(VIEWP_WIDTH * sizeof(t_pix **));
+	pix = (t_pix ***)malloc(WND_WIDTH * sizeof(t_pix **));
 	if (!pix)
 		return (NULL);
-	while (x < VIEWP_WIDTH)
+	while (x < WND_WIDTH)
 	{
 		y = 0;
-		pix[x] = (t_pix **)malloc(VIEWP_HIGHT * sizeof(t_pix *));
+		pix[x] = (t_pix **)malloc(WND_HIGHT * sizeof(t_pix *));
 		if (!pix[x])
 			return (NULL);
-		while (y < VIEWP_HIGHT)
+		while (y < WND_HIGHT)
 		{
 			pix[x][y] = (t_pix *)malloc(sizeof(t_pix));
 			if (!pix[x][y])
