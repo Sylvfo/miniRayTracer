@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/28 12:37:13 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/02/28 14:15:36 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	main(void)
 		return (EXIT_FAILURE);
 	}
 	parse_scene_file(argv[1]);
+	if (init_data(pix) == false)
+	{
+		//freetoutca
+		return (EXIT_FAILURE);
+	}	
 
 //	pix = parsing;
 
