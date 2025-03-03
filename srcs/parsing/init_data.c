@@ -6,27 +6,42 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 09:24:40 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/03 13:14:14 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:32:21 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/parsing.h"
 
+void	free_camera(t_pix ***pix)
+{
+	if (pix && *pix && (*pix)[0] && (*pix)[0]->cam)
+		free((*pix)[0]->cam);
+}
+
+void	free_objects(t_pix ***pix)
+{
+	if (pix && *pix && (*pix)[0] && (*pix)[0]->obj)
+		free_obj_memory((*pix)[0]->obj, 4);
+}
+
+void	free_lights(t_pix ***pix)
+{
+	if (pix && *pix && (*pix)[0] && (*pix)[0]->lux)
+		free_light_memory((*pix)[0]->lux, 2);
+}
+
 void	free_all(t_pix ***pix)
 {
-	int	i;
+	int		i;
 
 	if (pix && *pix)
 	{
+		free_camera(pix);
+		free_objects(pix);
+		free_lights(pix);
 		i = 0;
 		while ((*pix)[i] != NULL)
 		{
-			if ((*pix)[i]->cam)
-				free((*pix)[i]->cam);
-			if ((*pix)[i]->obj)
-				free_obj_memory((*pix)[i]->obj, 4);
-			if ((*pix)[i]->lux)
-				free_light_memory((*pix)[i]->lux, 2);
 			free((*pix)[i]);
 			i++;
 		}
