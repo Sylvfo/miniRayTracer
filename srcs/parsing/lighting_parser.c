@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/28 11:56:46 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/01 15:09:11 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	validate_ambient(char *line)
 /* ----------------------------------------------------------------------------
 	Valide les données de lumière contenues dans 'line'.
 ---------------------------------------------------------------------------- */
-int	validate_light(char *line)
+int	validate_light(char *line, t_num_obj *num_obj)
 {
 	t_coord	position;
 	float	brightness;
@@ -56,5 +56,6 @@ int	validate_light(char *line)
 	if (parse_color(&line, &color.r, &color.g, &color.b)
 		|| check_only_spaces(line))
 		return (1);
+	num_obj->light++;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/19 14:45:03 by cmegret          ###   ########.fr        #
+#    Updated: 2025/03/02 21:41:05 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,14 +50,22 @@ LIBFLAGS = -Llib/libft -lft
 # Fichiers sources
 SRCS = \
 	srcs/main/main.c \
+	srcs/saving_data/save_data.c \
 	srcs/parsing/camera_parser.c \
-	srcs/parsing/file_utils.c \
 	srcs/parsing/lighting_parser.c \
 	srcs/parsing/parse_utils.c \
 	srcs/parsing/plane_parser.c \
 	srcs/parsing/scene_parser.c \
 	srcs/parsing/sphere_cylinder_parser.c \
 	srcs/parsing/validation_utils.c \
+	srcs/parsing/init_data.c \
+	srcs/parsing/init_camera.c \
+	srcs/parsing/init_light.c \
+	srcs/parsing/init_object.c \
+	srcs/saving_data/save_light.c \
+	srcs/saving_data/save_camera.c \
+	srcs/saving_data/save_object.c \
+	
 
 # Bibliothèques
 LIBFT = lib/libft/libft.a

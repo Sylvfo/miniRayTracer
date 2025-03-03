@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:33:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/01 09:15:58 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* ----------------------------------------------------------------------------
 	Valide un plan.
 ---------------------------------------------------------------------------- */
-int	validate_plane(char *line)
+int	validate_plane(char *line, t_num_obj *num_obj)
 {
 	t_coord	point;
 	t_coord	normal;
@@ -34,5 +34,6 @@ int	validate_plane(char *line)
 	if (parse_color(&line, &color.r, &color.g, &color.b)
 		|| check_only_spaces(line))
 		return (1);
+	num_obj->plan++;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:24:56 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/01 09:17:04 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	parse_coordinates(char **line, float *x, float *y, float *z)
 /* ----------------------------------------------------------------------------
 	Parse les trois composantes de couleur (r, g, b) et avance le pointeur.
 ---------------------------------------------------------------------------- */
-int	parse_color(char **line, int *r, int *g, int *b)
+int	parse_color(char **line, float *r, float *g, float *b)
 {
 	*r = ft_atoi(*line);
 	while (**line >= '0' && **line <= '9')
