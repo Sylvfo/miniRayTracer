@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_data_struct.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/28 13:45:14 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 11:49:20 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 //	s_color c_color;
 //  float *m_matrix;
 //	t_ray  *r_ray;
+
+//	row = m_matrix[0];
+//	col = m_matrix[1];
 
 typedef struct s_coord
 {
@@ -100,7 +103,7 @@ typedef struct s_camera
 //	float		viewport_height; // L2
 	t_coord		v_origin_camera; // m dans pixel
 	// distance viewport camera???
-	t_camera	*saved_camera; // (si on se perd. ou camera origines)
+	struct t_camera	*saved_camera; // (si on se perd. ou camera origines)
 	float		caneva_width; // image
 	float		caneva_hight; // image
 }	t_camera;
@@ -128,16 +131,16 @@ typedef struct s_matrix
 typedef struct s_pix
 {
 	//same for all
-	t_camera	*cam;
-	t_obj		***obj;
-	t_obj		***c_obj;//scene from camera
-	t_light		***lux;
-	t_image		*ima;
-	t_matrix	*neo;
+	t_camera	*cam; // OK
+	t_obj		***obj; // OK
+	t_obj		***c_obj;//scene from camera a voir apres
+	t_light		***lux; // OK
+	t_image		*ima; // A FAIRE PAR SYLVIE
+	t_matrix	*neo; // A FAIRE PAR SYLVIE
 
 	//in each pixel. 
 	t_coord		*v_d; // vecteur entre camera et coordonnes sur viewport
-	t_color		*color;
+	t_color		*color; // OK
 	t_obj		*closest_obj;
 // closest object
 // 	data for calculation	

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/27 13:47:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/03 10:47:57 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-//# include "librairies/libft/libft.h"
+# include "../../lib/libft/libft.h"
 //# include "../../lib/minilibx-linux/mlx_int.h"
 # include "../../lib/minilibx-linux/mlx.h"
 # include <math.h>

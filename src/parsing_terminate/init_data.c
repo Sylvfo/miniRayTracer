@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/28 14:40:05 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 11:55:27 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 	int	i;
 	int	j;
 
+	//init ima
+	// init matrix
+
 	init_pix(pix, WND_HEIGHT, WND_WIDTH);
 	if (!*pix)
 		return (false);
@@ -106,6 +109,7 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 		}
 		i++;
 	}
+	// link ima et matrix
 	return (true);
 }
 
