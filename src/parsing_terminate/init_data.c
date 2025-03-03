@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 13:09:29 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:14:40 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	init_pix(t_pix ***pix, int rows, int cols)
 	}
 }
 
-static bool	init_camera_obj_light(t_camera **cam, t_obj **obj,
-		t_light **lux, t_num_obj *num_obj)
+static bool	init_camera_obj_light(t_camera **cam, t_obj ****obj,
+	t_light ****lux, t_num_obj *num_obj)
 {
 	*cam = init_camera();
 	if (!*cam)
@@ -85,7 +85,7 @@ static bool	init_camera_obj_light(t_camera **cam, t_obj **obj,
 }
 
 static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
-		t_obj *obj, t_light *lux)
+	t_obj ***obj, t_light ***lux)
 {
 	int	i;
 	int	j;
@@ -108,8 +108,8 @@ static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 {
 	t_camera	*cam;
-	t_obj		*obj;
-	t_light		*lux;
+	t_obj		***obj;
+	t_light		***lux;
 
 	init_pix(pix, WND_HEIGHT, WND_WIDTH);
 	if (!*pix)
