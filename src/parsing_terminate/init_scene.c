@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:30:43 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 17:33:52 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:45:56 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ bool	init_scene(t_pix ***pix, t_num_obj *num_obj)
 		return (false);
 	}
 	printf("c\n");
-//	pix[0][0]->cam = cam;
-	link_pix_scene(pix, &cam, &obj, &lux);
+	pix[0][0]->cam = cam;
+//	link_pix_scene(&pix, cam, obj, lux);
 	printf("d\n");
 	return (true);
 }
@@ -57,13 +57,13 @@ void	link_pix_scene(t_pix ***pix, t_camera *cam, t_obj ***obj, t_light ***lux)
 		{
 			if (pix[x][y] != NULL)// ??
 			{
-				(*pix)[x][y].cam = cam;
-				(*pix)[x][y].obj = obj;
-				(*pix)[x][y].lux = lux;
-/*				pix[x][y]->obj = obj;
+//				(*pix)[x][y].cam = cam;
+//				(*pix)[x][y].obj = obj;
+//				(*pix)[x][y].lux = lux;
+				pix[x][y]->obj = obj;
 				pix[x][y]->c_obj = NULL;
 				pix[x][y]->cam = cam;
-				pix[x][y]->lux = lux;*/
+				pix[x][y]->lux = lux;
 			}
 			y++;
 		}

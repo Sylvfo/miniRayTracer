@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 17:26:38 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:44:25 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 //		return (false);
 	if (init_pix(pix) == false)
 		return (false);
-	if (init_scene(pix, num_obj) == false)
+	if (init_scene(&pix, num_obj) == false)
 	{
 		free_all(pix);
 		return (false);
@@ -62,7 +62,7 @@ bool	init_pix(t_pix ***pix, int rows, int cols)
 	return (true);
 }*/
 
-bool	init_pix(t_pix ***pix)
+bool	init_pix(t_pix ****pix)
 {
 	int	x;
 	int	y;
