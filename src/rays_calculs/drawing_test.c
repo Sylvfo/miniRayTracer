@@ -28,7 +28,7 @@ void	color_pixels(t_pix ***pix)
 	while (x < WND_WIDTH)
 	{
 		y = 0;
-		while (y < WND_HIGHT)
+		while (y < WND_HEIGHT)
 		{
 			scalar_mult_color(pix[x][y]->col, 0.3);
 			y++;

@@ -31,7 +31,7 @@ static int	parse_object_color(char **line, t_color *color)
 /* ----------------------------------------------------------------------------
 	Parse et valide une sphère.
 ---------------------------------------------------------------------------- */
-int	validate_sphere(char *line)
+int	validate_sphere(char *line, t_num_obj *num_obj)
 {
 	t_coord	center;
 	float	diameter;
@@ -47,6 +47,7 @@ int	validate_sphere(char *line)
 		return (1);
 	if (parse_object_color(&line, &color) || check_only_spaces(line))
 		return (1);
+	num_obj->sphere++;
 	return (0);
 }
 
@@ -58,7 +59,7 @@ static int	parse_cylinder_axis(char **line, t_coord *axis)
 	return (parse_coordinates(line, &axis->x, &axis->y, &axis->z));
 }
 
-int	validate_cylinder(char *line)
+int	validate_cylinder(char *line, t_num_obj *num_obj)
 {
 	t_coord	center;
 	t_coord	axis;
@@ -79,5 +80,6 @@ int	validate_cylinder(char *line)
 		return (1);
 	if (parse_object_color(&line, &color) || check_only_spaces(line))
 		return (1);
+	num_obj->cylinder++;
 	return (0);
 }

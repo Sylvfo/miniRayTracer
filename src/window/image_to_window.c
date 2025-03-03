@@ -23,7 +23,7 @@ void	pix_to_window(t_pix ***pix)
 	while (x < WND_WIDTH)
 	{
 		y = 0;
-		while (y < WND_HIGHT)
+		while (y < WND_HEIGHT)
 		{
 			color_float_to_int(pix[x][y]->col);
 			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win,

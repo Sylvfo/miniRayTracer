@@ -79,6 +79,14 @@ typedef struct s_light
 	t_color		*color;
 }	t_light;
 
+typedef struct num_obj
+{
+	int		sphere;
+	int		plan;
+	int		cylinder;
+	int		light;
+}	t_num_obj;
+
 typedef struct s_camera
 {
 	t_coord		*p_coord;

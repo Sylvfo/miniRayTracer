@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                 :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 10:22:08 by sforster          #+#    #+#             */
-/*   Updated: 2023/11/29 11:46:22 by sforster         ###   ########.fr       */
+/*   Created: 2025/02/19 07:14:45 by cmegret           #+#    #+#             */
+/*   Updated: 2025/02/19 07:18:43 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+double	ft_pow(double base, int exp)
 {
-	int		count;
+	double	result;
 
-	count = 0;
-	while (lst)
+	result = 1.0;
+	if (exp < 0)
 	{
-		count++;
-		lst = lst->next;
+		base = 1.0 / base;
+		exp = -exp;
 	}
-	return (count);
+	while (exp)
+	{
+		if (exp % 2 == 1)
+			result *= base;
+		base *= base;
+		exp /= 2;
+	}
+	return (result);
 }

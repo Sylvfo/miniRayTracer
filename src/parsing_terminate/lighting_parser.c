@@ -37,7 +37,7 @@ int	validate_ambient(char *line)
 /* ----------------------------------------------------------------------------
 	Valide les données de lumière contenues dans 'line'.
 ---------------------------------------------------------------------------- */
-int	validate_light(char *line)
+int	validate_light(char *line, t_num_obj *num_obj)
 {
 	t_coord	position;
 	float	brightness;
@@ -56,5 +56,6 @@ int	validate_light(char *line)
 	if (parse_color(&line, &color.r, &color.g, &color.b)
 		|| check_only_spaces(line))
 		return (1);
+	num_obj->light++;
 	return (0);
 }

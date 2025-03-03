@@ -36,7 +36,7 @@
 # define PIRAD 0.017453   //pi already divided by 180 to find radian. 
 
 # define WND_WIDTH 1800
-# define WND_HIGHT 1000
+# define WND_HEIGHT 1000
 # define VIEWP_WIDTH 1800
 # define VIEWP_HIGHT 1000
 

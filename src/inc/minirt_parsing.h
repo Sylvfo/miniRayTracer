@@ -13,45 +13,77 @@
 #ifndef MINIRT_PARSING_H
 # define MINIRT_PARSING_H
 
-# include "minirt_data_struct.h"
+# include "minirt.h"
 
 // AUSSI CHECK 
 // ET TERMINATE
 
 /// SYLVIE
 // avant parsingdsf
-t_pix	***init_data_test(void);
-t_pix	***init_pix_test(t_pix ***pix);
-void	link_pix_ima(t_pix ***pix, t_image *ima);
+t_pix		***init_data_test(void);
+t_pix		***init_pix_test(t_pix ***pix);
+void		link_pix_ima(t_pix ***pix, t_image *ima);
 //void	color_image(t_image *ima);
 
 /* Scene parsing */
-void	parse_scene_file(const char *filename);
-void	parse_line(char *line);
+void		parse_scene_file(const char *filename, t_pix ***pix,
+				t_num_obj *num_obj, const char *type);
+void		parse_line(char *line, t_num_obj *num_obj);
+void		process_buffer(char *buf, t_num_obj *num_obj, const char *type,
+	t_pix ***pix);
 
 /* Object parsing */
-int		validate_sphere(char *line);
-int		validate_plane(char *line);
-int		validate_cylinder(char *line);
+int			validate_sphere(char *line, t_num_obj *num_obj);
+int			validate_plane(char *line, t_num_obj *num_obj);
+int			validate_cylinder(char *line, t_num_obj *num_obj);
 
 /* Camera parsing */
-int		validate_camera(char *line);
+int			validate_camera(char *line);
 
 /* Lighting parsing */
-int		validate_light(char *line);
-int		validate_ambient(char *line);
+int			validate_light(char *line, t_num_obj *num_obj);
+int			validate_ambient(char *line);
 
 /* Parsing utilities */
-int		parse_coordinates(char **line, float *x, float *y, float *z);
-int		parse_color(char **line, int *r, int *g, int *b);
-int		parse_dimension(char **line, float *dimension);
-int		parse_float(char **line, float *value);
-void	process_buffer(char *buf);
-void	skip_whitespace(const char **str);
+int			parse_coordinates(char **line, float *x, float *y, float *z);
+int			parse_color(char **line, float *r, float *g, float *b);
+int			parse_dimension(char **line, float *dimension);
+int			parse_float(char **line, float *value);
+void		skip_whitespace(const char **str);
 
 /* Validation utilities */
-int		check_only_spaces(char *str);
-int		validate_orientation_vector(float ox, float oy, float oz);
-int		validate_fov(float fov);
+int			check_only_spaces(char *str);
+int			validate_orientation_vector(float ox, float oy, float oz);
+int			validate_fov(float fov);
+void		error_exit(const char *msg);
+
+/* Data initialization */
+bool		init_data(t_pix ***pix, t_num_obj *num_obj);
+
+/* Camera initialization */
+t_camera	*init_camera(void);
+
+/* Object initialization */
+void		free_obj_memory(t_obj ***obj, int count);
+t_obj		**init_object_array(int count);
+t_obj		***allocate_obj_arrays(t_num_obj *num_obj);
+t_obj		***init_obj(t_num_obj *num_obj);
+
+/* Light initialization */
+void		free_light_memory(t_light ***light, int count);
+t_light		**init_light_array(int count);
+t_light		***allocate_light_arrays(t_num_obj *num_obj);
+t_light		***init_light(t_num_obj *num_obj);
+
+/* Parsing utilities */
+void		free_all(t_pix ***pix);
+
+/* Save functions */
+void		save_line(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_light(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_camera(char *line, t_pix ***pix);
+void		save_plane(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_sphere(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_cylinder(char *line, t_pix ***pix, t_num_obj *num_obj);
 
 #endif

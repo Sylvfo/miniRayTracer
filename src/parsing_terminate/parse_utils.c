@@ -52,7 +52,7 @@ int	parse_coordinates(char **line, float *x, float *y, float *z)
 /* ----------------------------------------------------------------------------
 	Parse les trois composantes de couleur (r, g, b) et avance le pointeur.
 ---------------------------------------------------------------------------- */
-int	parse_color(char **line, int *r, int *g, int *b)
+int	parse_color(char **line, float *r, float *g, float *b)
 {
 	*r = ft_atoi(*line);
 	while (**line >= '0' && **line <= '9')
