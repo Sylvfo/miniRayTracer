@@ -6,13 +6,13 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:36:51 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/02 22:09:29 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 07:25:42 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minirt.h"
 
-void	print_spheres(t_pix ***pix, t_num_obj *num_obj)
+/* void	print_spheres(t_pix ***pix, t_num_obj *num_obj)
 {
 	for (int i = 0; i < num_obj->sphere; i++)
 	{
@@ -68,7 +68,7 @@ void	print_camera(t_pix ***pix)
 	printf("  Position: (%f, %f, %f)\n", (*pix)[0][0].cam->p_coord->x, (*pix)[0][0].cam->p_coord->y, (*pix)[0][0].cam->p_coord->z);
 	printf("  Orientation: (%f, %f, %f)\n", (*pix)[0][0].cam->v_axe->x, (*pix)[0][0].cam->v_axe->y, (*pix)[0][0].cam->v_axe->z);
 	printf("  FOV: %f\n", (*pix)[0][0].cam->fov);
-}
+} */
 
 int	main(int argc, char **argv)
 {
@@ -107,11 +107,11 @@ int	main(int argc, char **argv)
 	num_obj->cylinder = 0;
 	num_obj->light = 0;
 	parse_scene_file(argv[1], pix, num_obj, "saving");
-	print_camera(pix);
+	/* print_camera(pix);
 	print_spheres(pix, num_obj);
 	print_planes(pix, num_obj);
 	print_cylinders(pix, num_obj);
-	print_lights(pix, num_obj);
+	print_lights(pix, num_obj); */
 	free(num_obj);
 	free_all(pix);
 	return (EXIT_SUCCESS);

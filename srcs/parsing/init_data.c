@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 09:24:40 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/02 19:39:23 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 07:23:45 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,15 @@ void	init_pix(t_pix ***pix, int rows, int cols)
 	int	i;
 	int	j;
 
-	// Allocate memory for the array of pointers to t_pix
 	*pix = malloc(rows * sizeof(t_pix *));
 	if (!*pix)
 		return ;
-	// Allocate memory for each row
 	i = 0;
 	while (i < rows)
 	{
 		(*pix)[i] = malloc(cols * sizeof(t_pix));
 		if (!(*pix)[i])
 		{
-			// Free previously allocated rows in case of failure
 			j = 0;
 			while (j < i)
 			{
@@ -63,6 +60,27 @@ void	init_pix(t_pix ***pix, int rows, int cols)
 		}
 		i++;
 	}
+}
+
+bool	init_row(t_pix *row, t_num_obj *num_obj)
+{
+	row->cam = init_camera();
+	if (!row->cam)
+		return (false);
+	row->obj = init_obj(num_obj);
+	if (!row->obj)
+	{
+		free(row->cam);
+		return (false);
+	}
+	row->lux = init_light(num_obj);
+	if (!row->lux)
+	{
+		free(row->cam);
+		free_obj_memory(row->obj, 4);
+		return (false);
+	}
+	return (true);
 }
 
 bool	init_data(t_pix ***pix, t_num_obj *num_obj)
@@ -79,20 +97,7 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 		j = 0;
 		while (j < WND_WIDTH)
 		{
-			(*pix)[i][j].cam = init_camera();
-			if (!(*pix)[i][j].cam)
-			{
-				free_all(pix);
-				return (false);
-			}
-			(*pix)[i][j].obj = init_obj(num_obj);
-			if (!(*pix)[i][j].obj)
-			{
-				free_all(pix);
-				return (false);
-			}
-			(*pix)[i][j].lux = init_light(num_obj);
-			if (!(*pix)[i][j].lux)
+			if (!init_row(&(*pix)[i][j], num_obj))
 			{
 				free_all(pix);
 				return (false);

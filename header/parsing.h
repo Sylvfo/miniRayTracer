@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/02 21:53:56 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 07:40:15 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void		free_all(t_pix ***pix);
 void		save_line(char *line, t_pix ***pix, t_num_obj *num_obj);
 void		save_light(char *line, t_pix ***pix, t_num_obj *num_obj);
 void		save_camera(char *line, t_pix ***pix);
-void		save_object(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_plane(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_sphere(char *line, t_pix ***pix, t_num_obj *num_obj);
+void		save_cylinder(char *line, t_pix ***pix, t_num_obj *num_obj);
 
 #endif

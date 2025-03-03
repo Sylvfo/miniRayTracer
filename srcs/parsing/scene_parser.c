@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/02 22:24:28 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 07:17:55 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	process_buffer(char *buf, t_num_obj *num_obj, const char *type,
 /* ----------------------------------------------------------------------------
 	Lit et traite un fichier de scène.
 ---------------------------------------------------------------------------- */
-void	parse_scene_file(const char *filename, t_pix ***pix, t_num_obj *num_obj, const char *type)
+void	parse_scene_file(const char *filename, t_pix ***pix, t_num_obj *num_obj,
+			const char *type)
 {
 	int		fd;
 	char	buf[5000];

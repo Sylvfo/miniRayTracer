@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/03/02 21:41:05 by cmegret          ###   ########.fr        #
+#    Updated: 2025/03/03 07:40:20 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,9 @@ SRCS = \
 	srcs/parsing/init_object.c \
 	srcs/saving_data/save_light.c \
 	srcs/saving_data/save_camera.c \
-	srcs/saving_data/save_object.c \
+	srcs/saving_data/save_plane.c \
+	srcs/saving_data/save_sphere.c \
+	srcs/saving_data/save_cylinder.c \
 	
 
 # Bibliothèques

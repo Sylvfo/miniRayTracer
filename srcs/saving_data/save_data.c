@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 14:56:15 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/02 21:53:44 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 07:40:04 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	save_line(char *line, t_pix ***pix, t_num_obj *num_obj)
 	else if (line[0] == 'C')
 		save_camera(line, pix);
 	else if (line[0] == 's' && line[1] == 'p')
-		save_object(line, pix, num_obj);
+		save_sphere(line, pix, num_obj);
 	else if (line[0] == 'p' && line[1] == 'l')
-		save_object(line, pix, num_obj);
+		save_plane(line, pix, num_obj);
 	else if (line[0] == 'c' && line[1] == 'y')
-		save_object(line, pix, num_obj);
+		save_cylinder(line, pix, num_obj);
 }
