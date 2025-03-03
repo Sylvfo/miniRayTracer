@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:43:15 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 09:32:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/03 15:03:26 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ float	dot_product(t_coord *v_1, t_coord *v_2)
 {
 	float	dot;
 
-	if (is_vector(v_1) == false || is_vector(v_2) == false)
+	if (is_vector(v_1) == false || is_vector(v_2) == false)// a enlever
 		return (0);
 	dot = (v_1->x * v_2->x) + (v_1->y * v_2->y) + (v_1->z * v_2->z);
 	return (dot);

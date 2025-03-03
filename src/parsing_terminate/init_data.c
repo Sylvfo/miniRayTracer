@@ -6,9 +6,85 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 11:55:27 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:37:41 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/minirt.h"
+#include "../inc/minirt_parsing.h"// retirer??
+
+bool	init_data(t_pix ***pix, t_num_obj *num_obj)
+{
+	if (init_pix(pix, WND_HEIGHT, WND_WIDTH) == false)
+		return (false);
+	if (init_scene(pix, num_obj) == false)
+	{
+		free_all(pix);
+		return (false);
+	}
+	if (init_ima(pix) == false) // || init_matrix_ref(pix) == false)
+	{
+		free_all(pix);
+		return (false);
+	}
+	return (true);
+}
+
+bool	init_pix(t_pix ***pix, int rows, int cols)
+{
+	int	i;
+	int	j;
+
+	*pix = malloc(rows * sizeof(t_pix *));
+	if (!*pix)
+		return (false);
+	i = 0;
+	while (i < rows)
+	{
+		(*pix)[i] = malloc(cols * sizeof(t_pix));
+		if (!(*pix)[i])
+		{
+			j = 0;
+			while (j < i)
+			{
+				free((*pix)[j]);
+				j++;
+			}
+			free(*pix);
+			*pix = NULL;
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+void	free_all(t_pix ***pix)
+{
+	int	i;
+
+	if (pix && *pix)
+	{
+		i = 0;
+		while ((*pix)[i] != NULL)
+		{
+			if ((*pix)[i]->cam)
+				free((*pix)[i]->cam);
+			if ((*pix)[i]->obj)
+				free_obj_memory((*pix)[i]->obj, 4);
+			if ((*pix)[i]->lux)
+				free_light_memory((*pix)[i]->lux, 2);
+			free((*pix)[i]);
+			i++;
+		}
+		free(*pix);
+	}
+}
+
+/*
+////////////////////////////
+
+	PARSING CORENTIN
 
 #include "../inc/minirt_parsing.h"
 
@@ -33,6 +109,7 @@ void	free_all(t_pix ***pix)
 		free(*pix);
 	}
 }
+
 
 void	init_pix(t_pix ***pix, int rows, int cols)
 {
@@ -87,7 +164,10 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 {
 	int	i;
 	int	j;
+	t_image *ima;
 
+	if (init_image(ima) == NULL)
+		return (false);
 	//init ima
 	// init matrix
 
@@ -102,6 +182,7 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 		{
 			if (!init_row(&(*pix)[i][j], num_obj))
 			{
+				//free ima
 				free_all(pix);
 				return (false);
 			}
@@ -111,7 +192,7 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 	}
 	// link ima et matrix
 	return (true);
-}
+}*/
 
 /* bool	init_data(t_pix	***pix)
 {
@@ -163,22 +244,5 @@ bool	init_pix(t_pix ***pix)
 	return (pix);
 }
 
-void	link_pix_ima(t_pix ***pix, t_image *ima)
-{
-	int	x;
-	int	y;
 
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			pix[x][y]->ima = ima;
-			y++;
-		}
-		x++;
-	}
-	return ;
-}
  */

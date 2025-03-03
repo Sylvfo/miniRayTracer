@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: syl <syl@student.42.fr>                    +#+  +:+       +#+         #
+#    By: sforster <sforster@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/27 13:23:52 by syl              ###   ########.fr        #
+#    Updated: 2025/03/03 16:27:12 by sforster         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ NAME = minirt
 CC = cc
 
 # Flags de compilation
-CFLAGS = -Wall -Wextra -Werror #-Iincludes
+CFLAGS = #-Wall -Wextra -Werror #-Iincludes
 LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources

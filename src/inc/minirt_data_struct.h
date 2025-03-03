@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 11:49:20 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:38:48 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_matrix
 	float	*m_rot_y;
 	float	*m_rot_z;
 	float	*m_transl;
-	float	*m_identidy;
+	float	*m_identity;
 }	t_matrix;
 
 typedef struct s_pix

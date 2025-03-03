@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 11:46:22 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:38:52 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,17 +140,20 @@ int	main(int argc, char **argv)
 	}
 	*pix = NULL;
 	parse_scene_file(argv[1], pix, num_obj, "parsing");//check
+	printf("avant init\n");
 	if (init_data(pix, num_obj) == false) //init 
 	{
 		free_all(pix);
 		free(num_obj);
 		return (EXIT_FAILURE);
 	}
+	printf("ici ok\n");
 	num_obj->sphere = 0;
 	num_obj->plan = 0;
 	num_obj->cylinder = 0;
 	num_obj->light = 0;
 	parse_scene_file(argv[1], pix, num_obj, "saving"); //enregistre
+	printf("ici ok PPPP\n");
 
 ////////////////////////////////
 	print_camera(pix);
@@ -160,9 +163,9 @@ int	main(int argc, char **argv)
 	print_lights(pix, num_obj);
 ////////////////////////////////
 
-	pix_drawings(pix);
-	pix_to_window(pix);
-	image_hooks(pix[0][0]->ima);
+//	pix_drawings(pix);
+//	pix_to_window(pix);
+//	image_hooks(pix[0][0]->ima);
 //////////////////////////////
 
 

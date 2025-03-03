@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_parsing.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:21:19 by syl               #+#    #+#             */
-/*   Updated: 2025/02/28 12:32:22 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:38:53 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 # define MINIRT_PARSING_H
 
 # include "minirt.h"
-
-// AUSSI CHECK 
-// ET TERMINATE
-
-/// SYLVIE
-// avant parsingdsf
-t_pix		***init_data_test(void);
-t_pix		***init_pix_test(t_pix ***pix);
-void		link_pix_ima(t_pix ***pix, t_image *ima);
-//void	color_image(t_image *ima);
 
 /* Scene parsing */
 void		parse_scene_file(const char *filename, t_pix ***pix,
@@ -58,10 +48,13 @@ int			validate_fov(float fov);
 void		error_exit(const char *msg);
 
 /* Data initialization */
+//init_data.c
 bool		init_data(t_pix ***pix, t_num_obj *num_obj);
 
 /* Camera initialization */
 t_camera	*init_camera(void);
+bool		init_pix(t_pix ***pix, int rows, int cols);
+void		free_all(t_pix ***pix);
 
 /* Object initialization */
 void		free_obj_memory(t_obj ***obj, int count);
@@ -85,5 +78,18 @@ void		save_camera(char *line, t_pix ***pix);
 void		save_plane(char *line, t_pix ***pix, t_num_obj *num_obj);
 void		save_sphere(char *line, t_pix ***pix, t_num_obj *num_obj);
 void		save_cylinder(char *line, t_pix ***pix, t_num_obj *num_obj);
+
+//init_image.c
+t_image	*init_image(void);
+
+//init_matrix_ima.c
+bool		init_matrix_ref(t_pix ***pix);
+void		link_pix_matrix(t_pix ***pix, t_matrix *neo);
+bool		init_ima(t_pix ***pix);
+void		link_pix_ima(t_pix ***pix, t_image *ima);
+
+//init_scene.c
+bool		init_scene(t_pix ***pix, t_num_obj *num_obj);
+void	link_pix_scene(t_pix ***pix, t_camera *cam, t_obj ***obj, t_light ***lux);
 
 #endif

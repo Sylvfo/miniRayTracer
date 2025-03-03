@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_rotations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:07:11 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 09:37:23 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/03 15:17:32 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 //dir = direction
 // enum donc 4 = left et 5 right
 
+
+//	A MODIFIER!!!!
 t_coord	*rotations(t_coord *p_point, int axe, int dir, float radian)
 {
 	float	*m_rotation;
