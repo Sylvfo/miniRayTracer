@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:40:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 16:37:41 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:26:38 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 {
-	if (init_pix(pix, WND_HEIGHT, WND_WIDTH) == false)
+//	if (init_pix(pix, WND_HEIGHT, WND_WIDTH) == false)
+//		return (false);
+	if (init_pix(pix) == false)
 		return (false);
 	if (init_scene(pix, num_obj) == false)
 	{
@@ -30,6 +32,7 @@ bool	init_data(t_pix ***pix, t_num_obj *num_obj)
 	return (true);
 }
 
+/*
 bool	init_pix(t_pix ***pix, int rows, int cols)
 {
 	int	i;
@@ -57,6 +60,34 @@ bool	init_pix(t_pix ***pix, int rows, int cols)
 		i++;
 	}
 	return (true);
+}*/
+
+bool	init_pix(t_pix ***pix)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	pix = (t_pix ***)malloc(WND_WIDTH * sizeof(t_pix **));
+	if (!pix)
+		return (NULL);
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		pix[x] = (t_pix **)malloc(WND_HEIGHT * sizeof(t_pix *));
+		if (!pix[x])
+			return (NULL);
+		while (y < WND_HEIGHT)
+		{
+			pix[x][y] = (t_pix *)malloc(sizeof(t_pix));
+			if (!pix[x][y])
+				return (NULL);//free...
+			y++;
+		}
+		x++;
+	}
+	printf("y = %i \n", y);
+	return (pix);
 }
 
 void	free_all(t_pix ***pix)

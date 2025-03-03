@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:21:19 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:53 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:21:07 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ bool		init_data(t_pix ***pix, t_num_obj *num_obj);
 
 /* Camera initialization */
 t_camera	*init_camera(void);
-bool		init_pix(t_pix ***pix, int rows, int cols);
+//bool		init_pix(t_pix ***pix, int rows, int cols);
 void		free_all(t_pix ***pix);
-
+bool	init_pix(t_pix ***pix);
 /* Object initialization */
 void		free_obj_memory(t_obj ***obj, int count);
 t_obj		**init_object_array(int count);

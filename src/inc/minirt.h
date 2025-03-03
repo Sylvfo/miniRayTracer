@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 10:47:57 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:35:34 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define PI 3.1415926535
 # define PIRAD 0.017453   //pi already divided by 180 to find radian. 
 
-# define WND_WIDTH 1800
+# define WND_WIDTH 1000
 # define WND_HEIGHT 1000
 # define VIEWP_WIDTH 1800
 # define VIEWP_HIGHT 1000
