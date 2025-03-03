@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:21:19 by syl               #+#    #+#             */
-/*   Updated: 2025/02/28 12:32:22 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:07:43 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		parse_scene_file(const char *filename, t_pix ***pix,
 				t_num_obj *num_obj, const char *type);
 void		parse_line(char *line, t_num_obj *num_obj);
 void		process_buffer(char *buf, t_num_obj *num_obj, const char *type,
-	t_pix ***pix);
+				t_pix ***pix);
 
 /* Object parsing */
 int			validate_sphere(char *line, t_num_obj *num_obj);
