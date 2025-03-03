@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 09:24:40 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/03 07:23:45 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:14:14 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,49 +62,60 @@ void	init_pix(t_pix ***pix, int rows, int cols)
 	}
 }
 
-bool	init_row(t_pix *row, t_num_obj *num_obj)
+static bool	init_camera_obj_light(t_camera **cam, t_obj ****obj,
+	t_light ****lux, t_num_obj *num_obj)
 {
-	row->cam = init_camera();
-	if (!row->cam)
+	*cam = init_camera();
+	if (!*cam)
 		return (false);
-	row->obj = init_obj(num_obj);
-	if (!row->obj)
+	*obj = init_obj(num_obj);
+	if (!*obj)
 	{
-		free(row->cam);
+		free(*cam);
 		return (false);
 	}
-	row->lux = init_light(num_obj);
-	if (!row->lux)
+	*lux = init_light(num_obj);
+	if (!*lux)
 	{
-		free(row->cam);
-		free_obj_memory(row->obj, 4);
+		free(*cam);
+		free_obj_memory(*obj, 4);
 		return (false);
 	}
 	return (true);
 }
 
-bool	init_data(t_pix ***pix, t_num_obj *num_obj)
+static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
+	t_obj ***obj, t_light ***lux)
 {
 	int	i;
 	int	j;
 
-	init_pix(pix, WND_HEIGHT, WND_WIDTH);
-	if (!*pix)
-		return (false);
 	i = 0;
 	while (i < WND_HEIGHT)
 	{
 		j = 0;
 		while (j < WND_WIDTH)
 		{
-			if (!init_row(&(*pix)[i][j], num_obj))
-			{
-				free_all(pix);
-				return (false);
-			}
+			(*pix)[i][j].cam = cam;
+			(*pix)[i][j].obj = obj;
+			(*pix)[i][j].lux = lux;
 			j++;
 		}
 		i++;
 	}
+}
+
+bool	init_data(t_pix ***pix, t_num_obj *num_obj)
+{
+	t_camera	*cam;
+	t_obj		***obj;
+	t_light		***lux;
+
+	init_pix(pix, WND_HEIGHT, WND_WIDTH);
+	if (!*pix)
+		return (false);
+	if (!init_camera_obj_light(&cam, &obj, &lux, num_obj))
+		return (false);
+	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
 	return (true);
 }
