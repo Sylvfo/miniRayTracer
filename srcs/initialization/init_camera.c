@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 13:51:01 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/01 13:51:19 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 12:09:34 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 13:53:27 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parsing.h"
+#include "../../header/minirt.h"
 
 t_camera	*init_camera(void)
 {

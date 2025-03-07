@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_parser.c                                    :+:      :+:    :+:   */
+/*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/02/19 14:31:27 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 11:12:46 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 11:13:02 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parsing.h"
+#include "../../header/minirt.h"
 
-/* ----------------------------------------------------------------------------
-	Parse et valide le champ de vision de la caméra.
----------------------------------------------------------------------------- */
 static int	parse_camera_fov(char **line, float *fov)
 {
 	*fov = ft_strtod(*line, line);
 	return (validate_fov(*fov));
 }
 
-/* ----------------------------------------------------------------------------
-	Parse et valide la caméra.
----------------------------------------------------------------------------- */
 int	validate_camera(char *line)
 {
 	t_coord	position;

@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere_cylinder_parser.c                           :+:      :+:    :+:   */
+/*   parse_sphere_cylinder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/01 09:16:09 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 11:16:28 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 11:17:16 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parsing.h"
+#include "../../header/minirt.h"
 
-/* ----------------------------------------------------------------------------
-	Parse et valide les coordonnées du centre de l'objet.
----------------------------------------------------------------------------- */
 static int	parse_object_center(char **line, t_coord *center)
 {
 	return (parse_coordinates(line, &center->x, &center->y, &center->z));

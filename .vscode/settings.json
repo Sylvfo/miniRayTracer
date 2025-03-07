@@ -1,12 +1,5 @@
 {
-	"42header.email": "cmegret@student.42lausanne.ch",
-	"42header.username": "cmegret",
 	"files.associations": {
-		"libft.h": "c",
-		"test_utils.h": "c",
-		"parsing.h": "c",
 		"minirt.h": "c"
-	},
-	"C_Cpp.codeAnalysis.clangTidy.enabled": true,
-	"C_Cpp.codeAnalysis.runAutomatically": true
+	}
 }

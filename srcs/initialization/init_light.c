@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 13:54:16 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/01 17:08:39 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 12:09:29 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 14:04:54 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parsing.h"
+#include "../../header/minirt.h"
 
 void	free_light_memory(t_light ***light, int count)
 {
@@ -66,14 +66,8 @@ t_light	***allocate_light_arrays(t_num_obj *num_obj)
 	return (light);
 }
 
-t_light	***init_light(t_num_obj *num_obj)
+bool	init_ambient_light(t_light ***light)
 {
-	t_light	***light;
-	int		i;
-
-	light = allocate_light_arrays(num_obj);
-	if (!light)
-		return (NULL);
 	light[0][0]->p_coord = malloc(sizeof(t_coord));
 	light[0][0]->color = malloc(sizeof(t_color));
 	if (!light[0][0]->p_coord || !light[0][0]->color)
@@ -81,9 +75,15 @@ t_light	***init_light(t_num_obj *num_obj)
 		free(light[0][0]->p_coord);
 		free(light[0][0]->color);
 		free(light[0][0]);
-		free_light_memory(light, 2);
-		return (NULL);
+		return (false);
 	}
+	return (true);
+}
+
+bool	init_spotlights(t_light ***light, t_num_obj *num_obj)
+{
+	int	i;
+
 	i = 0;
 	while (i < num_obj->light)
 	{
@@ -94,10 +94,29 @@ t_light	***init_light(t_num_obj *num_obj)
 			free(light[1][i]->p_coord);
 			free(light[1][i]->color);
 			free(light[1][i]);
-			free_light_memory(light, 2);
-			return (NULL);
+			return (false);
 		}
 		i++;
+	}
+	return (true);
+}
+
+t_light	***init_light(t_num_obj *num_obj)
+{
+	t_light	***light;
+
+	light = allocate_light_arrays(num_obj);
+	if (!light)
+		return (NULL);
+	if (!init_ambient_light(light))
+	{
+		free_light_memory(light, 2);
+		return (NULL);
+	}
+	if (!init_spotlights(light, num_obj))
+	{
+		free_light_memory(light, 2);
+		return (NULL);
 	}
 	return (light);
 }

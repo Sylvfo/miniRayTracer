@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/01 09:17:04 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 11:00:31 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 11:04:45 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parsing.h"
+#include "../../header/minirt.h"
 
 void	skip_whitespace(const char **str)
 {
@@ -18,9 +18,6 @@ void	skip_whitespace(const char **str)
 		(*str)++;
 }
 
-/* ----------------------------------------------------------------------------
-	Parse une valeur float et avance le pointeur.
----------------------------------------------------------------------------- */
 int	parse_float(char **line, float *value)
 {
 	*value = ft_strtod(*line, line);
@@ -29,9 +26,6 @@ int	parse_float(char **line, float *value)
 	return (0);
 }
 
-/* ----------------------------------------------------------------------------
-	Parse un triplet de float sous la forme x,y,z et avance le pointeur.
----------------------------------------------------------------------------- */
 int	parse_coordinates(char **line, float *x, float *y, float *z)
 {
 	if (parse_float(line, x))
@@ -49,9 +43,6 @@ int	parse_coordinates(char **line, float *x, float *y, float *z)
 	return (0);
 }
 
-/* ----------------------------------------------------------------------------
-	Parse les trois composantes de couleur (r, g, b) et avance le pointeur.
----------------------------------------------------------------------------- */
 int	parse_color(char **line, float *r, float *g, float *b)
 {
 	*r = ft_atoi(*line);
@@ -84,4 +75,31 @@ int	parse_dimension(char **line, float *dimension)
 	while (**line == ' ')
 		(*line)++;
 	return (0);
+}
+
+int	check_only_spaces(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ')
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+int	validate_orientation_vector(float ox, float oy, float oz)
+{
+	if (ox < -1.0f || ox > 1.0f
+		|| oy < -1.0f || oy > 1.0f
+		|| oz < -1.0f || oz > 1.0f)
+		return (1);
+	if (ox == 0.0f && oy == 0.0f && oz == 0.0f)
+		return (1);
+	return (0);
+}
+
+int	validate_fov(float fov)
+{
+	return (fov <= 0.0f || fov > 180.0f);
 }

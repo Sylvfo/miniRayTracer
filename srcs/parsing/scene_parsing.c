@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_parser.c                                     :+:      :+:    :+:   */
+/*   scene_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/03 07:17:55 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 10:52:27 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 11:18:26 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/parsing.h"
+#include "../../header/minirt.h"
 
 /* ----------------------------------------------------------------------------
 	Parse une ligne du fichier de scène.
@@ -35,8 +35,7 @@ void	parse_line(char *line, t_num_obj *num_obj)
 /* ----------------------------------------------------------------------------
 Traite chaque ligne lue depuis le buffer.
 ---------------------------------------------------------------------------- */
-void	process_buffer(char *buf, t_num_obj *num_obj, const char *type,
-			t_pix ***pix)
+void	process_buffer(char *buf, t_num_obj *num_obj)
 {
 	char	*line;
 	int		i;
@@ -48,10 +47,7 @@ void	process_buffer(char *buf, t_num_obj *num_obj, const char *type,
 		while (line[i] && line[i] != '\n')
 			i++;
 		line[i] = '\0';
-		if (ft_strncmp(type, "parsing", 7) == 0)
-			parse_line(line, num_obj);
-		else if (ft_strncmp(type, "saving", 6) == 0)
-			save_line(line, pix, num_obj);
+		parse_line(line, num_obj);
 		line += i + 1;
 	}
 }
@@ -59,8 +55,7 @@ void	process_buffer(char *buf, t_num_obj *num_obj, const char *type,
 /* ----------------------------------------------------------------------------
 	Lit et traite un fichier de scène.
 ---------------------------------------------------------------------------- */
-void	parse_scene_file(const char *filename, t_pix ***pix, t_num_obj *num_obj,
-			const char *type)
+void	parse_scene_file(const char *filename, t_num_obj *num_obj)
 {
 	int		fd;
 	char	buf[5000];
@@ -73,7 +68,7 @@ void	parse_scene_file(const char *filename, t_pix ***pix, t_num_obj *num_obj,
 	while (ret > 0)
 	{
 		buf[ret] = '\0';
-		process_buffer(buf, num_obj, type, pix);
+		process_buffer(buf, num_obj);
 		ret = read(fd, buf, sizeof(buf) - 1);
 	}
 	if (ret == -1)

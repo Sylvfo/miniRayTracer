@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/02 19:20:00 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/07 15:11:46 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include "../lib/libft/libft.h"
 # include "minirt_data_struct.h"
 # include "parsing.h"
+# include "initialization.h"
+# include "saving.h"
 
 # define EPSILON 0.001
 # define PI 3.1415926535
@@ -32,6 +34,7 @@
 # define VIEWP_WIDTH 1800
 # define VIEWP_HIGHT 1000
 
-int	main(int argc, char **argv);
+int		main(int argc, char **argv);
+void	error_exit(const char *msg);
 
 #endif

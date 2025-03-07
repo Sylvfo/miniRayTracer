@@ -5,63 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 07:33:45 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/03 07:34:55 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 15:13:43 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 17:26:27 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/minirt.h"
 
-static void	set_plane_data(t_pix ***pix, t_coord coord, t_color color,
-	int plane_index)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < WND_HEIGHT)
-	{
-		j = 0;
-		while (j < WND_WIDTH)
-		{
-			(*pix)[i][j].obj[2][plane_index]->p_coord->x = coord.x;
-			(*pix)[i][j].obj[2][plane_index]->p_coord->y = coord.y;
-			(*pix)[i][j].obj[2][plane_index]->p_coord->z = coord.z;
-			(*pix)[i][j].obj[2][plane_index]->color->r = color.r;
-			(*pix)[i][j].obj[2][plane_index]->color->g = color.g;
-			(*pix)[i][j].obj[2][plane_index]->color->b = color.b;
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	set_plane_orientation(t_pix ***pix, t_coord orientation,
-	int plane_index)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < WND_HEIGHT)
-	{
-		j = 0;
-		while (j < WND_WIDTH)
-		{
-			(*pix)[i][j].obj[2][plane_index]->v_axe->x = orientation.x;
-			(*pix)[i][j].obj[2][plane_index]->v_axe->y = orientation.y;
-			(*pix)[i][j].obj[2][plane_index]->v_axe->z = orientation.z;
-			j++;
-		}
-		i++;
-	}
-}
-
-void	save_plane(char *line, t_pix ***pix, t_num_obj *num_obj)
+void	save_plane(char *line, t_pix **pix, t_num_obj *num_obj)
 {
 	t_coord		coord;
 	t_coord		orientation;
 	t_color		color;
+	t_obj		*plane;
 
 	line += 2;
 	skip_whitespace((const char **)&line);
@@ -72,7 +28,17 @@ void	save_plane(char *line, t_pix ***pix, t_num_obj *num_obj)
 	orientation.t = 0;
 	skip_whitespace((const char **)&line);
 	parse_color(&line, &color.r, &color.g, &color.b);
-	set_plane_data(pix, coord, color, num_obj->plan);
-	set_plane_orientation(pix, orientation, num_obj->plan);
+	plane = pix[0][0].obj[2][num_obj->plan];
+	if (!plane)
+		return ;
+	plane->p_coord->x = coord.x;
+	plane->p_coord->y = coord.y;
+	plane->p_coord->z = coord.z;
+	plane->color->r = color.r;
+	plane->color->g = color.g;
+	plane->color->b = color.b;
+	plane->v_axe->x = orientation.x;
+	plane->v_axe->y = orientation.y;
+	plane->v_axe->z = orientation.z;
 	num_obj->plan++;
 }
