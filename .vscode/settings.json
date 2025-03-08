@@ -3,6 +3,7 @@
 		"minirt.h": "c",
 		"minirt_matrix.h": "c",
 		"minirt_parsing.h": "c",
-		"temp": "cpp"
+		"temp": "cpp",
+		"parsing.h": "c"
 	}
 }

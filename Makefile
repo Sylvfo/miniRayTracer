@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: syl <syl@student.42.fr>                    +#+  +:+       +#+         #
+#    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/02/27 13:23:52 by syl              ###   ########.fr        #
+#    Updated: 2025/03/08 11:15:51 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources
 SRC_DIR = ./src
-SRCS = ${shell find ${SRC_DIR} -type f -name '*.c'}\
+SRCS = ${shell find ${SRC_DIR} -path ${SRC_DIR}/parsing_terminate -prune -o -type f -name '*.c' -print}\
 
 # Bibliothèques
 LIBFT = lib/libft/libft.a

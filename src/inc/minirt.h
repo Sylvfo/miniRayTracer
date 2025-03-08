@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/27 13:47:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/08 11:15:11 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <stdbool.h>
 
 # include "minirt_data_struct.h"
+# include "parsing.h"
+# include "initialization.h"
+# include "saving.h"
 # include "minirt_tests.h"
 # include "minirt_matrix.h"
 # include "minirt_window.h"
