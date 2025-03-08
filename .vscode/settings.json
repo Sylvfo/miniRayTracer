@@ -4,6 +4,7 @@
 		"minirt_matrix.h": "c",
 		"minirt_parsing.h": "c",
 		"temp": "cpp",
-		"parsing.h": "c"
+		"libft.h": "c",
+		"limits.h": "c"
 	}
 }

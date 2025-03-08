@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/02/28 13:45:14 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/08 10:20:40 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_camera
 //	float		viewport_height; // L2
 	t_coord		v_origin_camera; // m dans pixel
 	// distance viewport camera???
-	t_camera	*saved_camera; // (si on se perd. ou camera origines)
+	//t_camera	*saved_camera; // (si on se perd. ou camera origines)
 	float		caneva_width; // image
 	float		caneva_hight; // image
 }	t_camera;

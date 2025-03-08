@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/08 11:15:11 by cmegret          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/03/08 10:36:56 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -16,6 +17,7 @@
 //# include "librairies/libft/libft.h"
 //# include "../../lib/minilibx-linux/mlx_int.h"
 # include "../../lib/minilibx-linux/mlx.h"
+# include "../../lib/libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
