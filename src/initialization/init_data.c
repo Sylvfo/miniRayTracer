@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minirt.h"
+#include "../inc/minirt.h"
 
 static void	free_pix(t_pix ***pix, int rows, int cols)
 {

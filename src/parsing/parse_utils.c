@@ -6,11 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:00:31 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/07 11:04:45 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minirt.h"
+#include "../inc/minirt.h"
 
 void	skip_whitespace(const char **str)
 {

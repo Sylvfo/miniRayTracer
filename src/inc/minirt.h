@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 17:35:34 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/09 08:43:17 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 # include <stdbool.h>
 
 # include "minirt_data_struct.h"
+# include "parsing.h"
+# include "initialization.h"
+# include "saving.h"
 # include "minirt_tests.h"
 # include "minirt_matrix.h"
 # include "minirt_window.h"
-# include "minirt_parsing.h"
 # include "minirt_ray_calculs.h"
 # include "minirt_vect_point_color.h"
 
@@ -56,5 +58,8 @@ enum e_axes
 	left_h,
 	right_h,
 };
+
+int		main(int argc, char **argv);
+void	error_exit(const char *msg);
 
 #endif

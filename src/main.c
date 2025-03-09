@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/09 09:34:50 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 08:42:24 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../../header/minirt.h"
+//#include "../inc/minirt.h"
 
  void	print_spheres(t_pix ***pix, t_num_obj *num_obj)
 {
@@ -114,26 +114,12 @@ void	print_camera(t_pix ***pix)
 	printf("  FOV: %f\n", (*pix)[0][0].cam->fov);
 }
 
-int	main(int argc, char **argv)
+void	error_exit(const char *msg)
 {
-	t_pix		***pix;
-	t_num_obj	*num_obj;
-
-	if (argc != 2)
-	{
-		printf("Usage: %s <scene_file.rt>\n", argv[0]);
-		return (EXIT_FAILURE);
-	}
-	num_obj = malloc(sizeof(t_num_obj));
-	if (!num_obj)
-	{
-		perror("Failed to allocate memory for num_obj");
-		return (EXIT_FAILURE);
-	}
-	parse_scene_file(argv[1], num_obj);
-	pix = init_data(num_obj);
-	save_scene_file(argv[1], pix, num_obj);
-	return (EXIT_SUCCESS);
+	write(2, "Error\n", 6);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv)
@@ -169,9 +155,5 @@ int	main(int argc, char **argv)
 //	pix_to_window(pix);
 //	image_hooks(pix[0][0]->ima);
 //////////////////////////////
-
-
-	free(num_obj);
-	free_all(pix);
 	return (EXIT_SUCCESS);
 }

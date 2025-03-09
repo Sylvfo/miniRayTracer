@@ -6,11 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:39 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/07 17:56:57 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minirt.h"
+#include "../inc/minirt.h"
 
 void	save_cylinder(char *line, t_pix **pix, t_num_obj *num_obj)
 {

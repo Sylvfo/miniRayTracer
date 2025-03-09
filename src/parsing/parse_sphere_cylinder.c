@@ -6,11 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:16:28 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/07 11:17:16 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minirt.h"
+#include "../inc/minirt.h"
 
 static int	parse_object_center(char **line, t_coord *center)
 {

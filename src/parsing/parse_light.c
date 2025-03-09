@@ -6,11 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:59:19 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/07 11:18:16 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/minirt.h"
+#include "../inc/minirt.h"
 
 /* ----------------------------------------------------------------------------
 	Valide les données d'ambiance contenues dans 'line'.
