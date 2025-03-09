@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_object.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:09:23 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 14:50:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	free_object(t_obj ***obj, t_num_obj *num_obj)
 	int	i;
 
 	i = 0;
+	//rajouter free obj zero zero
 	while (i < num_obj->sphere)
 	{
 		free(obj[1][i]->p_coord);
@@ -50,6 +51,8 @@ void	free_object(t_obj ***obj, t_num_obj *num_obj)
 
 static bool	allocate_object_arrays(t_obj ***obj, t_num_obj *num_obj)
 {
+	//sylv a rajouté 2 lignes
+	obj[0] = malloc(2 * sizeof(t_obj *));
 	obj[1] = malloc((num_obj->sphere + 1) * sizeof(t_obj *));
 	obj[2] = malloc((num_obj->plan + 1) * sizeof(t_obj *));
 	obj[3] = malloc((num_obj->cylinder + 1) * sizeof(t_obj *));
@@ -71,6 +74,12 @@ static void	initialize_object_arrays(t_obj ***obj, t_num_obj *num_obj)
 	int	i;
 
 	i = 0;
+	//sylv a rajouté 2 lignes
+
+	obj[0][0] = malloc(sizeof(t_obj));
+	obj[0][0]->p_coord = malloc(sizeof(t_coord));//NULL??
+	obj[0][0]->color = malloc(sizeof(t_color));
+	obj[0][0]->v_axe = NULL; // Les sphères n'ont pas d'axe
 	while (i < num_obj->sphere)
 	{
 		obj[1][i] = malloc(sizeof(t_obj));
@@ -97,6 +106,7 @@ static void	initialize_object_arrays(t_obj ***obj, t_num_obj *num_obj)
 		obj[3][i]->v_axe = malloc(sizeof(t_coord));
 		i++;
 	}
+//	obj[0][0] = NULL;
 	obj[1][num_obj->sphere] = NULL;
 	obj[2][num_obj->plan] = NULL;
 	obj[3][num_obj->cylinder] = NULL;

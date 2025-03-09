@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_data_struct.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 17:33:53 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:32:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_ray
 {
 	t_coord	*p_origin;
 	t_coord	*v_dir;
-	t_coord	*v_norm;
+//	t_coord	*v_norm;
 }	t_ray;
 
 /// OBJETS
@@ -117,6 +117,12 @@ typedef struct s_image
 	int		endian; // ?
 	void	*mlx_ptr;
 	void	*mlx_win;
+	int		view_width;// a calculer après
+	int		view_height; // a calculer après...
+	int		canva_height;
+	int		canva_width;
+	int     view_canva_with_ref;//??
+	int		view_canva_height_ref;//??
 }	t_image;
 
 typedef struct s_matrix
@@ -139,13 +145,17 @@ typedef struct s_pix
 	t_matrix	*neo; // A FAIRE PAR SYLVIE
 
 	//in each pixel. 
-	t_coord		*v_d; // vecteur entre camera et coordonnes sur viewport
+//	t_coord		*v_d; 
+	t_ray  *v_d;// ray entre camera et coordonnes sur viewport
+
 	t_color		*color; // OK
 	t_obj		*closest_obj;
 // closest object
 // 	data for calculation	
 	float		t1;
 	float		t2;
+	int	vpx;// viewport x
+	int vpy;// viewport y
 }	t_pix;
 
 #endif

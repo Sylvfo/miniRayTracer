@@ -81,6 +81,20 @@ t_pix	***init_pix(int rows, int cols)
 	return (pix);
 }
 
+t_color	*init_color(void)
+{
+	t_color	*color;
+
+	color = malloc(sizeof(t_color));
+	if (!color)
+		return (NULL);
+	color->r = 255;
+	color->g = 255;
+	color->b = 255;
+	color->rgb = 0;
+	return (color);
+}
+
 static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 	t_obj ***obj, t_light ***lux)
 {
@@ -96,6 +110,15 @@ static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 			pix[i][j]->cam = cam;
 			pix[i][j]->obj = obj;
 			pix[i][j]->lux = lux;
+			pix[i][j]->color = init_color();
+			/* if (!pix[i][j]->color)
+			{
+				free_pix(pix, WND_HEIGHT, WND_WIDTH);
+				free_object(obj, num_obj);
+				free(cam);
+				free(lux);
+				return ;
+			} */
 			j++;
 		}
 		i++;
@@ -134,5 +157,8 @@ t_pix	***init_data(t_num_obj *num_obj)
 		return (false);
 	}
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
+	//ici fait par Sylvie
+	init_matrix_ref(pix);
+	init_ima(pix); 
 	return (pix);
 }

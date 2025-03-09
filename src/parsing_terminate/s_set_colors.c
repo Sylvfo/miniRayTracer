@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_colors.c                                       :+:      :+:    :+:   */
+/*   s_set_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/09 14:56:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	color_float_to_int(t_color *c_color)
  * when calculation is done
  * goes with color_float_to_int(t_color *c_color)
  * 
- * NOT VERIFIED
+ * A modifier rgb 0 a 1
  * 
  * @param f float
  * 
@@ -108,10 +108,34 @@ int	float_to_byte(float f)
 {
 	if (f <= 0.0f)
 		return (0);
+	if (f >= 255)
+		return (255);
+	return ((int)(f * 0.5f));
+}
+
+
+/**
+ * @brief convert float to byte
+ * 
+ * when calculation is done
+ * goes with color_float_to_int(t_color *c_color)
+ * 
+ * NOT VERIFIED
+ * 
+ * @param f float
+ * 
+ * @return --- change in data base pix
+ */
+/*
+COPIE AVEC VALEUR RGB 0 a 1
+int	float_to_byte(float f)
+{
+	if (f <= 0.0f)
+		return (0);
 	if (f >= 1.0f)
 		return (255);
 	return ((int)(f * 255.0f + 0.5f));
-}
+}*/
 
 /**
  * @brief change the color already allocated
@@ -132,4 +156,13 @@ void	change_color(t_color *c_color, int r, int g, int b)
 	c_color->g = int_to_float(g);
 	c_color->b = int_to_float(b);
 	c_color->rgb = 0;
+}
+
+void	color_int_to_rgb(int int_color, t_color *rgb)
+{
+	rgb->r = (int_color >> 16) & 0xFF;
+	rgb->g = (int_color >> 8) & 0xFF;
+	rgb->b = int_color & 0xFF;
+	rgb->rgb = int_color;
+	return ;
 }

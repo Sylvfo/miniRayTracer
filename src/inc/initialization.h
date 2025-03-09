@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:21:36 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/07 14:05:49 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 10:01:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ bool		init_ambient_light(t_light ***light);
 bool		init_spotlights(t_light ***light, t_num_obj *num_obj);
 t_light		***init_light(t_num_obj *num_obj);
 
+
+//fonction sylvie
+bool	init_matrix_ref(t_pix ***pix);
+void		link_pix_matrix(t_pix ***pix, t_matrix *neo);
+bool	init_ima(t_pix ***pix);
+void	link_pix_ima(t_pix ***pix, t_image *ima);
 #endif

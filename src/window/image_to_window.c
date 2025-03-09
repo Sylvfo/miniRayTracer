@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_to_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 10:51:18 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/09 14:07:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void	pix_to_window(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			color_float_to_int(pix[x][y]->color);
-			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win,
+//			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win,
+//				x, y, pix[x][y]->color->rgb);
+			mlx_pixel_put(pix[x][y]->ima->mlx_ptr, pix[x][y]->ima->mlx_win,
 				x, y, pix[x][y]->color->rgb);
 			y++;
 		}

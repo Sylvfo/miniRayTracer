@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_matrix_ima.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:31 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 15:49:11 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/09 09:59:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	init_matrix_ref(t_pix ***pix)
 {
-/*	t_matrix	*neo;
+	t_matrix	*neo;
 
 	neo = malloc(sizeof(t_matrix));
 	if (!neo)
@@ -23,9 +23,8 @@ bool	init_matrix_ref(t_pix ***pix)
 	neo->m_rot_y = NULL; //A CALCULER APRES SELON ANGLE
 	neo->m_rot_z = NULL; //A CALCULER APRES SELON ANGLE
 	neo->m_transl = NULL; // A CALCULER APRES SELON X Y Z DEPLACEMENT
-	neo->m_identity = create_indentity_matrix_44();*/
-	(void) pix;
-//	link_pix_matrix(pix, neo);
+	neo->m_identity = create_indentity_matrix_44();
+	link_pix_matrix(pix, neo);
 	return (true);
 }
 

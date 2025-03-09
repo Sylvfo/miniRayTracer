@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_main.c                                  :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 14:47:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/09 13:20:18 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 //Ray casting is the process of creating a ray, or line, and finding 
 //the intersections of that ray with the objects in a scene.
 
+
 /*
-t_coord *create_ray(t_pix **pix)
-{
-
-}
-
 typedef struct s_ray
 {
 	t_coord *p_origin;
@@ -57,9 +53,3 @@ t_coord *position(t_ray *r_ray, float t)
 	p_newpoint = addition(r_ray->p_origin, scalar_mult(r_ray->v_dir, t));
 	return (p_newpoint);
 }
-
-/*
-int raycasting_main(void)
-{
-	create_ray()
-}*/

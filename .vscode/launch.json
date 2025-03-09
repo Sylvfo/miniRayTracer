@@ -10,7 +10,7 @@
 			"name": "Debugminirt",
 			"program": "/home/syl/42/miniRayTracder/minirt",
 			"args": [
-				"/home/syl/42/miniRayTracder/minirt"
+				"/home/syl/42/miniRayTracder/test1.rt"
 			],
 			"cwd": "${workspaceFolder}"
 		}

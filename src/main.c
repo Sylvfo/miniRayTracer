@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/09 08:42:24 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/09 14:53:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,6 @@
 
 //Docstring
 
-
-/*int	main(int argc, char **argv)
-{
-	t_pix	***pix;
-	(void)	pix;
-
-	if (argc != 2)
-	{
-		printf("Usage: %s <scene_file.rt>\n", argv[0]);
-		return (EXIT_FAILURE);
-	}
-	parse_scene_file(argv[1]);
-	if (init_data(pix) == false)
-	{
-		//freetoutca
-		return (EXIT_FAILURE);
-	}	
-
-//	pix = parsing;
-
-	pix = init_data_test();
-	pix_drawings(pix);
-	pix_to_window(pix);
-	image_hooks(pix[0][0]->ima);
-
-//	sphere_testing();
-	return (0);
-}*/
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -142,7 +114,6 @@ int	main(int argc, char **argv)
 	pix = init_data(num_obj);
 	save_scene_file(argv[1], pix, num_obj);
 	printf("ici ok PPPP\n");
-
 ////////////////////////////////
 	print_camera(pix);
 	print_spheres(pix, num_obj);
@@ -150,10 +121,10 @@ int	main(int argc, char **argv)
 	print_cylinders(pix, num_obj);
 	print_lights(pix, num_obj);
 ////////////////////////////////
-
-//	pix_drawings(pix);
-//	pix_to_window(pix);
-//	image_hooks(pix[0][0]->ima);
+	raytracing(pix);
+	pix_drawings(pix);
+	pix_to_window(pix);
+	image_hooks(pix[0][0]->ima);
 //////////////////////////////
 	return (EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sforster <sforster@student.42.fr>          +#+  +:+       +#+         #
+#    By: syl <syl@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/03/03 16:27:12 by sforster         ###   ########.fr        #
+#    Updated: 2025/03/09 11:56:09 by syl              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ TEST_SRCS = tests/run_test.c tests/test_validate_ambient.c tests/test_validate_l
 TEST_OBJS = $(TEST_SRCS:.c=.o)
 TEST_NAME = test_fonction
 
-all: start norm $(MLX_DIR)/libmlx.a $(NAME)
+# all: start norm $(MLX_DIR)/libmlx.a $(NAME)
+all: $(MLX_DIR)/libmlx.a $(NAME)
 
 # Règle pour afficher le logo au démarrage
 start:
