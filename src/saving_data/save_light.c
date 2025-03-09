@@ -5,76 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 14:56:15 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/02 19:41:31 by cmegret          ###   ########.fr       */
+/*   Created: 2025/03/07 15:13:30 by cmegret           #+#    #+#             */
+/*   Updated: 2025/03/07 16:20:48 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt_parsing.h"
+#include "../../header/minirt.h"
 
-static void	save_ambient_light(char *line, t_pix ***pix)
+static void	save_ambient_light(char *line, t_pix **pix)
 {
 	t_color	color;
-	int		i;
-	int		j;
 	float	ratio;
+	t_light	*ambient_light;
 
-	i = 0;
+	ambient_light = pix[0][0].lux[0][0];
+	if (!ambient_light)
+		return ;
 	line++;
 	skip_whitespace((const char **)&line);
 	ratio = ft_strtod(line, &line);
 	skip_whitespace((const char **)&line);
 	parse_color(&line, &color.r, &color.g, &color.b);
-	while (i < WND_HEIGHT)
-	{
-		j = 0;
-		while (j < WND_WIDTH)
-		{
-			(*pix)[i][j].lux[0][0]->ratio = ratio;
-			(*pix)[i][j].lux[0][0]->color->r = color.r;
-			(*pix)[i][j].lux[0][0]->color->g = color.g;
-			(*pix)[i][j].lux[0][0]->color->b = color.b;
-			j++;
-		}
-		i++;
-	}
+	ambient_light->ratio = ratio;
+	ambient_light->color->r = color.r;
+	ambient_light->color->g = color.g;
+	ambient_light->color->b = color.b;
 }
 
-static void	save_other_light(char *line, t_pix ***pix, t_num_obj *num_obj)
+static void	save_other_light(char *line, t_pix **pix, t_num_obj *num_obj)
 {
 	t_color	color;
 	t_coord	position;
-	int		i;
-	int		j;
 	float	ratio;
+	t_light	*other_light;
 
-	i = 0;
+	other_light = pix[0][0].lux[1][num_obj->light];
+	if (!other_light)
+		return ;
 	line++;
 	skip_whitespace((const char **)&line);
 	parse_coordinates(&line, &position.x, &position.y, &position.z);
 	ratio = ft_strtod(line, &line);
 	skip_whitespace((const char **)&line);
 	parse_color(&line, &color.r, &color.g, &color.b);
-	while (i < WND_HEIGHT)
-	{
-		j = 0;
-		while (j < WND_WIDTH)
-		{
-			(*pix)[i][j].lux[1][num_obj->light]->p_coord->x = position.x;
-			(*pix)[i][j].lux[1][num_obj->light]->p_coord->y = position.y;
-			(*pix)[i][j].lux[1][num_obj->light]->p_coord->z = position.z;
-			(*pix)[i][j].lux[1][num_obj->light]->ratio = ratio;
-			(*pix)[i][j].lux[1][num_obj->light]->color->r = color.r;
-			(*pix)[i][j].lux[1][num_obj->light]->color->g = color.g;
-			(*pix)[i][j].lux[1][num_obj->light]->color->b = color.b;
-			j++;
-		}
-		i++;
-	}
+	other_light->p_coord->x = position.x;
+	other_light->p_coord->y = position.y;
+	other_light->p_coord->z = position.z;
+	other_light->ratio = ratio;
+	other_light->color->r = color.r;
+	other_light->color->g = color.g;
+	other_light->color->b = color.b;
 	num_obj->light++;
 }
 
-void	save_light(char *line, t_pix ***pix, t_num_obj *num_obj)
+void	save_light(char *line, t_pix **pix, t_num_obj *num_obj)
 {
 	if (line[0] == 'A')
 		save_ambient_light(line, pix);

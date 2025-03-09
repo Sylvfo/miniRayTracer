@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:52 by sforster         ###   ########.fr       */
+/*   Updated: 2025/03/09 09:34:50 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	print_camera(t_pix ***pix)
 	printf("  Position: (%f, %f, %f)\n", (*pix)[0][0].cam->p_coord->x, (*pix)[0][0].cam->p_coord->y, (*pix)[0][0].cam->p_coord->z);
 	printf("  Orientation: (%f, %f, %f)\n", (*pix)[0][0].cam->v_axe->x, (*pix)[0][0].cam->v_axe->y, (*pix)[0][0].cam->v_axe->z);
 	printf("  FOV: %f\n", (*pix)[0][0].cam->fov);
-} 
+}
 
 int	main(int argc, char **argv)
 {
@@ -130,29 +130,31 @@ int	main(int argc, char **argv)
 		perror("Failed to allocate memory for num_obj");
 		return (EXIT_FAILURE);
 	}
-	// Allocate memory for pix
-	pix = malloc(sizeof(t_pix **));
-	if (!pix)
+	parse_scene_file(argv[1], num_obj);
+	pix = init_data(num_obj);
+	save_scene_file(argv[1], pix, num_obj);
+	return (EXIT_SUCCESS);
+}
+
+int	main(int argc, char **argv)
+{
+	t_pix		***pix;
+	t_num_obj	*num_obj;
+
+	if (argc != 2)
 	{
-		perror("Failed to allocate memory for pix");
-		free(num_obj);
+		printf("Usage: %s <scene_file.rt>\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
-	*pix = NULL;
-	parse_scene_file(argv[1], pix, num_obj, "parsing");//check
-	printf("avant init\n");
-	if (init_data(pix, num_obj) == false) //init 
+	num_obj = malloc(sizeof(t_num_obj));
+	if (!num_obj)
 	{
-		free_all(pix);
-		free(num_obj);
+		perror("Failed to allocate memory for num_obj");
 		return (EXIT_FAILURE);
 	}
-	printf("ici ok\n");
-	num_obj->sphere = 0;
-	num_obj->plan = 0;
-	num_obj->cylinder = 0;
-	num_obj->light = 0;
-	parse_scene_file(argv[1], pix, num_obj, "saving"); //enregistre
+	parse_scene_file(argv[1], num_obj);
+	pix = init_data(num_obj);
+	save_scene_file(argv[1], pix, num_obj);
 	printf("ici ok PPPP\n");
 
 ////////////////////////////////
