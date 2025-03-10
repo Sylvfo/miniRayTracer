@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/09 17:36:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 08:39:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //BASE POUR LES CALCULS
 static void	init_viewport(t_pix ***pix);
-
+/*
 void raytracing(t_pix ***pix)
 {
 	// suite initialization...
@@ -64,7 +64,7 @@ static void	init_viewport(t_pix ***pix)//a changer après
 	pix[0][0]->ima->canva_height = 1800;
 	pix[0][0]->ima->canva_width = 1000;
 }
-*/
+
 
 
 static void init_camera_pix_ray(t_pix ***pix)

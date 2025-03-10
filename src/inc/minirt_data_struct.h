@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/09 17:32:35 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 10:47:53 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,24 +136,22 @@ typedef struct s_matrix
 
 typedef struct s_pix
 {
-	//same for all
 	t_camera	*cam; // OK
 	t_obj		***obj; // OK
 	t_obj		***c_obj;//scene from camera a voir apres
 	t_light		***lux; // OK
-	t_image		*ima; // A FAIRE PAR SYLVIE
-	t_matrix	*neo; // A FAIRE PAR SYLVIE
-
+	t_image		*ima;
+	t_matrix	*neo;
 	//in each pixel. 
 //	t_coord		*v_d; 
-	t_ray  *v_d;// ray entre camera et coordonnes sur viewport
-
+	t_ray 		*r_ray;// ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
 	t_obj		*closest_obj;
 // closest object
 // 	data for calculation	
 	float		t1;
 	float		t2;
+	int			t_count;
 	int	vpx;// viewport x
 	int vpy;// viewport y
 }	t_pix;

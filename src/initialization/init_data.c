@@ -102,10 +102,10 @@ static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 	int	j;
 
 	i = 0;
-	while (i < WND_HEIGHT)
+	while (i < WND_WIDTH)
 	{
 		j = 0;
-		while (j < WND_WIDTH)
+		while (j < WND_HEIGHT)
 		{
 			pix[i][j]->cam = cam;
 			pix[i][j]->obj = obj;
@@ -159,6 +159,6 @@ t_pix	***init_data(t_num_obj *num_obj)
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
 	//ici fait par Sylvie
 	init_matrix_ref(pix);
-	init_ima(pix); 
+//	init_ima(pix); 
 	return (pix);
 }

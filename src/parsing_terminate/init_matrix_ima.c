@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:31 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/09 09:59:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 11:01:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void		link_pix_matrix(t_pix ***pix, t_matrix *neo)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
+//			pix[x][y]->neo = malloc(sizeof(t_matrix *));
+//			pix[x][y]->t1 = 5;
 			pix[x][y]->neo = neo;
 			y++;
 		}
@@ -81,6 +83,7 @@ void	link_pix_ima(t_pix ***pix, t_image *ima)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
+//			pix[x][y]->ima = malloc(sizeof(t_image *));
 			pix[x][y]->ima = ima;
 			y++;
 		}
