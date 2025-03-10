@@ -131,6 +131,7 @@ t_pix	***init_data(t_num_obj *num_obj)
 	t_camera	*cam;
 	t_obj		***obj;
 	t_light		***lux;
+	t_hits		***hits;
 
 	pix = init_pix(WND_HEIGHT, WND_WIDTH);
 	if (!pix)
@@ -158,7 +159,9 @@ t_pix	***init_data(t_num_obj *num_obj)
 	}
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
 	//ici fait par Sylvie
+	assign_hits_to_pix(pix, hits, num_obj);
+	// retour d erreur!!!
 	init_matrix_ref(pix);
-//	init_ima(pix); 
+	init_ima(pix); 
 	return (pix);
 }

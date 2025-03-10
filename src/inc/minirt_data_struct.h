@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/10 10:47:53 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 16:57:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ typedef struct s_camera
 	t_coord		v_origin_camera; // m dans pixel
 	// distance viewport camera???
 	struct t_camera	*saved_camera; // (si on se perd. ou camera origines)
-	float		caneva_width; // image
-	float		caneva_hight; // image
+//	float		caneva_width; // image
+//	float		caneva_hight; // image
 }	t_camera;
 
 typedef struct s_image
@@ -117,12 +117,13 @@ typedef struct s_image
 	int		endian; // ?
 	void	*mlx_ptr;
 	void	*mlx_win;
-	int		view_width;// a calculer après
-	int		view_height; // a calculer après...
-	int		canva_height;
-	int		canva_width;
-	int     view_canva_with_ref;//??
-	int		view_canva_height_ref;//??
+	int		view_width;// wall??
+	int		view_height; // wall??
+	int		canva_height; 
+	int		canva_width; 
+	int     half_height;
+	int		half_width;
+	int		pixel_size;
 }	t_image;
 
 typedef struct s_matrix
@@ -133,6 +134,15 @@ typedef struct s_matrix
 	float	*m_transl;
 	float	*m_identity;
 }	t_matrix;
+
+// array 1 d de 
+typedef struct s_hits
+{
+	t_obj 		*obj;// necessaire?? On sait lequel c est avec [x][y]
+	float		t1;
+	float		t2;
+	int	 		t_count;
+}	t_hits;
 
 typedef struct s_pix
 {
@@ -147,11 +157,16 @@ typedef struct s_pix
 	t_ray 		*r_ray;// ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
 	t_obj		*closest_obj;
+
+	//bon à voir si c est vraiment important vu que c est pour réflexion, réfraction et solid geom...
+	t_hits		***hits; //array de hits  
 // closest object
 // 	data for calculation	
+
 	float		t1;
 	float		t2;
 	int			t_count;
+	
 	int	vpx;// viewport x
 	int vpy;// viewport y
 }	t_pix;

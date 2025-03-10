@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:21:36 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 10:01:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 15:47:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@ bool	init_matrix_ref(t_pix ***pix);
 void		link_pix_matrix(t_pix ***pix, t_matrix *neo);
 bool	init_ima(t_pix ***pix);
 void	link_pix_ima(t_pix ***pix, t_image *ima);
+void	assign_hits_to_pix(t_pix ***pix, t_hits ***hits, t_num_obj *num_obj);
+t_hits ***init_hits(t_num_obj *num_obj);
 #endif

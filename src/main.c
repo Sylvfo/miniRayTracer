@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/10 10:53:29 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 18:01:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,13 @@ int	main(int argc, char **argv)
 //	print_cylinders(pix, num_obj);
 //	print_lights(pix, num_obj);
 ////////////////////////////////
-//	raytracing(pix);
+	raytracing(pix);
+	printf("calculs done\n");
 //	pix_drawings(pix);
-//	pix_to_window(pix);
-//	image_hooks(pix[0][0]->ima);
+	pix_to_window(pix);
+	image_hooks(pix[0][0]->ima);
 //////////////////////////////
-//	test_ray();
-//	test_sphere(pix);
+	test_ray();
+	test_sphere(pix);
 	return (EXIT_SUCCESS);
 }

@@ -4,6 +4,8 @@
 		"minirt_matrix.h": "c",
 		"minirt_parsing.h": "c",
 		"temp": "cpp",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"minirt_vect_point_color.h": "c",
+		"minirt_data_struct.h": "c"
 	}
 }

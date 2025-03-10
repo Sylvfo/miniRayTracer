@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:35 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/10 11:47:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	save_sphere(char *line, t_pix **pix, t_num_obj *num_obj)
 	sphere->p_coord->x = coord.x;
 	sphere->p_coord->y = coord.y;
 	sphere->p_coord->z = coord.z;
+	//rajouté par sylvie
+	sphere->p_coord->t = 1;
 	sphere->diam = diameter;
 	sphere->color->r = color.r;
 	sphere->color->g = color.g;

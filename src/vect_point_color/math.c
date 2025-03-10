@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:37:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 10:48:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 16:12:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ float	simple_sqrt(float x)
 {
 	float estimation;
 	float precision;
+	float max_iterations;
+	int i;
 
 	if (x < 0)
 		return (-1.0);
@@ -32,11 +34,13 @@ float	simple_sqrt(float x)
 		return (x);
 	estimation = x / 2.0;
 	precision = 0.00001;
-
+	max_iterations = 100;
+	i = 0;
 	// Méthode de Newton
-	while (fabs(estimation * estimation - x) > precision)
+	while (fabs(estimation * estimation - x) > precision && i < max_iterations)
 	{
 		estimation = 0.5 * (estimation + x / estimation);
+		i++;
 	}
 	return (estimation);
 }
