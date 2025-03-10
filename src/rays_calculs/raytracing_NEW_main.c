@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/10 18:01:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/10 22:57:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void raytracing(t_pix ***pix)
 	// suite initialization...
 	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
 	init_viewport(pix);//a changer après
+//avant la il y a le problème...
 	main_sphere(pix);
 	pix[0][0]->obj[0][0]->color->r = 120;
 	//intersect plan
@@ -51,10 +52,10 @@ void find_closest_obj(t_pix ***pix)
 		x++;
 	}	
 }
-
+/*
 static void closest_obj(t_pix *pix)
 {
-	float closestt = 4874654564;
+	float closestt = 48746545;
 	
 	pix->closest_obj = pix->obj[0][0];
 
@@ -68,9 +69,8 @@ static void closest_obj(t_pix *pix)
 		closestt = pix->t2;
 		pix->closest_obj = pix->obj[1][0];
 	}
-}
+}*/
 
-/*
 static void closest_obj(t_pix *pix)
 {
 	float closestt = INT_MAX;
@@ -98,20 +98,22 @@ static void closest_obj(t_pix *pix)
 		}
 		x++;
 	}
-}*/
+}
 
 static void init_viewport_x_y(t_pix *pix, int x, int y) //a changer après
 {
-	pix->vpx = pix->ima->pixel_size * x - pix->ima->half_height;
-	pix->vpy = pix->ima->pixel_size * y - pix->ima->half_width;
+//	pix->vpx = pix->ima->pixel_size * x - pix->ima->half_height;
+//	pix->vpy = pix->ima->pixel_size * y - pix->ima->half_width;
+	pix->vpx = x - pix->ima->half_height;
+	pix->vpy = y - pix->ima->half_width;
 }
 
 static void	init_viewport(t_pix ***pix)
 {
 	int	x;
 	int	y;
-	pix[0][0]->ima->view_height = 100;
-	pix[0][0]->ima->view_width = 100;
+	pix[0][0]->ima->view_height = 200;
+	pix[0][0]->ima->view_width = 200;
 	pix[0][0]->ima->canva_width = WND_WIDTH;
 	pix[0][0]->ima->canva_height = WND_HEIGHT;
 	pix[0][0]->ima->pixel_size = pix[0][0]->ima->view_width / pix[0][0]->ima->canva_height;
@@ -143,7 +145,8 @@ static void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	t_coord *vn_cam_pix;
 	t_coord *p_point;
 
-	p_point = create_point(pix->vpx, pix->vpy, DIST_VIEWP_ORIGIN);
+	//p_point = create_point(pix->vpx, pix->vpy, DIST_VIEWP_ORIGIN);
+	p_point = create_point(pix->vpx, pix->vpy, 200);
 	v_cam_pix = substraction(p_point, cam->p_coord);
 	vn_cam_pix = normalize_vector(v_cam_pix);
 	pix->r_ray = create_ray(pix->cam->p_coord, vn_cam_pix);
