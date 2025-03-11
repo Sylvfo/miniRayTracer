@@ -6,23 +6,19 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/03/10 22:57:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/11 16:36:03 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//The sphere() function should return a unique value each time it is invoked.
-//New function
-
 // si t1 et / ou t2 négatifs, c est que c est derrière la camera
-
 //NEWONE!!
-//from the test... to change a bit
 void main_sphere(t_pix ***pix)
 {
 	int	x;
 	int	y;
+	int k;
 
 	x = 0;
 	while (x < WND_WIDTH)
@@ -30,12 +26,12 @@ void main_sphere(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-	//		p_camera = create_point(0, 2, -5);//camera A MODIFIER
-	//		v_vect = create_vector(0, 0, 1);// entre camera et point A MODIFIER
-	//		pix[x][y]->r_ray = create_ray(p_camera, v_vect);
-			intersect_sphere(pix[x][y], 0);//faire une autre boucle avec les spheres. 
-			intersect_sphere(pix[x][y], 1);
-			intersect_sphere(pix[x][y], 2);
+			k = 0;
+			while(pix[x][y]->obj[1][k] != NULL)
+			{
+				intersect_sphere(pix[x][y], k); 
+				k++;
+			}
 			y++;
 		}
 		x++;
@@ -48,7 +44,6 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	float a;
 	float b;
 	float c;
-//	printf("b");
 	//arguments c'est ray et sphere
 //	# the vector from the sphere's center, to the ray origin
 	t_coord *v_sph_camera;
@@ -56,34 +51,51 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	v_sph_camera = substraction(pix->r_ray->p_origin, pix->obj[1][sphere_num]->p_coord);
 	a = dot_product(pix->r_ray->v_dir, pix->r_ray->v_dir);
 	b = 2 * dot_product(pix->r_ray->v_dir, v_sph_camera);
-	c = dot_product(v_sph_camera, v_sph_camera) - 1;
+//	c = dot_product(v_sph_camera, v_sph_camera) - ((pix->obj[1][sphere_num]->diam / 2) *(pix->obj[1][sphere_num]->diam / 2)); //ici à optimisier
+	c = dot_product(v_sph_camera, v_sph_camera) - 1;// ICI C EST SIMPLIFIE DANS LA METHODE QU ON UTILISE
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0) // ca veut dire que l objet ne croise pas le point. 
 	{
-//		printf("u");
 		pix->hits[1][sphere_num]->t_count = 0;
 		pix->hits[1][sphere_num]->t1 = 0;
 		pix->hits[1][sphere_num]->t2 = 0;
-//		pix->t_count = 0;
-//		pix->t1 = 0;// INT_MAX;//necessaire?? ancienne methode
-//		pix->t2 = 0;// INT_MAX;//necessaire?? ancienne methode
 		return;
 	}
-//	printf("a");
 	pix->hits[1][sphere_num]->t_count = 2;
 	pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
 	pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
-//	pix->t_count = 2;
-//	pix->t1 = (-b - sqrt(discriminant)) / (2*a);
-//	pix->t2 =(-b + sqrt(discriminant)) / (2*a);
 	return ;
 	
 }
 
 /*
-void intersection
+FONCTIONNE
+void intersect_sphere(t_pix *pix, int sphere_num)
 {
-	//value of the intersection
-	//the object that was intersected
+	float discriminant;
+	float a;
+	float b;
+	float c;
+	//arguments c'est ray et sphere
+//	# the vector from the sphere's center, to the ray origin
+	t_coord *v_sph_camera;
+
+	v_sph_camera = substraction(pix->r_ray->p_origin, pix->obj[1][sphere_num]->p_coord);
+	a = dot_product(pix->r_ray->v_dir, pix->r_ray->v_dir);
+	b = 2 * dot_product(pix->r_ray->v_dir, v_sph_camera);
+	c = dot_product(v_sph_camera, v_sph_camera) - ((pix->obj[1][sphere_num]->diam / 2) *(pix->obj[1][sphere_num]->diam / 2)); //ici à optimisier
+	discriminant = (b * b) - (4 * a * c);
+	if (discriminant < 0) // ca veut dire que l objet ne croise pas le point. 
+	{
+		pix->hits[1][sphere_num]->t_count = 0;
+		pix->hits[1][sphere_num]->t1 = 0;
+		pix->hits[1][sphere_num]->t2 = 0;
+		return;
+	}
+	pix->hits[1][sphere_num]->t_count = 2;
+	pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
+	pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
+	return ;
 	
-}*/
+}
+ */

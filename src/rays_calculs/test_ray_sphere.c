@@ -6,11 +6,25 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:29:59 by syl               #+#    #+#             */
-/*   Updated: 2025/03/10 17:57:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/11 16:51:28 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+void	test_translation(void)
+{
+	t_ray *ray;
+	t_coord *p_point;
+	t_coord *v_vect;
+	t_ray *new;
+
+	p_point = create_point(1, 2, 3);
+	v_vect = create_vector(0, 1, 0);
+	ray = create_ray(p_point, v_vect);
+	translation
+	
+}
 
 //GOOD
 void test_ray(void)
@@ -40,6 +54,7 @@ void test_ray(void)
 	print_point(p_result);
 }
 
+//OK GOOD
 void	test_sphere(t_pix ***pix)
 {
 	int x = 0;
@@ -89,3 +104,76 @@ void	test_sphere(t_pix ***pix)
 	printf("t2 is %.2f  tcount %i \n", pix[0][0]->t2, pix[0][0]->t_count);
 
 }
+
+
+//OK GOOD
+void test_normal_at(t_pix ***pix)
+{
+	t_coord *p_point;
+	t_coord *result;
+
+	p_point = create_point(1, 0, 0);
+	result = normal_at(pix[0][0]->obj[1][0], p_point);
+	printf("\n test 1 : ");
+	print_vector(result);
+
+
+	p_point->x = 0;
+	p_point->y = 1;
+	p_point->z = 0;
+	result = normal_at(pix[0][0]->obj[1][0], p_point);
+	printf("\n test 2 : ");
+	print_vector(result);	
+
+	
+	p_point->x = 0;
+	p_point->y = 0;
+	p_point->z = 1;
+	result = normal_at(pix[0][0]->obj[1][0], p_point);
+	printf("\n test 3 : ");
+	print_vector(result);	
+
+
+	
+	p_point->x = 0.577350269;
+	p_point->y = 0.577350269;
+	p_point->z = 0.577350269;
+	result = normal_at(pix[0][0]->obj[1][0], p_point);
+	printf("\n test 4 : ");
+	print_vector(result);	
+}
+
+/*
+void ray_testing()
+{
+	t_coord *p_origin;
+	t_coord *v_vect;
+	t_ray	*r_test;
+	t_coord	*p_result;
+
+	printf("in testing\n");
+
+	p_origin = create_point(2, 3, 4);
+	is_point(p_origin);
+	v_vect = create_vector(1, 0, 0);
+
+	r_test = create_ray(p_origin, v_vect);
+	(void) r_test;
+	
+	
+	printf("in testing2\n");
+	r_test = create_ray(p_origin, v_vect);
+	p_result = position(r_test, 0);
+	printf("0 : ");
+	print_point(p_result);
+	printf("\n 1 : ");
+	p_result = position(r_test, 1);
+	print_point(p_result); 
+	printf("\n -1 : ");
+	p_result = position(r_test, -1);
+	print_point(p_result);
+	printf("\n 2.5 : ");
+	p_result = position(r_test, 2.5);
+	print_point(p_result);
+	printf("\n");
+}*/
