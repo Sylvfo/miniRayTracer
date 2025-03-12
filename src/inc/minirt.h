@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/12 13:47:45 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 13:56:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define PI 3.1415926535
 # define PIRAD 0.017453   //pi already divided by 180 to find radian. 
 
-# define WND_WIDTH 100
-# define WND_HEIGHT 100
+# define WND_WIDTH 1000
+# define WND_HEIGHT 1000
 //# define VIEWP_WIDTH 1800 //dplacé dans ima
 //# define VIEWP_HIGHT 1000 // déplace dans ima
 # define BAKGROUND_COLOR 11152468

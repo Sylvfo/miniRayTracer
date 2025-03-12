@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:21:36 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/10 15:47:23 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 15:06:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_light		***allocate_light_arrays(t_num_obj *num_obj);
 bool		init_ambient_light(t_light ***light);
 bool		init_spotlights(t_light ***light, t_num_obj *num_obj);
 t_light		***init_light(t_num_obj *num_obj);
-
 
 //fonction sylvie
 bool	init_matrix_ref(t_pix ***pix);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 11:24:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 15:24:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void main_sphere(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			k = 0;
-//			tra
 			while(pix[x][y]->obj[1][k] != NULL)
 			{
-				transform(pix[x][y]);
+				transform(pix[x][y], pix[x][y]->obj[1][k]->m_tranf);
 				intersect_sphere(pix[x][y], k); 
 				k++;
 			}
@@ -50,7 +49,7 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 //	# the vector from the sphere's center, to the ray origin
 	t_coord *v_sph_camera;
 
-	v_sph_camera = substraction(pix->r_ray->p_origin, pix->p_origin);//origine sphere à zero
+	v_sph_camera = substraction(pix->r_ray->p_origin, pix->p_origin_zero);//origine sphere à zero
 	a = dot_product(pix->r_ray->v_dir, pix->r_ray->v_dir);
 	b = 2 * dot_product(pix->r_ray->v_dir, v_sph_camera);
 //	c = dot_product(v_sph_camera, v_sph_camera) - ((pix->obj[1][sphere_num]->diam / 2) *(pix->obj[1][sphere_num]->diam / 2)); //ici à optimisier

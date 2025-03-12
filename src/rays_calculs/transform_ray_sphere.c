@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 13:51:00 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 15:30:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,42 @@ void set_transformation(t_obj ***obj)
 		{
 			obj[x][y]->m_identity = create_indentity_matrix_44();// a initialiser avant...
 		//	translation_on_identity(obj[x][y]->m_tranf, obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
-//			obj[x][y]->m_transl = create_translation_matrix(obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
-//			obj[x][y]->m_scale = create_scaling_matrix(obj[x][y]->diam, obj[x][y]->diam, obj[x][y]->diam);
+			obj[x][y]->m_transl = create_translation_matrix(obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
+			obj[x][y]->m_scale = create_scaling_matrix(obj[x][y]->diam, obj[x][y]->diam, obj[x][y]->diam);
 			// pas rotations.
-//			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_identity, obj[x][y]->m_transl);
-//			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_tranf, obj[x][y]->m_scale);
-//			obj[x][y]->m_tranf = inverted_matrix_44(obj[x][y]->m_tranf);
+			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_identity, obj[x][y]->m_transl);
+			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_tranf, obj[x][y]->m_scale);
+			obj[x][y]->m_tranf = inverted_matrix_44(obj[x][y]->m_tranf);
 			// inverse
+			y++;
 		}
+		x++;
 	}
 }
 //void transform(t_ray *r_original, float *trans_matrix)
-void transform(t_pix *pix)
+void transform(t_pix *pix, float *m_transf)
 {
+	pix->r_ray->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
+//	pix->r_ray->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir); bon ca change pas grande chose
 
-	
-	pix->r_ray->p_origin = translation(pix->r_original->p_origin, 0, 5, 0); // pointeur sur fonction??
-	pix->r_ray->v_dir = pix->r_original->v_dir;
+	pix->r_ray->v_dir = pix->r_original->v_dir; //celui la ca marche
+
+//	pix->r_ray->v_dir = normalize_vector(pix->r_original->v_dir);
 	return ;
 }
+
+/*
+t_ray transform_ray(t_ray ray, t_matrix inv_M) {
+    t_ray transformed;
+    
+    transformed.origin = matrix_mult_point(inv_M, ray.origin);
+    transformed.dir = matrix_mult_vector(inv_M, ray.dir);
+    transformed.dir = normalize(transformed.dir);
+    
+    return transformed;
+}
+
+*/
 
 /*
  Générer le rayon dans l’espace global

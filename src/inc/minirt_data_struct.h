@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 13:38:35 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 15:21:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ typedef struct s_pix
 	t_light		***lux; // OK
 	t_image		*ima;
 	t_matrix	*neo;
-	t_coord		*p_origin;
+	t_coord		*p_origin_zero;
 	//in each pixel. 
 	int	vpx;// viewport x
 	int vpy;// viewport y

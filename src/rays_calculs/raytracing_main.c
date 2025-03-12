@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 13:49:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 17:39:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,29 @@ void raytracing(t_pix ***pix)
 	main_sphere(pix);
 	//intersect plan
 	find_closest_obj(pix);
+//	color_01(pix);
+
 	// light. 
 	return;
 }
+/*
+void	color_01(t_pix ***pix)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		while (y < WND_HEIGHT)
+		{
+			(pix[x][y]->color);
+			y++;
+		}
+		x++;
+	}	
+}*/
 
 //TROUVER PROBLEME ET METTRE AILLEURS
 static void init_viewport_x_y(t_pix *pix, int x, int y) //a changer après
@@ -53,8 +73,8 @@ static void	init_viewport(t_pix ***pix)
 	int	x;
 	int	y;
 	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
-	pix[0][0]->ima->view_height = 100;
-	pix[0][0]->ima->view_width = 100;
+	pix[0][0]->ima->view_height = 1000;
+	pix[0][0]->ima->view_width = 1000;
 	pix[0][0]->ima->canva_width = WND_WIDTH;
 	pix[0][0]->ima->canva_height = WND_HEIGHT;
 
@@ -73,7 +93,7 @@ static void	init_viewport(t_pix ***pix)
 		{
 			init_viewport_x_y(pix[x][y], x, y);
 			init_camera_pix_ray(pix[x][y], pix[x][y]->cam);
-			pix[x][y]->p_origin = create_point(0, 0, 0);
+			pix[x][y]->p_origin_zero = create_point(0, 0, 0);
 			y++;
 		}
 		x++;
@@ -86,14 +106,11 @@ static void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	t_coord *vn_cam_pix;
 	t_coord *p_point;
 
-	//p_point = create_point(pix->vpx, pix->vpy, DIST_VIEWP_ORIGIN);
-	p_point = create_point(pix->vpx, pix->vpy, 200);//dist viewp orign donné par angle camera?? ou toujours -1???
-	v_cam_pix = substraction(p_point, cam->p_coord);
-//	vn_cam_pix = normalize_vector(v_cam_pix); //normer?
-//	pix->r_ray = create_ray(pix->cam->p_coord, vn_cam_pix);// normer??
-	pix->r_ray = create_ray(pix->cam->p_coord, v_cam_pix); //ray par origin...
-	pix->r_original = create_ray(pix->cam->p_coord, v_cam_pix);
-//	pix->r_ray = malloc(sizeof(t_ray));
-}
+	pix->r_ray = malloc(sizeof(t_ray));
 
-//////////////////
+	float dist_viewplane = (pix->ima->view_height / 2) / tan(cam->fov / 2);//trouvé sur gpt à revoir...
+	p_point = create_point(pix->vpx, pix->vpy, -dist_viewplane);//dist viewp orign donné par angle camera?? ou toujours -1???
+	v_cam_pix = substraction(p_point, cam->p_coord);
+	vn_cam_pix = normalize_vector(v_cam_pix);
+	pix->r_original = create_ray(pix->cam->p_coord, vn_cam_pix);
+}

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 13:42:59 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 17:12:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ t_coord *normal_at(t_obj *sphere, t_coord *point_on_sphere);
 
 //transform_ray_sphere.c
 //void set_transform(t_obj ***obj);
-void transform(t_pix *pix);
+void transform(t_pix *pix, float *m_transf);
+//void transform(t_pix *pix);
 void set_transformation(t_obj ***obj);
 
+//light.c
+void main_light(t_pix ***pix);
+float light_intensity(t_coord *P, t_coord *N, t_pix *pix);
+float 	compute_ambient(t_pix *pix);
+void ComputeLighting(t_pix *pix, float closestt, t_obj *sphere);
 #endif
