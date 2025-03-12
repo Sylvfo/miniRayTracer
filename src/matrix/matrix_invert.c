@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 15:45:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 13:41:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,26 @@ void	matrix_cofactors_44(float *m_matrix, float *m_cofactors)
 		i++;
 	}
 }
+
+
+
+//////////////// ca c est fait au début du raytracing pour la matrice de chaque forme
+/*
+void	inverted_matrix_44_2(float *m_matrix)
+{
+
+	float	determinant;
+
+	if (check_matrix_44(m_matrix) == false)
+		return (NULL);
+	if (is_matrix_invertible(m_matrix) == false)
+		return (NULL);
+//	m_inverted = create_matrix(4, 4);
+//	if (!m_inverted)
+//		return (NULL);
+	matrix_cofactors_44(m_matrix, m_inverted);
+	transposing_matrix_44(m_inverted);
+	determinant = determinant_44(m_matrix);
+	matrix_division(m_inverted, determinant);
+	return (m_inverted);
+}*/

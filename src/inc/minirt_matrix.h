@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 10:30:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 12:02:03 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ bool	check_matrix_44_44(float *m_a, float *m_b);
 float *create_translation_matrix(float x, float y, float z);
 t_coord *translation(t_coord *p_point, float x, float y, float z);
 t_coord *translation_inverse(t_coord *p_point, float x, float y, float z);
+void translation_on_identity(float *m_identity, float x, float y, float z);
 
 //matrix_scaling.c
 t_coord *scaling(t_coord *v_p_old, float x, float y, float z);

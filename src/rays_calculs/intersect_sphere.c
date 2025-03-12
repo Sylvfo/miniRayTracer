@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/03/11 16:36:03 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 11:24:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ void main_sphere(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			k = 0;
+//			tra
 			while(pix[x][y]->obj[1][k] != NULL)
 			{
+				transform(pix[x][y]);
 				intersect_sphere(pix[x][y], k); 
 				k++;
 			}
@@ -38,6 +40,37 @@ void main_sphere(t_pix ***pix)
 	}
 }
 
+void intersect_sphere(t_pix *pix, int sphere_num)
+{
+	float discriminant;
+	float a;
+	float b;
+	float c;
+	//arguments c'est ray et sphere
+//	# the vector from the sphere's center, to the ray origin
+	t_coord *v_sph_camera;
+
+	v_sph_camera = substraction(pix->r_ray->p_origin, pix->p_origin);//origine sphere à zero
+	a = dot_product(pix->r_ray->v_dir, pix->r_ray->v_dir);
+	b = 2 * dot_product(pix->r_ray->v_dir, v_sph_camera);
+//	c = dot_product(v_sph_camera, v_sph_camera) - ((pix->obj[1][sphere_num]->diam / 2) *(pix->obj[1][sphere_num]->diam / 2)); //ici à optimisier
+	c = dot_product(v_sph_camera, v_sph_camera) - 1;// ICI C EST SIMPLIFIE DANS LA METHODE QU ON UTILISE radius 1
+	discriminant = (b * b) - (4 * a * c);
+	if (discriminant < 0) // ca veut dire que l objet ne croise pas le point. 
+	{
+		pix->hits[1][sphere_num]->t_count = 0;
+		pix->hits[1][sphere_num]->t1 = 0;
+		pix->hits[1][sphere_num]->t2 = 0;
+		return;
+	}
+	pix->hits[1][sphere_num]->t_count = 2;
+	pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
+	pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
+	return ;
+}
+
+/*
+FONCTIONNE, MAIS PREND LE CENTRE DE LA SPHERE COMME ARG. COMME ANCIEN PROJET
 void intersect_sphere(t_pix *pix, int sphere_num)
 {
 	float discriminant;
@@ -65,8 +98,9 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
 	pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
 	return ;
-	
 }
+
+*/
 
 /*
 FONCTIONNE

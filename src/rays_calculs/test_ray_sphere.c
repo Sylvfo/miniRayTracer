@@ -6,12 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:29:59 by syl               #+#    #+#             */
-/*   Updated: 2025/03/11 16:51:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/12 09:47:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+/*
 void	test_translation(void)
 {
 	t_ray *ray;
@@ -24,7 +25,7 @@ void	test_translation(void)
 	ray = create_ray(p_point, v_vect);
 	translation
 	
-}
+}*/
 
 //GOOD
 void test_ray(void)
