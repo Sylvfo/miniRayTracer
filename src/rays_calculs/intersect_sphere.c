@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 15:24:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:14:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void main_sphere(t_pix ***pix)
 			while(pix[x][y]->obj[1][k] != NULL)
 			{
 				transform(pix[x][y], pix[x][y]->obj[1][k]->m_tranf);
-				intersect_sphere(pix[x][y], k); 
+				intersect_sphere(pix[x][y], k);
 				k++;
 			}
 			y++;
