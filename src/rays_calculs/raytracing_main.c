@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 17:39:25 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 10:57:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,20 @@ static void init_camera_pix_ray(t_pix *pix, t_camera *cam);
 
 void raytracing(t_pix ***pix)
 {
-	init_viewport(pix);//a changer après
-	//avant la il y a le problème...
-	printf("avant set \n");
+	//à déplacer ensuite dans init_data
+	// pas sûre que tout est juste niveau unit, vecteurs normés ou pas...
+	init_viewport(pix);
+	// calculs matriciels pour déplacer et scale les objets. 
 	set_transformation(pix[0][0]->obj);
-	printf("set ok \n");
 	main_sphere(pix);
 	//intersect plan
+	// intersect Cylindre
 	find_closest_obj(pix);
-//	color_01(pix);
-
-	// light. 
+	// pas oublier de mettre les couleurs de 0 à 1.
+//	main_light(pix); ICI =)
 	return;
 }
-/*
-void	color_01(t_pix ***pix)
-{
-	int	x;
-	int	y;
 
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			(pix[x][y]->color);
-			y++;
-		}
-		x++;
-	}	
-}*/
 
 //TROUVER PROBLEME ET METTRE AILLEURS
 static void init_viewport_x_y(t_pix *pix, int x, int y) //a changer après

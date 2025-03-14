@@ -6,11 +6,16 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:27:28 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 17:39:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 10:57:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+//pour l instant c est pour sphere
+// il faudra modifier pour les autres formes
+
+// je pense qu il faut modifier où est intensity (dans chaque pix??)
 /*
 void main_light(t_pix ***pix)
 {
@@ -23,6 +28,9 @@ void main_light(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
+			// à gérer aussi pour les différentes spheres...
+			ComputeLighting(pix[x][y], pix[x][y]->closestt, pix[x][y]->obj[1][0]);
+
 			color_float_to_int(pix[x][y]->color);
 			y++;
 		}
@@ -89,6 +97,6 @@ float 	compute_ambient(t_pix *pix)
 {
 	float i;
 
-	i = pix->lux[0][0]->ration; 
+	i = pix->lux[0][0]->ratio; 
 	return (i);
 }*/

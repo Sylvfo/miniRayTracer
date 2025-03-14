@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 15:21:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 10:57:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct s_pix
 	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
 	t_obj		*closest_obj;
+	float		closestt; // le point le plus proche ou le ray touche un objet. 
 	//bon à voir si c est vraiment important vu que c est pour réflexion, réfraction et solid geom...
 	t_hits		***hits; //array de hits  
 

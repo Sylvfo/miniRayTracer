@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/03/11 10:52:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 10:57:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ void closest_obj(t_pix *pix)
 			{
 				closestt = pix->hits[x][y]->t1;
 				pix->closest_obj = pix->obj[x][y];
+				pix->closestt = pix->hits[x][y]->t1;
 			}
 			if (pix->hits[x][y]->t2 < closestt &&  pix->hits[x][y]->t2 > 0)/// ou plus grand que zero...
 			{
 				closestt = pix->hits[x][y]->t2;
 				pix->closest_obj = pix->obj[x][y];
+				pix->closestt = pix->hits[x][y]->t2;
 			}
 			y++;
 		}
