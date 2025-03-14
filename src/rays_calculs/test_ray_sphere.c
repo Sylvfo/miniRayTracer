@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:29:59 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 10:57:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 11:50:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void test_ray(void)
 	printf("\n 2.5 gives ");
 	print_point(p_result);
 }
-
+/*
 //OK GOOD
 void	test_sphere(t_pix ***pix)
 {
@@ -104,7 +104,7 @@ void	test_sphere(t_pix ***pix)
 	printf("p 62 t1 is %.2f ", pix[0][0]->t1);
 	printf("t2 is %.2f  tcount %i \n", pix[0][0]->t2, pix[0][0]->t_count);
 
-}
+}*/
 
 
 //OK GOOD

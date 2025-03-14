@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/03/10 15:47:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 14:08:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	assign_hits_to_pix(t_pix ***pix, t_hits ***hits, t_num_obj *num_obj)
 		while (j < WND_HEIGHT)
 		{
 			pix[i][j]->hits = init_hits(num_obj);
+			pix[i][j]->comps = malloc(sizeof(t_comps));
 			j++;
 		}
 		i++;

@@ -6,6 +6,7 @@
 		"temp": "cpp",
 		"cstdlib": "c",
 		"minirt_vect_point_color.h": "c",
-		"minirt_data_struct.h": "c"
+		"minirt_data_struct.h": "c",
+		"mlx.h": "c"
 	}
 }

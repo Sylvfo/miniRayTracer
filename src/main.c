@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/11 14:40:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 23:22:29 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("Usage: %s <scene_file.rt>\n", argv[0]);
+		printf("Usage:s %s <scene_file.rt>\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
 	num_obj = malloc(sizeof(t_num_obj));
@@ -122,10 +122,25 @@ int	main(int argc, char **argv)
 //	print_lights(pix, num_obj);
 ////////////////////////////////
 	raytracing(pix);
-	printf("calculs done\n");
+//	printf("calculs done\n");
+	printf("\n\nici pix  ");
+/*	print_point(pix[100][50]->r_original->p_origin);
+	printf("\nici dire  ");
+	print_vector(pix[100][50]->r_original->v_dir);
+
+	printf("\n\nici pix  ");
+	print_point(pix[0][0]->r_original->p_origin);
+	printf("\nici dire  ");
+	print_vector(pix[0][0]->r_original->v_dir);
+
+	printf("\n\nici pix  ");
+	print_point(pix[100][50]->r_original->p_origin);
+	printf("\nici dire  ");*/
+
 	pix_to_window(pix);
 	image_hooks(pix[0][0]->ima);
 //////////////////////////////
+//	test_camera3();
 //	test_normal_at(pix);
 	return (EXIT_SUCCESS);
 }

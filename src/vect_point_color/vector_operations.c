@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:43:15 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/10 11:43:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/14 14:24:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_coord	*negat(t_coord *v_1)
 {
 	t_coord	*v_new;
 
-	if (is_vector(v_1) == false)
-		return (NULL);
+//	if (is_vector(v_1) == false)
+//		return (NULL);
 	v_new = malloc(sizeof(t_coord));
 	v_new->x = -v_new->x;
 	v_new->y = -v_new->y;
@@ -50,8 +50,8 @@ float	dot_product(t_coord *v_1, t_coord *v_2)
 {
 	float	dot;
 
-	if (is_vector(v_1) == false || is_vector(v_2) == false)// a enlever
-		return (0);
+//	if (is_vector(v_1) == false || is_vector(v_2) == false)// a enlever
+//		return (0);
 	dot = (v_1->x * v_2->x) + (v_1->y * v_2->y) + (v_1->z * v_2->z);
 	return (dot);
 }
