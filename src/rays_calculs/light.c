@@ -3,14 +3,103 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:27:28 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 15:54:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/19 07:14:10 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+t_color	calculate_ambient_light(t_light *ambient_light, t_color *object_color)
+{
+	t_color	result;
+
+	result.r = ambient_light->ratio * object_color->r * ambient_light->color->r;
+	result.g = ambient_light->ratio * object_color->g * ambient_light->color->g;
+	result.b = ambient_light->ratio * object_color->b * ambient_light->color->b;
+	return (result);
+}
+
+/* float	dot_product(t_coord *v1, t_coord *v2)
+{
+	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
+} */
+
+t_color	calculate_diffuse_light(t_light *light, t_coord *normal,
+		t_coord *light_dir, t_color *object_color)
+{
+	t_color	result;
+	float	dot;
+
+	dot = fmax(0, dot_product(normal, light_dir));
+	result.r = light->ratio * dot * object_color->r * light->color->r;
+	result.g = light->ratio * dot * object_color->g * light->color->g;
+	result.b = light->ratio * dot * object_color->b * light->color->b;
+	return (result);
+}
+
+t_color	calculate_specular_light(t_light *light, t_coord *view_dir,
+		t_coord *normal, t_coord *light_dir, float shininess)
+{
+	t_color	result;
+	t_coord	reflected;
+	float	dot;
+
+	// Calculer la réflexion de la lumière
+	reflected.x = 2 * dot_product(normal, light_dir) * normal->x - light_dir->x;
+	reflected.y = 2 * dot_product(normal, light_dir) * normal->y - light_dir->y;
+	reflected.z = 2 * dot_product(normal, light_dir) * normal->z - light_dir->z;
+
+	// Calculer le produit scalaire entre la réflexion et la direction de la caméra
+	dot = fmax(0, dot_product(&reflected, view_dir));
+	dot = pow(dot, shininess);
+
+	result.r = light->ratio * dot * light->color->r;
+	result.g = light->ratio * dot * light->color->g;
+	result.b = light->ratio * dot * light->color->b;
+	return (result);
+}
+
+t_color	compute_lighting(t_pix *pix, t_coord *point,
+		t_coord *normal, t_coord *view_dir)
+{
+	t_color	final_color = {0, 0, 0, 0};
+	t_color	ambient, diffuse, specular;
+	t_light	**lights = pix->lux[0]; // Liste des lumières
+	int		i;
+
+	// Lumière ambiante
+	ambient = calculate_ambient_light(lights[0], pix->color);
+	final_color.r += ambient.r;
+	final_color.g += ambient.g;
+	final_color.b += ambient.b;
+
+	// Lumières directionnelles ou ponctuelles
+	i = 1;
+	while (lights[i])
+	{
+		t_coord	light_dir = {
+			lights[i]->p_coord->x - point->x,
+			lights[i]->p_coord->y - point->y,
+			lights[i]->p_coord->z - point->z,
+			0
+		};
+		// Normaliser light_dir ici si nécessaire
+
+		diffuse = calculate_diffuse_light(lights[i], normal, &light_dir, pix->color);
+		specular = calculate_specular_light(lights[i], view_dir, normal, &light_dir, 32); // Shininess = 32
+
+		final_color.r += diffuse.r + specular.r;
+		final_color.g += diffuse.g + specular.g;
+		final_color.b += diffuse.b + specular.b;
+		i++;
+	}
+	return (final_color);
+}
+
+
 
 //pour l instant c est pour sphere
 // il faudra modifier pour les autres formes
