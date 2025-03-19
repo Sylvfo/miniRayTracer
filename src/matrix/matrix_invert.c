@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 13:55:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/19 13:34:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@ bool	is_matrix_invertible(float *m_matrix)
 {
 	float	determinant;
 
-	if (check_matrix_22(m_matrix) == true)
+	if (m_matrix[0] == 2 || m_matrix[1] == 2)
+		determinant = determinant_22(m_matrix);
+	else if (m_matrix[0] == 3 || m_matrix[1] == 3)
+		determinant = determinant_33(m_matrix);
+	else if (m_matrix[0] == 4 || m_matrix[1] == 4)
+		determinant = determinant_44(m_matrix);
+
+/*	if (check_matrix_22(m_matrix) == true)
 		determinant = determinant_22(m_matrix);
 	else if (check_matrix_33(m_matrix) == true)
 		determinant = determinant_33(m_matrix);
 	else if (check_matrix_44(m_matrix) == true)
-		determinant = determinant_44(m_matrix);
+		determinant = determinant_44(m_matrix);*/
 	else
 		return (false);
 	if (determinant == 0)
