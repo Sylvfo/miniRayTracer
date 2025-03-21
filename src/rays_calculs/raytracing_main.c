@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_main.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 23:22:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/21 11:02:17 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void raytracing(t_pix ***pix)
 	//REVOIR AVEC NORMAL_AT
 	prepare_computation(pix);
 	// pas oublier de mettre les couleurs de 0 à 1.
-//	main_light(pix); ICI =)
+	main_light(pix);
 	return;
 }
 

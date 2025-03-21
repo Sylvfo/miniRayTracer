@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_set_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/09 14:56:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/19 14:29:52 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,15 @@ float	int_to_float(int value)
  */
 void	color_float_to_int(t_color *c_color)
 {
-	int	r;
-	int	g;
-	int	b;
+	if (!c_color)
+		return;
 
-	r = float_to_byte(c_color->r);
-	g = float_to_byte(c_color->g);
-	b = float_to_byte(c_color->b);
+	// Conversion des composantes en octets (0 à 255)
+	int	r = float_to_byte(c_color->r);
+	int	g = float_to_byte(c_color->g);
+	int	b = float_to_byte(c_color->b);
+
+	// Construction de la valeur RGB 24 bits
 	c_color->rgb = (r << 16) | (g << 8) | b;
 }
 

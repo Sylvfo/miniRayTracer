@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 14:26:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/19 12:35:54 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,26 @@ t_coord *normal_at(t_obj *sphere, t_coord *point_on_sphere)
 {
 	t_coord *v_center_point;
 	t_coord *v_normal;
-	
-	v_center_point = substraction(point_on_sphere, sphere->p_coord);// c est sensé etre zer0???
-	v_normal = normalize_vector(v_normal);
-	v_normal->t = 0;//rajouté...
+
+	// Calculer le vecteur entre le point sur la sphère et le centre de la sphère
+	v_center_point = substraction(point_on_sphere, sphere->p_coord);
+	if (!v_center_point)
+		return (NULL); // Vérifier si l'allocation a échoué dans substraction
+
+	// Normaliser le vecteur pour obtenir la normale
+	v_normal = normalize_vector(v_center_point);
+	if (!v_normal)
+	{
+		free(v_center_point); // Libérer la mémoire si normalize_vector échoue
+		return (NULL);
+	}
+
+	// Définir le type du vecteur (0 pour un vecteur)
+	v_normal->t = 0;
+
+	// Libérer la mémoire de v_center_point car elle n'est plus nécessaire
+	free(v_center_point);
+
 	return (v_normal);
 }
 

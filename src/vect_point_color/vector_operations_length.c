@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/03/10 16:30:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/19 12:55:16 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,38 @@ t_coord	*normalize_vector(t_coord *v_1)
 	t_coord	*v_new;
 	float	length;
 
+	// Vérifier si l'entrée est un vecteur valide
 	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector.\n");
 		return (NULL);
+	}
+
+	// Calculer la longueur du vecteur
 	length = length_vector(v_1);
 	if (length == 0)
 	{
-		printf("error in normalization \n");
+		printf("Error: Cannot normalize a zero-length vector.\n");
 		return (NULL);
 	}
+
+	// Allouer de la mémoire pour le vecteur normalisé
 	v_new = malloc(sizeof(t_coord));
 	if (!v_new)
+	{
+		printf("Error: Memory allocation failed in normalize_vector.\n");
 		return (NULL);
-	length = 1 / length; // c est juste??
+	}
+
+	// Normaliser le vecteur
+	length = 1 / length;
 	v_new->x = v_1->x * length;
 	v_new->y = v_1->y * length;
 	v_new->z = v_1->z * length;
-	v_new->t = 0;
+	v_new->t = 0; // Type vecteur
+
+	// Log pour débogage
+	printf("Normalized Vector: x=%f, y=%f, z=%f\n", v_new->x, v_new->y, v_new->z);
+
 	return (v_new);
 }

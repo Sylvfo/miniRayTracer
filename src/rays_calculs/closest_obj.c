@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closest_obj.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 14:30:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/21 11:02:08 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ void find_closest_obj(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			closest_obj(pix[x][y]);
-			pix[x][y]->color = pix[x][y]->comps->obj->color;
+			// Copier la couleur au lieu de réassigner le pointeur :
+			pix[x][y]->color->r = pix[x][y]->comps->obj->color->r;
+			pix[x][y]->color->g = pix[x][y]->comps->obj->color->g;
+			pix[x][y]->color->b = pix[x][y]->comps->obj->color->b;
+			pix[x][y]->color->rgb = pix[x][y]->comps->obj->color->rgb;
 			y++;
 		}
 		x++;

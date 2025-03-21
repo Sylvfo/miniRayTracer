@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/14 23:26:54 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/21 11:08:10 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define PI 3.1415926535
 # define PIRAD 0.017453   //pi already divided by 180 to find radian. 
 
-# define WND_WIDTH 1000
-# define WND_HEIGHT 1000
+# define WND_WIDTH 500
+# define WND_HEIGHT 500
 //# define VIEWP_WIDTH 1800 //dplacé dans ima
 //# define VIEWP_HIGHT 1000 // déplace dans ima
 # define BAKGROUND_COLOR 11152468
