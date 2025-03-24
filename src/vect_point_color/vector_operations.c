@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:43:15 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/14 14:24:13 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/22 12:45:01 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@
 /**
  * @brief to know the opposit of a vector
  * 
- * @param v_1 a vector
+ * @param v a vector
  * 
  * @return new vector
  */
-t_coord	*negat(t_coord *v_1)
+t_coord *negat(t_coord *v)
 {
-	t_coord	*v_new;
-
-//	if (is_vector(v_1) == false)
-//		return (NULL);
-	v_new = malloc(sizeof(t_coord));
-	v_new->x = -v_new->x;
-	v_new->y = -v_new->y;
-	v_new->z = -v_new->z;
-	v_new->t = v_new->t;
-	return (v_new);
+    t_coord *result = malloc(sizeof(t_coord));
+    if (!result)
+        return NULL;
+    result->x = -v->x;
+    result->y = -v->y;
+    result->z = -v->z;
+    result->t = v->t; // conserver le type ou autre information
+    return result;
 }
 
 /**

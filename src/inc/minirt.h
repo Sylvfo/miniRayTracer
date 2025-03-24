@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/21 11:08:10 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/03/23 17:51:17 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define WND_HEIGHT 500
 //# define VIEWP_WIDTH 1800 //dplacé dans ima
 //# define VIEWP_HIGHT 1000 // déplace dans ima
-# define BAKGROUND_COLOR 11152468
+# define BAKGROUND_COLOR 11152468 //11152468
 # define DIST_VIEWP_ORIGIN 10 //Normalement c est 1 ou -1
 
 // not to interract with the last object touched. no neg value. 1 is for safety

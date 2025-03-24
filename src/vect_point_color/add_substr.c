@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_substr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:30 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/10 11:47:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/03/21 13:40:57 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,24 @@ t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2)
  * 
  * @return new vector
  */
-t_coord	*substraction(t_coord *p_v_1, t_coord *p_v_2)
+t_coord *substraction(t_coord *p_v_1, t_coord *p_v_2)
 {
-	t_coord	*v_new;
+	if (!p_v_1 || !p_v_2)
+	{
+		printf("Error: NULL parameter passed to substraction\n");
+		return NULL;
+	}
 
-	v_new = malloc(sizeof(t_coord));
+	t_coord *v_new = malloc(sizeof(t_coord));
+	if (!v_new)
+	{
+		printf("Error: Memory allocation failed in substraction\n");
+		return NULL;
+	}
+
 	v_new->x = p_v_1->x - p_v_2->x;
 	v_new->y = p_v_1->y - p_v_2->y;
 	v_new->z = p_v_1->z - p_v_2->z;
-	v_new->t = p_v_1->t - p_v_2->t;
-	return (v_new);
+	v_new->t = 0; // Le résultat est un vecteur
+	return v_new;
 }
