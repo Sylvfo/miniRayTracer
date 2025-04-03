@@ -6,16 +6,111 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/03/19 12:35:54 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/03 12:17:33 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// À ajouter dans votre bibliothèque de matrices
+float *transpose_matrix(float *m)
+{
+	float *result;
+	int i;
+	int j;
+	
+	if (!m || m[0] != 4 || m[1] != 4)
+		return (NULL);
+	
+	result = create_matrix(4, 4);
+	if (!result)
+		return (NULL);
+	
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			matrix_fill(result, i, j, m[2 + j * 4 + i]);
+			j++;
+		}
+		i++;
+	}
+	return (result);
+}
+
+t_coord	*normal_at(t_obj *sphere, t_coord *point_on_sphere)
+{
+	t_coord *p_object;         // Point dans l'espace de l'objet
+	t_coord *origin;           // Centre de la sphère dans l'espace de l'objet (0,0,0)
+	t_coord *object_normal;    // Normale dans l'espace de l'objet
+	t_coord *world_normal;     // Normale dans l'espace du monde
+	float *inv_transform;      // Inverse de la matrice de transformation
+	float *transp_inv;         // Transposée de l'inverse
+
+	// Créer un point représentant l'origine (0,0,0)
+	origin = create_point(0, 0, 0);
+	if (!origin)
+		return (NULL);
+
+	// Obtenir l'inverse de la matrice de transformation
+	inv_transform = inverted_matrix_44(sphere->m_tranf);
+	if (!inv_transform)
+	{
+		free(origin);
+		return (NULL);
+	}
+
+	// Transformer le point du monde vers l'espace de l'objet
+	p_object = matrix_multiplication_44_coord(inv_transform, point_on_sphere);
+	if (!p_object)
+	{
+		free(origin);
+		free(inv_transform);
+		return (NULL);
+	}
+
+	// Calculer la normale dans l'espace de l'objet
+	object_normal = substraction(p_object, origin);
+	free(origin);
+	free(p_object);
+	if (!object_normal)
+	{
+		free(inv_transform);
+		return (NULL);
+	}
+
+	// Obtenir la transposée de l'inverse
+	transp_inv = transpose_matrix(inv_transform);
+	free(inv_transform);
+	if (!transp_inv)
+	{
+		free(object_normal);
+		return (NULL);
+	}
+
+	// Transformer la normale vers l'espace du monde
+	world_normal = matrix_multiplication_44_coord(transp_inv, object_normal);
+	free(object_normal);
+	free(transp_inv);
+	if (!world_normal)
+		return (NULL);
+
+	// S'assurer que c'est un vecteur, pas un point
+	world_normal->t = 0;
+
+	// Normaliser le vecteur résultant
+	t_coord *normalized_normal = normalize_vector(world_normal);
+	free(world_normal);
+	
+	return (normalized_normal);
+}
+
 //normal sphere
 //Algorithmically speaking, you find the normal by taking the point in question and subtracting
 // the origin of the sphere ((0,0,0) in your case). Here it is in
-t_coord *normal_at(t_obj *sphere, t_coord *point_on_sphere)
+/* t_coord *normal_at(t_obj *sphere, t_coord *point_on_sphere)
 {
 	t_coord *v_center_point;
 	t_coord *v_normal;
@@ -40,7 +135,7 @@ t_coord *normal_at(t_obj *sphere, t_coord *point_on_sphere)
 	free(v_center_point);
 
 	return (v_normal);
-}
+} */
 
 /*
 /// a continuer à coder avec ce transpose inverse machin 

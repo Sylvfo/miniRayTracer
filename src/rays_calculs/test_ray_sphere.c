@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_ray_sphere.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:29:59 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 11:50:39 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/03 12:13:22 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	test_sphere(t_pix ***pix)
 
 
 //OK GOOD
-void test_normal_at(t_pix ***pix)
+/* void test_normal_at(t_pix ***pix)
 {
 	t_coord *p_point;
 	t_coord *result;
@@ -142,7 +142,7 @@ void test_normal_at(t_pix ***pix)
 	result = normal_at(pix[0][0]->obj[1][0], p_point);
 	printf("\n test 4 : ");
 	print_vector(result);	
-}
+} */
 
 /*
 void ray_testing()

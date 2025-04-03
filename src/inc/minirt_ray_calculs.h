@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 23:22:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/03 12:13:52 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void ray_testing();
 void sphere_testing();
 void test_ray(void);
 void test_sphere(t_pix ***pix);
-void test_normal_at(t_pix ***pix);
+void test_normal_at(void);
 
 //closest_obj.c
 void find_closest_obj(t_pix ***pix);
