@@ -1,12 +1,12 @@
-A 0.2 255,255,255
+A 0.5 255,255,255
 C 0,0,-30 0,0,1 70
-L 20,0,-35 1.0 255,255,255
+L 25,5,-10 1.0 255,255,255
 
 # Petite sphère rouge qui va projeter une ombre sur le "mur"
 sp 0,0,5 5 255,0,0
 
-# Petite sphère bleue à gauche
-sp -10,5,10 4 0,0,255
+# Petite sphère rose à gauche
+sp -10,5,10 4 255,0,255
 
 # Petite sphère verte à droite 
 sp 10,-5,10 4 0,255,0

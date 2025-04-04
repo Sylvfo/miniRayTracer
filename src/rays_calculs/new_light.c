@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 15:59:56 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 16:29:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,114 @@ float 	compute_pointlight(t_pix *pix, t_light *lux)
 	return (i);
 } */
 
-float light_intensity(t_pix *pix)//rajouter plusieurs lampes
+t_hits intersect_object(t_obj *object, t_ray *ray)
 {
-	float i;
-	float n_dot_l;
+	t_hits hits;
+	t_coord *oc;
+	float a, b, c, discriminant;
 
-	i = 0.0;
-	i += compute_ambient(pix);// ok
-	//boucle while pour toutes les lumières
-	i += compute_pointlight(pix, pix->lux[1][0]);
-	
-//	i += computre_directionlight 
-	return (i);
+	// Initialisation des hits
+	hits.t_count = 0;
+	hits.t1 = -1;
+	hits.t2 = -1;
+
+	// Calcul des coefficients pour l'équation quadratique
+	oc = substraction(ray->p_origin, object->p_coord);
+	a = dot_product(ray->v_dir, ray->v_dir);
+	b = 2.0 * dot_product(oc, ray->v_dir);
+	c = dot_product(oc, oc) - (object->diam / 2) * (object->diam / 2);
+	discriminant = b * b - 4 * a * c;
+
+	if (discriminant >= 0)
+	{
+		hits.t1 = (-b - sqrt(discriminant)) / (2.0 * a);
+		hits.t2 = (-b + sqrt(discriminant)) / (2.0 * a);
+
+		// Remplacement de l'opérateur ternaire
+		if (discriminant > 0)
+			hits.t_count = 2;
+		else
+			hits.t_count = 1;
+	}
+
+	free(oc);
+	return hits;
+}
+
+t_hits intersect_objects(t_obj ***objects, t_ray *ray)
+{
+	t_hits hits;
+	int i, j;
+	t_hits temp_hits;
+
+	// Initialisation des hits
+	hits.t_count = 0;
+	hits.t1 = -1;
+	hits.t2 = -1;
+
+	// Parcourt tous les objets de la scène
+	i = 0;
+	while (objects[i] != NULL) // Parcourt les types d'objets (sphère, plan, etc.)
+	{
+		j = 0;
+		while (objects[i][j] != NULL) // Parcourt les instances d'un type d'objet
+		{
+			// Vérifie l'intersection avec l'objet courant
+			temp_hits = intersect_object(objects[i][j], ray);
+
+			// Si une intersection est trouvée, met à jour les hits
+			if (temp_hits.t_count > 0)
+			{
+				if (hits.t_count == 0 || temp_hits.t1 < hits.t1)
+				{
+					hits.t1 = temp_hits.t1;
+					hits.t2 = temp_hits.t2;
+					hits.t_count = temp_hits.t_count;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+
+	return hits;
+}
+
+bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects)
+{
+	t_ray shadow_ray;
+	t_hits hits;
+
+	shadow_ray.p_origin = point;
+	shadow_ray.v_dir = substraction(light->p_coord, point);
+	normalize_vector(shadow_ray.v_dir);
+
+	hits = intersect_objects(objects, &shadow_ray);
+	if (hits.t_count > 0 && hits.t1 > 0)
+		return (true); // Le point est dans l'ombre
+	return (false);
+}
+
+float light_intensity(t_pix *pix)
+{
+	float intensity;
+	int i;
+
+	intensity = 0.0;
+
+	// Lumière ambiante
+	intensity += compute_ambient(pix);
+
+	// Lumières ponctuelles
+	i = 0;
+	while (pix->lux[1][i] != NULL) // Parcourt toutes les lumières ponctuelles
+	{
+		if (!is_in_shadow(pix->comps->p_point, pix->lux[1][i], pix->obj))
+			intensity += compute_pointlight(pix, pix->lux[1][i]);
+		i++;
+	}
+
+	return intensity;
 }
 
 //ok
