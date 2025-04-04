@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:35 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/10 11:47:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 09:56:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	save_sphere(char *line, t_pix **pix, t_num_obj *num_obj)
 	sphere->color->r = color.r;
 	sphere->color->g = color.g;
 	sphere->color->b = color.b;
+	sphere->difuse = 0.7;
+	sphere->specular = 0.2;
 	num_obj->sphere++;
 }

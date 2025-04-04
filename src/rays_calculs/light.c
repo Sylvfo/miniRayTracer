@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:27:28 by syl               #+#    #+#             */
-/*   Updated: 2025/03/24 13:45:51 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:12:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define TOL 0.0001
 
-t_coord *vec_sub(t_coord *a, t_coord *b)
+/* t_coord *vec_sub(t_coord *a, t_coord *b)
 {
 	t_coord *result = malloc(sizeof(t_coord));
 	if (!result)
@@ -163,10 +163,10 @@ t_color *color_add(t_color *c1, t_color *c2)
 	result->b = c1->b + c2->b;
 	result->rgb = 0;
 	return result;
-}
+} */
 
 // Calcule l'intersection entre un rayon et une sphère pour la détection d'ombres
-void intersect_sphere_shadow(t_obj *sphere, t_ray *ray, t_hits *hit)
+/* void intersect_sphere_shadow(t_obj *sphere, t_ray *ray, t_hits *hit)
 {
 	float discriminant;
 	float a;
@@ -198,7 +198,7 @@ void intersect_sphere_shadow(t_obj *sphere, t_ray *ray, t_hits *hit)
 	hit->t2 = (-b + sqrt(discriminant)) / (2 * a);
 	
 	free(sphere_to_ray);
-}
+} */
 
 /*
 * Vérifie si un point est dans l'ombre d'un objet
@@ -209,7 +209,7 @@ void intersect_sphere_shadow(t_obj *sphere, t_ray *ray, t_hits *hit)
 * 
 * @return 1 si le point est dans l'ombre, 0 sinon
 */
-int is_shadowed(t_pix *pix, t_coord *point, t_light *light)
+/* int is_shadowed(t_pix *pix, t_coord *point, t_light *light)
 {
 	// Vecteur du point vers la lumière
 	t_coord *light_vector = vec_sub(light->p_coord, point);
@@ -279,15 +279,15 @@ int is_shadowed(t_pix *pix, t_coord *point, t_light *light)
 				// Selon le type d'objet, appeler la fonction d'intersection appropriée
 				if (pix->obj[x][y]->diam > 0) // C'est une sphère
 					intersect_sphere_shadow(pix->obj[x][y], shadow_ray, hit);
-				/* else if (pix->obj[x][y]->v_axe != NULL && pix->obj[x][y]->height == 0) // C'est un plan
+				else if (pix->obj[x][y]->v_axe != NULL && pix->obj[x][y]->height == 0) // C'est un plan
 					intersect_plane(pix->obj[x][y], shadow_ray, hit);
 				else if (pix->obj[x][y]->v_axe != NULL && pix->obj[x][y]->height > 0) // C'est un cylindre
-					intersect_cylinder(pix->obj[x][y], shadow_ray, hit); */
+					intersect_cylinder(pix->obj[x][y], shadow_ray, hit);
 				
 				if (hit->t1 > 0 && hit->t1 < distance_to_light)
 					in_shadow = 1;
 				else if (hit->t2 > 0 && hit->t2 < distance_to_light)
-					in_shadow = 1;
+					in_shadow = 1; 
 				
 				free(hit);
 			}
@@ -301,7 +301,7 @@ int is_shadowed(t_pix *pix, t_coord *point, t_light *light)
 	free(offset_point);
 	
 	return in_shadow;
-}
+} */
 
 // Modifier la fonction lighting
 
@@ -320,12 +320,12 @@ int is_shadowed(t_pix *pix, t_coord *point, t_light *light)
 *
 * Pour debug, des printf() affichent les valeurs intermédiaires.
 */
-t_color *lighting(t_color *object_color, t_light *ambient_light, t_light *point_light,
+/* t_color *lighting(t_color *object_color, t_light *ambient_light, t_light *point_light,
 				t_coord *point, t_coord *eyev, t_coord *normalv, t_pix *pix)
 {
 	float ambient_coeff  = ambient_light->ratio;
-	float diffuse_coeff  = 0.9;
-	float specular_coeff = 0.9;
+//	float diffuse_coeff  = 0.9;
+//	float specular_coeff = 0.9;
 	float shininess      = 200.0;
 
 	t_color *effective_color = color_mult(object_color, point_light->color);
@@ -419,7 +419,7 @@ static float clamp(float value)
 	if (value > 255.0f)
 		return 255.0f;
 	return value;
-}
+} */
 
 /*
 * main_light est appelée dans le raytracing pour appliquer l'éclairage
@@ -430,7 +430,7 @@ static float clamp(float value)
 * On suppose que la source de lumière complète est stockée dans
 * pix[0][0]->lux[1][0] et que la lumière ambiante reste dans pix[0][0]->lux[0][0].
 */
-void main_light(t_pix ***pix)
+/* void main_light(t_pix ***pix)
 {
 	int x, y;
 	// Récupération des deux lumières enregistrées depuis le fichier .rt :
@@ -473,3 +473,4 @@ void main_light(t_pix ***pix)
 		x++;
 	}
 }
+ */

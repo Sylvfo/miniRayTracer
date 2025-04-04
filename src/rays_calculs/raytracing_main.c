@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing_main.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/22 12:10:24 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	init_viewport(t_pix ***pix);
 
 void raytracing(t_pix ***pix)
 {
+
 	//à déplacer ensuite dans init_data
 	// pas sûre que tout est juste niveau unit, vecteurs normés ou pas...
 	constructing_camera(pix);
@@ -32,7 +33,8 @@ void raytracing(t_pix ***pix)
 	//REVOIR AVEC NORMAL_AT
 	prepare_computation(pix);
 	// pas oublier de mettre les couleurs de 0 à 1.
-	main_light(pix);
+	new_light(pix);
+//	main_light(pix);
 	return;
 }
 

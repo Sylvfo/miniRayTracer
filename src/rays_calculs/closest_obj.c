@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closest_obj.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/03/22 11:53:53 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void find_closest_obj(t_pix ***pix)
 			y++;
 		}
 		x++;
-	}	
+	}
 }
 
 void closest_obj(t_pix *pix)
@@ -77,7 +77,7 @@ void prepare_computation(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			// On vérifie d'abord que le pixel et sa structure comps sont correctement alloués
+/*			// On vérifie d'abord que le pixel et sa structure comps sont correctement alloués
 			if (!pix[x][y] || !pix[x][y]->comps)
 			{
 				printf("Warning: La structure comps est manquante pour le pixel (%d, %d)\n", x, y);
@@ -91,7 +91,7 @@ void prepare_computation(t_pix ***pix)
 				printf("Warning: Aucun objet trouvé pour le pixel (%d, %d)\n", x, y);
 				y++;
 				continue;
-			}
+			}*/
 			
 			// Calculer le point d'intersection
 			pix[x][y]->comps->p_point = position(pix[x][y]->r_ray, pix[x][y]->comps->closestt);
@@ -101,7 +101,7 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
-			
+			//!!! est-ce que r_ray normé ou pas?????
 			// Calculer le vecteur œil : inverse de la direction du rayon
 			pix[x][y]->comps->v_eye = negat(pix[x][y]->r_ray->v_dir);
 			if (!pix[x][y]->comps->v_eye)
@@ -110,8 +110,7 @@ void prepare_computation(t_pix ***pix)
 				free(pix[x][y]->comps->p_point);
 				y++;
 				continue;
-			}
-			
+			}		
 			// Calculer la normale au point d'intersection
 			pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_point);
 			if (!pix[x][y]->comps->v_norm_parral)
@@ -134,9 +133,7 @@ void prepare_computation(t_pix ***pix)
 				pix[x][y]->comps->v_norm_parral->z = -pix[x][y]->comps->v_norm_parral->z;
 			}
 			else
-			{
 				pix[x][y]->comps->inside = false;
-			}
 
 			y++;
 		}

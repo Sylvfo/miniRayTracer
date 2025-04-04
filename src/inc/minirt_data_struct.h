@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_data_struct.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/03/19 12:30:37 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:57:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_obj
 {
 	t_coord	*p_coord;
 	t_color	*color;
+	float	difuse;
+	float	specular;
 	float	diam;
 	float	height;
 	t_coord	*v_axe;
@@ -141,10 +143,11 @@ typedef struct s_matrix
 typedef struct s_comps
 {
 	float	closestt;
-	t_obj	*obj;//pointeur
+	t_obj	*obj;//pointeur closest
 	t_coord	*p_point;
-	t_coord	*v_eye;
+	t_coord	*v_eye; //inverse du ray de base
 	t_coord	*v_norm_parral;
+//	t_coord *v_light;
 	bool	inside;
 }	t_comps;
 

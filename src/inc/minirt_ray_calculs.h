@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/03 12:13:52 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/04 12:12:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ void transform(t_pix *pix, float *m_transf);
 //void transform(t_pix *pix);
 void set_transformation(t_obj ***obj);
 
+/*
 //light.c
 void main_light(t_pix ***pix);
 float light_intensity(t_coord *P, t_coord *N, t_pix *pix);
 float 	compute_ambient(t_pix *pix);
 void ComputeLighting(t_pix *pix, float closestt, t_obj *sphere);
+*/
 
 //camera
 void test_camera(t_pix ***pix);
@@ -64,4 +66,12 @@ void pixel_size(t_pix ***pix);
 void init_viewport2(t_pix ***pix);
 void init_camera_pix_ray(t_pix *pix, t_camera *cam);
 void test_camera3(void);
+
+//new_light
+void	new_light(t_pix ***pix);
+void ComputeLighting(t_pix *pix);
+float 	compute_pointlight(t_pix *pix, t_light *lux);
+float light_intensity(t_pix *pix);//rajouter plusieurs lampes
+float 	compute_ambient(t_pix *pix);
+
 #endif

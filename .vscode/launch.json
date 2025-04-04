@@ -8,9 +8,9 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debugminirt",
-			"program": "/home/ubuntu/Documents/miniRayTracer/minirt",
+			"program": "/home/syl/42/miniRayTracder/minirt",
 			"args": [
-				"/home/ubuntu/Documents/miniRayTracer/test_sphere_corentin.rt"
+				"/home/syl/42/miniRayTracder/test_sphere_corentin.rt"
 			],
 			"cwd": "${workspaceFolder}"
 		}

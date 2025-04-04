@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/03 12:13:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	main(int argc, char **argv)
 	print_point(pix[100][50]->r_original->p_origin);
 	printf("\nici dire  ");*/
 
-	test_normal_at();
+//	test_normal_at();
 
 	pix_to_window(pix);
 	image_hooks(pix[0][0]->ima);
