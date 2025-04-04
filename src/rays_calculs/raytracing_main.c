@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 13:54:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	init_viewport(t_pix ***pix);
 
 void raytracing(t_pix ***pix)
 {
-
 	//à déplacer ensuite dans init_data
 	// pas sûre que tout est juste niveau unit, vecteurs normés ou pas...
 	constructing_camera(pix);

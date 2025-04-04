@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 13:53:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,48 +40,48 @@ float *transpose_matrix(float *m)
 	return (result);
 }
 
-t_coord	*normal_at(t_obj *sphere, t_coord *point_on_sphere)
+t_coord	*normal_at(t_obj *object, t_coord *point_on_object)
 {
-	t_coord *p_object;         // Point dans l'espace de l'objet
-	t_coord *origin;           // Centre de la sphère dans l'espace de l'objet (0,0,0)
+	t_coord *p_object_space;   // Point dans l'espace de l'objet
+	t_coord *origin_object;    // Origine de l'objet dans son espace local (0,0,0)
 	t_coord *object_normal;    // Normale dans l'espace de l'objet
 	t_coord *world_normal;     // Normale dans l'espace du monde
 	float *inv_transform;      // Inverse de la matrice de transformation
 	float *transp_inv;         // Transposée de l'inverse
 
-	// Créer un point représentant l'origine (0,0,0)
-	origin = create_point(0, 0, 0);
-	if (!origin)
+	// Créer un point représentant l'origine (0,0,0) dans l'espace local de l'objet
+	origin_object = create_point(0, 0, 0);
+	if (!origin_object)
 		return (NULL);
 
-	// Obtenir l'inverse de la matrice de transformation
-	inv_transform = inverted_matrix_44(sphere->m_tranf);
+	// Obtenir l'inverse de la matrice de transformation de l'objet
+	inv_transform = inverted_matrix_44(object->m_tranf);
 	if (!inv_transform)
 	{
-		free(origin);
+		free(origin_object);
 		return (NULL);
 	}
 
-	// Transformer le point du monde vers l'espace de l'objet
-	p_object = matrix_multiplication_44_coord(inv_transform, point_on_sphere);
-	if (!p_object)
+	// Transformer le point du monde vers l'espace local de l'objet
+	p_object_space = matrix_multiplication_44_coord(inv_transform, point_on_object);
+	if (!p_object_space)
 	{
-		free(origin);
+		free(origin_object);
 		free(inv_transform);
 		return (NULL);
 	}
 
-	// Calculer la normale dans l'espace de l'objet
-	object_normal = substraction(p_object, origin);
-	free(origin);
-	free(p_object);
+	// Calculer la normale dans l'espace local de l'objet
+	object_normal = substraction(p_object_space, origin_object);
+	free(origin_object);
+	free(p_object_space);
 	if (!object_normal)
 	{
 		free(inv_transform);
 		return (NULL);
 	}
 
-	// Obtenir la transposée de l'inverse
+	// Obtenir la transposée de l'inverse de la matrice de transformation
 	transp_inv = transpose_matrix(inv_transform);
 	free(inv_transform);
 	if (!transp_inv)

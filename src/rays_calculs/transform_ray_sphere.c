@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 15:30:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 15:23:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void set_transformation(t_obj ***obj)
 	int x;
 	int y;
 
+	obj[0][0]->m_tranf = create_indentity_matrix_44();
 	x = 1;
 	while(x < 2)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
 	{

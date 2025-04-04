@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 13:53:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void prepare_computation(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-/*			// On vérifie d'abord que le pixel et sa structure comps sont correctement alloués
+			// On vérifie d'abord que le pixel et sa structure comps sont correctement alloués
 			if (!pix[x][y] || !pix[x][y]->comps)
 			{
 				printf("Warning: La structure comps est manquante pour le pixel (%d, %d)\n", x, y);
@@ -91,7 +91,7 @@ void prepare_computation(t_pix ***pix)
 				printf("Warning: Aucun objet trouvé pour le pixel (%d, %d)\n", x, y);
 				y++;
 				continue;
-			}*/
+			}
 			
 			// Calculer le point d'intersection
 			pix[x][y]->comps->p_point = position(pix[x][y]->r_ray, pix[x][y]->comps->closestt);

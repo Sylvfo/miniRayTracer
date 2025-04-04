@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:00:57 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 15:45:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 15:50:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	check_matrix_44(float *m_a)
 {
 	if (!m_a)
 	{
-		printf("Matrix is missing\n");
+		printf("Matrix 44 is missing\n");
 		return (false);
 	}
 	if (m_a[0] != 4 || m_a[1] != 4)
@@ -31,7 +31,7 @@ bool	check_matrix_33(float *m_a)
 {
 	if (!m_a)
 	{
-		printf("Matrix is missing\n");
+		printf("Matrix 33 is missing\n");
 		return (false);
 	}
 	if (m_a[0] != 3 || m_a[1] != 3)
@@ -46,7 +46,7 @@ bool	check_matrix_22(float *m_a)
 {
 	if (!m_a)
 	{
-		printf("Matrix is missing\n");
+		printf("Matrix 22 is missing\n");
 		return (false);
 	}
 	if (m_a[0] != 2 || m_a[1] != 2)
@@ -61,7 +61,7 @@ bool	check_matrix_44_44(float *m_a, float *m_b)
 {
 	if (!m_a || !m_b)
 	{
-		printf("Matrix is missing\n");
+		printf("Matrix 44 and 44 are missing\n");
 		return (false);
 	}
 	if (m_a[0] != 4 || m_a[1] != 4 || m_b[0] != 4 || m_b[1] != 4)

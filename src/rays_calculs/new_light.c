@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 11:57:07 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 15:59:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ float 	compute_pointlight(t_pix *pix, t_light *lux)
 	// Calcul du vecteur lumière (L)
 	v_light = substraction(lux->p_coord, pix->comps->p_point);
 
+	// Normalisation des vecteurs
+	normalize_vector(pix->comps->v_norm_parral);
+	normalize_vector(v_light);
+
 	// Calcul du produit scalaire entre la normal (N) et le vecteur lumière (L)
 	n_dot_l =  dot_product(pix->comps->v_norm_parral, v_light);
 
@@ -83,7 +87,7 @@ float light_intensity(t_pix *pix)//rajouter plusieurs lampes
 	float n_dot_l;
 
 	i = 0.0;
-//	i += compute_ambient(pix);// ok
+	i += compute_ambient(pix);// ok
 	//boucle while pour toutes les lumières
 	i += compute_pointlight(pix, pix->lux[1][0]);
 	

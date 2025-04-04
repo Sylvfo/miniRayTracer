@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 12:12:07 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 15:50:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void closest_obj(t_pix *pix);
 void prepare_computation(t_pix ***pix);
 
 //intersect_sphere.c
-t_coord *normal_at(t_obj *sphere, t_coord *point_on_sphere);
+t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
 
 //transform_ray_sphere.c
 //void set_transform(t_obj ***obj);

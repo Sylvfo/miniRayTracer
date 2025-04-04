@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:48:26 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 23:24:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/04 15:45:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 
 void constructing_camera(t_pix ***pix)
 {
+	// a deplacer dans init
+	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
 	pix[0][0]->cam->canva_width = WND_WIDTH;
-//	pix[0][0]->cam->fov *= 3.1415 / 180 ;
+	pix[0][0]->cam->fov *= 3.1415 / 180;
 //	pix[0][0]->cam->m_transf = create_indentity_matrix_44();
+	//fonction pour creer la matrice de transformatoin
 	pix[0][0]->cam->m_transf = view_camera(pix[0][0]->cam->p_coord, pix[0][0]->cam->v_axe);
-	print_matrix(pix[0][0]->cam->m_transf);
+//	print_matrix(pix[0][0]->cam->m_transf);
+	//fonction pour calculer la taille des pixels
 	pixel_size(pix);
-	printf("pixel : %.2f \n", pix[0][0]->cam->pixel_size);
+//	printf("pixel : %.2f \n", pix[0][0]->cam->pixel_size);
 }
 
+//Verifie ensemble gooood
 void pixel_size(t_pix ***pix)
 {
 	float half_view;
 	float aspect;
 
 	half_view = tan(pix[0][0]->cam->fov / 2);
-	aspect = (float)pix[0][0]->cam->canva_height / (float)pix[0][0]->cam->canva_width;
+	aspect = pix[0][0]->cam->canva_height / pix[0][0]->cam->canva_width;
 	if (aspect >= 1)
 	{
 		pix[0][0]->cam->half_width = half_view;
@@ -50,9 +55,9 @@ void init_viewport2(t_pix ***pix)
 {
 	int	x;
 	int	y;
-	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
-	pix[0][0]->cam->view_height = 800;// 1000;
-	pix[0][0]->cam->view_width = 800;// 1000;
+	// a deplacer dans init apres
+	pix[0][0]->cam->view_height = 1200;// 1000;
+	pix[0][0]->cam->view_width = 1200;// 1000;
 	x = 0;
 	while (x < WND_WIDTH)
 	{
@@ -90,7 +95,7 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	t_coord *p_origin;
 	t_coord	*p_point;
 	
-	p_point = create_point(pix->vpx, pix->vpy, -1);
+	p_point = create_point(pix->vpx, pix->vpy, -1);//toujours 1 ???
 	m_inverse = inverted_matrix_44(pix->cam->m_transf);// !!!!!!!
 	if (!m_inverse)
 	{
