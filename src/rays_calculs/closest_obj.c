@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 13:42:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/05 17:22:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ void prepare_computation(t_pix ***pix)
 				free(pix[x][y]->comps->p_point);
 				y++;
 				continue;
-			}		
+			}
+			
 			// Calculer la normale au point d'intersection
 			pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_point);
 			if (!pix[x][y]->comps->v_norm_parral)
@@ -119,7 +120,8 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
-			
+			//rajouté par syl pour calcul dessous se fasse pour deux vecteurs normées.
+			pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
 			// Vérifier si le rayon pénètre dans l'objet.
 			// Si le produit scalaire entre la normale et le vecteur œil est négatif,
 			// alors le rayon est à l'intérieur. Inverser dans ce cas la normale.
@@ -138,5 +140,3 @@ void prepare_computation(t_pix ***pix)
 		x++;
 	}
 }
-
-void shade_hits()

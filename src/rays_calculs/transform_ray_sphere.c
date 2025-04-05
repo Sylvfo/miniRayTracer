@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 15:23:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/05 17:22:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,59 @@ void set_transformation(t_obj ***obj)
 		x++;
 	}
 }
+
+/*
+FONCTIONNE
+// ordre transformation: T R S
+void set_transformation(t_obj ***obj)
+{
+	int x;
+	int y;
+
+	obj[0][0]->m_tranf = create_indentity_matrix_44();
+	x = 1;
+	while(x < 2)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
+	{
+		y = 0;
+		while(obj[x][y] != NULL)
+		{
+			obj[x][y]->m_identity = create_indentity_matrix_44();// a initialiser avant...
+		//	translation_on_identity(obj[x][y]->m_tranf, obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
+			obj[x][y]->m_transl = create_translation_matrix(obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
+			obj[x][y]->m_scale = create_scaling_matrix(obj[x][y]->diam, obj[x][y]->diam, obj[x][y]->diam);
+			// pas rotations.
+			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_identity, obj[x][y]->m_transl);
+			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_tranf, obj[x][y]->m_scale);
+			obj[x][y]->m_tranf = inverted_matrix_44(obj[x][y]->m_tranf);
+			// inverse
+			y++;
+		}
+		x++;
+	}
+}
+
+*/
+
+//pas mon idée
+static t_coord *matrix_multiplication_44_vector(float *m, t_coord *v)
+{
+	t_coord *result = malloc(sizeof(t_coord));
+	if (!result)
+		return NULL; // Vérification de l'allocation mémoire
+
+	result->x = m[0] * v->x + m[1] * v->y + m[2] * v->z;
+	result->y = m[4] * v->x + m[5] * v->y + m[6] * v->z;
+	result->z = m[8] * v->x + m[9] * v->y + m[10] * v->z;
+	result->t = 0; // Indique que c'est un vecteur (pas un point)
+
+	return result;
+}
 //void transform(t_ray *r_original, float *trans_matrix)
 void transform(t_pix *pix, float *m_transf)
 {
 	pix->r_ray->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
-//	pix->r_ray->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir); bon ca change pas grande chose
-
-	pix->r_ray->v_dir = pix->r_original->v_dir; //celui la ca marche
-
-//	pix->r_ray->v_dir = normalize_vector(pix->r_original->v_dir);
+//	pix->r_ray->v_dir = pix->r_original->v_dir;
+	pix->r_ray->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir);
 	return ;
 }
 
