@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 16:29:44 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/05 13:42:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
-
 			// Vérifier si un objet a été trouvé pour ce pixel
 			if (!pix[x][y]->comps->obj)
 			{
@@ -92,7 +91,6 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
-			
 			// Calculer le point d'intersection
 			pix[x][y]->comps->p_point = position(pix[x][y]->r_ray, pix[x][y]->comps->closestt);
 			if (!pix[x][y]->comps->p_point)
@@ -140,3 +138,5 @@ void prepare_computation(t_pix ***pix)
 		x++;
 	}
 }
+
+void shade_hits()
