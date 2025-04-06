@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
-/*   Updated: 2025/03/11 16:20:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 14:36:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ t_ray *create_ray(t_coord *p_origin, t_coord *v_direction)
 
 t_coord *position(t_ray *r_ray, float t)
 {
-	t_coord *p_newpoint;
-
-	// check ray
-	p_newpoint = malloc(sizeof(t_coord));
-	if (!p_newpoint)
-		return (NULL);
-	p_newpoint = addition(r_ray->p_origin, scalar_mult(r_ray->v_dir, t));
-	return (p_newpoint);
+	// Calculer le nouveau point en ajoutant l'origine et la direction multipliée par t
+	return addition(r_ray->p_origin, scalar_mult(r_ray->v_dir, t));
 }

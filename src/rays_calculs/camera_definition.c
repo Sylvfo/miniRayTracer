@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:48:26 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 12:15:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 15:56:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,11 @@ void constructing_camera(t_pix ***pix)
 	pix[0][0]->obj[0][0]->color->r = int_to_float(pix[0][0]->obj[0][0]->color->r);
 	pix[0][0]->obj[0][0]->color->g = int_to_float(pix[0][0]->obj[0][0]->color->g);
 	pix[0][0]->obj[0][0]->color->b = int_to_float(pix[0][0]->obj[0][0]->color->b);
-
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
 	pix[0][0]->cam->canva_width = WND_WIDTH;
 	pix[0][0]->cam->fov *= 3.1415 / 180;
-//	pix[0][0]->cam->m_transf = create_indentity_matrix_44();
-	//fonction pour creer la matrice de transformatoin
 	pix[0][0]->cam->m_transf = view_camera(pix[0][0]->cam->p_coord, pix[0][0]->cam->v_axe);
-//	print_matrix(pix[0][0]->cam->m_transf);
-	//fonction pour calculer la taille des pixels
 	pixel_size(pix);
-//	printf("pixel : %.2f \n", pix[0][0]->cam->pixel_size);
 }
 
 //Verifie ensemble gooood
@@ -99,7 +93,7 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	t_coord *p_origin;
 	t_coord	*p_point;
 	
-	p_point = create_point(pix->vpx, pix->vpy, -1);//toujours 1 ???
+	p_point = create_point(pix->vpx, pix->vpy, -1.0);//toujours 1 ???
 	m_inverse = inverted_matrix_44(pix->cam->m_transf);// !!!!!!!
 	if (!m_inverse)
 	{
@@ -110,6 +104,8 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	p_origin = matrix_multiplication_44_coord(m_inverse, pix->p_origin_zero);
 	v_direction = substraction(pixl, p_origin);
 	vn_direction = normalize_vector(v_direction);
-//	pix->r_ray = malloc(sizeof(t_ray));
+	printf("Camera origin: (%f, %f, %f)\n", p_origin->x, p_origin->y, p_origin->z);
+	printf("Ray direction: (%f, %f, %f)\n", vn_direction->x, vn_direction->y, vn_direction->z);
+		//	pix->r_ray = malloc(sizeof(t_ray));
 	pix->r_original = create_ray(p_origin, vn_direction);
 }

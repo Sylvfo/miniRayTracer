@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 23:01:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 15:48:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ void main_sphere(t_pix ***pix)
 			{
 				transform(pix[x][y], pix[x][y]->obj[1][k]->m_tranf, k);
 				intersect_sphere(pix[x][y], k);
+				if (pix[x][y]->hits[1][k]->t1 > 0)
+				{
+					printf("t1 = %f\n", pix[x][y]->hits[1][k]->t1);
+					print_vector(pix[x][y]->hits[1][k]->r_ray_calculs->v_dir);
+					print_point(pix[x][y]->hits[1][k]->r_ray_calculs->p_origin);
+				}	
+				if (pix[x][y]->hits[1][k]->t2 > 0)
+				{
+					printf("t2 = %f\n", pix[x][y]->hits[1][k]->t2);
+					print_vector(pix[x][y]->hits[1][k]->r_ray_calculs->v_dir);
+					print_point(pix[x][y]->hits[1][k]->r_ray_calculs->p_origin);
+				}
 				k++;
 			}
 			y++;
@@ -45,10 +57,8 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	float a;
 	float b;
 	float c;
-	//arguments c'est ray et sphere
 //	# the vector from the sphere's center, to the ray origin
 	t_coord *v_sph_camera;
-	
 	v_sph_camera = substraction(pix->hits[1][sphere_num]->r_ray_calculs->p_origin, pix->p_origin_zero);//origine sphere à zero
 	a = dot_product(pix->hits[1][sphere_num]->r_ray_calculs->v_dir, pix->hits[1][sphere_num]->r_ray_calculs->v_dir);
 	b = 2 * dot_product(pix->hits[1][sphere_num]->r_ray_calculs->v_dir, v_sph_camera);

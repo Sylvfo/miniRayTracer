@@ -6,34 +6,31 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 10:05:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 16:38:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//BASE POUR LES CALCULS
-static void	init_viewport(t_pix ***pix);
+//static void	init_viewport(t_pix ***pix);
 //static void init_camera_pix_ray(t_pix *pix, t_camera *cam);
 
 void raytracing(t_pix ***pix)
 {
 	//à déplacer ensuite dans init_data
-	// pas sûre que tout est juste niveau unit, vecteurs normés ou pas...
 	constructing_camera(pix);
 
 	init_viewport2(pix);
+//	exit(0);
 	// calculs matriciels pour déplacer et scale les objets. 
 	set_transformation(pix[0][0]->obj);
 	main_sphere(pix);
 	//intersect plan
 	// intersect Cylindre
 	find_closest_obj(pix);
-	//REVOIR AVEC NORMAL_AT
+//	exit(1);
 	prepare_computation(pix);
-	// pas oublier de mettre les couleurs de 0 à 1.
 	new_light(pix);
-//	main_light(pix);
 	return;
 }
 
