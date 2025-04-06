@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_substr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:30 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/21 13:40:57 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/06 22:54:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2)
  *
  * substraction of 2 points to get a vector
  * substraction of vectors to represent the change of direction between the 2
+ * p_v_1 - p_v_2
  * 
  * @param p_v_1 vector or point
  * @param p_v_2 vector or point

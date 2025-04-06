@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:48:26 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 15:56:52 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 23:25:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void constructing_camera(t_pix ***pix)
 	pixel_size(pix);
 }
 
-//Verifie ensemble gooood
 void pixel_size(t_pix ***pix)
 {
 	float half_view;
@@ -64,8 +63,7 @@ void init_viewport2(t_pix ***pix)
 		{
 			pix[x][y]->p_origin_zero = create_point(0, 0, 0);
 			init_viewport_x_y(pix[x][y], x, y); //ok
-			init_camera_pix_ray(pix[x][y], pix[x][y]->cam);
-	//		ray_for_pixel(pix);
+			init_camera_pix_ray(pix[x][y], pix[x][y]->cam);//initialise les rays. 
 			y++;
 		}
 		x++;
@@ -73,27 +71,55 @@ void init_viewport2(t_pix ***pix)
 }
 
 //TROUVER PROBLEME ET METTRE AILLEURS
-void init_viewport_x_y(t_pix *pix, int x, int y) //a changer après
+void init_viewport_x_y(t_pix *pix, int x, int y)
 {
-
-//	pix->vpy = - (pix->cam->half_height - (y + 0.5) * pix->cam->pixel_size);
-//	pix->vpy = (pix->cam->half_height - (y + 0.5) * pix->cam->pixel_size);	
 	pix->vpx = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
 	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
-//	printf("Pixel (%d, %d) -> vpx: %f, vpy: %f\n", x, y, pix->vpx, pix->vpy);
 }
 
 //ray_for_pixel(pix); plus joli nom
+void init_camera_pix_ray(t_pix *pix, t_camera *cam)
+{
+	t_coord	*p_viewport; //point sur le viewport. 
+	t_coord *v_direction; // vecteur direction
+	t_coord *p_viewport_world;
+	float *m_inverse;
+	t_coord *p_camera_world;
+	
+	//point sur le viewport. 
+	p_viewport = create_point(pix->vpx, pix->vpy, -1.0);
+	// Obtenir la matrice inverse pour le changement de repère
+	m_inverse = inverted_matrix_44(pix->cam->m_transf);
+	if (!m_inverse)
+	{
+		printf("aieaieaie\n");
+		return;
+	}
+    // Origine de la caméra dans le repère monde
+	p_camera_world = matrix_multiplication_44_coord(m_inverse, pix->p_origin_zero);
+	 // Point final(viewport??) transformé dans le repère monde
+	p_viewport_world = matrix_multiplication_44_coord(m_inverse, p_viewport);
+	//creation du ray entre la camera et le viewport modifiés selon la caméra
+	v_direction = substraction(p_viewport_world, p_camera_world);
+	v_direction = normalize_vector(v_direction);
+	
+	printf("Camera origin: (%f, %f, %f)\n", p_camera_world->x, p_camera_world->y, p_camera_world->z);
+	printf("Ray direction: (%f, %f, %f)\n", v_direction->x, v_direction->y, v_direction->z);
+	pix->r_original = create_ray(p_camera_world, v_direction);
+}
+
+
+/*avant correction
 void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 {
 	t_coord *pixl;
 	float *m_inverse;
 	t_coord *v_direction;
 	t_coord *vn_direction;
-	t_coord *p_origin;
+	t_coord *p_camera_world;
 	t_coord	*p_point;
 	
-	p_point = create_point(pix->vpx, pix->vpy, -1.0);//toujours 1 ???
+	p_point = create_point(pix->vpx, pix->vpy, -1.0);
 	m_inverse = inverted_matrix_44(pix->cam->m_transf);// !!!!!!!
 	if (!m_inverse)
 	{
@@ -101,11 +127,11 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 		return;
 	}
 	pixl = matrix_multiplication_44_coord(m_inverse, p_point);
-	p_origin = matrix_multiplication_44_coord(m_inverse, pix->p_origin_zero);
-	v_direction = substraction(pixl, p_origin);
+	p_camera_world = matrix_multiplication_44_coord(m_inverse, pix->p_origin_zero);
+	v_direction = substraction(pixl, p_camera_world);
 	vn_direction = normalize_vector(v_direction);
-	printf("Camera origin: (%f, %f, %f)\n", p_origin->x, p_origin->y, p_origin->z);
+	printf("Camera origin: (%f, %f, %f)\n", p_camera_world->x, p_camera_world->y, p_camera_world->z);
 	printf("Ray direction: (%f, %f, %f)\n", vn_direction->x, vn_direction->y, vn_direction->z);
-		//	pix->r_ray = malloc(sizeof(t_ray));
-	pix->r_original = create_ray(p_origin, vn_direction);
+	pix->r_original = create_ray(p_camera_world, vn_direction);
 }
+*/

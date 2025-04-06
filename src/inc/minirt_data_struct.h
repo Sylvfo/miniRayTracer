@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 13:22:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 23:52:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ typedef struct s_light
 	t_coord		*p_coord;
 	float		ratio; //brightness
 	t_color		*color;
+	float		*m_identity;
+	float		*m_tranf;
+	float		*m_transl;
+	t_coord		*p_world;
 }	t_light;
 
 typedef struct s_camera

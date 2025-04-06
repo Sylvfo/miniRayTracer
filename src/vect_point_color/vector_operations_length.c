@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 16:07:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 23:59:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_coord	*scalar_mult(t_coord *v_1, float scale)
 		return (NULL);
 	v_new->x = scale * v_1->x;
 	v_new->y = scale * v_1->y;
-	v_new->y = scale * v_1->z;
+	v_new->z = scale * v_1->z;
 	v_new->t = 0;
 	return (v_new);
 }
