@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 17:22:52 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 10:14:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,26 +112,47 @@ static t_coord *matrix_multiplication_44_vector(float *m, t_coord *v)
 	return result;
 }
 //void transform(t_ray *r_original, float *trans_matrix)
-void transform(t_pix *pix, float *m_transf)
+void transform(t_pix *pix, float *m_transf, int sphere_num)
 {
+//	pix->hits[1][sphere_num]->r_ray_calculs = malloc(sizeof(t_ray));
+//	pix->hits[1][sphere_num]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+//	pix->hits[1][sphere_num]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+	if (pix->hits[1][sphere_num]->r_ray_calculs == NULL)
+	{
+		printf("error malloc");
+		exit;
+	}
+	if (pix->hits[1][sphere_num]->r_ray_calculs->p_origin == NULL)
+	{
+		printf("error malloc2");
+		exit;
+	}
+	if (pix->hits[1][sphere_num]->r_ray_calculs->v_dir == NULL)
+	{
+		printf("error malloc3");
+		exit;
+	}
+
+	pix->hits[1][sphere_num]->r_ray_calculs->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
+
+//	pix->r_ray->v_dir = pix->r_original->v_dir;
+	pix->hits[1][sphere_num]->r_ray_calculs->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir);
+	return ;
+}
+
+/*ca marche. modif pour tous les rayons
+//void transform(t_ray *r_original, float *trans_matrix)
+{
+	
 	pix->r_ray->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
 //	pix->r_ray->v_dir = pix->r_original->v_dir;
 	pix->r_ray->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir);
 	return ;
 }
-
-/*
-t_ray transform_ray(t_ray ray, t_matrix inv_M) {
-    t_ray transformed;
-    
-    transformed.origin = matrix_mult_point(inv_M, ray.origin);
-    transformed.dir = matrix_mult_vector(inv_M, ray.dir);
-    transformed.dir = normalize(transformed.dir);
-    
-    return transformed;
-}
-
 */
+
+
+
 
 /*
  Générer le rayon dans l’espace global

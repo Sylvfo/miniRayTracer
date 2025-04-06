@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 14:08:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 09:52:24 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,26 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 
 	i = 0;
 	hits[0][0] = malloc(sizeof(t_hits));
+	hits[0][0]->r_ray_calculs = malloc(sizeof(t_ray));
+	//rajoutée par sylvi pour rays
+	hits[0][0]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+	//rajoutée par sylvi pour rays
+	hits[0][0]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
 	while (i < num_obj->sphere)
 	{
 		hits[1][i] = malloc(sizeof(t_hits));
+
+		//rajoutée par sylvi pour rays
+		hits[1][i]->r_ray_calculs = malloc(sizeof(t_ray));
+		if (hits[1][i]->r_ray_calculs == NULL)
+		{
+			printf("problem with malloc\n");
+			exit(1);
+		}
+		//rajoutée par sylvi pour rays
+		hits[1][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+		//rajoutée par sylvi pour rays
+		hits[1][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
 		i++;
 	}
 	i = 0;

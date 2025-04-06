@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_set_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/03/19 14:29:52 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/06 12:15:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ int	float_to_byte(float f)
 		return (0);
 	if (f >= 255)
 		return (255);
-	return ((int)(f * 0.5f));
+	return ((int)(f * 255));
+//	return ((int)(f * 0.5f));
 }
 
 

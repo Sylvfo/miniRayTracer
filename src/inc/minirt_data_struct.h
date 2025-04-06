@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 16:59:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 12:06:22 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_hits
 	float		t1;
 	float		t2;
 	int	 		t_count;
+	t_ray		*r_ray_calculs;
 }	t_hits;
 
 // light[0][0] = ambiant light.
@@ -147,8 +148,10 @@ typedef struct s_comps
 	t_coord	*p_point;
 	t_coord	*v_eye; //inverse du ray de base
 	t_coord	*v_norm_parral;
+	t_ray	*r_ray;
 //	t_coord *v_light;
 	bool	inside;
+	int 	t_count;
 }	t_comps;
 
 ////////// CANVA //////////
@@ -165,12 +168,12 @@ typedef struct s_pix
 	//in each pixel. 
 	float	vpx;// viewport x
 	float vpy;// viewport y
-	t_ray 		*r_ray; //ray pour les calculs. 
+//	t_ray 		*r_ray; //ray pour les calculs. 
 	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
 
 	t_hits		***hits; //array de hits pour les objets
-	int		t_count;//ici compter le nombre d intersection?
+//	int		t_count;//ici compter le nombre d intersection?
 	t_comps	*comps; // ici on peut faire une array pour mettre les objets dans l ordre où ils se font toucher...
 }	t_pix;
 

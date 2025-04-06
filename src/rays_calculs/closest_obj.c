@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 17:22:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 12:15:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,35 @@ void closest_obj(t_pix *pix)
 	int	y;
 	
 	pix->comps->obj = pix->obj[0][0];
+	pix->comps->t_count = 0;
 	x = 0;
 	while (x < 4)
 	{
 		y = 0;
 		while (pix->hits[x][y] != NULL)
 		{
+			pix->comps->r_ray = malloc(sizeof(t_ray));
 			if (pix->hits[x][y]->t1 < closestt && pix->hits[x][y]->t1 > 0)/// ou plus grand que zero...
 			{
 				pix->comps->closestt = pix->hits[x][y]->t1;
 				pix->comps->obj = pix->obj[x][y];
+				pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
+				pix->comps->t_count = 1;
+//				copy_ray(pix->comps->r_ray, pix->hits[x][y]->r_ray_calculs);
+			//	pix->comps->r_ray = pix->hits[x][y]->r_ray_calculs;
 			}
 			if (pix->hits[x][y]->t2 < closestt &&  pix->hits[x][y]->t2 > 0)/// ou plus grand que zero...
 			{
 				pix->comps->closestt = pix->hits[x][y]->t2;
 				pix->comps->obj = pix->obj[x][y];
+				pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
+				pix->comps->t_count = 1;
+	//			copy_ray(pix->comps->r_ray, pix->hits[x][y]->r_ray_calculs);
+			//	pix->comps->r_ray = pix->hits[x][y]->r_ray_calculs;
+			}
+			else 
+			{
+				pix->comps->r_ray = copy_ray(pix->r_original);
 			}
 			y++;
 		}
@@ -92,7 +106,7 @@ void prepare_computation(t_pix ***pix)
 				continue;
 			}
 			// Calculer le point d'intersection
-			pix[x][y]->comps->p_point = position(pix[x][y]->r_ray, pix[x][y]->comps->closestt);
+			pix[x][y]->comps->p_point = position(pix[x][y]->comps->r_ray, pix[x][y]->comps->closestt);
 			if (!pix[x][y]->comps->p_point)
 			{
 				printf("Error: Échec du calcul du point d'intersection pour le pixel (%d, %d)\n", x, y);
@@ -101,7 +115,7 @@ void prepare_computation(t_pix ***pix)
 			}
 			//!!! est-ce que r_ray normé ou pas?????
 			// Calculer le vecteur œil : inverse de la direction du rayon
-			pix[x][y]->comps->v_eye = negat(pix[x][y]->r_ray->v_dir);
+			pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_ray->v_dir);
 			if (!pix[x][y]->comps->v_eye)
 			{
 				printf("Error: Échec du calcul du vecteur œil pour le pixel (%d, %d)\n", x, y);

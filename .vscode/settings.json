@@ -9,5 +9,6 @@
 		"minirt_data_struct.h": "c",
 		"mlx.h": "c",
 		"assert.h": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

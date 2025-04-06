@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 17:22:54 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/05 22:49:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
 
 //transform_ray_sphere.c
 //void set_transform(t_obj ***obj);
-void transform(t_pix *pix, float *m_transf);
+void transform(t_pix *pix, float *m_transf, int sphere_num);
+//void transform(t_pix *pix, float *m_transf);
 //void transform(t_pix *pix);
 void set_transformation(t_obj ***obj);
 

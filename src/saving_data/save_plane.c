@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_plane.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:43 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/06 12:06:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void	save_plane(char *line, t_pix **pix, t_num_obj *num_obj)
 	parse_plane_coordinates(&line, &coord);
 	parse_plane_orientation(&line, &orientation);
 	parse_plane_color(&line, &color);
+
+	color.r = int_to_float(color.r);
+	color.g = int_to_float(color.g);
+	color.b = int_to_float(color.b);
+
 	plane = pix[0][0].obj[2][num_obj->plan];
 	if (!plane)
 		return ;

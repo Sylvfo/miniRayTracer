@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/03/19 12:55:16 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/06 12:06:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 	v_new->t = 0; // Type vecteur
 
 	// Log pour débogage
-	printf("Normalized Vector: x=%f, y=%f, z=%f\n", v_new->x, v_new->y, v_new->z);
+	//printf("Normalized Vector: x=%f, y=%f, z=%f\n", v_new->x, v_new->y, v_new->z);
 
 	return (v_new);
 }

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:48:26 by syl               #+#    #+#             */
-/*   Updated: 2025/04/05 17:22:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 12:15:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void constructing_camera(t_pix ***pix)
 {
 	// a deplacer dans init
 	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
+	pix[0][0]->obj[0][0]->color->r = int_to_float(pix[0][0]->obj[0][0]->color->r);
+	pix[0][0]->obj[0][0]->color->g = int_to_float(pix[0][0]->obj[0][0]->color->g);
+	pix[0][0]->obj[0][0]->color->b = int_to_float(pix[0][0]->obj[0][0]->color->b);
+
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
 	pix[0][0]->cam->canva_width = WND_WIDTH;
 	pix[0][0]->cam->fov *= 3.1415 / 180;
@@ -106,6 +110,6 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	p_origin = matrix_multiplication_44_coord(m_inverse, pix->p_origin_zero);
 	v_direction = substraction(pixl, p_origin);
 	vn_direction = normalize_vector(v_direction);
-	pix->r_ray = malloc(sizeof(t_ray));
+//	pix->r_ray = malloc(sizeof(t_ray));
 	pix->r_original = create_ray(p_origin, vn_direction);
 }

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:35 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/04 09:56:54 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/06 12:15:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	save_sphere(char *line, t_pix **pix, t_num_obj *num_obj)
 	parse_float(&line, &diameter);
 	skip_whitespace((const char **)&line);
 	parse_color(&line, &color.r, &color.g, &color.b);
+
+	color.r = int_to_float(color.r);
+	color.g = int_to_float(color.g);
+	color.b = int_to_float(color.b);
+
 	sphere = pix[0][0].obj[1][num_obj->sphere];
 	if (!sphere)
 		return ;

@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_to_window.c                                  :+:      :+:    :+:   */
+/*   copy_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 12:15:47 by syl              ###   ########.fr       */
+/*   Created: 2025/04/06 10:08:17 by syl               #+#    #+#             */
+/*   Updated: 2025/04/06 10:29:29 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-// 1200 = canva height
-//1600 = canva width
-void	pix_to_window(t_pix ***pix)
+/**
+ * @brief copy r2 into r1
+ * 
+ * 	r1 = r2
+ * 
+ * @param t_ray *r1, t_ray *r2
+ * 
+ * @return void
+ */
+t_ray *copy_ray(t_ray *r2)
 {
-	int	x;
-	int	y;
+	t_ray *r1;
 
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			color_float_to_int(pix[x][y]->color);
-//			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win,
-//				x, y, pix[x][y]->color->rgb);
-			mlx_pixel_put(pix[x][y]->ima->mlx_ptr, pix[x][y]->ima->mlx_win,
-				x, y, pix[x][y]->color->rgb);
-			y++;
-		}
-		x++;
-	}
+	r1 = malloc(sizeof(t_ray));
+	r1->p_origin = malloc(sizeof(t_coord));
+	r1->v_dir = malloc(sizeof(t_coord));
+	r1->p_origin->x = r2->p_origin->x;
+	r1->p_origin->y = r2->p_origin->y;
+	r1->p_origin->z = r2->p_origin->z;
+	r1->p_origin->t = r2->p_origin->t;
+
+	return(r1);
 }

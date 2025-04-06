@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:30 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/06 12:06:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static void	save_other_light(char *line, t_pix **pix, t_num_obj *num_obj)
 	ratio = ft_strtod(line, &line);
 	skip_whitespace((const char **)&line);
 	parse_color(&line, &color.r, &color.g, &color.b);
+
+	color.r = int_to_float(color.r);
+	color.g = int_to_float(color.g);
+	color.b = int_to_float(color.b);
+
 	other_light->p_coord->x = position.x;
 	other_light->p_coord->y = position.y;
 	other_light->p_coord->z = position.z;

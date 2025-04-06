@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:39 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/06 11:22:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	save_cylinder(char *line, t_pix **pix, t_num_obj *num_obj)
 	parse_float(&line, &height);
 	skip_whitespace((const char **)&line);
 	parse_color(&line, &color.r, &color.g, &color.b);
+
+	color.r = int_to_float(color.r);
+	color.g = int_to_float(color.g);
+	color.b = int_to_float(color.b);
+	
 	cylinder = pix[0][0].obj[3][num_obj->cylinder];
 	if (!cylinder)
 		return ;
