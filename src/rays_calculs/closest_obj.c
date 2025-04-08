@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 16:39:10 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/07 17:22:43 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void find_closest_obj(t_pix ***pix)
 
 void closest_obj(t_pix *pix)
 {
-//	float closestt = INT_MAX;//il faudrait initialiser comps->closest t a INT MAX....
 	int	x;
 	int	y;
 	
@@ -54,7 +53,6 @@ void closest_obj(t_pix *pix)
 		{
 			if (pix->hits[x][y]->t1 < pix->comps->closestt && pix->hits[x][y]->t1 > 0)/// ou plus grand que zero...
 			{
-			//	closestt = pix->hits[x][y]->t1;//aw aw
 				pix->comps->closestt = pix->hits[x][y]->t1;
 				pix->comps->obj = pix->obj[x][y];
 				pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
@@ -62,18 +60,12 @@ void closest_obj(t_pix *pix)
 			}
 			else if (pix->hits[x][y]->t2 < pix->comps->closestt &&  pix->hits[x][y]->t2 > 0)/// ou plus grand que zero...
 			{
-			//	pix->comps->closestt = pix->hits[x][y]->t2;// aw aw
 				pix->comps->closestt = pix->hits[x][y]->t2;
 				pix->comps->obj = pix->obj[x][y];
 				pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
 				pix->comps->t_count = 1;
 			}
-/*			else
-			{
-				pix->comps->r_ray = copy_ray(pix->r_original);
-			}*/
 			printf("closestt %.2f \n", pix->comps->closestt); 
-
 			y++;
 		}
 		x++;
@@ -106,11 +98,6 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
-			// Calculer le point d'intersection
-/*			if (pix[x][y]->comps->t_count == 0)
-			{
-				y++;
-			}*/
 			pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_ray, pix[x][y]->comps->closestt);
 			printf("p_touch (point d'intersection) : x = %f, y = %f, z = %f\n",
 				pix[x][y]->comps->p_touch->x,
@@ -122,7 +109,6 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
-			//!!! est-ce que r_ray normé ou pas?????
 			// Calculer le vecteur œil : inverse de la direction du rayon
 			pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_ray->v_dir);
 			if (!pix[x][y]->comps->v_eye)
@@ -162,7 +148,6 @@ void prepare_computation(t_pix ***pix)
 			}
 			else
 				pix[x][y]->comps->inside = false;
-
 			y++;
 		}
 		x++;

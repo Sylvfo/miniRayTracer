@@ -10,7 +10,7 @@
 			"name": "Debugminirt",
 			"program": "/home/syl/42/miniRayTracder/minirt",
 			"args": [
-				"/home/syl/42/miniRayTracder/test_sphere_corentin.rt"
+				"/home/syl/42/miniRayTracder/1sphere.rt"
 			],
 			"cwd": "${workspaceFolder}"
 		}

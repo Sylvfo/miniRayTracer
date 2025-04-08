@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 23:52:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/08 13:18:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_ray
 {
 	t_coord	*p_origin;
 	t_coord	*v_dir;
-//	t_coord	*v_norm;
 }	t_ray;
 
 ////////// SCENE //////////
@@ -103,16 +102,7 @@ typedef struct s_camera
 	t_coord		*p_coord;
 	t_coord		*v_axe;
 	float		fov;
-//	t_coord		vn_axe_x;
-//	t_coord		vn_axe_y;
-//	t_coord		vn_axe_z;
-	//taille de l image. 
 	float		*m_transf; // initialiser comme identity matrix
-//	float		caneva_width; // image
-//	float		caneva_hight; // image	
-//	float		viewport_width; // viewport L1
-//	float		viewport_height; // L2
-	//matrice transformation. 
 	float		view_width;// wall??
 	float		view_height; // wall??
 	float		canva_height;
@@ -121,7 +111,6 @@ typedef struct s_camera
 	float		half_width;
 	float		pixel_size;
 	struct t_camera	*saved_camera; // (si on se perd. ou camera origines) est-ce que c est enregistré dans init?? 
-//	type de rendu. 
 }	t_camera;
 
 ////////// ?? //////////
@@ -153,7 +142,6 @@ typedef struct s_comps
 	t_coord	*v_eye; //inverse du ray de base
 	t_coord	*v_norm_parral;
 	t_ray	*r_ray;
-//	t_coord *v_light;
 	bool	inside;
 	int 	t_count;
 }	t_comps;
@@ -171,11 +159,9 @@ typedef struct s_pix
 
 	//in each pixel. 
 	float	vpx;// viewport x
-	float vpy;// viewport y
-//	t_ray 		*r_ray; //ray pour les calculs. 
+	float 	vpy;// viewport y
 	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
-
 	t_hits		***hits; //array de hits pour les objets
 //	int		t_count;//ici compter le nombre d intersection?
 	t_comps	*comps; // ici on peut faire une array pour mettre les objets dans l ordre où ils se font toucher...

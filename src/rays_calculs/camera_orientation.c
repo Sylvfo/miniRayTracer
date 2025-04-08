@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 14:46:23 by syl               #+#    #+#             */
-/*   Updated: 2025/03/14 22:47:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/07 17:19:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,50 +66,3 @@ float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 	m_view = matrix_multiplication_44(m_orientation, m_translation);
 	return (m_view);
 }
-
-
-/*
-float *view_camera(t_coord *p_from, t_coord *p_to, t_coord *v_up)
-{
-	float *m_view;
-	t_coord *v_forward;
-	t_coord *v_left;
-	t_coord *vn_up;
-	t_coord *v_true_up;
-	float	*m_orientation;
-	float *m_translation;
-
-	v_forward = substraction(p_to, p_from);// defint axe z de la caméra
-	v_forward = normalize_vector(v_forward);
-	vn_up = normalize_vector(v_up);
-	v_left = cross_product(v_forward, vn_up); //definit l axe X de la caméra
-//	v_left = cross_product(vn_up, v_forward); peut etre il faut changer comme ça
-	v_true_up = cross_product(v_left, v_forward); //definit l axe Y de la camera . 
-	m_orientation = create_matrix(4, 4);
-
-	matrix_fill(m_orientation, 0, 0, v_left->x);
-	matrix_fill(m_orientation, 1, 0, v_true_up->x);
-	matrix_fill(m_orientation, 2, 0, (-1 * v_forward->x));
-	matrix_fill(m_orientation, 3, 0, 0);
-
-	matrix_fill(m_orientation, 0, 1, v_left->y);
-	matrix_fill(m_orientation, 1, 1, v_true_up->y);
-	matrix_fill(m_orientation, 2, 1, (-1 * v_forward->y));
-	matrix_fill(m_orientation, 3, 1, 0);
-
-	matrix_fill(m_orientation, 0, 2, v_left->z);
-	matrix_fill(m_orientation, 1, 2, v_true_up->z);
-	matrix_fill(m_orientation, 2, 2, (-1 * v_forward->z));
-	matrix_fill(m_orientation, 3, 2, 0);
-
-	matrix_fill(m_orientation, 0, 3, 0);
-	matrix_fill(m_orientation, 1, 3, 0);
-	matrix_fill(m_orientation, 2, 3, 0);
-	matrix_fill(m_orientation, 3, 3, 1);
-	
-	m_translation = create_translation_matrix(-p_from->x, -p_from->y, -p_from->z);
-	m_view = matrix_multiplication_44(m_orientation, m_translation);
-	return (m_view);
-}
-
-*/
