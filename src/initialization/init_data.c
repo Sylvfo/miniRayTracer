@@ -162,7 +162,7 @@ t_pix	***init_data(t_num_obj *num_obj)
 	// pix et comps
 	assign_hits_to_pix(pix, hits, num_obj);
 	// retour d erreur!!!
-	init_matrix_ref(pix);
+//	init_matrix_ref(pix);
 	init_ima(pix); 
 	return (pix);
 }

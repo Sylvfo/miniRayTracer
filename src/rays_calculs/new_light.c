@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 23:55:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/08 14:49:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	new_light(t_pix ***pix)
 {
 	int	x;
 	int	y;
-	int a_effacer = 0;
+//	int a_effacer = 0;
 
 	x = 0;
 	while (x < WND_WIDTH)
@@ -24,11 +24,11 @@ void	new_light(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			if (pix[x][y]->comps->t_count == 1)
+		/*	if (pix[x][y]->comps->t_count == 1)
 			{
 				printf("on entre dans calcul lum pour %i %i et total %i\n", x, y, a_effacer);
 				a_effacer++;
-			}
+			}*/
 			ComputeLighting(pix[x][y]);
 			y++;
 		}
@@ -89,111 +89,6 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 
 	return (intensity);
 }
-
-/*FONCTIONNE A PEU PRES... AVANT DE CHANGER LIGHTS...
-float compute_pointlight(t_pix *pix, t_light *lux)
-{
-	t_coord *v_light;
-	float n_dot_l;
-	float intensity;
-
-	intensity = 0.0;
-
-	// Calcul du vecteur lumière (L)
-//	printf("Appel à substraction avec :\n");
-//	printf("lux->p_coord : x = %f, y = %f, z = %f\n", lux->p_coord->x, lux->p_coord->y, lux->p_coord->z);
-	printf("pix->comps->p_touch : x = %f, y = %f, z = %f\n", pix->comps->p_touch->x, pix->comps->p_touch->y, pix->comps->p_touch->z);
-	v_light = substraction(lux->p_coord, pix->comps->p_touch);
-//	printf("Vecteur lumière (L) : x = %f, y = %f, z = %f\n", v_light->x, v_light->y, v_light->z);
-
-	// Normalisation des vecteurs
-//	pix->comps->v_norm_parral = normalize_vector(pix->comps->v_norm_parral);
-	printf("Normale (N) normalisée : x = %f, y = %f, z = %f\n",
-		pix->comps->v_norm_parral->x, pix->comps->v_norm_parral->y, pix->comps->v_norm_parral->z);
-
-	v_light = normalize_vector(v_light);
-//	printf("Vecteur lumière (L) normalisé : x = %f, y = %f, z = %f\n",
-//		v_light->x, v_light->y, v_light->z);
-
-	// Calcul du produit scalaire entre la normale (N) et le vecteur lumière (L)
-	n_dot_l = dot_product(pix->comps->v_norm_parral, v_light);
-//	printf("Produit scalaire (N . L) : %f\n", n_dot_l);
-	// Vérification si le produit scalaire est positif
-	if (n_dot_l > 0)
-	{
-		intensity = lux->ratio * n_dot_l / (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
-		printf("Intensité calculée : %f\n", intensity);
-	}
-//	else
-//		printf("Produit scalaire négatif, aucune contribution lumineuse.\n");
-
-	// Libération de la mémoire pour le vecteur lumière
-	free(v_light);
-
-	return (intensity);
-}
-*/
-/*p
-float compute_pointlight(t_pix *pix, t_light *lux)
-{
-    t_coord *v_light;
-    float n_dot_l;
-    float intensity;
-
-    intensity = 0.0;
-
-    // Calcul du vecteur lumière (L)
-    v_light = substraction(lux->p_coord, pix->comps->p_touch);
-
-    // Normalisation des vecteurs
-    pix->comps->v_norm_parral = normalize_vector(pix->comps->v_norm_parral);
-    v_light = normalize_vector(v_light);
-
-    // Calcul du produit scalaire entre la normale et le vecteur lumière
-    n_dot_l = dot_product(pix->comps->v_norm_parral, v_light);
-    printf("Produit scalaire (N · L) : %f\n", n_dot_l);
-
-    // Vérifiez l'orientation de la normale pour qu'elle pointe vers la lumière
-    if (n_dot_l < 0) {
-        printf("Inverser la normale pour l'aligner avec la lumière\n");
-        pix->comps->v_norm_parral->x *= -1;
-        pix->comps->v_norm_parral->y *= -1;
-        pix->comps->v_norm_parral->z *= -1;
-        n_dot_l = dot_product(pix->comps->v_norm_parral, v_light);
-        printf("Produit scalaire corrigé (N · L) : %f\n", n_dot_l);
-    }
-
-    // Vérifiez à nouveau si la normale pointe toujours dans la direction correcte
-    if (n_dot_l > 0)
-    {
-        intensity = lux->ratio * n_dot_l;
-        printf("Intensité calculée : %f\n", intensity);
-    }
-    else
-        printf("Produit scalaire négatif, aucune contribution lumineuse.\n");
-
-    // Libération de la mémoire pour le vecteur lumière
-    free(v_light);
-
-    return (intensity);
-}*/
-
-/* 
-float 	compute_pointlight(t_pix *pix, t_light *lux)
-{
-	t_coord *v_light;
-	float n_dot_l;
-	float i;
-
-	i = 0.0;
-	v_light = substraction(lux->p_coord, pix->comps->p_touch);
-	n_dot_l =  dot_product(pix->comps->v_norm_parral, v_light);
-	if (n_dot_l > 0) 
-		i = -lux->ratio * n_dot_l/((length_vector(pix->comps->v_norm_parral) * length_vector(v_light)));
-	i = lux->ratio * n_dot_l/((length_vector(pix->comps->v_norm_parral) * length_vector(v_light)));
-	free (v_light);
-	return (i);
-} */
 
 t_hits intersect_object(t_obj *object, t_ray *ray)
 {

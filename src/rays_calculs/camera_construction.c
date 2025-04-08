@@ -1,26 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_orientation.c                               :+:      :+:    :+:   */
+/*   camera_construction.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 14:46:23 by syl               #+#    #+#             */
-/*   Updated: 2025/04/07 17:19:01 by syl              ###   ########.fr       */
+/*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
+/*   Updated: 2025/04/08 14:15:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//You specify where you want the eye to be in the scene (the from parameter)
-//the point in the scene at which you want to look (the to parameter)
-//a vector indicating which direction is up
+void constructing_camera(t_pix ***pix)
+{
+	// a deplacer dans init
+	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
+	pix[0][0]->obj[0][0]->color->r = int_to_float(pix[0][0]->obj[0][0]->color->r);
+	pix[0][0]->obj[0][0]->color->g = int_to_float(pix[0][0]->obj[0][0]->color->g);
+	pix[0][0]->obj[0][0]->color->b = int_to_float(pix[0][0]->obj[0][0]->color->b);
+	pix[0][0]->cam->canva_height = WND_HEIGHT;
+	pix[0][0]->cam->canva_width = WND_WIDTH;
+	pix[0][0]->cam->fov *= 3.1415 / 180;
+	pix[0][0]->cam->m_transf = view_camera(pix[0][0]->cam->p_coord, pix[0][0]->cam->v_axe);
+	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
+	pixel_size(pix);
+}
 
-//The function then returns to you the corresponding transformation matrix.
-// p_from = camera coord??
-// p_to???
-//v_up c est le vecteur normé de la caméra??
+// calcul la taille des "pixels" sur le viewport
+void pixel_size(t_pix ***pix)
+{
+	float half_view;
+	float aspect;
 
+	half_view = tan(pix[0][0]->cam->fov / 2);
+	aspect = pix[0][0]->cam->canva_height / pix[0][0]->cam->canva_width;
+	if (aspect >= 1)
+	{
+		pix[0][0]->cam->half_width = half_view;
+		pix[0][0]->cam->half_height = half_view / aspect;
+	}
+	if (aspect < 1)
+	{
+		pix[0][0]->cam->half_height = half_view;
+		pix[0][0]->cam->half_width = half_view * aspect;		
+	}
+	pix[0][0]->cam->pixel_size = (pix[0][0]->cam->half_width * 2) / pix[0][0]->cam->canva_height;
+}
+
+// creer la matrice de transformation de la camera pour pouvoir la bouger
 float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 {
 	float *m_view;
@@ -32,7 +60,6 @@ float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 	float *m_translation;
 
 	vn_up = create_vector(0, 1, 0);// Axe Y global par défaut
-	
 	//verifier si pas pareil....
 	// Vérifier que v_forward n'est pas colinéaire avec v_up
 	if (fabs(v_dircam->x) < 1e-6 && fabs(v_dircam->z) < 1e-6)
@@ -61,7 +88,6 @@ float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 	matrix_fill(m_orientation, 1, 3, 0);
 	matrix_fill(m_orientation, 2, 3, 0);
 	matrix_fill(m_orientation, 3, 3, 1);
-	
 	m_translation = create_translation_matrix(-p_coordcam->x, -p_coordcam->y, -p_coordcam->z);
 	m_view = matrix_multiplication_44(m_orientation, m_translation);
 	return (m_view);

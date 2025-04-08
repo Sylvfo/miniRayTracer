@@ -6,12 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:31 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/10 11:12:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/08 14:22:29 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
+/*
 bool	init_matrix_ref(t_pix ***pix)
 {
 	t_matrix	*neo;
@@ -26,8 +26,8 @@ bool	init_matrix_ref(t_pix ***pix)
 	neo->m_identity = create_indentity_matrix_44();
 	link_pix_matrix(pix, neo);
 	return (true);
-}
-
+}*/
+/*
 void		link_pix_matrix(t_pix ***pix, t_matrix *neo)
 {
 	int	x;
@@ -47,7 +47,7 @@ void		link_pix_matrix(t_pix ***pix, t_matrix *neo)
 		x++;
 	}
 	return ;
-}
+}*/
 
 bool	init_ima(t_pix ***pix)
 {
