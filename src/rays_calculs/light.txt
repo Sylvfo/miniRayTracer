@@ -1,0 +1,24 @@
+1. Ajouter la lumière directionnelle (Diffuse Lighting)
+	Calculer l'éclairage diffus en fonction de la direction de la lumière et de la normale de l'objet au point d'intersection.
+	Utiliser la formule :
+	diffuse = light_intensity * max(0, dot(normal, light_direction))
+	Implémenter une fonction pour gérer ce calcul.
+2. Ajouter la lumière spéculaire (Specular Lighting)
+	Calculer l'éclairage spéculaire pour simuler les reflets brillants.
+	Utiliser la formule :
+		specular = light_intensity * (max(0, dot(reflection_vector, view_vector)) ^ shininess)
+	Implémenter une fonction pour gérer ce calcul.
+3. Combiner les types de lumière
+	Combiner l'éclairage ambiant, diffus et spéculaire pour obtenir un éclairage réaliste.
+	La formule finale sera :
+	final_color = ambient + diffuse + specular
+4. Gérer les ombres (Shadow Calculation)
+	Déterminer si un point est dans l'ombre d'un autre objet.
+	Lancer un rayon depuis le point d'intersection vers la source de lumière et vérifier s'il est bloqué par un autre objet.
+5. Refactoriser le code d'éclairage
+	Créer une fonction centralisée, comme compute_lighting, qui gère tous les types de lumière (ambiant, diffus, spéculaire) et les ombres.
+6. Tester avec plusieurs sources de lumière
+	Ajouter la gestion de plusieurs sources de lumière dans la scène.
+	Parcourir toutes les lumières et additionner leurs contributions.
+7. Optimiser les calculs
+	Réduire les calculs redondants, comme la normalisation des vecteurs ou le recalcul des directions.
