@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 12:02:03 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 14:27:08 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
 //float *create_rotation_x_matrix(float radian);
 //t_coord *rotation_axe_x(t_coord *p_point, float radian);
 //t_coord *rotation_axe_x_inverse(t_coord *p_point, float radian);
-//float *create_rotation_x_matrix_inverse(float radian);
+//float *_x_matrix_inverse(float radian);
 
 //matrix_rotations.c
 t_coord *rotations(t_coord *p_point, int axe, int dir,  float radian);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/06 14:36:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 14:38:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@
 # define GREEN2 "\033[1;32m"   // Vert clair
 # define GREEN3 "\033[0;92m"   // Vert brillant
 # define GREEN4 "\033[0;36m"   // Cyan-vert
+
+enum e_obj_type
+{
+	NONE,
+	SPHERE,
+	PLAN,
+	CYLINDER,
+};
 
 enum e_axes
 {

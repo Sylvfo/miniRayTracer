@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/08 14:44:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 14:24:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_obj
 	float	*m_transl;
 	float	*m_rot;
 	float	*m_scale;
+	t_coord *v_norm_parral_plan;
+	int		obj_type;
 }	t_obj;
 
 // mem array que obj
@@ -84,6 +86,7 @@ typedef struct s_hits
 	float		t2;
 	int	 		t_count;
 	t_ray		*r_ray_calculs;
+	int			obj_type;
 }	t_hits;
 
 // light[0][0] = ambiant light.
@@ -116,7 +119,6 @@ typedef struct s_camera
 	float    	half_height;//est-ce que c est vraiment important laisser dans data struct? O
 	float		half_width;// pareil, on utilise 1 fois...
 	float		pixel_size;
-
 	struct t_camera	*saved_camera; // (si on se perd. ou camera origines) est-ce que c est enregistré dans init?? 
 //	int			render_type; pour les bonus. type render, type preview
 }	t_camera;
@@ -134,8 +136,6 @@ typedef struct s_image
 	void	*mlx_win;
 }	t_image;
 
-
-
 typedef struct s_comps
 {
 	float	closestt;
@@ -146,6 +146,7 @@ typedef struct s_comps
 	t_ray	*r_ray;
 	bool	inside;
 	int 	t_count;
+	int		obj_type;
 }	t_comps;
 
 ////////// CANVA //////////
@@ -157,15 +158,12 @@ typedef struct s_pix
 	t_obj		***obj;
 	t_light		***lux;
 	
-	
 	//different in each pixel. 
-
 	// les 3 là vraiment important dans data struct??
 	// une fois ray calculé plus besoin....
 	float		vpx;// viewport x
 	float 		vpy;// viewport y
 	t_coord		*p_viewport; // point sur le viewport avec xy. 
-
 	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
 	t_hits		***hits; //array de hits pour stocker les intersections objets

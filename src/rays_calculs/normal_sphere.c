@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 14:36:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 11:00:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,11 @@ t_coord	*normal_at(t_obj *object, t_coord *point_on_object)
 	world_normal->t = 0;
 
 	// Normaliser le vecteur résultant
-	t_coord *normalized_normal = normalize_vector(world_normal);
+//	t_coord *normalized_normal = normalize_vector(world_normal);
+	// syl a modifié pour ajouter malloc a normalized_normal
+	t_coord *normalized_normal = malloc(sizeof(t_coord));
+	normalized_normal = normalize_vector(world_normal);
+
 	free(world_normal);
 	
 	return (normalized_normal);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/04 11:56:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 14:54:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	main(int argc, char **argv)
 ////////////////////////////////
 	print_camera(pix);
 	print_spheres(pix, num_obj);
-//	print_planes(pix, num_obj);
+	print_planes(pix, num_obj);
 //	print_cylinders(pix, num_obj);
 //	print_lights(pix, num_obj);
 ////////////////////////////////

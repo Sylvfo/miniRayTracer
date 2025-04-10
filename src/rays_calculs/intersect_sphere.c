@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/08 14:44:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 15:10:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void main_intersections(t_pix ***pix)
 	int	x;
 	int	y;
 	int k;
+	int l;
 
 	x = 0;
 	while (x < WND_WIDTH)
@@ -31,9 +32,19 @@ void main_intersections(t_pix ***pix)
 			{
 				transform(pix[x][y], pix[x][y]->obj[1][k]->m_tranf, k);
 				intersect_sphere(pix[x][y], k);
-				// intersect_plan
-				//intersect_cylinder
 				k++;
+			}
+			l = 0;
+			while(pix[x][y]->obj[1][l] != NULL)
+			{
+				printf("hehheheh\n");
+				print_point(pix[x][y]->obj[2][l]->p_coord);
+				transform_plan(pix[x][y], pix[x][y]->obj[2][l]->m_tranf, l);
+				intersect_plan(pix[x][y], l);
+				if (pix[x][y]->hits[2][0]->t1 != 0)
+					printf("intersect plan t1: %.2f \n", pix[x][y]->hits[2][0]->t1);
+				//intersect_cylinder
+				l++;
 			}
 			y++;
 		}

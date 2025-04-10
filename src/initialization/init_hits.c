@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 09:52:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 13:23:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 	hits[0][0]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
 	//rajoutée par sylvi pour rays
 	hits[0][0]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+	hits[0][0]->obj_type = NONE;
 	while (i < num_obj->sphere)
 	{
 		hits[1][i] = malloc(sizeof(t_hits));
@@ -59,18 +60,43 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 		hits[1][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
 		//rajoutée par sylvi pour rays
 		hits[1][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+		hits[1][i]->obj_type = SPHERE;
 		i++;
 	}
 	i = 0;
 	while (i < num_obj->plan)
 	{
 		hits[2][i] = malloc(sizeof(t_hits));
+		//rajoutée par sylvi pour rays
+		hits[2][i]->r_ray_calculs = malloc(sizeof(t_ray));
+		if (hits[2][i]->r_ray_calculs == NULL)
+		{
+			printf("problem with malloc\n");
+			exit(1);
+		}
+		//rajoutée par sylvi pour rays
+		hits[2][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+		//rajoutée par sylvi pour rays
+		hits[2][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+		hits[2][i]->obj_type = PLAN;
 		i++;
 	}
 	i = 0;
 	while (i < num_obj->cylinder)
 	{
 		hits[3][i] = malloc(sizeof(t_hits));
+		//rajoutée par sylvi pour rays
+		hits[3][i]->r_ray_calculs = malloc(sizeof(t_ray));
+		if (hits[1][i]->r_ray_calculs == NULL)
+		{
+			printf("problem with malloc\n");
+			exit(1);
+		}
+		//rajoutée par sylvi pour rays
+		hits[3][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+		//rajoutée par sylvi pour rays
+		hits[3][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+		hits[3][i]->obj_type = CYLINDER;
 		i++;
 	}
 	hits[0][1] = NULL;

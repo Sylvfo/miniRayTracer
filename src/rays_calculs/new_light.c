@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/08 14:49:13 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/10 15:03:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 	// Calcul du vecteur lumière (L)
 //	printf("Appel à substraction avec :\n");
 //	printf("lux->p_coord : x = %f, y = %f, z = %f\n", lux->p_coord->x, lux->p_coord->y, lux->p_coord->z);
-	printf("pix->comps->p_touch : x = %f, y = %f, z = %f\n", pix->comps->p_touch->x, pix->comps->p_touch->y, pix->comps->p_touch->z);
+//	printf("pix->comps->p_touch : x = %f, y = %f, z = %f\n", pix->comps->p_touch->x, pix->comps->p_touch->y, pix->comps->p_touch->z);
 	v_light = substraction(lux->p_world, pix->comps->p_touch);
 //	printf("Vecteur lumière (L) : x = %f, y = %f, z = %f\n", v_light->x, v_light->y, v_light->z);
 
 	// Normalisation des vecteurs
 //	pix->comps->v_norm_parral = normalize_vector(pix->comps->v_norm_parral);
-	printf("Normale (N) normalisée : x = %f, y = %f, z = %f\n",
-		pix->comps->v_norm_parral->x, pix->comps->v_norm_parral->y, pix->comps->v_norm_parral->z);
+//	printf("Normale (N) normalisée : x = %f, y = %f, z = %f\n",
+//		pix->comps->v_norm_parral->x, pix->comps->v_norm_parral->y, pix->comps->v_norm_parral->z);
 
 	v_light = normalize_vector(v_light);
 //	printf("Vecteur lumière (L) normalisé : x = %f, y = %f, z = %f\n",
@@ -79,7 +79,7 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 	if (n_dot_l > 0)
 	{
 		intensity = lux->ratio * n_dot_l / (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
-		printf("Intensité calculée : %f\n", intensity);
+	//	printf("Intensité calculée : %f\n", intensity);
 	}
 //	else
 //		printf("Produit scalaire négatif, aucune contribution lumineuse.\n");
