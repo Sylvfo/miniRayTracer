@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/10 14:46:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/13 16:58:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 //raytracing_main.c
 void raytracing(t_pix ***pix);
+
+struct timeval time_now(struct timeval start, char *str);
+
 
 //camera_construction.c 
 void constructing_camera(t_pix ***pix);
@@ -55,6 +58,10 @@ void set_transformation(t_obj ***obj);
 void set_transformation_light(t_light ***lux);
 void transform_lights(t_light ***lux);
 void transform_plan(t_pix *pix, float *m_transf, int plan_num);
+
+//transform_rotation.c
+void rotation_from_vector(float *m_rot, t_coord *to);
+void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot);
 
 //intersect_plan.c
 void intersect_plan(t_pix *pix, int plan_num);

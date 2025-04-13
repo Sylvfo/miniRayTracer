@@ -6,27 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/10 14:54:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/13 17:05:59 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minirt.h"
-
-//Docstring
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 09:36:51 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/03 07:25:42 by cmegret          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-//#include "../inc/minirt.h"
 
  void	print_spheres(t_pix ***pix, t_num_obj *num_obj)
 {
@@ -98,7 +82,7 @@ int	main(int argc, char **argv)
 {
 	t_pix		***pix;
 	t_num_obj	*num_obj;
-
+	
 	if (argc != 2)
 	{
 		printf("Usage:s %s <scene_file.rt>\n", argv[0]);
@@ -113,17 +97,16 @@ int	main(int argc, char **argv)
 	parse_scene_file(argv[1], num_obj);
 	pix = init_data(num_obj);
 	save_scene_file(argv[1], pix, num_obj);
-	printf("ici ok PPPP\n");
 ////////////////////////////////
-	print_camera(pix);
-	print_spheres(pix, num_obj);
-	print_planes(pix, num_obj);
+//	print_camera(pix);
+//	print_spheres(pix, num_obj);
+//	print_planes(pix, num_obj);
 //	print_cylinders(pix, num_obj);
 //	print_lights(pix, num_obj);
 ////////////////////////////////
 	raytracing(pix);
 //	printf("calculs done\n");
-	printf("\n\nici pix  ");
+//	printf("\n\nici pix  ");
 /*	print_point(pix[100][50]->r_original->p_origin);
 	printf("\nici dire  ");
 	print_vector(pix[100][50]->r_original->v_dir);

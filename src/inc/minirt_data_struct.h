@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/10 14:24:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/13 15:07:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_ray
 // object[3][0] cylinder
 typedef struct s_obj
 {
+// donné dans le parsing
 	t_coord	*p_coord;
 	t_color	*color;
 	float	difuse;
@@ -70,13 +71,19 @@ typedef struct s_obj
 	float	diam;
 	float	height;
 	t_coord	*v_axe;
+// 	pour calcul transf matrix
 	float	*m_identity; //
 	float	*m_tranf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
 	float	*m_transl;
 	float	*m_rot;
+	//	float	*m_rot_x;
+//	float	*m_rot_y;
+//	float	*m_rot_z;
 	float	*m_scale;
+// v norm parr pour calcul lumières	
 	t_coord *v_norm_parral_plan;
 	int		obj_type;
+// un truc pour obj modifié pour calculs quand on déplace un objet....	
 }	t_obj;
 
 // mem array que obj

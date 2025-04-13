@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/10 14:38:56 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/13 17:07:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # include "minirt_window.h"
 # include "minirt_ray_calculs.h"
 # include "minirt_vect_point_color.h"
+
+//a effacer
+#include <sys/time.h>
 
 // voir quelle taille....
 # define EPSILON 0.001

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/10 15:10:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/13 16:36:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,13 @@ void main_intersections(t_pix ***pix)
 				k++;
 			}
 			l = 0;
-			while(pix[x][y]->obj[1][l] != NULL)
+			while(pix[x][y]->obj[2][l] != NULL)
 			{
-				printf("hehheheh\n");
-				print_point(pix[x][y]->obj[2][l]->p_coord);
 				transform_plan(pix[x][y], pix[x][y]->obj[2][l]->m_tranf, l);
 				intersect_plan(pix[x][y], l);
-				if (pix[x][y]->hits[2][0]->t1 != 0)
-					printf("intersect plan t1: %.2f \n", pix[x][y]->hits[2][0]->t1);
-				//intersect_cylinder
 				l++;
 			}
+			//intersect_cylinder
 			y++;
 		}
 		x++;

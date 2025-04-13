@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/10 15:05:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/13 18:25:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,37 +89,27 @@ void prepare_computation(t_pix ***pix)
 	int x;
 	int y;
 
+	// a effacer
+	struct timeval start;
+	gettimeofday(&start, NULL);
+
 	x = 0;
 	while (x < WND_WIDTH)
 	{
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			// On vérifie d'abord que le pixel et sa structure comps sont correctement alloués
-			if (!pix[x][y] || !pix[x][y]->comps)
-			{
-				printf("Warning: La structure comps est manquante pour le pixel (%d, %d)\n", x, y);
-				y++;
-				continue;
-			}
-			// Vérifier si un objet a été trouvé pour ce pixel
-			if (!pix[x][y]->comps->obj)
-			{
-				printf("Warning: Aucun objet trouvé pour le pixel (%d, %d)\n", x, y);
-				y++;
-				continue;
-			}
+			if (x == 12 && y == 12)
+				start = time_now(start, " start");
 			pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_ray, pix[x][y]->comps->closestt);
-		//	printf("p_touch (point d'intersection) : x = %f, y = %f, z = %f\n",
-		//		pix[x][y]->comps->p_touch->x,
-		//		pix[x][y]->comps->p_touch->y,
-		//		pix[x][y]->comps->p_touch->z);
 			if (!pix[x][y]->comps->p_touch)
 			{
 				printf("Error: Échec du calcul du point d'intersection pour le pixel (%d, %d)\n", x, y);
 				y++;
 				continue;
 			}
+			if (x == 12 && y == 12)
+				start = time_now(start, " position");
 			// Calculer le vecteur œil : inverse de la direction du rayon
 			pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_ray->v_dir);
 			if (!pix[x][y]->comps->v_eye)
@@ -129,6 +119,8 @@ void prepare_computation(t_pix ***pix)
 				y++;
 				continue;
 			}
+			if (x == 12 && y == 12)
+				start = time_now(start, " v eye");
 			// Calculer la normale au point d'intersection
 /*			//ici sylvie modifie pour tester avec un normal at plus simple
 			pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, pix[x][y]->comps->obj->p_coord);
@@ -137,20 +129,20 @@ void prepare_computation(t_pix ***pix)
 			if (pix[x][y]->comps->obj_type = SPHERE)
 			{
 				pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
-				if (!pix[x][y]->comps->v_norm_parral)
+			/*	if (!pix[x][y]->comps->v_norm_parral)
 				{
 					printf("Error: Échec du calcul de la normale pour le pixel (%d, %d)\n", x, y);
 					free(pix[x][y]->comps->p_touch);
 					free(pix[x][y]->comps->v_eye);
 					y++;
 					continue;
-				}
+				}*/
 			}
-			if (pix[x][y]->comps->obj_type = PLAN)
-			{
-				// A MODIFIER CAR MEME VECTEUR NORMAL POUR UN MEME PLAN
-				pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);	
-			}
+			// normal at plan c est pareil que l axe donné au début
+			if (pix[x][y]->comps->obj_type == PLAN)
+				pix[x][y]->comps->v_norm_parral = pix[x][y]->comps->obj->v_axe;	
+			if (x == 12 && y == 12)
+				start = time_now(start, " normal at");
 			// Vérifier si le rayon pénètre dans l'objet.
 			// Si le produit scalaire entre la normale et le vecteur œil est négatif,
 			// alors le rayon est à l'intérieur. Inverser dans ce cas la normale.
@@ -161,6 +153,8 @@ void prepare_computation(t_pix ***pix)
 				pix[x][y]->comps->v_norm_parral->y = -pix[x][y]->comps->v_norm_parral->y;
 				pix[x][y]->comps->v_norm_parral->z = -pix[x][y]->comps->v_norm_parral->z;
 			}
+			if (x == 12 && y == 12)
+				start = time_now(start, " dot prod");
 			else
 				pix[x][y]->comps->inside = false;
 			y++;
