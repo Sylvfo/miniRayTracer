@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/13 16:58:52 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 16:13:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 //raytracing_main.c
 void raytracing(t_pix ***pix);
 
+// a effacer après
 struct timeval time_now(struct timeval start, char *str);
-
 
 //camera_construction.c 
 void constructing_camera(t_pix ***pix);
@@ -53,11 +53,13 @@ void prepare_computation(t_pix ***pix);
 
 //intersect_sphere.c
 t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
-void transform(t_pix *pix, float *m_transf, int sphere_num);
+
 void set_transformation(t_obj ***obj);
 void set_transformation_light(t_light ***lux);
 void transform_lights(t_light ***lux);
-void transform_plan(t_pix *pix, float *m_transf, int plan_num);
+void transform_obj(t_pix *pix, float *m_transf, int obj_type, int obj_num);
+//void transform_plan(t_pix *pix, float *m_transf, int plan_num);
+//void transform(t_pix *pix, float *m_transf, int sphere_num);
 
 //transform_rotation.c
 void rotation_from_vector(float *m_rot, t_coord *to);
@@ -65,6 +67,11 @@ void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot);
 
 //intersect_plan.c
 void intersect_plan(t_pix *pix, int plan_num);
+
+//intersect_cylinder.c
+void intersect_cylinder(t_pix *pix, int cyl_num);
+bool	check_cap(t_pix *pix, float t, int cyl_num);
+void intersect_caps(t_pix *pix, int cyl_num);
 
 //new_light
 void	new_light(t_pix ***pix);

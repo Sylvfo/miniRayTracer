@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/13 15:07:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 16:21:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_obj
 	float	diam;
 	float	height;
 	t_coord	*v_axe;
+	bool	closed_up; // for cylinder, for bonus...
+	bool	closed_down; // for cylinder, for bonus...
 // 	pour calcul transf matrix
 	float	*m_identity; //
 	float	*m_tranf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale

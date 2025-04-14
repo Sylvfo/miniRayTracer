@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/13 16:36:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 14:44:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void main_intersections(t_pix ***pix)
 	int	y;
 	int k;
 	int l;
+	int m;
 
 	x = 0;
 	while (x < WND_WIDTH)
@@ -28,20 +29,29 @@ void main_intersections(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			k = 0;
-			while(pix[x][y]->obj[1][k] != NULL)
+			while(pix[x][y]->obj[SPHERE][k] != NULL)
 			{
-				transform(pix[x][y], pix[x][y]->obj[1][k]->m_tranf, k);
+				transform_obj(pix[x][y], pix[x][y]->obj[SPHERE][k]->m_tranf, SPHERE, k);
+			//	transform(pix[x][y], pix[x][y]->obj[1][k]->m_tranf, k);
 				intersect_sphere(pix[x][y], k);
 				k++;
 			}
 			l = 0;
-			while(pix[x][y]->obj[2][l] != NULL)
+			while(pix[x][y]->obj[PLAN][l] != NULL)
 			{
-				transform_plan(pix[x][y], pix[x][y]->obj[2][l]->m_tranf, l);
+				transform_obj(pix[x][y], pix[x][y]->obj[PLAN][l]->m_tranf, PLAN, l);
+			//	transform_plan(pix[x][y], pix[x][y]->obj[2][l]->m_tranf, l);
 				intersect_plan(pix[x][y], l);
 				l++;
 			}
-			//intersect_cylinder
+			m = 0;
+			while(pix[x][y]->obj[CYLINDER][m] != NULL)
+			{
+				transform_obj(pix[x][y], pix[x][y]->obj[CYLINDER][m]->m_tranf, CYLINDER, m);
+			//	transform_cylinder(pix[x][y], pix[x][y]->obj[3][m]->m_tranf, m);
+				intersect_cylinder(pix[x][y], m);
+				m++;
+			}
 			y++;
 		}
 		x++;

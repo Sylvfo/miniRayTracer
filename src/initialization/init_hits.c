@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/10 13:23:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 14:35:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 		hits[3][i] = malloc(sizeof(t_hits));
 		//rajoutée par sylvi pour rays
 		hits[3][i]->r_ray_calculs = malloc(sizeof(t_ray));
-		if (hits[1][i]->r_ray_calculs == NULL)
+		if (hits[3][i]->r_ray_calculs == NULL)
 		{
 			printf("problem with malloc\n");
 			exit(1);

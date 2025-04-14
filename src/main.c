@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/13 17:05:59 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 13:54:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	main(int argc, char **argv)
 	t_pix		***pix;
 	t_num_obj	*num_obj;
 	
+	pix = NULL;
+
 	if (argc != 2)
 	{
 		printf("Usage:s %s <scene_file.rt>\n", argv[0]);
@@ -101,7 +103,7 @@ int	main(int argc, char **argv)
 //	print_camera(pix);
 //	print_spheres(pix, num_obj);
 //	print_planes(pix, num_obj);
-//	print_cylinders(pix, num_obj);
+	print_cylinders(pix, num_obj);
 //	print_lights(pix, num_obj);
 ////////////////////////////////
 	raytracing(pix);

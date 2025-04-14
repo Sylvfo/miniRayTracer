@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/13 18:25:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 14:30:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void closest_obj(t_pix *pix)
 	pix->comps->closestt = INT_MAX;
 	pix->comps->r_ray = copy_ray(pix->r_original);
 	x = 1;
-	while (x < 3) //ICI CHANGER POUR PLUS DE FORMES!!!!
+	while (x < 4) //ICI CHANGER POUR PLUS DE FORMES!!!!
 	{
 		y = 0;
 		while (pix->hits[x][y] != NULL)

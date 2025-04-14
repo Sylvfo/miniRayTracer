@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/13 16:02:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 14:46:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,16 @@ void set_transformation(t_obj ***obj)
 
 	obj[0][0]->m_tranf = create_indentity_matrix_44();
 	x = 1;
-	while(x < 3)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
+	while(x < 4)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
 	{
 		y = 0;
 		while(obj[x][y] != NULL)
 		{
 			obj[x][y]->m_identity = create_indentity_matrix_44();// a initialiser avant...
-		//	translation_on_identity(obj[x][y]->m_tranf, obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
 			obj[x][y]->m_transl = create_translation_matrix(obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
 			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_identity, obj[x][y]->m_transl);
-
 			// pas rotations.
-			if (obj[x][y]->obj_type == PLAN)// || obj[x][y]->obj_type == CYLINDER)
+			if (obj[x][y]->obj_type == PLAN || obj[x][y]->obj_type == CYLINDER)
 			{
 				obj[x][y]->m_rot = create_indentity_matrix_44(); // à déplacer
 				rotation_from_vector(obj[x][y]->m_rot, obj[x][y]->v_axe);
@@ -112,6 +110,31 @@ void transform_lights(t_light ***lux)
 		x++;
 	}
 }
+
+void transform_obj(t_pix *pix, float *m_transf, int obj_type, int obj_num)
+{
+/*	à retirer?
+	if (pix->hits[1][sphere_num]->r_ray_calculs == NULL)
+	{
+		printf("error malloc");
+		exit;
+	}
+	if (pix->hits[1][sphere_num]->r_ray_calculs->p_origin == NULL)
+	{
+		printf("error malloc2");
+		exit;
+	}
+	if (pix->hits[1][sphere_num]->r_ray_calculs->v_dir == NULL)
+	{
+		printf("error malloc3");
+		exit;
+	}*/
+	pix->hits[obj_type][obj_num]->r_ray_calculs->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
+	pix->hits[obj_type][obj_num]->r_ray_calculs->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir);
+	return ;
+}
+
+/*
 //void transform(t_ray *r_original, float *trans_matrix)
 //rename transform sphere
 void transform(t_pix *pix, float *m_transf, int sphere_num)
@@ -155,8 +178,6 @@ void transform_plan(t_pix *pix, float *m_transf, int plan_num)
 	}
 	pix->hits[2][plan_num]->r_ray_calculs->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
 	pix->hits[2][plan_num]->r_ray_calculs->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir);
-	//idem pour autres formes
-	
 	return ;
-}
+}*/
 
