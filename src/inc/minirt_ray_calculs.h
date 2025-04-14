@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/14 16:13:58 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/14 21:37:55 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void ComputeLighting(t_pix *pix);
 float 	compute_pointlight(t_pix *pix, t_light *lux);
 float light_intensity(t_pix *pix);//rajouter plusieurs lampes
 float 	compute_ambient(t_pix *pix);
+float	compute_specular(t_pix *pix, t_light *lux);
 
 /*
 //light.c
