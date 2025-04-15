@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:09:29 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/09 08:38:06 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/15 16:22:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_light	***allocate_light_arrays(t_num_obj *num_obj)
 		free_light_memory(light, 2);
 		return (NULL);
 	}
+	//rajoutée par sylvie
+	light[1][num_obj->light] = NULL;
 	return (light);
 }
 

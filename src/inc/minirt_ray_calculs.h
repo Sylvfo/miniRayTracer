@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/14 21:37:55 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/15 13:27:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ float 	compute_pointlight(t_pix *pix, t_light *lux);
 float light_intensity(t_pix *pix);//rajouter plusieurs lampes
 float 	compute_ambient(t_pix *pix);
 float	compute_specular(t_pix *pix, t_light *lux);
+t_hits intersect_objects(t_obj ***objects, t_ray *ray);
+bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects);
+t_hits intersect_object(t_obj *object, t_ray *ray);
+
+
 
 /*
 //light.c

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/14 10:03:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/15 13:40:59 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define WND_HEIGHT 300
 //# define VIEWP_WIDTH 1800 //dplacé dans ima
 //# define VIEWP_HIGHT 1000 // déplace dans ima
-# define BAKGROUND_COLOR 12639977 //11152468
+# define BAKGROUND_COLOR 12701914// bleu pale 12639977 //11152468
 # define DIST_VIEWP_ORIGIN 10 //Normalement c est 1 ou -1
 
 // not to interract with the last object touched. no neg value. 1 is for safety

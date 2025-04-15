@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/14 14:46:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/15 18:16:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,19 @@ void set_transformation_light(t_light ***lux)
 		y = 0;
 		while(lux[x][y] != NULL)
 		{
-			lux[x][y]->m_identity = create_indentity_matrix_44();// a initialiser avant...
-			lux[x][y]->m_transl = create_translation_matrix(lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z);
-			lux[x][y]->m_tranf = matrix_multiplication_44(lux[x][y]->m_identity, lux[x][y]->m_transl);
-			lux[x][y]->m_tranf = inverted_matrix_44(lux[x][y]->m_tranf);
-			y++;
+		//	lux[x][y]->m_identity = create_indentity_matrix_44();// a initialiser avant...
+		//	lux[x][y]->m_transl = create_translation_matrix(lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z);
+		//	lux[x][y]->m_tranf = matrix_multiplication_44(lux[x][y]->m_identity, lux[x][y]->m_transl);
+		//	lux[x][y]->m_tranf = inverted_matrix_44(lux[x][y]->m_tranf);
+		lux[x][y]->m_tranf = create_translation_matrix(lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z);	
+		y++;
 		}
 		x++;
 	}
 }
 void transform_lights(t_light ***lux)
 {
+	printf("enter in transform lights\n");
 	int x;
 	int y;
 
@@ -104,7 +106,16 @@ void transform_lights(t_light ***lux)
 		y = 0;
 		while(lux[x][y] != NULL)
 		{
+			//lux[x][y]->p_world = create_point(lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z);
+	/*		lux[x][y]->p_world = malloc(sizeof(t_coord));
+			lux[x][y]->p_world->x = lux[x][y]->p_coord->x;
+			lux[x][y]->p_world->y = lux[x][y]->p_coord->y;
+			lux[x][y]->p_world->z = lux[x][y]->p_coord->z;
+			lux[x][y]->p_world->t = lux[x][y]->p_coord->t;
+		*/
 			lux[x][y]->p_world = matrix_multiplication_44_coord(lux[x][y]->m_tranf, lux[x][y]->p_coord);
+			printf("Light %d: local=(%.2f, %.2f, %.2f), world=(%.2f, %.2f, %.2f)\n",y, lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z,
+			lux[x][y]->p_world->x, lux[x][y]->p_world->y, lux[x][y]->p_world->z);
 			y++;
 		}
 		x++;

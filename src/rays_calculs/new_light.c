@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/15 11:37:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/15 18:17:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	new_light(t_pix ***pix)
 {
 	int	x;
 	int	y;
+	float intensity;
 
 	x = 0;
 	while (x < WND_WIDTH)
@@ -24,7 +25,13 @@ void	new_light(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			ComputeLighting(pix[x][y]);
+			intensity = light_intensity(pix[x][y]);
+			pix[x][y]->color->r = pix[x][y]->comps->obj->color->r;
+			pix[x][y]->color->g = pix[x][y]->comps->obj->color->g;
+			pix[x][y]->color->b = pix[x][y]->comps->obj->color->b;
+			//scalar_mult_color(pix[x][y]->comps->obj->color, intensity);
+			scalar_mult_color(pix[x][y]->color, intensity);
+			//ComputeLighting(pix[x][y]);
 			y++;
 		}
 		x++;
@@ -32,15 +39,6 @@ void	new_light(t_pix ***pix)
 }
 
 //2
-void ComputeLighting(t_pix *pix)
-{
-	float intensity;
-
-	intensity = light_intensity(pix);
-	scalar_mult_color(pix->color, intensity);
-}
-
-//3
 float light_intensity(t_pix *pix)
 {
 	float intensity;
@@ -51,20 +49,49 @@ float light_intensity(t_pix *pix)
 	intensity += pix->lux[0][0]->ratio;
 	// Lumières ponctuelles
 	i = 0;
-    while (pix->lux[1][i] != NULL)
+	if (pix->comps->obj_type != NONE)
+	{
+		intensity += compute_pointlight(pix, pix->lux[1][0]);
+		intensity += compute_specular(pix, pix->lux[1][0]);
+	}
+ /*   while (pix->lux[1][i] != NULL)
     {
         if (pix->comps->t_count > 0)
         {
             // Lumière diffuse
-            intensity += compute_pointlight(pix, pix->lux[1][i]); // Problème ici
+            intensity += compute_pointlight(pix, pix->lux[1][i]);
             // Lumière spéculaire
-            intensity += compute_specular(pix, pix->lux[1][i]);
+          //  intensity += compute_specular(pix, pix->lux[1][i]);
         }
         i++;
-    }
+    }*/
     return (intensity);
 }
 
+float compute_pointlight(t_pix *pix, t_light *lux)
+{
+    t_coord *v_light;
+    float n_dot_l;
+    float intensity;
+
+    // Vérifier si le point d'intersection est dans l'ombre pour cette lumière
+    if (is_in_shadow(pix->comps->p_touch, lux, pix->obj))
+		return 0.0;
+
+    intensity = 0.0;
+    v_light = substraction(lux->p_world, pix->comps->p_touch);
+    v_light = normalize_vector(v_light);
+    n_dot_l = dot_product(pix->comps->v_norm_parral, v_light);
+    if (n_dot_l > 0)
+    {
+        intensity = lux->ratio * n_dot_l;// /
+                   // (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
+    }
+    free(v_light);
+    return intensity;
+} 
+
+/*
 //4
 float compute_pointlight(t_pix *pix, t_light *lux)
 {
@@ -72,9 +99,13 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 	float n_dot_l;
 	float intensity;
 
+    // Vérifier si le point d'intersection est dans l'ombre pour cette lumière
+	if (is_in_shadow(pix->comps->p_touch, lux, pix->obj))
+		return 0.0;
 	intensity = 0.0;
 	// Calcul du vecteur lumière (L)
-	v_light = substraction(lux->p_world, pix->comps->p_touch);
+	v_light = substraction(pix->comps->p_touch, lux->p_world);
+	//v_light = substraction(lux->p_world, pix->comps->p_touch);
 //	printf("Vecteur lumière (L) : x = %f, y = %f, z = %f\n", v_light->x, v_light->y, v_light->z);
 	// Normalisation des vecteurs
 	v_light = normalize_vector(v_light);
@@ -86,22 +117,21 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 	// Vérification si le produit scalaire est positif
 	if (n_dot_l > 0)
 	{
+	//	printf("dot = %.3f\n", n_dot_l);
 		intensity = lux->ratio * n_dot_l / (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
 		
-		//pris de gpt pour calculer l atténuation de la lumière par la distanche...
-		float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
-		float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
-		intensity = lux->ratio * n_dot_l * attenuation;
-	
-	
-		//	printf("Intensité calculée : %f\n", intensity);
+//		//pris de gpt pour calculer l atténuation de la lumière par la distanche...
+	//	float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
+	//	float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
+	//	intensity = lux->ratio * n_dot_l * attenuation;
+		//	printf("Intensité calculée : %f\n", intensity)
 	}
 //	else
 //		printf("Produit scalaire négatif, aucune contribution lumineuse.\n");
 	// Libération de la mémoire pour le vecteur lumière
 	free(v_light);
 	return (intensity);
-}
+}*/
 
 //5
 float	compute_specular(t_pix *pix, t_light *lux)
@@ -115,7 +145,6 @@ float	compute_specular(t_pix *pix, t_light *lux)
 	specular_intensity = 0.0;
 	// Calcul du vecteur lumière (L)
 	light_dir = normalize_vector(substraction(lux->p_world, pix->comps->p_touch));
-
 	// Calcul de la réflexion du vecteur lumière : R = 2 (N . L) N - L
 	reflect_dir = substraction(
 		scalar_mult(
@@ -147,7 +176,6 @@ float	compute_specular(t_pix *pix, t_light *lux)
 	return (specular_intensity);
 }
 
-/*
 t_hits intersect_object(t_obj *object, t_ray *ray)
 {
 	t_hits hits;
@@ -158,7 +186,6 @@ t_hits intersect_object(t_obj *object, t_ray *ray)
 	hits.t_count = 0;
 	hits.t1 = -1;
 	hits.t2 = -1;
-
 	// Calcul des coefficients pour l'équation quadratique
 	// !!!! ICI OBJET PAS DANS ESPACE WORLD
 	oc = substraction(ray->p_origin, object->p_coord);
@@ -236,7 +263,56 @@ bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects)
 	shadow_ray.v_dir = normalize_vector(shadow_ray.v_dir);
 
 	hits = intersect_objects(objects, &shadow_ray);
-	if (hits.t_count > 0 && hits.t1 > 0)
+	if (hits.t_count > 0 && hits.t1 > EPSILON)
+	{
+	//	printf(".");
 		return (true); // Le point est dans l'ombre
-	return (false);
+	}
+//	printf("-");
+		return (false);
+}
+
+/*
+ float compute_pointlight(t_pix *pix, t_light *lux)
+{
+    t_coord *v_light;
+    float n_dot_l;
+    float intensity;
+
+    // Vérifier si le point d'intersection est dans l'ombre pour cette lumière
+    if (is_in_shadow(pix->comps->p_touch, lux, pix->obj))
+        return 0.0;
+
+    intensity = 0.0;
+    v_light = substraction(lux->p_world, pix->comps->p_touch);
+    v_light = normalize_vector(v_light);
+    
+    n_dot_l = dot_product(pix->comps->v_norm_parral, v_light);
+    if (n_dot_l > 0)
+    {
+        intensity = lux->ratio * n_dot_l /
+                    (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
+		//pris de gpt pour calculer l atténuation de la lumière par la distanche...
+//		float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
+//		float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
+//		intensity = lux->ratio * n_dot_l * attenuation;
+	
+	}
+    free(v_light);
+    return intensity;
+} */
+
+/*
+//2 PLUS UTILISEE
+void ComputeLighting(t_pix *pix)
+{
+	float intensity;
+
+	intensity = light_intensity(pix);
+	pix->color->r = pix->comps->obj->color->r;
+	pix->color->g = pix->comps->obj->color->g;
+	pix->color->b = pix->comps->obj->color->b;
+	scalar_mult_color(pix->color, intensity);
+	
+	//scalar_mult_color(pix->color, intensity);
 }*/

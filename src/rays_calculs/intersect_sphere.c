@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/14 14:44:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/15 17:20:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	pix->hits[1][sphere_num]->t_count = 2;
 	pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
 	pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
+	pix->hits[1][sphere_num]->obj_type = SPHERE;
 	return ;
 }
