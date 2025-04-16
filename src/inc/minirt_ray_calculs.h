@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 12:00:39 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 18:02:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void init_viewport_x_y(t_pix *pix, int x, int y);
 //raycasting.c
 t_ray *create_ray(t_coord *p_origin, t_coord *v_direction);
 t_coord *position(t_ray *r_ray, float t);
+
+//m_transformations.c
+void matrix_transformations(t_pix ***pix);
+void apply_transformation(t_pix ***pix);
 
 //intersect_sphere.c
 void intersect_sphere(t_pix *pix, int sphere_num);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 12:01:52 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 18:20:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void init_viewport(t_pix ***pix)
 	int	x;
 	int	y;
 	// a deplacer dans init apres
-	pix[0][0]->cam->view_height = 1200;// 1000;
-	pix[0][0]->cam->view_width = 1200;// 1000;
+	pix[0][0]->cam->view_height = 200;// 1000;
+	pix[0][0]->cam->view_width = 200;// 1000;
 	pix[0][0]->cam->p_origin_zero = create_point(0, 0, 0);
 	x = 0;
 	while (x < WND_WIDTH)
@@ -26,11 +26,8 @@ void init_viewport(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-	
 			init_viewport_x_y(pix[x][y], x, y); //ok
 			init_camera_pix_ray(pix[x][y], pix[x][y]->cam);//initialise les rays. 
-		//	if(pix->[x][y]->cx == 0 &&)pix->[x][y]->cy == 0)
-				
 			y++;
 		}
 		x++;
@@ -56,7 +53,7 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
 	v_direction = substraction(p_viewport_world, p_camera_world);
 	v_direction = normalize_vector(v_direction);
-		pix->r_original = create_ray(p_camera_world, v_direction);
+	pix->r_original = create_ray(p_camera_world, v_direction);
 	/*	printf("Pixel (%.2f, %.2f): Ray origin = (%.2f, %.2f, %.2f), dir = (%.4f, %.4f, %.4f)\n",
 			pix->vpx, pix->vpy,
 			pix->r_original->p_origin->x,

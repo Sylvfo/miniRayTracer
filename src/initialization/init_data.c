@@ -160,6 +160,8 @@ t_pix	***init_data(t_num_obj *num_obj)
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
 	//ici fait par Sylvie
 	// pix et comps
+	
+
 	assign_hits_to_pix(pix, hits, num_obj);
 	// retour d erreur!!!
 //	init_matrix_ref(pix);

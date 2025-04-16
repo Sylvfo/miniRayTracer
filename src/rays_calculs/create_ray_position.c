@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 14:36:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 18:02:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_ray *create_ray(t_coord *p_origin, t_coord *v_direction)
 		return (NULL);
 	r_ray = malloc(sizeof(t_ray));
 	if (!r_ray)
-		return (NULL);
+		return (NULL);	
 	r_ray->p_origin = p_origin;
 	r_ray->v_dir = v_direction;
 	return (r_ray);

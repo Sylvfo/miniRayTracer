@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 12:05:44 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 18:02:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void closest_obj(t_pix *pix)
 	pix->comps->obj = pix->obj[0][0];
 	pix->comps->t_count = 0;
 	pix->comps->closestt = INT_MAX;
+	//ca après enlever pour opti
 	pix->comps->r_ray = copy_ray(pix->r_original);
 	pix->comps->obj_type = NONE;
 	x = 1;
@@ -61,7 +62,7 @@ void closest_obj(t_pix *pix)
 				pix->comps->obj_type = pix->hits[x][y]->obj_type;
 			}
 			//rajouter si t2 est plus petit que t1?
-			else if (pix->hits[x][y]->t2 < pix->comps->closestt &&  pix->hits[x][y]->t2 > 0 && pix->hits[x][y]->t2 > pix->hits[x][y]->t1)/// ou plus grand que zero...
+			else if (pix->hits[x][y]->t2 < pix->comps->closestt &&  pix->hits[x][y]->t2 > 0)// && pix->hits[x][y]->t2 > pix->hits[x][y]->t1)/// ou plus grand que zero...
 			{
 				// pour l instant on entre jamais là dedans.... a voir quand on est dans une forme...
 				// si si dans les cylindres....
@@ -77,6 +78,8 @@ void closest_obj(t_pix *pix)
 		}
 		x++;
 	}
+//	if (pix->comps->obj_type == PLAN)
+//		printf("o");
 }
 /*
 void normal_at_plans(t_obj ***obj)
@@ -138,8 +141,11 @@ void prepare_computation(t_pix ***pix)
 			//ici sylvie modifie pour tester avec un normal at plus simple
 				pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, pix[x][y]->comps->obj->p_coord);
 				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
-				//pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
-			/*	if (!pix[x][y]->comps->v_norm_parral)
+			//	pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
+				print_vector(pix[x][y]->comps->v_norm_parral);
+				
+				printf("`");
+				/*	if (!pix[x][y]->comps->v_norm_parral)
 				{
 					printf("Error: Échec du calcul de la normale pour le pixel (%d, %d)\n", x, y);
 					free(pix[x][y]->comps->p_touch);
@@ -149,20 +155,19 @@ void prepare_computation(t_pix ***pix)
 				}*/
 			}
 			// normal at plan c est pareil que l axe donné au début
-			
 			if (pix[x][y]->comps->obj_type == PLAN)
 			{
 			//	pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
-			//	printf("*");
 				pix[x][y]->comps->v_norm_parral = pix[x][y]->comps->obj->v_axe;
-				printf("normal plan x: %.2f et y: %.2f ", pix[x][y]->vpx, pix[x][y]->vpy);
-				print_vector(pix[x][y]->comps->v_norm_parral);
-			/*	pix[x][y]->comps->v_norm_parral->x = pix[x][y]->comps->obj->v_axe->x;
+			//	printf("normal plan x: %.2f et y: %.2f \n", pix[x][y]->vpx, pix[x][y]->vpy);
+		//	print_vector(pix[x][y]->comps->v_norm_parral);
+				pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
+				pix[x][y]->comps->v_norm_parral->x = pix[x][y]->comps->obj->v_axe->x;
 				pix[x][y]->comps->v_norm_parral->y = pix[x][y]->comps->obj->v_axe->y;
 				pix[x][y]->comps->v_norm_parral->z = pix[x][y]->comps->obj->v_axe->z;
 				pix[x][y]->comps->v_norm_parral->t = pix[x][y]->comps->obj->v_axe->t;
-				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);*/
-			//	print_vector(pix[x][y]->comps->v_norm_parral);
+				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
+				//print_vector(pix[x][y]->comps->v_norm_parral);
 			}		
 		//	if (x == 12 && y == 12)
 		//		start = time_now(start, " normal at");

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/15 18:15:22 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 18:19:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,21 @@ void raytracing(t_pix ***pix)
 	init_viewport(pix);
 	// calculs matriciels pour déplacer et scale les objets
 	start = time_now(start, " viewport");
-	set_transformation(pix[0][0]->obj);
+
+	matrix_transformations(pix);
+	//set_transformation(pix[0][0]->obj);
 	// pareil pour les lumières
 	set_transformation_light(pix[0][0]->lux);
 	// pareil pour les lumières
 	start = time_now(start, " set_transf");
+
 	main_intersections(pix);
 	start = time_now(start, " intersections");
 	//trie les intersection selon la plus proche du viewport (et camera)
 	find_closest_obj(pix);
 	start = time_now(start, " closest obj");
 	prepare_computation(pix);
+
 	start = time_now(start, " prepare computation");
 	transform_lights(pix[0][0]->lux);
 	start = time_now(start, " transform lights");
