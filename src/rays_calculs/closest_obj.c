@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/15 18:16:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 12:05:44 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ void prepare_computation(t_pix ***pix)
 			//	pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
 			//	printf("*");
 				pix[x][y]->comps->v_norm_parral = pix[x][y]->comps->obj->v_axe;
+				printf("normal plan x: %.2f et y: %.2f ", pix[x][y]->vpx, pix[x][y]->vpy);
+				print_vector(pix[x][y]->comps->v_norm_parral);
 			/*	pix[x][y]->comps->v_norm_parral->x = pix[x][y]->comps->obj->v_axe->x;
 				pix[x][y]->comps->v_norm_parral->y = pix[x][y]->comps->obj->v_axe->y;
 				pix[x][y]->comps->v_norm_parral->z = pix[x][y]->comps->obj->v_axe->z;

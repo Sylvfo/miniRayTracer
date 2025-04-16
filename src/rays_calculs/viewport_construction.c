@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/08 14:45:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 12:01:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void init_viewport(t_pix ***pix)
 	
 			init_viewport_x_y(pix[x][y], x, y); //ok
 			init_camera_pix_ray(pix[x][y], pix[x][y]->cam);//initialise les rays. 
+		//	if(pix->[x][y]->cx == 0 &&)pix->[x][y]->cy == 0)
+				
 			y++;
 		}
 		x++;
@@ -55,6 +57,15 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	v_direction = substraction(p_viewport_world, p_camera_world);
 	v_direction = normalize_vector(v_direction);
 		pix->r_original = create_ray(p_camera_world, v_direction);
+	/*	printf("Pixel (%.2f, %.2f): Ray origin = (%.2f, %.2f, %.2f), dir = (%.4f, %.4f, %.4f)\n",
+			pix->vpx, pix->vpy,
+			pix->r_original->p_origin->x,
+			pix->r_original->p_origin->y,
+			pix->r_original->p_origin->z,
+			pix->r_original->v_dir->x,
+			pix->r_original->v_dir->y,
+			pix->r_original->v_dir->z);*/
+		
 }
 
 //calcul les coordonnées xy sur le viewport de chaque pixel

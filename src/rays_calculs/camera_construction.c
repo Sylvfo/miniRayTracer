@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/08 14:15:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 11:35:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void pixel_size(t_pix ***pix)
 	float aspect;
 
 	half_view = tan(pix[0][0]->cam->fov / 2);
-	aspect = pix[0][0]->cam->canva_height / pix[0][0]->cam->canva_width;
+	aspect = pix[0][0]->cam->canva_width / pix[0][0]->cam->canva_height ;
 	if (aspect >= 1)
 	{
 		pix[0][0]->cam->half_width = half_view;
@@ -64,11 +64,12 @@ float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 	// Vérifier que v_forward n'est pas colinéaire avec v_up
 	if (fabs(v_dircam->x) < 1e-6 && fabs(v_dircam->z) < 1e-6)
 		vn_up = create_vector(0, 0, 1); // Si la caméra regarde pile en haut/bas, chan
-
 	v_left = cross_product(vn_up, v_dircam);
 	v_true_up = cross_product(v_dircam, v_left);
 	m_orientation = create_matrix(4, 4);
 
+
+//	avant d enlever -1
 	matrix_fill(m_orientation, 0, 0, v_left->x);
 	matrix_fill(m_orientation, 1, 0, v_true_up->x);
 	matrix_fill(m_orientation, 2, 0, (-1 * v_dircam->x));
@@ -88,6 +89,28 @@ float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 	matrix_fill(m_orientation, 1, 3, 0);
 	matrix_fill(m_orientation, 2, 3, 0);
 	matrix_fill(m_orientation, 3, 3, 1);
+
+/*	
+//////
+	matrix_fill(m_orientation, 0, 0, v_left->x);
+	matrix_fill(m_orientation, 1, 0, v_true_up->x);
+	matrix_fill(m_orientation, 2, 0, (1 * v_dircam->x));
+	matrix_fill(m_orientation, 3, 0, 0);
+
+	matrix_fill(m_orientation, 0, 1, v_left->y);
+	matrix_fill(m_orientation, 1, 1, v_true_up->y);
+	matrix_fill(m_orientation, 2, 1, (1 * v_dircam->y));
+	matrix_fill(m_orientation, 3, 1, 0);
+
+	matrix_fill(m_orientation, 0, 2, v_left->z);
+	matrix_fill(m_orientation, 1, 2, v_true_up->z);
+	matrix_fill(m_orientation, 2, 2, (1 * v_dircam->z));
+	matrix_fill(m_orientation, 3, 2, 0);
+
+	matrix_fill(m_orientation, 0, 3, 0);
+	matrix_fill(m_orientation, 1, 3, 0);
+	matrix_fill(m_orientation, 2, 3, 0);
+	matrix_fill(m_orientation, 3, 3, 1);*/
 	m_translation = create_translation_matrix(-p_coordcam->x, -p_coordcam->y, -p_coordcam->z);
 	m_view = matrix_multiplication_44(m_orientation, m_translation);
 	return (m_view);

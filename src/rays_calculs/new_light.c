@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/15 18:17:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 10:35:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ float light_intensity(t_pix *pix)
 	intensity += pix->lux[0][0]->ratio;
 	// Lumières ponctuelles
 	i = 0;
-	if (pix->comps->obj_type != NONE)
+	if (pix->comps->obj_type != NONE) // attention 1 seule lumière
 	{
 		intensity += compute_pointlight(pix, pix->lux[1][0]);
 		intensity += compute_specular(pix, pix->lux[1][0]);

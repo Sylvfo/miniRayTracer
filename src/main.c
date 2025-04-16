@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/15 17:55:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 11:30:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	print_lights(t_pix ***pix, t_num_obj *num_obj)
 	printf("Ambient Light:\n");
 	printf("  Ratio: %f\n", (*pix)[0]->lux[0][0]->ratio);
 	printf("  Color: (%f, %f, %f)\n", (*pix)[0]->lux[0][0]->color->r, (*pix)[0]->lux[0][0]->color->g, (*pix)[0]->lux[0][0]->color->b);
-
 	for (int i = 0; i < num_obj->light; i++)
 	{
 		printf("Light %d:\n", i + 1);
@@ -100,11 +99,12 @@ int	main(int argc, char **argv)
 	pix = init_data(num_obj);
 	save_scene_file(argv[1], pix, num_obj);
 ////////////////////////////////
-//	print_camera(pix);
-//	print_spheres(pix, num_obj);
+	print_camera(pix);
+	print_spheres(pix, num_obj);
 	print_planes(pix, num_obj);
 	print_cylinders(pix, num_obj);
-//	print_lights(pix, num_obj);
+	print_lights(pix, num_obj);
+//	exit(0);
 ////////////////////////////////
 	raytracing(pix);
 //	printf("calculs done\n");
