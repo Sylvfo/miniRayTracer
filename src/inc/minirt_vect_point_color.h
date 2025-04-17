@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 13:58:13 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 18:16:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ void	multipling_color(t_color *c_1, t_color *c_2);
 
 //copy_coord.c
 void copy_coord(t_coord *new, t_coord *origin);
+void copy_color(t_color *new, t_color *origin);
 
 //math.c
 float	simple_sqrt(float x);
 
-//copy_ray.c
-//void copy_ray(t_ray *r1, t_ray *r2);
-//t_ray *copy_ray(t_ray *r2);
 #endif
+

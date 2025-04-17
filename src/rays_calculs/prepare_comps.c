@@ -6,24 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 14:44:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 17:28:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-
-/*
-void normal_at_plans(t_obj ***obj)
-{
-	while(obj[2][x] != NULL)
-	{
-		obj[2][x]->v_norm_parral_plan = 
-		x++;
-	}
-}*/
-
-//trier les objets dans l ordre... a la plac de find closest. 
+// prepare p_touch, normal_at and v_eye
 void prepare_computation(t_pix ***pix)
 {
 	int x;
@@ -32,7 +21,6 @@ void prepare_computation(t_pix ***pix)
 	// a effacer
 	struct timeval start;
 	gettimeofday(&start, NULL);
-
 	x = 0;
 	while (x < WND_WIDTH)
 	{
@@ -41,85 +29,33 @@ void prepare_computation(t_pix ***pix)
 		{
 			if (x == 12 && y == 12)
 				start = time_now(start, " start");
-			//ici segfautl 	
+			// Calculer le point ou le rayon touche l objet
 			pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
-			if (!pix[x][y]->comps->p_touch)
-			{
-				printf("Error: Échec du calcul du point d'intersection pour le pixel (%d, %d)\n", x, y);
-				y++;
-				continue;
-			}
-			if (x == 12 && y == 12)
-				start = time_now(start, " position");
 			// Calculer le vecteur œil : inverse de la direction du rayon
-	//		pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_ray->v_dir);
-			pix[x][y]->comps->v_eye = malloc(sizeof(t_coord));
-			copy_coord(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
-		//	pix[x][y]->comps->v_eye = copy_coord(pix[x][y]->comps->r_dir);
-		//	pix[x][y]->comps->v_eye->x = pix[x][y]->comps->r_ray->v_dir->x;
-		//	pix[x][y]->comps->v_eye->y = pix[x][y]->comps->r_ray->v_dir->y;
-		//	pix[x][y]->comps->v_eye->z = pix[x][y]->comps->r_ray->v_dir->z;
-		//	pix[x][y]->comps->v_eye->t = 0;
-			if (!pix[x][y]->comps->v_eye)
-			{
-				printf("Error: Échec du calcul du vecteur œil pour le pixel (%d, %d)\n", x, y);
-				free(pix[x][y]->comps->p_touch);
-				y++;
-				continue;
-			}
-			if (x == 12 && y == 12)
-				start = time_now(start, " v eye");
+			pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_dir);//mneme
 			// Calculer la normale au point d'intersection
 			if (pix[x][y]->comps->obj_type == SPHERE)
 			{
-				//printf(".");
-			//ici sylvie modifie pour tester avec un normal at plus simple
-			
-				pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, pix[x][y]->comps->obj->p_coord);
+			//ici sylvie modifie pour tester avec un normal at plus simple ERR DAN NORMAL AT ??
+				pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, create_point(0,0,0));//mneme
 				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
 			//	pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
-			//	print_vector(pix[x][y]->comps->v_norm_parral);
-			//	printf("`");
-					if (!pix[x][y]->comps->v_norm_parral)
+			// Si le produiscalaire entre la normale et le vecteur œil est négatif,
+			// alors le rayon est à l'intérieur de l obj. Inverser dans ce cas la normale.
+				if (dot_product(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_eye) < 0)
 				{
-					printf("Error: Échec du calcul de la normale pour le pixel (%d, %d)\n", x, y);
-					free(pix[x][y]->comps->p_touch);
-					free(pix[x][y]->comps->v_eye);
-					y++;
-					continue;
+					pix[x][y]->comps->inside = true;
+					pix[x][y]->comps->v_norm_parral = negat(pix[x][y]->comps->v_norm_parral);
+					printf(".");
 				}
 			}
 			// normal at plan c est pareil que l axe donné au début
-			if (pix[x][y]->comps->obj_type == PLAN)
+			else if (pix[x][y]->comps->obj_type == PLAN)
 			{
-			//	pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
-				pix[x][y]->comps->v_norm_parral = pix[x][y]->comps->obj->v_axe;
-			//	printf("normal plan x: %.2f et y: %.2f \n", pix[x][y]->vpx, pix[x][y]->vpy);
-		//	print_vector(pix[x][y]->comps->v_norm_parral);
-				pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
-				pix[x][y]->comps->v_norm_parral->x = pix[x][y]->comps->obj->v_axe->x;
-				pix[x][y]->comps->v_norm_parral->y = pix[x][y]->comps->obj->v_axe->y;
-				pix[x][y]->comps->v_norm_parral->z = pix[x][y]->comps->obj->v_axe->z;
-				pix[x][y]->comps->v_norm_parral->t = pix[x][y]->comps->obj->v_axe->t;
+				pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));//mneme
+				copy_coord(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->obj->v_axe);
 				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
-				//print_vector(pix[x][y]->comps->v_norm_parral);
 			}		
-		//	if (x == 12 && y == 12)
-		//		start = time_now(start, " normal at");
-			// Vérifier si le rayon pénètre dans l'objet.
-			// Si le produit scalaire entre la normale et le vecteur œil est négatif,
-			// alors le rayon est à l'intérieur. Inverser dans ce cas la normale.
-			if (pix[x][y]->comps->obj_type != NONE)
-			{
-				if (dot_product(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_eye) < 0)
-				{
-			//	printf("a");
-					pix[x][y]->comps->inside = true;
-					pix[x][y]->comps->v_norm_parral->x = -pix[x][y]->comps->v_norm_parral->x;
-					pix[x][y]->comps->v_norm_parral->y = -pix[x][y]->comps->v_norm_parral->y;
-					pix[x][y]->comps->v_norm_parral->z = -pix[x][y]->comps->v_norm_parral->z;
-				}
-			}
 			y++;
 		}
 		x++;

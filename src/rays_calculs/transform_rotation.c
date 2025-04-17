@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:37:38 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:37:04 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 17:45:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot)
     s = sin(angle);
     t = 1 - c;
     // Matrice 3x3 de rotation de Rodrigues + extension en 4x4
-	matrix_fill(m_rot, 0, 0, t*axis->x*axis->x + c);
+	matrix_fill(m_rot, 0, 0, (c + t*axis->x*axis->x));
     matrix_fill(m_rot, 0, 1, t*axis->x*axis->y - s*axis->z);
     matrix_fill(m_rot, 0, 2, t*axis->x*axis->z + s*axis->y);
     matrix_fill(m_rot, 0, 3, 0);

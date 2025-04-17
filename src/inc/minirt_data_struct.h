@@ -6,12 +6,15 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 15:27:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 19:27:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_DATA_STRUCT_H
 # define MINIRT_DATA_STRUCT_H
+
+//mneme
+//= memoire à allouer avant
 
 //	s_coord p_exemplepoint;
 //	s_coord v_exemplevector;
@@ -69,14 +72,14 @@ typedef struct s_obj
 	float	*m_tranf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
 	float	*m_transl;
 	float	*m_rot;
+
+	float	*m_scale;
+//	t_coord *v_norm_parral_plan;
+	int		obj_type;
+// un truc pour obj modifié pour calculs quand on déplace un objet....	
 	//	float	*m_rot_x;
 //	float	*m_rot_y;
 //	float	*m_rot_z;
-	float	*m_scale;
-// v norm parr pour calcul lumières	
-	t_coord *v_norm_parral_plan;
-	int		obj_type;
-// un truc pour obj modifié pour calculs quand on déplace un objet....	
 }	t_obj;
 
 // mem array que obj
@@ -99,7 +102,7 @@ typedef struct s_light
 	float		ratio; //brightnessss
 	t_color		*color;
 	float		*m_identity;
-	float		*m_tranf;
+	float		*m_tranf;// pas forcément besoin?
 	float		*m_transl;
 	t_coord		*p_world;
 }	t_light;
@@ -119,7 +122,7 @@ typedef struct s_camera
 	float    	half_height;//est-ce que c est vraiment important laisser dans data struct? O
 	float		half_width;// pareil, on utilise 1 fois...
 	float		pixel_size;
-	struct t_camera	*saved_camera; // (si on se perd. ou camera origines) est-ce que c est enregistré dans init?? 
+	struct t_camera	*saved_camera; // (si on se perd. ou camera origines)
 //	int			render_type; pour les bonus. type render, type preview
 }	t_camera;
 
@@ -145,6 +148,7 @@ typedef struct s_comps
 	int 	t_count;
 	int		obj_type;
 	t_obj	*obj;//pointeur closest
+	t_color *obj_color;
 
 // dans prepare computation
 	t_coord	*p_touch;//

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 15:26:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 17:43:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ void find_closest_obj(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			closest_obj(pix[x][y]);
-			// Copier la couleur au lieu de réassigner le pointeur :
-		/*	pix[x][y]->color->r = pix[x][y]->comps->obj->color->r;
-			pix[x][y]->color->g = pix[x][y]->comps->obj->color->g;
-			pix[x][y]->color->b = pix[x][y]->comps->obj->color->b;
-			pix[x][y]->color->rgb = pix[x][y]->comps->obj->color->rgb;*/
 			y++;
 		}
 		x++;
@@ -45,7 +40,6 @@ void copy_hits_to_comps(t_comps *comps, t_hits *hits)
 	comps->obj_type = hits->obj_type;
 }
 
-/*
 void closest_obj(t_pix *pix)
 {
 	int	a;
@@ -53,9 +47,17 @@ void closest_obj(t_pix *pix)
 
 	//a mettre dans init
 	pix->comps->closestt = INT_MAX;
+	pix->comps->t_count = 0;
+	pix->comps->obj = pix->obj[0][0];
+	pix->comps->obj_type = NONE;
+	// on a dj mis ailleurs...
+	copy_color(pix->comps->obj_color, pix->obj[0][0]->color);
+	//mneme
 	pix->comps->r_dir = malloc(sizeof(t_coord));
 	pix->comps->r_origin = malloc(sizeof(t_coord));
 	
+	copy_coord(pix->comps->r_dir, pix->r_dir);
+	copy_coord(pix->comps->r_origin, pix->r_origin);
 	a = 1;
 	while (a < 4) //ICI CHANGER POUR PLUS DE FORMES!!!!
 	{
@@ -70,6 +72,7 @@ void closest_obj(t_pix *pix)
 				copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
 				pix->comps->t_count = 1;
 				pix->comps->obj_type = pix->hits[a][b]->obj_type;
+				copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
 			}
 			//rajouter si t2 est plus petit que t1?
 			else if (pix->hits[a][b]->t2 < pix->comps->closestt &&  pix->hits[a][b]->t2 > 0)// && pix->hits[x][y]->t2 > pix->hits[x][y]->t1)/// ou plus grand que zero...
@@ -80,22 +83,15 @@ void closest_obj(t_pix *pix)
 				copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
 				pix->comps->t_count = 1;
 				pix->comps->obj_type = pix->hits[a][b]->obj_type;
-			}
-			else // si rien touche...
-			{
-				copy_coord(pix->comps->r_dir, pix->r_dir);
-				copy_coord(pix->comps->r_origin, pix->r_origin);
-				pix->comps->t_count = 0;
-				pix->comps->obj = pix->obj[0][0];
-				pix->comps->obj_type = NONE;
+				copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
 			}
 			b++;
 		}
 		a++;
 	}
-}*/
+}
 
-
+/*
 void closest_obj(t_pix *pix)
 {
 	int	a;
@@ -137,16 +133,8 @@ void closest_obj(t_pix *pix)
 				pix->comps->t_count = 1;
 				pix->comps->obj_type = pix->hits[a][b]->obj_type;
 			}
-/*			else // si rien touche...
-			{
-				copy_coord(pix->comps->r_dir, pix->r_dir);
-				copy_coord(pix->comps->r_origin, pix->r_origin);
-				pix->comps->t_count = 0;
-				pix->comps->obj = pix->obj[0][0];
-				pix->comps->obj_type = NONE;
-			}*/
 			b++;
 		}
 		a++;
 	}
-}
+}*/
