@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:30 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/17 13:29:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 15:27:22 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2)
 
 /*	if (is_point(p_v_1) == true && is_point(p_v_2) == true)
 	{
+sgfs
 		perror("Try to add two points \n");
 		return (NULL);
 	}*/
