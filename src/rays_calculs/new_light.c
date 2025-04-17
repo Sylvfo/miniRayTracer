@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 17:56:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:28:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ float light_intensity(t_pix *pix)
     return (intensity);
 }
 
-/*
+
 float compute_pointlight(t_pix *pix, t_light *lux)
 {
     t_coord *v_light;
@@ -90,7 +90,7 @@ float compute_pointlight(t_pix *pix, t_light *lux)
     }
     free(v_light);
     return intensity;
-}*/
+}
 
 
 
@@ -137,7 +137,7 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 	return (intensity);
 }*/
 
-
+/*
 //5
 float	compute_specular(t_pix *pix, t_light *lux)
 {
@@ -303,7 +303,7 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 	}
     free(v_light);
     return intensity;
-}
+}*/
 
 /*
 //2 PLUS UTILISEE

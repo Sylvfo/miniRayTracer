@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:34:59 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:43:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void apply_transformation(t_pix ***pix)
 				while(pix[x][y]->obj[a][b] != NULL && b < 4)// a changer
 				{
 					u++;
-					pix[x][y]->hits[a][b]->r_ray_calculs->p_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_original->p_origin);									
-					pix[x][y]->hits[a][b]->r_ray_calculs->v_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_original->v_dir);
+					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_origin);									
+					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_dir);
 				//	pix[x][y]->hits[a][b]->r_ray_calculs->v_dir = normalize_vector(pix[x][y]->hits[a][b]->r_ray_calculs->v_dir);
 					b++;
 				}

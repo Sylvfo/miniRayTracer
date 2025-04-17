@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 10:44:42 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 11:58:18 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ typedef struct num_obj
 // pour optimiser on peut retirer cette data struct
 // et laisse juste 2 pointeurs sur 2 coord. qui s appellent ray_origin et ray_direction
 // a voir à la fin du projets
-typedef struct s_ray
+/*typedef struct s_ray
 {
 	t_coord	*p_origin;
 	t_coord	*v_dir;
-}	t_ray;
+}	t_ray;*/
 
 ////////// SCENE //////////
 // object[0][0]->color = backgroud color
@@ -94,7 +94,9 @@ typedef struct s_hits
 	float		t1;
 	float		t2;
 	int	 		t_count;
-	t_ray		*r_ray_calculs;
+	t_coord		*r_origin;
+	t_coord		*r_dir;
+//	t_ray		*r_ray_calculs;
 	int			obj_type;
 }	t_hits;
 
@@ -152,7 +154,9 @@ typedef struct s_comps
 	t_coord	*p_touch;//
 	t_coord	*v_eye; //inverse du ray de base
 	t_coord	*v_norm_parral;
-	t_ray	*r_ray;
+	t_coord	*r_origin;
+	t_coord	*r_dir;
+	//t_ray	*r_ray;
 	bool	inside;
 	int 	t_count;
 	int		obj_type;
@@ -173,7 +177,9 @@ typedef struct s_pix
 	float		vpx;// viewport x
 	float 		vpy;// viewport y
 	t_coord		*p_viewport; // point sur le viewport avec xy. 
-	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
+	t_coord	*r_origin;
+	t_coord	*r_dir;
+//	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
 	t_color		*color; // OK
 	t_hits		***hits; //array de hits pour stocker les intersections objets
 	t_comps		*comps; // ici on peut faire une array pour mettre les objets dans l ordre où ils se font toucher...

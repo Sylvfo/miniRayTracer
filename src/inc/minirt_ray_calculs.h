@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 18:02:52 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:00:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam);
 void init_viewport_x_y(t_pix *pix, int x, int y);
 
 //raycasting.c
-t_ray *create_ray(t_coord *p_origin, t_coord *v_direction);
-t_coord *position(t_ray *r_ray, float t);
+//t_ray *create_ray(t_coord *p_origin, t_coord *v_direction);
+//t_coord *position(t_ray *r_ray, float t);
+t_coord *position(t_coord *r_origin, t_coord *r_dir, float t);
+
 
 //m_transformations.c
 void matrix_transformations(t_pix ***pix);
@@ -84,9 +86,10 @@ float 	compute_pointlight(t_pix *pix, t_light *lux);
 float light_intensity(t_pix *pix);//rajouter plusieurs lampes
 float 	compute_ambient(t_pix *pix);
 float	compute_specular(t_pix *pix, t_light *lux);
-t_hits intersect_objects(t_obj ***objects, t_ray *ray);
-bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects);
-t_hits intersect_object(t_obj *object, t_ray *ray);
+// a reprendre après
+//t_hits intersect_objects(t_obj ***objects, t_ray *ray);
+//bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects);
+//t_hits intersect_object(t_obj *object, t_ray *ray);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:39:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:06:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 // si t1 et / ou t2 négatifs, c est que c est derrière la camera
 //NEWONE!!
-
 void main_intersections(t_pix ***pix)
 {
 	int	x;
@@ -61,10 +60,10 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 
 //	# the vector from the sphere's center, to the ray origin
 	t_coord *v_sph_camera;
-	v_sph_camera = substraction(pix->hits[1][sphere_num]->r_ray_calculs->p_origin, pix->cam->p_origin_zero);//origine sphere à zero
-	a = dot_product(pix->hits[1][sphere_num]->r_ray_calculs->v_dir, pix->hits[1][sphere_num]->r_ray_calculs->v_dir);
+	v_sph_camera = substraction(pix->hits[1][sphere_num]->r_origin, pix->cam->p_origin_zero);//origine sphere à zero
+	a = dot_product(pix->hits[1][sphere_num]->r_dir, pix->hits[1][sphere_num]->r_dir);
 //	print_vector(pix->hits[1][sphere_num]->r_ray_calculs->v_dir);
-	b = 2 * dot_product(pix->hits[1][sphere_num]->r_ray_calculs->v_dir, v_sph_camera);
+	b = 2 * dot_product(pix->hits[1][sphere_num]->r_dir, v_sph_camera);
 	c = dot_product(v_sph_camera, v_sph_camera) - 1;// ICI C EST SIMPLIFIE DANS LA METHODE QU ON UTILISE radius 1
 	discriminant = (b * b) - (4 * a * c);
 	if (discriminant < 0) // ca veut dire que l objet ne croise pas le point. 

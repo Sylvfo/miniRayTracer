@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_world.c                                       :+:      :+:    :+:   */
+/*   copy_coord.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 11:15:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 12:21:49 by syl              ###   ########.fr       */
+/*   Created: 2025/04/17 12:09:12 by syl               #+#    #+#             */
+/*   Updated: 2025/04/17 12:47:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-/*
-void test_word()*/
-
-/*
-void test_shade_intersection(void)
+t_coord	*copy_coord(t_coord *origin)
 {
-	t_coord *p;
-	t_coord *v;
+	t_coord *new;
 
-	t_ray 	*ray;
-
-	p = create_point(0, 0, -5);
-	v = create_vector(0, 0, 1);
-	ray = create_ray(p, v);
-	
-}*/
+	new->x = origin->x;
+	new->y = origin->y;
+	new->z = origin->z;
+	new->t = origin->t;
+	return (new);
+}

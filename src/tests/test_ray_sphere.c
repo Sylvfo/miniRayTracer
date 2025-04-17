@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 08:29:59 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:15:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:22:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	test_translation(void)
 	translation
 	
 }*/
-
+/*
 //GOOD
 void test_ray(void)
 {
@@ -53,7 +53,7 @@ void test_ray(void)
 	p_result = position(r_ray, 2.5);
 	printf("\n 2.5 gives ");
 	print_point(p_result);
-}
+}*/
 /*
 //OK GOOD
 void	test_sphere(t_pix ***pix)

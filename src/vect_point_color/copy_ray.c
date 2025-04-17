@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 10:08:17 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 16:23:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:21:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * 
  * @return void
  */
-t_ray *copy_ray(t_ray *r2)
+/*t_ray *copy_ray(t_ray *r2)
 {
 	t_ray *r1;
 
@@ -40,4 +40,4 @@ t_ray *copy_ray(t_ray *r2)
 	//normaliser?? vraiment??
 	r1->v_dir = normalize_vector(r1->v_dir);
 	return(r1);
-}
+}*/

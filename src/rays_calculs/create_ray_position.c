@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 18:02:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:28:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_ray
 	t_coord *v_norm;
 } t_ray; */
 
+/*
 // origin = camera
 t_ray *create_ray(t_coord *p_origin, t_coord *v_direction)
 {
@@ -38,10 +39,17 @@ t_ray *create_ray(t_coord *p_origin, t_coord *v_direction)
 	r_ray->p_origin = p_origin;
 	r_ray->v_dir = v_direction;
 	return (r_ray);
+}*/
+
+
+t_coord *position(t_coord *r_origin, t_coord *r_dir, float t)
+{
+	return addition(r_origin,scalar_mult(r_dir, t));
 }
 
+/*
 t_coord *position(t_ray *r_ray, float t)
 {
 	// Calculer le nouveau point en ajoutant l'origine et la direction multipliée par t
 	return addition(r_ray->p_origin, scalar_mult(r_ray->v_dir, t));
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 18:02:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 12:49:24 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ void find_closest_obj(t_pix ***pix)
 	}
 }
 
+/*
+					if (pix[x][y]->r_origin == NULL)
+					{
+						printf("no ray in pixe\n");
+						exit (0);
+					}
+					if (pix[x][y]->hits[a][b]->r_origin == NULL)
+					{
+						printf("no ray in hits\n");
+						exit (0);
+					}
+
+*/
+
+
 void closest_obj(t_pix *pix)
 {
 	int	x;
@@ -44,8 +59,10 @@ void closest_obj(t_pix *pix)
 	pix->comps->obj = pix->obj[0][0];
 	pix->comps->t_count = 0;
 	pix->comps->closestt = INT_MAX;
+	pix->comps->r_dir = malloc(sizeof(t_coord));
+	pix->comps->r_origin = malloc(sizeof(t_coord));
 	//ca après enlever pour opti
-	pix->comps->r_ray = copy_ray(pix->r_original);
+//	pix->comps->r_ray = copy_ray(pix->r_original);
 	pix->comps->obj_type = NONE;
 	x = 1;
 	while (x < 4) //ICI CHANGER POUR PLUS DE FORMES!!!!
@@ -57,7 +74,12 @@ void closest_obj(t_pix *pix)
 			{
 				pix->comps->closestt = pix->hits[x][y]->t1;
 				pix->comps->obj = pix->obj[x][y];
-				pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
+				pix->comps->r_dir = malloc(sizeof(t_coord));
+				pix->comps->r_origin = malloc(sizeof(t_coord));
+				print_vector(pix->hits[x][y]->r_dir);
+				pix->comps->r_dir = copy_coord(pix->hits[x][y]->r_dir);
+				pix->comps->r_origin = copy_coord(pix->hits[x][y]->r_origin);
+				//pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
 				pix->comps->t_count = 1;
 				pix->comps->obj_type = pix->hits[x][y]->obj_type;
 			}
@@ -69,7 +91,11 @@ void closest_obj(t_pix *pix)
 				//printf(",");
 				pix->comps->closestt = pix->hits[x][y]->t2;
 				pix->comps->obj = pix->obj[x][y];
-				pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
+				pix->comps->r_dir = malloc(sizeof(t_coord));
+				pix->comps->r_origin = malloc(sizeof(t_coord));
+				pix->comps->r_dir = copy_coord(pix->hits[x][y]->r_dir);
+				pix->comps->r_origin = copy_coord(pix->hits[x][y]->r_origin);
+				//pix->comps->r_ray = copy_ray(pix->hits[x][y]->r_ray_calculs);
 				pix->comps->t_count = 1;
 				pix->comps->obj_type = pix->hits[x][y]->obj_type;
 			}
@@ -109,7 +135,8 @@ void prepare_computation(t_pix ***pix)
 		{
 			if (x == 12 && y == 12)
 				start = time_now(start, " start");
-			pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_ray, pix[x][y]->comps->closestt);
+			pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
+		//	pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_ray, pix[x][y]->comps->closestt);
 			if (!pix[x][y]->comps->p_touch)
 			{
 				printf("Error: Échec du calcul du point d'intersection pour le pixel (%d, %d)\n", x, y);
@@ -121,10 +148,11 @@ void prepare_computation(t_pix ***pix)
 			// Calculer le vecteur œil : inverse de la direction du rayon
 	//		pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_ray->v_dir);
 			pix[x][y]->comps->v_eye = malloc(sizeof(t_coord));
-			pix[x][y]->comps->v_eye->x = pix[x][y]->comps->r_ray->v_dir->x;
-			pix[x][y]->comps->v_eye->y = pix[x][y]->comps->r_ray->v_dir->y;
-			pix[x][y]->comps->v_eye->z = pix[x][y]->comps->r_ray->v_dir->z;
-			pix[x][y]->comps->v_eye->t = 0;
+			pix[x][y]->comps->v_eye = copy_coord(pix[x][y]->comps->r_dir);
+		//	pix[x][y]->comps->v_eye->x = pix[x][y]->comps->r_ray->v_dir->x;
+		//	pix[x][y]->comps->v_eye->y = pix[x][y]->comps->r_ray->v_dir->y;
+		//	pix[x][y]->comps->v_eye->z = pix[x][y]->comps->r_ray->v_dir->z;
+		//	pix[x][y]->comps->v_eye->t = 0;
 			if (!pix[x][y]->comps->v_eye)
 			{
 				printf("Error: Échec du calcul du vecteur œil pour le pixel (%d, %d)\n", x, y);
@@ -139,6 +167,7 @@ void prepare_computation(t_pix ***pix)
 			{
 				//printf(".");
 			//ici sylvie modifie pour tester avec un normal at plus simple
+			
 				pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, pix[x][y]->comps->obj->p_coord);
 				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
 			//	pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
