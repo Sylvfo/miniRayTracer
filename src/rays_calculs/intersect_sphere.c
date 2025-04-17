@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 18:02:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 11:39:43 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // si t1 et / ou t2 négatifs, c est que c est derrière la camera
 //NEWONE!!
 
-/*
 void main_intersections(t_pix ***pix)
 {
 	int	x;
@@ -26,7 +25,6 @@ void main_intersections(t_pix ***pix)
 	printf("enter intersect\n");
 	a = 1;
 	x = 0;
-
 	while (x < WND_WIDTH)
 	{
 		y = 0;
@@ -54,18 +52,16 @@ void main_intersections(t_pix ***pix)
 	}	
 }
 
-
 void intersect_sphere(t_pix *pix, int sphere_num)
 {
 	float discriminant;
 	float a;
 	float b;
 	float c;
-//	printf(".");
+
 //	# the vector from the sphere's center, to the ray origin
 	t_coord *v_sph_camera;
 	v_sph_camera = substraction(pix->hits[1][sphere_num]->r_ray_calculs->p_origin, pix->cam->p_origin_zero);//origine sphere à zero
-	
 	a = dot_product(pix->hits[1][sphere_num]->r_ray_calculs->v_dir, pix->hits[1][sphere_num]->r_ray_calculs->v_dir);
 //	print_vector(pix->hits[1][sphere_num]->r_ray_calculs->v_dir);
 	b = 2 * dot_product(pix->hits[1][sphere_num]->r_ray_calculs->v_dir, v_sph_camera);
@@ -84,4 +80,4 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	pix->hits[1][sphere_num]->obj_type = SPHERE;
 
 	return ;
-}*/
+}

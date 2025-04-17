@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 10:05:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 11:33:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,6 @@ float *view_camera(t_coord *p_coordcam, t_coord *v_dircam)
 	matrix_fill(m_orientation, 1, 3, 0);
 	matrix_fill(m_orientation, 2, 3, 0);
 	matrix_fill(m_orientation, 3, 3, 1);
-
-/*	
-//////
-	matrix_fill(m_orientation, 0, 0, v_left->x);
-	matrix_fill(m_orientation, 1, 0, v_true_up->x);
-	matrix_fill(m_orientation, 2, 0, (1 * v_dircam->x));
-	matrix_fill(m_orientation, 3, 0, 0);
-
-	matrix_fill(m_orientation, 0, 1, v_left->y);
-	matrix_fill(m_orientation, 1, 1, v_true_up->y);
-	matrix_fill(m_orientation, 2, 1, (1 * v_dircam->y));
-	matrix_fill(m_orientation, 3, 1, 0);
-
-	matrix_fill(m_orientation, 0, 2, v_left->z);
-	matrix_fill(m_orientation, 1, 2, v_true_up->z);
-	matrix_fill(m_orientation, 2, 2, (1 * v_dircam->z));
-	matrix_fill(m_orientation, 3, 2, 0);
-
-	matrix_fill(m_orientation, 0, 3, 0);
-	matrix_fill(m_orientation, 1, 3, 0);
-	matrix_fill(m_orientation, 2, 3, 0);
-	matrix_fill(m_orientation, 3, 3, 1);*/
 	m_translation = create_translation_matrix(-p_coordcam->x, -p_coordcam->y, -p_coordcam->z);
 	m_view = matrix_multiplication_44(m_orientation, m_translation);
 	return (m_view);

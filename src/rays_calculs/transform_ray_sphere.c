@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 17:47:22 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 11:35:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,28 +72,13 @@ void set_transformation(t_obj ***obj)
 	}
 }
 
+/*
 void transform_obj(t_pix *pix, float *m_transf, int obj_type, int obj_num)
 {
-/*	à retirer?
-	if (pix->hits[1][sphere_num]->r_ray_calculs == NULL)
-	{
-		printf("error malloc");
-		exit;
-	}
-	if (pix->hits[1][sphere_num]->r_ray_calculs->p_origin == NULL)
-	{
-		printf("error malloc2");
-		exit;
-	}
-	if (pix->hits[1][sphere_num]->r_ray_calculs->v_dir == NULL)
-	{
-		printf("error malloc3");
-		exit;
-	}*/
 	pix->hits[obj_type][obj_num]->r_ray_calculs->p_origin = matrix_multiplication_44_coord(m_transf, pix->r_original->p_origin);
 	pix->hits[obj_type][obj_num]->r_ray_calculs->v_dir = matrix_multiplication_44_coord(m_transf, pix->r_original->v_dir);
 	return ;
-}
+}*/
 
 void set_transformation_light(t_light ***lux)
 {

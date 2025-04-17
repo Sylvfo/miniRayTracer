@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:31 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/17 10:17:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 11:16:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	init_ima(t_pix ***pix)
 		return (false);
 	}	
 	ima->mlx_win = mlx_new_window(ima->mlx_ptr, WND_WIDTH, WND_HEIGHT, "Fen");
-//	ima->img = mlx_new_image(ima->mlx_ptr, WND_WIDTH, WND_HEIGHT); // ca on peut modifier pour avoir des légendes sur l image
+	ima->img = mlx_new_image(ima->mlx_ptr, WND_WIDTH, WND_HEIGHT); // ca on peut modifier pour avoir des légendes sur l image
 	ima->img = mlx_new_image(ima->mlx_ptr, 800, 800);
 	ima->addr = mlx_get_data_addr(ima->img, &ima->bits_per_pixel,
 			&ima->line_length, &ima->endian);
@@ -84,7 +84,6 @@ void	link_pix_ima(t_pix ***pix, t_image *ima)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-//			pix[x][y]->ima = malloc(sizeof(t_image *));
 			pix[x][y]->ima = ima;
 			y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 17:46:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 11:34:59 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,4 @@ void apply_transformation(t_pix ***pix)
 	printf("uu %i \n", u);
 }
 
-/*	int k;
-	int l;
-	k = 1;
-	while(k < 4)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
-	{
-		l = 0;
-		while(pix[125][160]->obj[k][l] != NULL)
-		{
-			printf("x %i y %i 125 160 \n", k, l);
-			print_matrix(pix[0][0]->obj[k][l]->m_tranf);
-			l++;
-		}
-		k++;
-	}*/
-
-//	print_matrix(pix[30][30]->obj[2][0]->m_tranf);
-//apply_transformation_ray(t_pix *pix)
 
