@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/17 10:09:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 15:21:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 	print_lights(pix, num_obj);
 //	exit(0);
 ////////////////////////////////
-	raytracing(pix);
+//	raytracing(pix);
 //	printf("calculs done\n");
 //	printf("\n\nici pix  ");
 /*	print_point(pix[100][50]->r_original->p_origin);
@@ -124,6 +124,7 @@ int	main(int argc, char **argv)
 
 //	test_normal_at();
 
+	pix_drawings(pix);
 	pix_to_window(pix);
 	image_hooks(pix[0][0]->ima);
 //////////////////////////////
@@ -131,3 +132,35 @@ int	main(int argc, char **argv)
 //	test_normal_at(pix);
 	return (EXIT_SUCCESS);
 }
+
+/*
+void pix_drawings(t_pix ***pix)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		while (y < WND_HEIGHT)
+		{
+			if (y < 400)
+			{
+				pix[x][y]->color->r = 1;
+				pix[x][y]->color->g = 0;
+				pix[x][y]->color->b = 0;
+			}	
+			else
+			{
+				pix[x][y]->color->r = 0;
+				pix[x][y]->color->g = 1;
+				pix[x][y]->color->b = 0;
+			}	
+		//	color_float_to_int(pix[x][y]->color);
+			y++;
+		}
+		x++;
+	}	
+}*/
+

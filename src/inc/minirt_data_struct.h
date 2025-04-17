@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 14:47:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 15:19:44 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ typedef struct s_camera
 	float		*m_transf; // initialiser comme identity matrix
 	float 		*m_inverse;
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
-	float		view_width;// wall??
-	float		view_height; // wall??
-	float		canva_height;
-	float		canva_width;
+	float		view_width;// viewport
+	float		view_height; // viewport
+	float		canva_height; // taille image ima_h
+	float		canva_width; // taille image ima_w
 	float    	half_height;//est-ce que c est vraiment important laisser dans data struct? O
 	float		half_width;// pareil, on utilise 1 fois...
 	float		pixel_size;

@@ -35,28 +35,28 @@ static void	free_pix(t_pix ***pix, int rows, int cols)
 	free(pix);
 }
 
-static t_pix	**init_pix_row(int cols)
+static t_pix	**init_pix_col(int cols)
 {
-	t_pix	**row;
+	t_pix	**col;
 	int		y;
 
 	y = 0;
-	row = malloc(cols * sizeof(t_pix *));
-	if (!row)
+	col = malloc(cols * sizeof(t_pix *));
+	if (!col)
 		return (NULL);
 	while (y < cols)
 	{
-		row[y] = malloc(sizeof(t_pix));
-		if (!row[y])
+		col[y] = malloc(sizeof(t_pix));
+		if (!col[y])
 		{
 			while (y > 0)
-				free(row[--y]);
-			free(row);
+				free(col[--y]);
+			free(col);
 			return (NULL);
 		}
 		y++;
 	}
-	return (row);
+	return (col);
 }
 
 t_pix	***init_pix(int rows, int cols)
@@ -70,7 +70,7 @@ t_pix	***init_pix(int rows, int cols)
 		return (NULL);
 	while (x < rows)
 	{
-		pix[x] = init_pix_row(cols);
+		pix[x] = init_pix_col(cols);
 		if (!pix[x])
 		{
 			free_pix(pix, x, cols);
@@ -98,30 +98,22 @@ t_color	*init_color(void)
 static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 	t_obj ***obj, t_light ***lux)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i < WND_WIDTH)
+	x = 0;
+	while (x < WND_WIDTH)
 	{
-		j = 0;
-		while (j < WND_HEIGHT)
+		y = 0;
+		while (y < WND_HEIGHT)
 		{
-			pix[i][j]->cam = cam;
-			pix[i][j]->obj = obj;
-			pix[i][j]->lux = lux;
-			pix[i][j]->color = init_color();
-			/* if (!pix[i][j]->color)
-			{
-				free_pix(pix, WND_HEIGHT, WND_WIDTH);
-				free_object(obj, num_obj);
-				free(cam);
-				free(lux);
-				return ;
-			} */
-			j++;
+			pix[x][y]->cam = cam;
+			pix[x][y]->obj = obj;
+			pix[x][y]->lux = lux;
+			pix[x][y]->color = init_color();
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
 
@@ -133,38 +125,33 @@ t_pix	***init_data(t_num_obj *num_obj)
 	t_light		***lux;
 	t_hits		***hits;
 
-	pix = init_pix(WND_HEIGHT, WND_WIDTH);
+	pix = init_pix(WND_WIDTH, WND_HEIGHT);
 	if (!pix)
 		return (NULL);
 	obj = init_object(num_obj);
 	if (!obj)
 	{
-		free_pix(pix, WND_HEIGHT, WND_WIDTH);
+		free_pix(pix, WND_WIDTH, WND_HEIGHT);
 		return (NULL);
 	}
 	cam = init_camera();
 	if (!cam)
 	{
-		free_pix(pix, WND_HEIGHT, WND_WIDTH);
+		free_pix(pix, WND_WIDTH, WND_HEIGHT);
 		free_object(obj, num_obj);
 		return (NULL);
 	}
 	lux = init_light(num_obj);
 	if (!*lux)
 	{
-		free_pix(pix, WND_HEIGHT, WND_WIDTH);
+		free_pix(pix, WND_WIDTH, WND_HEIGHT);
 		free_object(obj, num_obj);
 		free(cam);
 		return (false);
 	}
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
-	//ici fait par Sylvie
-	// pix et comps
-	
 
 	assign_hits_to_pix(pix, hits, num_obj);
-	// retour d erreur!!!
-//	init_matrix_ref(pix);
 	init_ima(pix); 
 	return (pix);
 }

@@ -3,18 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/03 15:03:24 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:19:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+void    my_mlx_pixel_put(t_image *img, int x, int y, int color)
+{
+	char    *dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
 
 // my_mlx_pixel_put(ima, (int)round(p->l1), (int)round(p->l2), color);
-void	my_mlx_pixel_put(t_image *ima, int x, int y, int color)
+/*void	my_mlx_pixel_put(t_image *ima, int x, int y, int color)
 {
 	char	*dst;
 
@@ -26,7 +33,7 @@ void	my_mlx_pixel_put(t_image *ima, int x, int y, int color)
 //		return ;
 	dst = ima->addr + (y * ima->line_length + x * (ima->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
+}*/
 
 //	mlx_put_image_to_window(ima->mlx_ptr, ima->mlx_win, ima->img, 0, 0); // ca on peut modifier pour avoir des légendes sur l image
 
