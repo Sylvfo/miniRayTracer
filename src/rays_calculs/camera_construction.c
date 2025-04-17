@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 18:25:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 10:05:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void pixel_size(t_pix ***pix)
 	float aspect;
 
 	half_view = tan(pix[0][0]->cam->fov / 2);
-	aspect = pix[0][0]->cam->canva_width / pix[0][0]->cam->canva_height;
-	//aspect = pix[0][0]->cam->canva_height / pix[0][0]->cam->canva_width;
+//	aspect = pix[0][0]->cam->canva_width / pix[0][0]->cam->canva_height;
+	aspect = pix[0][0]->cam->canva_height / pix[0][0]->cam->canva_width;
 	if (aspect >= 1)
 	{
 		pix[0][0]->cam->half_width = half_view;
