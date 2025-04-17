@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 12:45:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 14:04:24 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void raytracing(t_pix ***pix)
 	//trie les intersection selon la plus proche du viewport (et camera)
 	find_closest_obj(pix);
 	start = time_now(start, " closest obj");
+
 	prepare_computation(pix);
 
 	start = time_now(start, " prepare computation");

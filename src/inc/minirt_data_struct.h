@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:58:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 14:47:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 //	s_coord p_exemplepoint;
 //	s_coord v_exemplevector;
 //	s_coord vn_exemplenormedvector;
+//	s_coord *r_ray;
 //	s_color c_color;
 //  float *m_matrix;
-//	t_ray  *r_ray;
 
 ////////// DATAS //////////
 //	row = m_matrix[0];
@@ -46,15 +46,6 @@ typedef struct num_obj
 	int		cylinder;
 	int		light;
 }	t_num_obj;
-
-// pour optimiser on peut retirer cette data struct
-// et laisse juste 2 pointeurs sur 2 coord. qui s appellent ray_origin et ray_direction
-// a voir à la fin du projets
-/*typedef struct s_ray
-{
-	t_coord	*p_origin;
-	t_coord	*v_dir;
-}	t_ray;*/
 
 ////////// SCENE //////////
 // object[0][0]->color = backgroud color
@@ -96,7 +87,6 @@ typedef struct s_hits
 	int	 		t_count;
 	t_coord		*r_origin;
 	t_coord		*r_dir;
-//	t_ray		*r_ray_calculs;
 	int			obj_type;
 }	t_hits;
 
@@ -122,7 +112,6 @@ typedef struct s_camera
 	float		*m_transf; // initialiser comme identity matrix
 	float 		*m_inverse;
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
-
 	float		view_width;// wall??
 	float		view_height; // wall??
 	float		canva_height;
@@ -149,17 +138,19 @@ typedef struct s_image
 
 typedef struct s_comps
 {
+//	dans closestt?
+	t_coord	*r_origin;
+	t_coord	*r_dir;
 	float	closestt;
+	int 	t_count;
+	int		obj_type;
 	t_obj	*obj;//pointeur closest
+
+// dans prepare computation
 	t_coord	*p_touch;//
 	t_coord	*v_eye; //inverse du ray de base
 	t_coord	*v_norm_parral;
-	t_coord	*r_origin;
-	t_coord	*r_dir;
-	//t_ray	*r_ray;
 	bool	inside;
-	int 	t_count;
-	int		obj_type;
 }	t_comps;
 
 ////////// CANVA //////////
@@ -172,22 +163,19 @@ typedef struct s_pix
 	t_light		***lux;
 	
 	//different in each pixel. 
-	// les 3 là vraiment important dans data struct??
 	// une fois ray calculé plus besoin....
 	float		vpx;// viewport x
 	float 		vpy;// viewport y
 	t_coord		*p_viewport; // point sur le viewport avec xy. 
-	t_coord	*r_origin;
-	t_coord	*r_dir;
-//	t_ray		*r_original; // ray entre camera et coordonnes sur viewport
+	//ray original à garder =)
+	t_coord		*r_origin;
+	t_coord		*r_dir;
 	t_color		*color; // OK
 	t_hits		***hits; //array de hits pour stocker les intersections objets
 	t_comps		*comps; // ici on peut faire une array pour mettre les objets dans l ordre où ils se font toucher...
 //	t_matrix	*neo;
-//	t_obj		***c_obj;//scene from camera a voir apres pour l instant sert à rien
 //	int			t_count;//ici compter le nombre d intersection?
 }	t_pix;
-
 
 /* apparement ça sert à rien...
 typedef struct s_matrix

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:59:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 13:56:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,23 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 			pix->r_original->v_dir->x,
 			pix->r_original->v_dir->y,
 			pix->r_original->v_dir->z);*/
-	pix->r_origin = p_camera_world;
-	pix->r_dir = v_direction;
+
+	pix->r_dir = malloc(sizeof(t_coord));
+	pix->r_origin = malloc(sizeof(t_coord));
+	copy_coord(pix->r_origin, p_camera_world);
+	copy_coord(pix->r_dir, v_direction);
+	free(p_camera_world);
+	free(v_direction);
+	free(p_viewport_world);
+/*	if (pix->r_origin->p_camera_world == NULL)
+	{
+		printf("error r origin\n");
+	}
+	if (pix->r_origin->v_direction == NULL)
+	{
+		printf("error v\n");
+	}*/
+
 }
 
 //calcul les coordonnées xy sur le viewport de chaque pixel

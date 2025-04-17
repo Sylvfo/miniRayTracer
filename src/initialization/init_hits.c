@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 12:20:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 13:26:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ void	assign_hits_to_pix(t_pix ***pix, t_hits ***hits, t_num_obj *num_obj)
 			pix[i][j]->hits = NULL;
 			pix[i][j]->hits = init_hits(num_obj);
 			pix[i][j]->comps = malloc(sizeof(t_comps));
+			pix[i][j]->comps->r_dir = malloc(sizeof(t_coord));
+			pix[i][j]->comps->r_origin = malloc(sizeof(t_coord));
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:30 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/06 22:54:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 13:29:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2)
 {
 	t_coord	*p_v_new;
 
-	if (is_point(p_v_1) == true && is_point(p_v_2) == true)
+/*	if (is_point(p_v_1) == true && is_point(p_v_2) == true)
 	{
 		perror("Try to add two points \n");
 		return (NULL);
-	}
+	}*/
 	p_v_new = malloc(sizeof(t_coord));
 	p_v_new->x = p_v_1->x + p_v_2->x;
 	p_v_new->y = p_v_1->y + p_v_2->y;
