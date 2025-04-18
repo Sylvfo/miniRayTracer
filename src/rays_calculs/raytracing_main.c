@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 17:16:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 17:41:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ void raytracing(t_pix ***pix)
 	start = time_now(start, " viewport");
 
 	matrix_transformations(pix);
-
-	// pareil pour les lumières
-	set_transformation_light(pix[0][0]->lux);
-	// pareil pour les lumières
 	start = time_now(start, " set_transf");
 
 	main_intersections(pix);
@@ -43,13 +39,12 @@ void raytracing(t_pix ***pix)
 	find_closest_obj(pix);
 	start = time_now(start, " closest obj");
 
-	test_couleur(pix);
+//	test_couleur(pix);
 
 	prepare_computation(pix);
 
 	start = time_now(start, " prepare computation");
-	transform_lights(pix[0][0]->lux);
-	start = time_now(start, " transform lights");
+	
 	//intersect rayons avec sphere
 	new_light(pix);
 	start = time_now(start, " new lights");

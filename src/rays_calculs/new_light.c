@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 17:18:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 17:42:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	new_light(t_pix ***pix)
 	int	x;
 	int	y;
 	float intensity;
-
 
 	x = 0;
 	while (x < WND_WIDTH)
@@ -54,7 +53,7 @@ float light_intensity(t_pix *pix)
 		{
 			if (intersect_objects_shadow(pix, i) == true)
 			{
-				printf("a");
+			//	printf("a");
 				return intensity;
 			}
 			intensity += compute_pointlight(pix, pix->lux[1][i]);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 16:38:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 17:49:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void matrix_transformations(t_pix ***pix)
 	// calcule les matrix de transfo pour tous les objets
 	set_transformation(pix[0][0]->obj);
 	// applique toutes les transfo sur chaque ray de chaque pixel pour chaque object
+	//ray
 	apply_transformation(pix);
 	apply_transf_sph_center(pix[0][0]);
 	//pareil pour les lumières
+	set_transformation_light(pix[0][0]->lux);
+	transform_lights(pix[0][0]->lux);
 	// a deplacer
 }
 
@@ -30,8 +33,6 @@ void apply_transformation(t_pix ***pix)
 	int a;
 	int b;
 	int u = 0;
-	
-	printf("enter apply\n");
 	a = 1;
 	x = 0;
 	while (x < WND_WIDTH && u < 550000)// a changer
@@ -49,14 +50,13 @@ void apply_transformation(t_pix ***pix)
 					u++;		 
 					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_origin);									
 					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_dir);
-				//	pix[x][y]->hits[a][b]->r_dir->t = 0;
-				//	pix[x][y]->hits[a][b]->r_dir = normalize_vector(pix[x][y]->hits[a][b]->r_dir);
-				//	pix[x][y]->hits[a][b]->r_dir->t = 0;
-				/*	if (a == 1 && b == 0)
+					if (x == 25 && y == 34)
 					{
-						printf("ray dir ");
+						printf("\nray dir ");
 						print_vector(pix[x][y]->hits[a][b]->r_dir);
-					}*/
+						printf("r_origin ");
+						print_point(pix[x][y]->hits[a][b]->r_origin);
+					}
 					b++;
 				}
 				a++;
@@ -65,7 +65,6 @@ void apply_transformation(t_pix ***pix)
 		}
 		x++;
 	}
-	printf("uu %i \n", u);
 }
 
 
@@ -83,20 +82,20 @@ void apply_transf_sph_center(t_pix *pix)
 		{	
 			pix->obj[a][b]->p_world = malloc(sizeof(t_coord));
 			update_world_position(pix->obj[a][b]);
-			printf("\np_coord avant ");
-			print_point(pix->obj[a][b]->p_coord);
+//			printf("\np_coord avant ");
+//			print_point(pix->obj[a][b]->p_coord);
 //			printf("p_world resultat ");
 //			print_matrix(pix->obj[a][b]->m_tranf);
-			printf("p_world resultat ");
-			print_point(pix->obj[a][b]->p_world);
+//			printf("p_world resultat ");
+//			print_point(pix->obj[a][b]->p_world);
 			b++;
 		}
 		a++;
 	}	
 }
 
-
-void update_world_position(t_obj *obj) {
+void update_world_position(t_obj *obj)
+{
     if (!obj) return;
     
     // Multiplier la position locale par la matrice de transformation
@@ -117,6 +116,11 @@ void update_world_position(t_obj *obj) {
                     
     obj->p_world->t = 1.0f; // Important pour un point
 }
+
+
+
+
+
 
 
 

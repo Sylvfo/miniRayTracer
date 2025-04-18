@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 17:21:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 17:31:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num)
 	t_coord *sphere_to_point;
 	
 	//p_coord
-	light_to_point = substraction(pix->lux[1][0]->p_coord, pix->comps->p_touch);
-//	light_to_point = substraction(pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
+//	light_to_point = substraction(pix->lux[1][0]->p_coord, pix->comps->p_touch);
+	light_to_point = substraction(pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
 	distance_light_p_touch = length_vector(light_to_point);
 	light_dir = normalize_vector(light_to_point);
     float radius = pix->obj[1][sphere_num]->diam / 2.0f;
 	//p_coord ou p_world???
-	sphere_to_point = substraction(pix->comps->p_touch, pix->obj[1][sphere_num]->p_coord);
-//	sphere_to_point = substraction(pix->comps->p_touch, pix->obj[1][sphere_num]->p_world);
+//	sphere_to_point = substraction(pix->comps->p_touch, pix->obj[1][sphere_num]->p_coord);
+	sphere_to_point = substraction(pix->comps->p_touch, pix->obj[1][sphere_num]->p_world);
 	float a = dot_product(light_dir, light_dir);
 	float b = 2.0f * dot_product(sphere_to_point, light_dir);
 	float c = dot_product(sphere_to_point, sphere_to_point) - radius * radius;			 
