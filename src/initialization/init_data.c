@@ -111,6 +111,14 @@ static void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 			pix[x][y]->obj = obj;
 			pix[x][y]->lux = lux;
 			pix[x][y]->color = init_color();
+			if (!pix[x][y])
+			{
+				printf("PIX[%d][%d] is NULL !!\n", x, y);
+			}
+			else if (!pix[x][y]->cam || !pix[x][y]->obj || !pix[x][y]->lux)
+			{
+				printf("PIX[%d][%d] has NULL sub-pointers !!\n", x, y);
+			}
 			y++;
 		}
 		x++;

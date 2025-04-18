@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 17:49:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 19:21:45 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void matrix_transformations(t_pix ***pix)
 	// applique toutes les transfo sur chaque ray de chaque pixel pour chaque object
 	//ray
 	apply_transformation(pix);
+	//faire pour tous les objets
 	apply_transf_sph_center(pix[0][0]);
 	//pareil pour les lumières
 	set_transformation_light(pix[0][0]->lux);
@@ -42,14 +43,14 @@ void apply_transformation(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{ 
 			a = 1;
-			while (a < 4)// a changer
+			while (pix[x][y]->obj[a] != NULL)// a changer
 			{
 				b = 0;
-				while(pix[x][y]->obj[a][b] != NULL && b < 4)// a changer
+				while(pix[x][y]->obj[a][b] != NULL)// a changer
 				{
 					u++;		 
-					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_origin);									
-					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_tranf, pix[x][y]->r_dir);
+					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
+					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					if (x == 25 && y == 34)
 					{
 						printf("\nray dir ");
@@ -81,13 +82,16 @@ void apply_transf_sph_center(t_pix *pix)
 		while(pix->obj[a][b] != NULL)// a changer
 		{	
 			pix->obj[a][b]->p_world = malloc(sizeof(t_coord));
+			t_coord *p_point = create_point(0,0,0);
+//			pix->obj[a][b]->p_world = matrix_multiplication_44_coord(pix->obj[a][b]->m_transf, p_point);
 			update_world_position(pix->obj[a][b]);
-//			printf("\np_coord avant ");
-//			print_point(pix->obj[a][b]->p_coord);
+			printf("\np_coord avant ");
+			print_point(pix->obj[a][b]->p_coord);
 //			printf("p_world resultat ");
 //			print_matrix(pix->obj[a][b]->m_tranf);
-//			printf("p_world resultat ");
-//			print_point(pix->obj[a][b]->p_world);
+			printf("p_world resultat ");
+			print_point(pix->obj[a][b]->p_world);
+
 			b++;
 		}
 		a++;
@@ -99,20 +103,20 @@ void update_world_position(t_obj *obj)
     if (!obj) return;
     
     // Multiplier la position locale par la matrice de transformation
-    obj->p_world->x = obj->m_no_invese[0] * obj->p_coord->x + 
-                    obj->m_no_invese[4] * obj->p_coord->y + 
-                    obj->m_no_invese[8] * obj->p_coord->z + 
-                    obj->m_no_invese[12];
+    obj->p_world->x = obj->m_transf[0] * obj->p_coord->x + 
+                    obj->m_transf[4] * obj->p_coord->y + 
+                    obj->m_transf[8] * obj->p_coord->z + 
+                    obj->m_transf[12];
                     
-    obj->p_world->y = obj->m_no_invese[1] * obj->p_coord->x + 
-                    obj->m_no_invese[5] * obj->p_coord->y + 
-                    obj->m_no_invese[9] * obj->p_coord->z + 
-                    obj->m_no_invese[13];
+    obj->p_world->y = obj->m_transf[1] * obj->p_coord->x + 
+                    obj->m_transf[5] * obj->p_coord->y + 
+                    obj->m_transf[9] * obj->p_coord->z + 
+                    obj->m_transf[13];
                     
-    obj->p_world->z = obj->m_no_invese[2] * obj->p_coord->x + 
-                    obj->m_no_invese[6] * obj->p_coord->y + 
-                    obj->m_no_invese[10] * obj->p_coord->z + 
-                    obj->m_no_invese[14];
+    obj->p_world->z = obj->m_transf[2] * obj->p_coord->x + 
+                    obj->m_transf[6] * obj->p_coord->y + 
+                    obj->m_transf[10] * obj->p_coord->z + 
+                    obj->m_transf[14];
                     
     obj->p_world->t = 1.0f; // Important pour un point
 }

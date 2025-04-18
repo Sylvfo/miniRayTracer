@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 11:35:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 18:03:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_coord	*normal_at(t_obj *object, t_coord *point_on_object)
 		return (NULL);
 
 	// Obtenir l'inverse de la matrice de transformation de l'objet
-	inv_transform = inverted_matrix_44(object->m_tranf);
+//	inv_transform = inverted_matrix_44(object->m_transf);
+	inv_transform = object->m_transf;
 	if (!inv_transform)
 	{
 		free(origin_object);

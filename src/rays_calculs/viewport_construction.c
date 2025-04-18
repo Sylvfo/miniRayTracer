@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 13:56:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 18:43:48 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,6 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
 	v_direction = substraction(p_viewport_world, p_camera_world);
 	v_direction = normalize_vector(v_direction);
-//	pix->r_original = create_ray(p_camera_world, v_direction);
-	/*	printf("Pixel (%.2f, %.2f): Ray origin = (%.2f, %.2f, %.2f), dir = (%.4f, %.4f, %.4f)\n",
-			pix->vpx, pix->vpy,
-			pix->r_original->p_origin->x,
-			pix->r_original->p_origin->y,
-			pix->r_original->p_origin->z,
-			pix->r_original->v_dir->x,
-			pix->r_original->v_dir->y,
-			pix->r_original->v_dir->z);*/
 
 	pix->r_dir = malloc(sizeof(t_coord));
 	pix->r_origin = malloc(sizeof(t_coord));
@@ -70,16 +61,8 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	free(p_camera_world);
 	free(v_direction);
 	free(p_viewport_world);
-/*	if (pix->r_origin->p_camera_world == NULL)
-	{
-		printf("error r origin\n");
-	}
-	if (pix->r_origin->v_direction == NULL)
-	{
-		printf("error v\n");
-	}*/
-
 }
+
 
 //calcul les coordonnées xy sur le viewport de chaque pixel
 void init_viewport_x_y(t_pix *pix, int x, int y)
@@ -87,3 +70,10 @@ void init_viewport_x_y(t_pix *pix, int x, int y)
 	pix->vpx = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
 	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
 }
+
+/* fonction gpt
+void init_viewport_x_y(t_pix *pix, int x, int y)
+{
+	pix->vpx = ((x + 0.5) * pix->cam->pixel_size) - pix->cam->half_width;
+	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
+}*/
