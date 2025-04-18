@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 12:00:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 17:15:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void transform_lights(t_light ***lux);
 void transform_obj(t_pix *pix, float *m_transf, int obj_type, int obj_num);
 //void transform_plan(t_pix *pix, float *m_transf, int plan_num);
 //void transform(t_pix *pix, float *m_transf, int sphere_num);
-
+void apply_transf_sph_center(t_pix *pix);
+void update_world_position(t_obj *obj);
 //transform_rotation.c
 void rotation_from_vector(float *m_rot, t_coord *to);
 void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot);
@@ -91,7 +92,9 @@ float	compute_specular(t_pix *pix, t_light *lux);
 //bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects);
 //t_hits intersect_object(t_obj *object, t_ray *ray);
 
-
+//shadows_.c
+bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num);
+bool intersect_objects_shadow(t_pix *pix, int lux_num);
 
 /*
 //light.c

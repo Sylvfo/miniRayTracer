@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 23:59:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 14:59:28 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ float	length_vector(t_coord *v_1)
 
 	if (is_vector(v_1) == false)
 		return (0);
-	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+//	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 	return (length);
 }
 

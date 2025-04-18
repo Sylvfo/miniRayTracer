@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 15:46:21 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 16:59:19 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ bool	matrix_comparision(float *m_a, float *m_b);
 //matrix_operations.c
 float	*matrix_multiplication_44(float *m_a, float *m_b);
 void	matrix_division(float *m_matrix, float div);
+t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);
+
 
 //matrix_mult_matrix_p_v.c
 t_coord	*matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);

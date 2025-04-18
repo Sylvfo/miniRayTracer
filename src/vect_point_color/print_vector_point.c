@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:36:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 15:51:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 12:15:03 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void print_point(t_coord *p_point)
 {
 	if (is_point(p_point) == false)
 		return ;
-	printf("point : x %.5f, y %.5f, z %.5f\n", p_point->x, p_point->y, p_point->z);
+	printf("point : x %.5f, y %.5f, z %.5f t %i\n", p_point->x, p_point->y, p_point->z, p_point->t);
 }
 

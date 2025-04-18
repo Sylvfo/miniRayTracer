@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 19:27:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 17:16:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void raytracing(t_pix ***pix)
 	return;
 }
 
-/*
+
 void test_couleur(t_pix ***pix)
 {
 	int	x;
@@ -84,4 +84,4 @@ void test_couleur(t_pix ***pix)
 		}
 		x++;
 	}
-}*/
+}

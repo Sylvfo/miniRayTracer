@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 12:06:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 16:59:24 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 
 //	# the vector from the sphere's center, to the ray origin
 	t_coord *v_sph_camera;
+	//mneme   a mettre dans les hits comme ça on peut réutiliser dans les ombres
 	v_sph_camera = substraction(pix->hits[1][sphere_num]->r_origin, pix->cam->p_origin_zero);//origine sphere à zero
 	a = dot_product(pix->hits[1][sphere_num]->r_dir, pix->hits[1][sphere_num]->r_dir);
 //	print_vector(pix->hits[1][sphere_num]->r_ray_calculs->v_dir);
