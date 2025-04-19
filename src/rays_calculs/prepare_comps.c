@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 13:25:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 10:51:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void prepare_computation(t_pix ***pix)
 				{
 					pix[x][y]->comps->inside = true;
 					pix[x][y]->comps->v_norm_parral = negat(pix[x][y]->comps->v_norm_parral);
-					printf(".");
+				//	printf(".");
 				}
 			}
 			// normal at plan c est pareil que l axe donné au début

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 18:20:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 10:56:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void transform(t_ray *r_original, float *trans_matrix)
 	return ;
 }*/
 
-// ordre transformation: T R S
+
+// ordre transformation: T R S ??
 void set_transformation(t_obj ***obj)
 {
 	int x;
@@ -122,7 +123,8 @@ void transform_lights(t_light ***lux)
 }
 
 
-/*FONCTIONNE PLUS OU MOINS AVANT DE CHANGER
+/*
+//FONCTIONNE PLUS OU MOINS AVANT DE CHANGER
 // ordre transformation: T R S
 void set_transformation(t_obj ***obj)
 {
@@ -157,6 +159,4 @@ void set_transformation(t_obj ***obj)
 		}
 		x++;
 	}
-}
-
-*/
+}*/

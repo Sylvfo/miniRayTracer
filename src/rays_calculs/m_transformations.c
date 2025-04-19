@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 19:21:45 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 10:51:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void apply_transformation(t_pix ***pix)
 				{
 					u++;		 
 					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
+					//PROBLEME
 					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					if (x == 25 && y == 34)
 					{
@@ -83,8 +84,8 @@ void apply_transf_sph_center(t_pix *pix)
 		{	
 			pix->obj[a][b]->p_world = malloc(sizeof(t_coord));
 			t_coord *p_point = create_point(0,0,0);
-//			pix->obj[a][b]->p_world = matrix_multiplication_44_coord(pix->obj[a][b]->m_transf, p_point);
-			update_world_position(pix->obj[a][b]);
+			pix->obj[a][b]->p_world = matrix_multiplication_44_coord(pix->obj[a][b]->m_transf, p_point);
+		//	update_world_position(pix->obj[a][b]);
 			printf("\np_coord avant ");
 			print_point(pix->obj[a][b]->p_coord);
 //			printf("p_world resultat ");
