@@ -6,12 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 14:09:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 16:12:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// EFFACE PAS TOUT DE SUITE... C EST CE QUE TU AVAIS FAIT
 /*
 //1
 void	new_light(t_pix ***pix)

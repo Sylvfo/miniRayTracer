@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 14:56:00 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 16:13:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void init_viewport(t_pix ***pix)
 	}
 }
 
+// svp laisse les commentaires ici
 //calcul les rays entre la camera et chaque pixel du viewport
 // le ray n est pas encore transformé par les matrices de transformation des objets
 void init_camera_pix_ray(t_pix *pix, t_camera *cam)

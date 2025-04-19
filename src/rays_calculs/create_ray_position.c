@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 14:17:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 16:07:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 //Ray casting is the process of creating a ray, or line, and finding 
 //the intersections of that ray with the objects in a scene.
-
 
 t_coord *position(t_coord *r_origin, t_coord *r_dir, float t)
 {

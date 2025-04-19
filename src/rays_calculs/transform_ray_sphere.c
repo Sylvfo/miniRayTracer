@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 14:45:39 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 16:13:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void set_transformation_light(t_light ***lux)
 		while(lux[x][y] != NULL)
 		{
 			lux[x][y]->m_tranf = create_translation_matrix(lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z);	
-		//	lux[x][y]->m_tranf = inverted_matrix_44(lux[x][y]->m_tranf);
 			y++;
 		}
 		x++;
@@ -107,7 +106,6 @@ void transform_lights(t_light ***lux)
 		y = 0;
 		while(lux[x][y] != NULL)
 		{
-			//lux[x][y]->p_world = matrix_multiplication_44_point(lux[x][y]->m_tranf, lux[x][y]->p_coord);
 			lux[x][y]->p_world = matrix_multiplication_44_coord(lux[x][y]->m_tranf, lux[x][y]->p_coord);
 			printf("Light %d: local=(%.2f, %.2f, %.2f), world=(%.2f, %.2f, %.2f)\n",y, lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z,
 			lux[x][y]->p_world->x, lux[x][y]->p_world->y, lux[x][y]->p_world->z);
@@ -117,41 +115,3 @@ void transform_lights(t_light ***lux)
 	}
 }
 
-
-/*
-//FONCTIONNE PLUS OU MOINS AVANT DE CHANGER
-// ordre transformation: T R S
-void set_transformation(t_obj ***obj)
-{
-	int x;
-	int y;
-
-	obj[0][0]->m_tranf = create_indentity_matrix_44();
-	x = 1;
-	while(x < 4)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
-	{
-		y = 0;
-		while(obj[x][y] != NULL)
-		{
-			obj[x][y]->m_identity = create_indentity_matrix_44();// a initialiser avant...
-			obj[x][y]->m_transl = create_translation_matrix(obj[x][y]->p_coord->x, obj[x][y]->p_coord->y, obj[x][y]->p_coord->z);
-			obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_identity, obj[x][y]->m_transl);
-			// pas rotations.
-			if (obj[x][y]->obj_type == PLAN || obj[x][y]->obj_type == CYLINDER)
-			{
-				obj[x][y]->m_rot = create_indentity_matrix_44(); // à déplacer
-				rotation_from_vector(obj[x][y]->m_rot, obj[x][y]->v_axe);
-				obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_tranf, obj[x][y]->m_rot);
-			}
-			if (obj[x][y]->obj_type == SPHERE || obj[x][y]->obj_type == CYLINDER)
-			{
-				obj[x][y]->m_scale = create_scaling_matrix(obj[x][y]->diam, obj[x][y]->diam, obj[x][y]->diam);
-				obj[x][y]->m_tranf = matrix_multiplication_44(obj[x][y]->m_tranf, obj[x][y]->m_scale);
-			}
-			obj[x][y]->m_tranf = inverted_matrix_44(obj[x][y]->m_tranf);
-			obj[x][y]->m_no_invese = inverted_matrix_44(obj[x][y]->m_tranf);
-			y++;
-		}
-		x++;
-	}
-}*/

@@ -6,11 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 10:49:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 16:11:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// VERSION CORENTIN DU 14 AVRIL
+// VERSION CORENTIN DU 14 AVRIL que j ai copié et modif dans new_light.c
 /*
 #include "../inc/minirt.h"
 
