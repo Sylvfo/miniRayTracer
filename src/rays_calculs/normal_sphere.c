@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 10:44:53 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 15:57:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_coord	*normal_at(t_obj *object, t_coord *p_touch)
 	}*/
 
 	// Transformer le point du monde vers l'espace local de l'objet
+//	p_object_space = matrix_multiplication_44_point(object->m_inv, p_touch);
 	p_object_space = matrix_multiplication_44_coord(object->m_inv, p_touch);
 	if (!p_object_space)
 	{
@@ -72,26 +73,28 @@ t_coord	*normal_at(t_obj *object, t_coord *p_touch)
 		free(inv_transform);
 		return (NULL);
 	}
-
 	// Calculer la normale dans l'espace local de l'objet
 	object_normal = substraction(p_object_space, origin_object);
 	free(origin_object);
 	free(p_object_space);
-	if (!object_normal)
-	{
-		free(inv_transform);
-		return (NULL);
-	}
+//	if (!object_normal)
+//	{
+//		free(inv_transform);§
+//		return (NULL);
+//	}
+	//a enlever
+//	t_coord *normalized_normal = malloc(sizeof(t_coord));
+//	normalized_normal = normalize_vector(object_normal);
+
 
 	// Obtenir la transposée de l'inverse de la matrice de transformation
 	transp_inv = transpose_matrix(object->m_inv);
 //	free(inv_transform);
-/*	if (!transp_inv)
+	if (!transp_inv)
 	{
 		free(object_normal);
 		return (NULL);
-	}*/
-
+	}
 	// Transformer la normale vers l'espace du monde
 	world_normal = matrix_multiplication_44_coord(transp_inv, object_normal);
 	free(object_normal);

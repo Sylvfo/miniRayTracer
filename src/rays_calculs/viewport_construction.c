@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 18:43:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 14:56:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,16 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	//point sur le viewport. 
 	pix->p_viewport = create_point(pix->vpx, pix->vpy, -1.0);
     // Origine de la caméra dans le repère monde
+//	p_camera_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->cam->p_coord);
 	p_camera_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->cam->p_origin_zero);
-	 // Point final(viewport??) transformé dans le repère monde
+//	p_camera_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->cam->p_coord);
+	if (is_point(p_camera_world) == false)
+		printf("false in p cam world \n");
+	// Point final(viewport??) transformé dans le repère monde
 	p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
+	if (is_point(p_viewport_world) == false)
+		printf("false in p cam p_viewport_world \n");
+//	p_viewport_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->p_viewport);
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
 	v_direction = substraction(p_viewport_world, p_camera_world);
 	v_direction = normalize_vector(v_direction);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 16:59:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 14:44:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	matrix_comparision(float *m_a, float *m_b);
 //matrix_operations.c
 float	*matrix_multiplication_44(float *m_a, float *m_b);
 void	matrix_division(float *m_matrix, float div);
-t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);
+//t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);
 
 
 //matrix_mult_matrix_p_v.c
@@ -100,4 +100,6 @@ float *create_rotation_z_matrix(float radian);
 float degree_to_radian(float degree);
 bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian);
 
+t_coord *matrix_multiplication_44_point(float *m_, t_coord *p);
+t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v);
 #endif

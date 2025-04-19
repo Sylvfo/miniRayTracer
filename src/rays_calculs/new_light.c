@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 10:41:54 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 15:32:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,15 @@ float light_intensity(t_pix *pix)
 	intensity += pix->lux[0][0]->ratio;
 	// Lumières ponctuelles
 	i = 0;
-    while (pix->lux[1][i] != NULL)
+    while (pix->lux[1][i] != NULL && i < 2)
 	{
  		if (pix->comps->obj_type != NONE)
 		{
-			if (intersect_objects_shadow(pix, i) == true)
+			if (intersect_objects_shadow(pix, i) == false)
 			{
-			//	printf("a");
-				return intensity;
+				intensity += compute_pointlight(pix, pix->lux[1][i]);
+			//	intensity += compute_specular(pix, pix->lux[1][0]);
 			}
-			intensity += compute_pointlight(pix, pix->lux[1][i]);
-		//	intensity += compute_specular(pix, pix->lux[1][0]);
 		}
         i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:55:10 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/26 15:09:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 15:18:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 //		row = count / 4;// Détermine la ligne actuelle
 //		col = count % 4;// Détermine la colonne actuelle
 
+/*
 float	*matrix_multiplication_44(float *m_a, float *m_b)
 {
 	float	*m_new_matrix;
@@ -47,7 +48,68 @@ float	*matrix_multiplication_44(float *m_a, float *m_b)
 		count++;
 	}
 	return (m_new_matrix);
+}*/
+
+float	*matrix_multiplication_44(float *m_a, float *m_b)
+{
+	float	*m_new_matrix;
+	int		count;
+	float	sum;
+	int		row;
+	int		col;
+
+	if (check_matrix_44_44(m_a, m_b) == false)
+		return (NULL);
+	m_new_matrix = create_matrix(4, 4);
+	if (m_new_matrix == NULL)
+		return (NULL);
+	count = 0;
+	while (count < 16)
+	{
+		row = count / 4;
+		col = count % 4;
+		sum = 0;
+		sum += m_a[2 + row * 4 + 0] * m_b[2 + 0 * 4 + col];
+		sum += m_a[2 + row * 4 + 1] * m_b[2 + 1 * 4 + col];
+		sum += m_a[2 + row * 4 + 2] * m_b[2 + 2 * 4 + col];
+		sum += m_a[2 + row * 4 + 3] * m_b[2 + 3 * 4 + col];
+		m_new_matrix[2 + count] = sum;
+		count++;
+	}
+	return (m_new_matrix);
 }
+
+
+/*
+//deepseek
+float *matrix_multiplication_44(float *m_a, float *m_b)
+{
+    if (!check_matrix_44_44(m_a, m_b)) return NULL;
+
+    float *result = create_matrix(4, 4);
+    if (!result) return NULL;
+
+    // On ignore les 2 premiers éléments (dimensions)
+    float *a = m_a + 2;
+    float *b = m_b + 2;
+    float *r = result + 2;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            float sum = 0;
+            for (int k = 0; k < 4; k++) {
+                // Accès column-major : a[i + 4*k] et b[k + 4*j]
+                sum += a[i + 4*k] * b[k + 4*j];
+            }
+            r[i + 4*j] = sum;
+        }
+    }
+
+    return result;
+}*/
+
+
+
 
 void	matrix_division(float *m_matrix, float div)
 {

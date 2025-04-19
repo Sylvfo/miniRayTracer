@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 19:21:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 11:00:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ typedef struct s_obj
 	float	*m_scale;
 	float	*m_inv;
 	float	*m_transf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
-	int		obj_type;
 	t_coord	*p_world;
+	int		obj_type;
+
 // un truc pour obj modifié pour calculs quand on déplace un objet....	
 	//	float	*m_rot_x;
 //	float	*m_rot_y;

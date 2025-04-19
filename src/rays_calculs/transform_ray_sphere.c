@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 10:56:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 14:45:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,6 @@ void set_transformation(t_obj ***obj)
 		{
 			//mneme
 			obj[x][y]->m_transf = create_indentity_matrix_44();
-		//	obj[x][y]->m_identity = create_indentity_matrix_44();
-			if (obj[x][y]->obj_type == SPHERE || obj[x][y]->obj_type == CYLINDER)
-			{
-				obj[x][y]->m_scale = create_scaling_matrix(obj[x][y]->diam, obj[x][y]->diam, obj[x][y]->diam);
-				obj[x][y]->m_transf = matrix_multiplication_44(obj[x][y]->m_transf, obj[x][y]->m_scale);
-			}
 			if (obj[x][y]->obj_type == SPHERE || obj[x][y]->obj_type == CYLINDER)
 			{
 				obj[x][y]->m_scale = create_scaling_matrix(obj[x][y]->diam, obj[x][y]->diam, obj[x][y]->diam);
@@ -113,6 +107,7 @@ void transform_lights(t_light ***lux)
 		y = 0;
 		while(lux[x][y] != NULL)
 		{
+			//lux[x][y]->p_world = matrix_multiplication_44_point(lux[x][y]->m_tranf, lux[x][y]->p_coord);
 			lux[x][y]->p_world = matrix_multiplication_44_coord(lux[x][y]->m_tranf, lux[x][y]->p_coord);
 			printf("Light %d: local=(%.2f, %.2f, %.2f), world=(%.2f, %.2f, %.2f)\n",y, lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z,
 			lux[x][y]->p_world->x, lux[x][y]->p_world->y, lux[x][y]->p_world->z);
