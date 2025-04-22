@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:55:10 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/22 11:27:24 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:39:28 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b)
 	int		row;
 	int		col;
 
-//	if (check_matrix_44(m_result) == false)
-//		return;
+	if (check_matrix_44(m_result) == false)
+		return;
 	if (check_matrix_44_44(m_a, m_b) == false)
 		return;
 	count = 0;

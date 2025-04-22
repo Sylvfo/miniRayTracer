@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 14:59:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:41 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ t_coord	*scalar_mult(t_coord *v_1, float scale)
 	v_new->t = 0;
 	return (v_new);
 }
+
+void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale)
+{
+	if (is_vector(v_1) == false)
+		return ;
+	result->x = scale * v_1->x;
+	result->y = scale * v_1->y;
+	result->z = scale * v_1->z;
+	result->t = 0;
+}
+
 
 /**
  * @brief find the norm of a vector

@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 12:36:03 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:04 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	constructing_camera(t_pix ***pix)
 	view_camera(pix[0][0]->cam);
 	print_matrix(pix[0][0]->cam->m_transf);
 	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
-	print_matrix(pix[0][0]->cam->m_inverse);
+	//	p_camera_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->cam->p_coord);
+	pix[0][0]->cam->p_cam_world = matrix_multiplication_44_coord(pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
 	pixel_size(pix[0][0]);
 }
 

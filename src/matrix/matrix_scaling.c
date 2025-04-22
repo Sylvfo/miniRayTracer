@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_scaling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:48:08 by syl               #+#    #+#             */
-/*   Updated: 2025/03/12 13:33:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:52 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ t_coord	*scaling(t_coord *v_p_old, float x, float y, float z)
 		return (NULL);
 	v_p_new = matrix_multiplication_44_coord(m_scale, v_p_old);
 	return (v_p_new);
+}
+
+void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z)
+{
+	matrix_fill(m_matrix, 0, 0, x);
+	matrix_fill(m_matrix, 1, 1, y);
+	matrix_fill(m_matrix, 2, 2, z);
+	matrix_fill(m_matrix, 3, 3, 1);
 }
 
 float	*create_scaling_matrix(float x, float y, float z)

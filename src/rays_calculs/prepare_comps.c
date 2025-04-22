@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_comps.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:12:03 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:31 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void prepare_computation(t_pix ***pix)
 			if (x == 12 && y == 12)
 				start = time_now(start, " start");
 			// Calculer le point ou le rayon touche l objet
-			pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
+			position_NA(pix[x][y]->comps->p_touch, pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
+		//	pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 			// Calculer le vecteur œil : inverse de la direction du rayon
 			pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_dir);//mneme
 			// Calculer la normale au point d'intersection

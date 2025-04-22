@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 11:21:49 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:18 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	fill_translation_matrix(float *m_transl, float x, float y, float z);
 t_coord *scaling(t_coord *v_p_old, float x, float y, float z);
 float *create_scaling_matrix(float x, float y, float z);
 t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
+void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z);
 
 //matrix_rotation.c
 //float *create_rotation_x_matrix(float radian);

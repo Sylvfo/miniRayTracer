@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 12:48:20 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:48 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,17 @@ typedef struct s_obj
 	bool	closed_up; // for cylinder, for bonus...
 	bool	closed_down; // for cylinder, for bonus...
 // 	pour calcul transf matrix
-
-//	float	*m_identity; //
 	float	*m_transl;
 	float	*m_rot;
 	float	*m_scale;
 	float	*m_inv;
 	float	*m_transf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
+	// pour matrix rotation
+	t_coord *axis;
+	t_coord *from;
+	//
+	//calcul intersect sphere
+	t_coord *v_sph_camera;
 	t_coord	*p_world;
 	int		obj_type;
 
@@ -123,6 +127,7 @@ typedef struct s_camera
 	float		*m_transl;
 	float		*m_transf; // initialiser comme identity matrix
 	float 		*m_inverse;
+	t_coord		*p_cam_world;
 	//
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
 	float		view_width;// viewport
@@ -175,9 +180,6 @@ typedef struct s_pix
 	t_image		*ima;// on peut mettre ima dans cam pour faire moins de pointeurs.
 	t_obj		***obj;
 	t_light		***lux;
-	
-	//different in each pixel. 
-	// une fois ray calculé plus besoin....
 
 	t_coord		*p_viewport; // point sur le viewport avec xy. 
 	t_coord		*p_viewport_world;

@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_plan.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:04:59 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:08:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 17:57:40 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-/*
-1 ray  parralèlle plan -> no intersection
-2 ray coplanar to plan -> no intersection
-3 ray origin above the plan
-4 ray origin below the plan
-*/
 
 //intersect scaled plan
 void intersect_plan(t_pix *pix, int plan_num)

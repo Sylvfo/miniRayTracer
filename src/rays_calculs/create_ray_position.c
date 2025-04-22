@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_ray_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:07:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 17:47:54 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,13 @@
 t_coord *position(t_coord *r_origin, t_coord *r_dir, float t)
 {
 	return addition(r_origin,scalar_mult(r_dir, t));
+}
+
+
+void position_NA(t_coord *result, t_coord *r_origin, t_coord *r_dir, float t)
+{
+	scalar_mult_NA(result, r_dir, t);
+	addition_NA(result, r_origin, result);
+//	return addition(r_origin, scalar_mult(r_dir, t));
 }
 

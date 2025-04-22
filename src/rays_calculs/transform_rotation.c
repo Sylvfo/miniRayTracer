@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:37:38 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 10:34:13 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:36:13 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ void rotation_from_vector(float *m_rot, t_coord *to)
 	matrix_rotation_rodrigues(axis, angle, m_rot);
 	free(axis);
 	free(from);
+}
+
+
+void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
+{
+    float 	angle;
+	float 	dot;
+
+    // Produit vectoriel pour obtenir l'axe de rotation
+	obj->axis = cross_product(obj->from, to);
+	dot = dot_product(obj->from, to);// Produit scalaire pour obtenir l'angle
+    angle = acos(dot); // angle en radians
+    if (fabs(angle) < EPSILON)
+		return; // Pas besoin de rotation. ce sera identity matrix...
+	obj->axis = normalize_vector(obj->axis);
+	matrix_rotation_rodrigues(obj->axis, angle, m_rot);
+
 }
 
 void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot)

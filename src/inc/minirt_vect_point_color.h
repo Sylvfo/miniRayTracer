@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 10:07:44 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:10 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ bool	is_point(t_coord *p_point);
 ////////////MATH/////////////
 // add_substr.c
 t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2);
+void addition_NA(t_coord *result, t_coord *p_v_1, t_coord *p_v_2);
 t_coord	*substraction(t_coord *p_v_1, t_coord *p_v_2);
+void substraction_p_to_v_NA(t_coord *v_result, t_coord *p_v_1, t_coord *p_v_2);
 
 //vector_operations_length.c
 t_coord	*scalar_mult(t_coord *v_1, float scale);
+void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale);
 float	length_vector(t_coord *v_1);
 t_coord	*normalize_vector(t_coord *v_1);
 

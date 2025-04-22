@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_creation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 09:39:42 by sforster          #+#    #+#             */
-/*   Updated: 2025/02/17 16:15:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 15:47:19 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ float	*create_matrix(unsigned int row, unsigned int col)
 {
 	float	*m_matrix;
 
-	m_matrix = NULL;
 	m_matrix = malloc((row * col + 2) * sizeof(float));
 	if (!m_matrix)
 	{
