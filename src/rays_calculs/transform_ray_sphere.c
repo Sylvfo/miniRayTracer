@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_ray_sphere.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:13:04 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 09:54:54 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void set_transformation_light(t_light ***lux)
 
 	lux[0][0]->m_tranf = create_indentity_matrix_44();
 	x = 1;
-	while(x < 2)/// (obj[x] != NULL) on pourra changer après pour les autres objets...
+	while(lux[x] != NULL)
 	{
 		y = 0;
 		while(lux[x][y] != NULL)
