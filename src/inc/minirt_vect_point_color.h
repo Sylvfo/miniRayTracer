@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_vect_point_color.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 18:16:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 10:07:44 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	multipling_color(t_color *c_1, t_color *c_2);
 //copy_coord.c
 void copy_coord(t_coord *new, t_coord *origin);
 void copy_color(t_color *new, t_color *origin);
+void vector_fill(t_coord *vect, float x, float y, float z);
 
 //math.c
 float	simple_sqrt(float x);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_matrix.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 14:44:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 11:21:49 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ float	*create_indentity_matrix_44(void);
 bool	matrix_comparision(float *m_a, float *m_b);
 
 //matrix_operations.c
+void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b);
 float	*matrix_multiplication_44(float *m_a, float *m_b);
 void	matrix_division(float *m_matrix, float div);
 //t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);
@@ -63,6 +64,7 @@ int		check_submatrix(float *m_matrix, int row_rm, int col_rm);
 
 //test_inverting.c
 float	*inverted_matrix_44(float *m_matrix);
+float	*inverted_matrix_44_NA(float *m_matrix);
 void	matrix_cofactors_44(float *m_matrix, float *m_cofactors);
 
 //matrix_check.c
@@ -78,6 +80,7 @@ float *create_translation_matrix(float x, float y, float z);
 t_coord *translation(t_coord *p_point, float x, float y, float z);
 t_coord *translation_inverse(t_coord *p_point, float x, float y, float z);
 void translation_on_identity(float *m_identity, float x, float y, float z);
+void	fill_translation_matrix(float *m_transl, float x, float y, float z);
 
 //matrix_scaling.c
 t_coord *scaling(t_coord *v_p_old, float x, float y, float z);

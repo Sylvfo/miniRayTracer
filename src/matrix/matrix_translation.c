@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_translation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 15:49:23 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 11:15:13 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /// les trois fonctions ici ont été faites pour les testes. 
 // tout ca c est testé c est bon =).
 
-//pas utilisée pour l instant
+//
 float	*create_translation_matrix(float x, float y, float z)
 {
 	float	*m_transl;
@@ -28,6 +28,14 @@ float	*create_translation_matrix(float x, float y, float z)
 	matrix_fill(m_transl, 2, 3, z);
 	matrix_fill(m_transl, 3, 3, 1);
 	return (m_transl);
+}
+
+void	fill_translation_matrix(float *m_transl, float x, float y, float z)
+{
+	matrix_fill(m_transl, 0, 3, x);
+	matrix_fill(m_transl, 1, 3, y);
+	matrix_fill(m_transl, 2, 3, z);
+	matrix_fill(m_transl, 3, 3, 1);
 }
 
 //pas utilisée pour l instant

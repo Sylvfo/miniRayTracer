@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_data_struct.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 11:00:40 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 10:28:46 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,19 @@ typedef struct s_light
 
 typedef struct s_camera
 {
+	//depuis parsing
 	t_coord		*p_coord;
 	t_coord		*v_axe;
 	float		fov;
+	// pour bouger cam
+	t_coord		*vn_axe_y; // a faire 1 seule fois au debut
+	t_coord		*v_left;
+	t_coord		*v_true_up;
+	float		*m_orient;
+	float		*m_transl;
 	float		*m_transf; // initialiser comme identity matrix
 	float 		*m_inverse;
+	//
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
 	float		view_width;// viewport
 	float		view_height; // viewport

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing_main.c                                  :+:      :+:    :+:   */
+/*   00_raytracing_main.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 10:43:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 10:49:31 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void raytracing(t_pix ***pix)
 	//pour mesurer. A effacer
 	struct timeval start;
 	gettimeofday(&start, NULL);
-
+	if (init_a_deplacer(pix) == false)
+		exit(0);
 	//creation de la camera
 	constructing_camera(pix);
 	start = time_now(start, " camera");

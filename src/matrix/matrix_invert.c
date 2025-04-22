@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_invert.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:05:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 11:36:14 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,34 @@ bool	is_matrix_invertible(float *m_matrix)
 	return (true);
 }
 
+// a supprimer quand toutes matrices allouees 
 float	*inverted_matrix_44(float *m_matrix)
+{
+	float	*m_inverted;
+	float	determinant;
+
+	if (check_matrix_44(m_matrix) == false)
+	{
+		printf("aa\n");
+		return (NULL);
+	}
+	if (is_matrix_invertible(m_matrix) == false)
+	{
+		printf("bb\n");
+		return (NULL);
+	}
+	m_inverted = create_matrix(4, 4);
+	if (!m_inverted)
+		return (NULL);
+	matrix_cofactors_44(m_matrix, m_inverted);
+	transposing_matrix_44(m_inverted);
+	determinant = determinant_44(m_matrix);
+	matrix_division(m_inverted, determinant);
+	return (m_inverted);
+}
+
+//NA no allocation. a garder a la fin
+float	*inverted_matrix_44_NA(float *m_matrix)
 {
 	float	*m_inverted;
 	float	determinant;

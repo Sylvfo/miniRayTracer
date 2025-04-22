@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_rotation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:37:38 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 16:19:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 10:34:13 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void rotation_from_vector(float *m_rot, t_coord *to)
 	free(axis);
 	free(from);
 }
-
 
 void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot)
 {

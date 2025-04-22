@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/18 17:15:04 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 10:56:54 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINIRT_RAY_CALCULS_H
 
 # include "minirt_data_struct.h"
+
+bool init_a_deplacer(t_pix ***pix);
 
 //raytracing_main.c
 void raytracing(t_pix ***pix);
@@ -23,8 +25,9 @@ struct timeval time_now(struct timeval start, char *str);
 
 //camera_construction.c 
 void constructing_camera(t_pix ***pix);
-void pixel_size(t_pix ***pix);
-float *view_camera(t_coord *p_coordcam, t_coord *v_dircam);
+void pixel_size(t_pix *pix);
+//float *view_camera(t_coord *p_coordcam, t_coord *v_dircam);
+void view_camera(t_camera *cam);
 
 //viewport_construction.c
 void init_viewport(t_pix ***pix);

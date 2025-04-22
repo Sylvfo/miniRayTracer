@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_coord.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 12:09:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 17:41:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 10:07:18 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,11 @@ void copy_color(t_color *new, t_color *origin)
 	new->g = origin->g;
 	new->b = origin->b;
 	new->rgb = origin->rgb;
+}
+
+void vector_fill(t_coord *vect, float x, float y, float z)
+{
+	vect->x = x;
+	vect->y = y;
+	vect->z = z;
 }
