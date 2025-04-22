@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 10:28:46 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:48:20 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,9 +178,9 @@ typedef struct s_pix
 	
 	//different in each pixel. 
 	// une fois ray calculé plus besoin....
-	float		vpx;// viewport x
-	float 		vpy;// viewport y
+
 	t_coord		*p_viewport; // point sur le viewport avec xy. 
+	t_coord		*p_viewport_world;
 	//ray original à garder =)
 	t_coord		*r_origin;
 	t_coord		*r_dir;

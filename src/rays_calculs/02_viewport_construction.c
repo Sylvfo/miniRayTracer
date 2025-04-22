@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   viewport_construction.c                            :+:      :+:    :+:   */
+/*   02_viewport_construction.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:13:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/22 12:55:51 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,23 @@ void init_viewport(t_pix ***pix)
 // le ray n est pas encore transformé par les matrices de transformation des objets
 void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 {
-//	t_coord	*p_viewport; //point sur le viewport. 
 	t_coord *v_direction; // vecteur direction
 	t_coord *p_viewport_world;
-//	float *m_inverse;
 	t_coord *p_camera_world;
 	
-	//point sur le viewport. 
-	pix->p_viewport = create_point(pix->vpx, pix->vpy, -1.0);
-    // Origine de la caméra dans le repère monde
+//	METTRE P CAMERA WORLD DANS CAMERA
 //	p_camera_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->cam->p_coord);
 	p_camera_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->cam->p_origin_zero);
-//	p_camera_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->cam->p_coord);
 	if (is_point(p_camera_world) == false)
 		printf("false in p cam world \n");
 	// Point final(viewport??) transformé dans le repère monde
 	p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
 	if (is_point(p_viewport_world) == false)
 		printf("false in p cam p_viewport_world \n");
-//	p_viewport_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->p_viewport);
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
 	v_direction = substraction(p_viewport_world, p_camera_world);
 	v_direction = normalize_vector(v_direction);
 
-	pix->r_dir = malloc(sizeof(t_coord));
-	pix->r_origin = malloc(sizeof(t_coord));
 	copy_coord(pix->r_origin, p_camera_world);
 	copy_coord(pix->r_dir, v_direction);
 	free(p_camera_world);
@@ -75,8 +67,11 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 //calcul les coordonnées xy sur le viewport de chaque pixel
 void init_viewport_x_y(t_pix *pix, int x, int y)
 {
-	pix->vpx = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
-	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
+	pix->p_viewport->x = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
+	pix->p_viewport->y =  pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
+	// z c est moins 1 ou distance point camera
+	//	pix->vpx = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
+//	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
 }
 
 /* fonction gpt

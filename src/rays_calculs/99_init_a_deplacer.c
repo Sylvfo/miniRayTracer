@@ -6,7 +6,7 @@
 /*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/22 11:33:52 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:55:12 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->cam->m_orient = create_matrix(4, 4);
 	pix[0][0]->cam->m_transl = create_matrix(4, 4);
 	pix[0][0]->cam->m_transf = create_matrix(4, 4);
+	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
 	
 //	pix[0][0]->cam->m_inverse = create_matrix(4, 4);
 	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
@@ -35,5 +36,44 @@ bool init_a_deplacer(t_pix ***pix)
 		printf("error malloc cam\n");
 		return (false);
 	}
+	
+
+	int	x;
+	int	y;
+	x = 0;
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		while (y < WND_HEIGHT)
+		{
+			pix[x][y]->p_viewport = create_point(0,0,-1);
+			pix[x][y]->p_viewport_world = create_point(0,0,0);
+			pix[x][y]->p_camera_world = create_point(0,0,0);
+			pix->r_dir = malloc(sizeof(t_coord));
+			pix->r_origin = malloc(sizeof(t_coord));
+			y++;
+		}
+		x++;
+	}
 	return true;
+}
+
+
+
+void	blabla(t_pix ***pix)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		while (y < WND_HEIGHT)
+		{
+			color_float_to_int(pix[x][y]->color);
+			y++;
+		}
+		x++;
+	}
 }
