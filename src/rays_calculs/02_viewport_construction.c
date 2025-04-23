@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_viewport_construction.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 15:19:32 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:15:19 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	if (is_point(cam->p_cam_world) == false)
 		printf("false in p cam world \n");
 	// Point final(viewport??) transformé dans le repère monde
-	pix->p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
+	matrix_multiplication_44_coord_NA(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
+	//pix->p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
 	if (is_point(pix->p_viewport_world) == false)
 		printf("false in p cam p_viewport_world \n");
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
@@ -48,12 +49,11 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	copy_coord(pix->r_origin, cam->p_cam_world);;
 }
 
+
 //calcul les coordonnées xy sur le viewport de chaque pixel
 void init_viewport_x_y(t_pix *pix, int x, int y)
 {
 	pix->p_viewport->x = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
 	pix->p_viewport->y =  pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
-	// z c est moins 1 ou distance point camera
-	//	pix->vpx = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
-//	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
 }
+

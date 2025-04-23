@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_translation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 11:15:13 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:43:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 /// les trois fonctions ici ont été faites pour les testes. 
 // tout ca c est testé c est bon =).
 
-//
-float	*create_translation_matrix(float x, float y, float z)
-{
-	float	*m_transl;
-
-	m_transl = create_indentity_matrix_44();
-	if (!m_transl)
-		return (NULL);
-	matrix_fill(m_transl, 0, 3, x);
-	matrix_fill(m_transl, 1, 3, y);
-	matrix_fill(m_transl, 2, 3, z);
-	matrix_fill(m_transl, 3, 3, 1);
-	return (m_transl);
-}
 
 void	fill_translation_matrix(float *m_transl, float x, float y, float z)
 {
@@ -38,6 +24,11 @@ void	fill_translation_matrix(float *m_transl, float x, float y, float z)
 	matrix_fill(m_transl, 3, 3, 1);
 }
 
+
+///////////////////
+// DESSOUS PAS ENCORE UTILISER. A VOIR POUR BONUS???
+
+/*
 //pas utilisée pour l instant
 t_coord	*translation(t_coord *p_point, float x, float y, float z)
 {
@@ -65,6 +56,7 @@ t_coord	*translation_inverse(t_coord *p_point, float x, float y, float z)
 	return (p_newpoint);
 }
 
+
 //////////////////// ca c est fait au début du raytracing pour la matrice de chaque forme
 // ah finalement non
 void translation_on_identity(float *m_identity, float x, float y, float z)
@@ -73,4 +65,4 @@ void translation_on_identity(float *m_identity, float x, float y, float z)
 	matrix_fill(m_identity, 1, 3, y);
 	matrix_fill(m_identity, 2, 3, z);
 	matrix_fill(m_identity, 3, 3, 1);
-}
+}*/

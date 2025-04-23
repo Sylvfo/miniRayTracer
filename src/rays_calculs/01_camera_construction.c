@@ -6,13 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 13:16:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 22:38:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//norme ok sauf commentaires
 void	constructing_camera(t_pix ***pix)
 {
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
@@ -21,8 +20,12 @@ void	constructing_camera(t_pix ***pix)
 	view_camera(pix[0][0]->cam);
 //	print_matrix(pix[0][0]->cam->m_transf);
 	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
-	//	p_camera_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->cam->p_coord);
-	pix[0][0]->cam->p_cam_world = matrix_multiplication_44_coord(pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
+	if (!pix[0][0]->cam->m_inverse)
+	{
+		printf("pix[0][0]->cam->m_inverse dans constr\n");
+		exit (0);
+	}
+	matrix_multiplication_44_coord_NA(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
 	pixel_size(pix[0][0]);
 }
 
@@ -32,19 +35,19 @@ void	pixel_size(t_pix *pix)
 	float	aspect;
 
 	half_view = tan(pix->cam->fov / 2);
-	aspect = pix->cam->canva_width / pix->cam->canva_height;
-//	aspect = pix->cam->canva_height / pix->cam->canva_width;
+	aspect = (float)pix->cam->canva_width / pix->cam->canva_height;
+
 	if (aspect >= 1)
 	{
 		pix->cam->half_width = half_view;
 		pix->cam->half_height = half_view / aspect;
 	}
-	if (aspect < 1)
+	else
 	{
 		pix->cam->half_height = half_view;
 		pix->cam->half_width = half_view * aspect;
 	}
-	pix->cam->pixel_size = (pix->cam->half_width * 2) / pix->cam->canva_height;
+	pix->cam->pixel_size = (pix->cam->half_width * 2) / pix->cam->canva_width;
 }
 
 // creer la matrice de transformation de la camera pour pouvoir la bouger
@@ -71,13 +74,27 @@ void	view_camera(t_camera *cam)
 	matrix_fill(cam->m_orient, 1, 3, 0);
 	matrix_fill(cam->m_orient, 2, 3, 0);
 	matrix_fill(cam->m_orient, 3, 3, 1);
-//	print_matrix(cam->m_orient);
-	cam->m_transl = create_translation_matrix(-cam->p_coord->x,
+	fill_translation_matrix(cam->m_transl, -cam->p_coord->x,
 		-cam->p_coord->y, -cam->p_coord->z);
-//	fill_translation_matrix(cam->m_transl, -cam->p_coord->x,
-//		-cam->p_coord->y, -cam->p_coord->z);
-//	print_matrix(cam->m_transl);
-	cam->m_transf = matrix_multiplication_44(cam->m_orient, cam->m_transl);
-//	matrix_multiplication_44_NA(cam->m_transf, cam->m_orient, cam->m_transl);
-//	print_matrix(cam->m_transf);
+	if (!cam->m_transl)
+	{
+		printf("pas trans cam\n");
+		exit (0);
+	}
+	if (!cam->m_orient)
+	{
+		printf("pas cam->m_orient\n");
+		exit (0);
+	}
+	if (!cam->m_transf)
+	{
+		printf("pas cam->m_transf\n");
+		exit (0);
+	}
+	matrix_multiplication_44_NA2(cam->m_transf, cam->m_orient, cam->m_transl);
+	if (!cam->m_transf)
+	{
+		printf("pas cam->m_transf 2\n");
+		exit (0);
+	}
 }

@@ -6,11 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 13:54:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 17:43:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
 
 //cool!
 void	transposing_matrix_44(float *m_matrix)

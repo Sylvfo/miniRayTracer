@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 14:30:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 22:41:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void matrix_transformations(t_pix ***pix)
 	// applique toutes les transfo sur chaque ray de chaque pixel pour chaque object
 	apply_transformation(pix);
 	//faire pour tous les objets
-//	apply_transf_sph_center(pix[0][0]);
+	apply_transf_sph_center(pix[0][0]);
 	//pareil pour les lumières
 	set_transformation_light(pix[0][0]->lux);
 	transform_lights(pix[0][0]->lux);
@@ -46,15 +46,14 @@ void apply_transformation(t_pix ***pix)
 				b = 0;
 				while(pix[x][y]->obj[a][b] != NULL)
 				{
-					if (!pix[x][y]->obj[a][b]->m_inv)
-					{
-						printf("missing matrix in apply \n");
-						exit (0);
-					}
-					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
-					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
-					if (pix[x][y]->obj[a][b]->obj_type == SPHERE)
-						pix[x][y]->obj[a][b]->p_world = matrix_multiplication_44_point(pix[x][y]->obj[a][b]->m_transf, pix[x][y]->obj[a][b]->p_coord);
+					matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_origin, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);
+					matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
+					//pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
+				//	pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
+				//	if (pix[x][y]->obj[a][b]->obj_type == SPHERE)
+				//		pix[x][y]->obj[a][b]->p_world = matrix_multiplication_44_point(pix[x][y]->obj[a][b]->m_transf, pix[x][y]->obj[a][b]->p_coord);
+					//	matrix_multiplication_44_coord_NA(pix[x][y]->obj[a][b]->p_world, pix[x][y]->obj[a][b]->m_transf, pix[x][y]->obj[a][b]->p_coord);
+					//	
 					b++;
 				}
 				a++;
@@ -65,7 +64,7 @@ void apply_transformation(t_pix ***pix)
 	}
 }
 
-/*
+
 void apply_transf_sph_center(t_pix *pix)
 {
 	int a;
@@ -78,20 +77,23 @@ void apply_transf_sph_center(t_pix *pix)
 		b = 0;
 		while(pix->obj[a][b] != NULL)// a changer
 		{	
+	//		pix->obj[a][b]->p_world = create_point(0, 0, 0);
+			matrix_multiplication_44_coord_NA(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
+			print_point(pix->obj[a][b]->p_world);
 			pix->obj[a][b]->p_world = matrix_multiplication_44_point(pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
-		//	update_world_position(pix->obj[a][b]);
+			print_point(pix->obj[a][b]->p_world);
+			/*		//	update_world_position(pix->obj[a][b]);
 			printf("\np_coord avant ");
 			print_point(pix->obj[a][b]->p_coord);
 //			printf("p_world resultat ");
 			print_matrix(pix->obj[a][b]->m_inv);
 			printf("p_world resultat ");
-			print_point(pix->obj[a][b]->p_world);
-
+			print_point(pix->obj[a][b]->p_world);*/
 			b++;
 		}
 		a++;
 	}	
-}*/
+}
 
 void update_world_position(t_obj *obj)
 {

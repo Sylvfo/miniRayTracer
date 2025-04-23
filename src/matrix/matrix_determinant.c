@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:25:15 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 15:41:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 17:16:18 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ float	determinant_33(float *m_33)
 	determinant += m_33[4] * minor_33(m_33, 0, 2);
 	return (determinant);
 }
+
 
 float	determinant_44(float *m_44)
 {

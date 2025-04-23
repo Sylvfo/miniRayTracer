@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 14:29:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 22:32:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,8 @@ t_coord	*normal_at(t_obj *object, t_coord *p_touch)
 
 void	normal_at_NA(t_comps *comps)
 {
-	comps->obj->p_object_space = matrix_multiplication_44_coord(comps->obj->m_inv, comps->p_touch);
+	matrix_multiplication_44_coord_NA(comps->obj->p_object_space, comps->obj->m_inv, comps->p_touch);
+//	comps->obj->p_object_space = matrix_multiplication_44_coord(comps->obj->m_inv, comps->p_touch);
 	if (!comps->obj->p_object_space)
 	{
 		printf("a\n");
@@ -149,7 +150,6 @@ void	normal_at_NA(t_comps *comps)
 //	comps->obj->object_normal = substraction(comps->obj->p_object_space, comps->obj->origin_zero);
 	substraction_p_to_v_NA(comps->obj->object_normal, comps->obj->p_object_space, comps->obj->origin_zero);
 	transpose_matrix_NA(comps->obj->transp_inv, comps->obj->m_inv);
-
 	matrix_multiplication_44_coord_NA(comps->v_norm_parral, comps->obj->transp_inv, comps->obj->object_normal);
 //	comps->v_norm_parral = matrix_multiplication_44_coord(comps->obj->transp_inv, comps->obj->object_normal);
 	comps->v_norm_parral->t = 0;

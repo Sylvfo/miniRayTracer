@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_intersect_sphere.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:24 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:35:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void main_intersections(t_pix ***pix)
 	int a;
 	int b;
 
-	printf("enter intersect\n");
+	//printf("enter intersect\n");
 	a = 1;
 	x = 0;
 	while (x < WND_WIDTH)
@@ -58,7 +58,6 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	float c;
 
 	substraction_p_to_v_NA(pix->obj[1][sphere_num]->v_sph_camera, pix->hits[1][sphere_num]->r_origin, pix->cam->p_origin_zero);
-//	v_sph_camera = substraction(pix->hits[1][sphere_num]->r_origin, pix->cam->p_origin_zero);//origine sphere à zero
 	a = dot_product(pix->hits[1][sphere_num]->r_dir, pix->hits[1][sphere_num]->r_dir);
 	b = 2 * dot_product(pix->hits[1][sphere_num]->r_dir, pix->obj[1][sphere_num]->v_sph_camera);
 	c = dot_product(pix->obj[1][sphere_num]->v_sph_camera, pix->obj[1][sphere_num]->v_sph_camera) - 1;

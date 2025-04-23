@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 15:57:15 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 16:15:42 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ bool intersect_objects_shadow(t_pix *pix, int lux_num)
 bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num)
 {
 	t_coord *light_to_point;
-	float distance_light_p_touch;
 	t_coord *light_dir;
 	t_coord *sphere_to_point;
+	float distance_light_p_touch;
 	
 	//p_coord
 	light_to_point = substraction(pix->lux[1][0]->p_coord, pix->comps->p_touch);

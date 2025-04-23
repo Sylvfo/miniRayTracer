@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 14:30:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 16:42:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void raytracing(t_pix ***pix)
 	//pour mesurer. A effacer
 	struct timeval start;
 	gettimeofday(&start, NULL);
+
 	if (init_a_deplacer(pix) == false)
 		exit(0);
+	start = time_now(start, " init");
 	//creation de la camera
 	constructing_camera(pix);
 	start = time_now(start, " camera");

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 13:52:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 19:15:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_obj
 	t_coord *p_object_space;
 	t_coord *object_normal;
 	float 	*transp_inv;
+	// 
 	int		obj_type;
 	
 
@@ -117,8 +118,8 @@ typedef struct s_light
 	float		ratio; //brightnessss
 	t_color		*color;
 	float		*m_identity;
-	float		*m_tranf;// pas forcément besoin?
-	float		*m_transl;
+	float		*m_transf;// pas forcément besoin?
+//	float		*m_transl;
 	t_coord		*p_world;
 }	t_light;
 
@@ -137,6 +138,7 @@ typedef struct s_camera
 	float		*m_transf; // initialiser comme identity matrix
 	float 		*m_inverse;
 	t_coord		*p_cam_world;
+	float		*m_tmp;
 	//
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
 	float		view_width;// viewport

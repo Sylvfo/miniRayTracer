@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 12:14:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 19:17:02 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ bool init_a_deplacer(t_pix ***pix);
 bool 	init_matrix_obj(t_obj ***obj);
 bool 	init_matrix_hits(t_hits ***hits);
 bool init_comps(t_pix ***pix);
+bool init_lights(t_light ***lights);
+
 //raytracing_main.c
 void raytracing(t_pix ***pix);
 

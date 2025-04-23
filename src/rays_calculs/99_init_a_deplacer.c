@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/23 14:28:35 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 22:27:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->cam->v_left = create_vector(0, 1, 0);//or init?
 	pix[0][0]->cam->v_true_up = create_vector(0, 0, 0);
 	pix[0][0]->cam->m_orient = create_matrix(4, 4);
-	pix[0][0]->cam->m_transl = create_matrix(4, 4);
+	pix[0][0]->cam->m_transl = create_indentity_matrix_44();
 	pix[0][0]->cam->m_transf = create_matrix(4, 4);
 	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
 	pix[0][0]->cam->p_origin_zero = create_point(0,0,0);
 	pix[0][0]->cam->view_height = 200;// 1000;
 	pix[0][0]->cam->view_width = 200;// 1000;
-//	pix[0][0]->cam->m_inverse = create_matrix(4, 4);
-	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
+	pix[0][0]->cam->m_tmp = create_matrix(4, 4);
+	pix[0][0]->cam->m_inverse = create_matrix(4, 4);
+/*	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
 		|| !pix[0][0]->cam->m_orient || !pix[0][0]->cam->m_transl || !pix[0][0]->cam->m_transf)
 	{
 		printf("error malloc cam\n");
 		return (false);
-	}
+	}*/
 
 
 	int	x;
@@ -75,6 +76,8 @@ bool init_a_deplacer(t_pix ***pix)
 		return (false);
 	}
 	init_comps(pix);
+	
+	init_lights(pix[0][0]->lux);
 	return true;
 }
 
@@ -90,7 +93,7 @@ bool 	init_matrix_obj(t_obj ***obj)
 		b = 0;
 		while(obj[a][b] != NULL)
 		{
-			obj[a][b]->m_transl = create_matrix(4, 4);
+			obj[a][b]->m_transl = create_indentity_matrix_44();
 			obj[a][b]->m_transf = create_indentity_matrix_44();
 			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
 				obj[a][b]->m_scale = create_matrix(4, 4);
@@ -103,13 +106,11 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->m_tmp = create_matrix(4, 4);
 			obj[a][b]->m_inv = create_matrix(4, 4);
 			obj[a][b]->p_world = malloc(sizeof(t_coord));
-		//	obj[a][b]->m_transf = create_matrix(4, 4);
 			obj[a][b]->v_sph_camera = create_vector(0, 0, 0);
 			obj[a][b]->origin_zero = create_point(0,0,0);
 			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
 			obj[a][b]->object_normal = malloc(sizeof(t_coord));
 			obj[a][b]->transp_inv = create_matrix(4, 4);
-		//	obj[a][b]->transp_inv = create_matrix(4, 4);
 			b++;
 		}
 		a++;
@@ -167,6 +168,26 @@ bool init_comps(t_pix ***pix)
 		}
 		x++;
 	}
+}
+
+bool init_lights(t_light ***lights)
+{
+	int a;
+	int b;
+
+	a = 0;
+	while(lights[a] != NULL)// on pourra changer après pour les autres objets...
+	{
+		b = 0;
+		while(lights[a][b] != NULL)
+		{
+			lights[a][b]->m_transf = create_indentity_matrix_44();
+			lights[a][b]->p_world = create_point(0,0,0);
+			b++;
+		}
+		a++;
+	}
+	return true;
 }
 
 /*
