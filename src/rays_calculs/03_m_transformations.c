@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_m_transformations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:50 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:31:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void apply_transformation(t_pix ***pix)
 				b = 0;
 				while(pix[x][y]->obj[a][b] != NULL)
 				{
+					if (!pix[x][y]->obj[a][b]->m_inv)
+					{
+						printf("missing matrix in apply \n");
+						exit (0);
+					}
 					pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
 					pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					if (pix[x][y]->obj[a][b]->obj_type == SPHERE)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_data_struct.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:48 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:52:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,23 @@ typedef struct s_obj
 	float	*m_scale;
 	float	*m_inv;
 	float	*m_transf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
+	float	*m_tmp;
 	// pour matrix rotation
 	t_coord *axis;
 	t_coord *from;
+
+	
 	//
 	//calcul intersect sphere
 	t_coord *v_sph_camera;
 	t_coord	*p_world;
+	//pour normal at
+	t_coord *origin_zero;
+	t_coord *p_object_space;
+	t_coord *object_normal;
+	float 	*transp_inv;
 	int		obj_type;
+	
 
 // un truc pour obj modifié pour calculs quand on déplace un objet....	
 	//	float	*m_rot_x;

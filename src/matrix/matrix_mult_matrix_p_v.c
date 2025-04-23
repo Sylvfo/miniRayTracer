@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_mult_matrix_p_v.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:54:35 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/22 16:59:01 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:05:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1)
 {
 	if (!m_a)
 	{
-		printf("Matrix is missing\n");
+		printf("Matrix is missing S\n");
 		return (false);
 	}
 	if (m_a[0] != 4 || m_a[1] != 4)

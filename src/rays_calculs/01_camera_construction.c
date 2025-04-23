@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_camera_construction.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:04 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:16:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	constructing_camera(t_pix ***pix)
 	pix[0][0]->cam->canva_width = WND_WIDTH;
 	pix[0][0]->cam->fov *= 3.1415 / 180;
 	view_camera(pix[0][0]->cam);
-	print_matrix(pix[0][0]->cam->m_transf);
+//	print_matrix(pix[0][0]->cam->m_transf);
 	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
 	//	p_camera_world = matrix_multiplication_44_point(pix->cam->m_inverse, pix->cam->p_coord);
 	pix[0][0]->cam->p_cam_world = matrix_multiplication_44_coord(pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);

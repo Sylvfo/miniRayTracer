@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_comps.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:31 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:14:44 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ void prepare_computation(t_pix ***pix)
 			position_NA(pix[x][y]->comps->p_touch, pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 		//	pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 			// Calculer le vecteur œil : inverse de la direction du rayon
-			pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_dir);//mneme
+			copy_coord(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
+			negat_NA(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
+		//	pix[x][y]->comps->v_eye = negat(pix[x][y]->comps->r_dir);//mneme
 			// Calculer la normale au point d'intersection
 			if (pix[x][y]->comps->obj_type == SPHERE)
 			{
 			//ici sylvie modifie pour tester avec un normal at plus simple ERR DAN NORMAL AT ??
 			//	pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, create_point(0,0,0));//mneme
 			//	pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
-				pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
+				normal_at_NA(pix[x][y]->comps);
+		//		pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
 			// Si le produiscalaire entre la normale et le vecteur œil est négatif,
 			// alors le rayon est à l'intérieur de l obj. Inverser dans ce cas la normale.
 				if (dot_product(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_eye) < 0)

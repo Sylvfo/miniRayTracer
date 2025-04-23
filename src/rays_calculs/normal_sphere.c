@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:11:45 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 12:20:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ float *transpose_matrix(float *m)
 	}
 	return (result);
 }
-
+/*
 t_coord	*normal_at(t_obj *object, t_coord *p_touch)
 {
 	t_coord *p_object_space;   // Point dans l'espace de l'objet
@@ -57,12 +57,12 @@ t_coord	*normal_at(t_obj *object, t_coord *p_touch)
 
 	// Obtenir l'inverse de la matrice de transformation de l'objet
 //	inv_transform = inverted_matrix_44(object->m_transf);
-/*	inv_transform = object->m_transf;
+	inv_transform = object->m_transf;
 	if (!inv_transform)
 	{
 		free(origin_object);
 		return (NULL);
-	}*/
+	}
 
 	// Transformer le point du monde vers l'espace local de l'objet
 //	p_object_space = matrix_multiplication_44_point(object->m_inv, p_touch);
@@ -114,5 +114,62 @@ t_coord	*normal_at(t_obj *object, t_coord *p_touch)
 	free(world_normal);
 	
 	return (normalized_normal);
+}*/
+
+//pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
+//t_coord	*normal_at_NA(t_coord *v t_obj *object, t_coord *p_touch)
+void	normal_at_NA(t_comps *comps)
+{
+	comps->obj->p_object_space = matrix_multiplication_44_coord(comps->obj->m_inv, comps->p_touch);
+	if (!comps->obj->p_object_space)
+	{
+		printf("a\n");
+		exit (0);
+	}
+	// Calculer la normale dans l'espace local de l'objet
+//	comps->obj->object_normal = substraction(comps->obj->p_object_space, comps->obj->origin_zero);
+	substraction_p_to_v_NA(comps->obj->object_normal, comps->obj->p_object_space, comps->obj->origin_zero);
+	if (!comps->obj->object_normal)
+	{
+		printf("b\n");
+		exit (0);
+	}
+	comps->obj->transp_inv = transpose_matrix(comps->obj->m_inv);
+	if (!comps->obj->transp_inv)
+	{
+		printf("c\n");
+		exit (0);
+	}
+	//transp_inv = transpose_matrix(object->m_inv);
+
+//	free(inv_transform);
+	//YA DES ERREURS ICI...
+	comps->v_norm_parral = matrix_multiplication_44_coord(comps->obj->transp_inv, comps->obj->object_normal);
+	comps->v_norm_parral->t = 0;
+//	clean...
+	free(comps->obj->transp_inv);
+	// Normaliser le vecteur résultant
+	normalize_vector_NA(comps->v_norm_parral);
 }
 
+/*
+//pix[x][y]->comps->v_norm_parral = normal_at(pix[x][y]->comps->obj, pix[x][y]->comps->p_touch);
+//t_coord	*normal_at_NA(t_coord *v t_obj *object, t_coord *p_touch)
+void	normal_at_NA(t_pix *pix)
+{
+	pix->comps->obj->p_object_space = matrix_multiplication_44_coord(pix->comps->obj->m_inv, pix->comps->p_touch);
+
+	// Calculer la normale dans l'espace local de l'objet
+	pix->comps->obj->object_normal = substraction(pix->comps->obj->p_object_space, pix->comps->obj->origin_zero);
+
+	pix->comps->obj->transp_inv = transpose_matrix(pix->comps->obj->m_inv);
+	//transp_inv = transpose_matrix(object->m_inv);
+
+//	free(inv_transform);
+	//YA DES ERREURS ICI...
+	pix->comps->v_norm_parral = matrix_multiplication_44_coord(pix->comps->obj->transp_inv, pix->comps->obj->object_normal);
+	pix->comps->v_norm_parral->t = 0;
+	clean...
+	// Normaliser le vecteur résultant
+	normalize_vector_NA(pix->comps->v_norm_parral);
+}*/

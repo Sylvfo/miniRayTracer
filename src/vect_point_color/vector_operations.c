@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:43:15 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/22 10:50:57 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:15:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ t_coord *negat(t_coord *v)
     result->z = -v->z;
     result->t = v->t; // conserver le type ou autre information
     return result;
+}
+
+void negat_NA(t_coord *result, t_coord *old)
+{
+    if (!result || !old)
+        return ;
+    result->x = -old->x;
+    result->y = -old->y;
+    result->z = -old->z;
+    result->t = old->t; // conserver le type ou autre information
 }
 
 /**

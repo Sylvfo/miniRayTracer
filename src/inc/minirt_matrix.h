@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_matrix.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:18 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:07:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ float	*create_indentity_matrix_44(void);
 bool	matrix_comparision(float *m_a, float *m_b);
 
 //matrix_operations.c
-void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b);
+void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b, float *m_tmp);
 float	*matrix_multiplication_44(float *m_a, float *m_b);
 void	matrix_division(float *m_matrix, float div);
 //t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);

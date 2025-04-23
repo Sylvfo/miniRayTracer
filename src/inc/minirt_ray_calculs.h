@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_ray_calculs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:12 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:14:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void save_in_comps(t_pix *pix, int a, int b);
 
 //intersect_sphere.c
 t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
+//void	normal_at_NA(t_pix *pix);
+void	normal_at_NA(t_comps *comps);
 
 void set_transformation(t_obj ***obj);
 void set_transformation_light(t_light ***lux);

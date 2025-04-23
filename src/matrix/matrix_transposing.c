@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 09:18:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 13:54:08 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	transposing_matrix_44(float *m_matrix)
 		i++;
 	}
 }
-
+//heap
 void	copy_matrix_44_stack(float *m_matrix, float *m_tmp)
 {
 	int	i;

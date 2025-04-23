@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations_length.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:41 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:01:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 
 	if (is_vector(v_1) == false)
 	{
-		printf("Error: Input is not a valid vector.\n");
+		printf("Error: Input is not a valid vector. A\n");
 		return (NULL);
 	}
 	v_tmp = malloc(sizeof(t_coord));
@@ -102,7 +102,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 	length = length_vector(v_tmp);
 	if (length == 0)
 	{
-		printf("Error: Cannot normalize a zero-length vector.\n");
+		printf("Error: Cannot normalize a zero-length vector. B\n");
 		return (NULL);
 	}
 	// Allouer de la mémoire pour le vecteur normalisé
@@ -125,4 +125,26 @@ t_coord	*normalize_vector(t_coord *v_1)
 	//printf("Normalized Vector: x=%f, y=%f, z=%f\n", v_new->x, v_new->y, v_new->z);
 
 	return (v_new);
+}
+
+void	normalize_vector_NA(t_coord *v_1)
+{
+	float	length;
+
+	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector. in NA\n");
+		return ;
+	}
+	length = length_vector(v_1);
+	if (length == 0)
+	{
+		printf("Error: Cannot normalize a zero-length vector.\n");
+		return ;
+	}
+	length = 1 / length;
+	v_1->x = v_1->x * length;
+	v_1->y = v_1->y * length;
+	v_1->z = v_1->z * length;
+	v_1->t = 0;
 }

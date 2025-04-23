@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_vect_point_color.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:10 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:51:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ t_coord	*scalar_mult(t_coord *v_1, float scale);
 void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale);
 float	length_vector(t_coord *v_1);
 t_coord	*normalize_vector(t_coord *v_1);
+void	normalize_vector_NA(t_coord *v_1);
 
 //vector_operations.c
 t_coord	*negat(t_coord *v_1);
+void negat_NA(t_coord *result, t_coord *old);
 float	dot_product(t_coord *v_1, t_coord *v_2);
 t_coord	*cross_product(t_coord *v_1, t_coord *v_2);
 

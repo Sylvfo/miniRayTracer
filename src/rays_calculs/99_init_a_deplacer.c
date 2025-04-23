@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   99_init_a_deplacer.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:43 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:08:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //translation matrix
 //inverted matrix
 //matrix_multiplication_44_coord
+//matrix_multiplication_44_NA...
 //create_translation_matrix
 
 
@@ -89,7 +90,7 @@ bool 	init_matrix_obj(t_obj ***obj)
 		b = 0;
 		while(obj[a][b] != NULL)
 		{
-			//mneme
+			obj[a][b]->m_transl = create_matrix(4, 4);
 			obj[a][b]->m_transf = create_indentity_matrix_44();
 			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
 				obj[a][b]->m_scale = create_matrix(4, 4);
@@ -97,12 +98,17 @@ bool 	init_matrix_obj(t_obj ***obj)
 			{
 				obj[a][b]->m_rot = create_indentity_matrix_44();
 				obj[a][b]->from = create_vector(0, 1, 0);
-				obj[a][b]->axis = malloc(sizeof(t_coord));
-			}	
-			obj[a][b]->m_transl = create_matrix(4, 4);
+				obj[a][b]->axis = create_vector(0, 0, 0);
+			}
+			obj[a][b]->m_tmp = create_matrix(4, 4);
 			obj[a][b]->m_inv = create_matrix(4, 4);
 			obj[a][b]->p_world = malloc(sizeof(t_coord));
+		//	obj[a][b]->m_transf = create_matrix(4, 4);
 			obj[a][b]->v_sph_camera = create_vector(0, 0, 0);
+			obj[a][b]->origin_zero = create_point(0,0,0);
+			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
+			obj[a][b]->object_normal = malloc(sizeof(t_coord));
+		//	obj[a][b]->transp_inv = create_matrix(4, 4);
 			b++;
 		}
 		a++;
@@ -153,6 +159,7 @@ bool init_comps(t_pix ***pix)
 			copy_coord(pix[x][y]->comps->r_dir, pix[x][y]->r_dir);
 			copy_coord(pix[x][y]->comps->r_origin, pix[x][y]->r_origin);
 			pix[x][y]->comps->p_touch = malloc(sizeof(t_coord));
+			pix[x][y]->comps->v_eye = malloc(sizeof(t_coord));
 			y++;
 		}
 		x++;
