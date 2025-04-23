@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 14:07:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 14:30:36 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	matrix_division(float *m_matrix, float div);
 
 //matrix_mult_matrix_p_v.c
 t_coord	*matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);
+void	matrix_multiplication_44_coord_NA(t_coord *new_point_vector, float *m_a, t_coord *p_v_1);
 bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
 void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
 void	fill_point_vector(t_coord *new_point_vector, int count, float sum);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:54:35 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/23 14:05:56 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 14:30:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,45 @@
 
 // Multiplying a matrix by a tuple produces another tuple
 // On calcule seulement 4 valeurs (x,y,z,t)
+
+void	matrix_multiplication_44_coord_NA(t_coord *new_point_vector, float *m_a, t_coord *p_v_1)
+{
+	float	coord[4];
+	float	sum;
+	int		count;
+
+	if (check_matrix_44_coord(m_a, p_v_1) == false)
+		return ;
+/*	new_point_vector = malloc(sizeof(t_coord));
+	if (!new_point_vector)
+		return (NULL);*/
+/*	m_tmp = malloc(sizeof(t_coord));
+	if (!m_tmp)
+		return (NULL);*/
+	count = 0;
+	matrix_from_coord(p_v_1, coord);
+	while (count < 3)
+	{
+		sum = 0;
+		sum += m_a[2 + count * 4] * coord[0];
+		sum += m_a[2 + count * 4 + 1] * coord[1];
+		sum += m_a[2 + count * 4 + 2] * coord[2];
+		sum += m_a[2 + count * 4 + 3] * coord[3];
+		fill_point_vector(new_point_vector, count, sum);
+		count++;
+	}
+	new_point_vector->t = p_v_1->t;
+/*	while (count < 4)
+	{
+		sum = 0;
+		sum += m_a[2 + count * 4] * coord[0];
+		sum += m_a[2 + count * 4 + 1] * coord[1];
+		sum += m_a[2 + count * 4 + 2] * coord[2];
+		sum += m_a[2 + count * 4 + 3] * coord[3];
+		fill_point_vector(new_point_vector, count, sum);
+		count++;
+	}*/
+}
 
 t_coord	*matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1)
 {

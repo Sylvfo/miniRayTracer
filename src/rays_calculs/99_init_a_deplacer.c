@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/23 14:08:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/23 14:28:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->origin_zero = create_point(0,0,0);
 			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
 			obj[a][b]->object_normal = malloc(sizeof(t_coord));
+			obj[a][b]->transp_inv = create_matrix(4, 4);
 		//	obj[a][b]->transp_inv = create_matrix(4, 4);
 			b++;
 		}
@@ -160,6 +161,8 @@ bool init_comps(t_pix ***pix)
 			copy_coord(pix[x][y]->comps->r_origin, pix[x][y]->r_origin);
 			pix[x][y]->comps->p_touch = malloc(sizeof(t_coord));
 			pix[x][y]->comps->v_eye = malloc(sizeof(t_coord));
+			pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
+			
 			y++;
 		}
 		x++;
