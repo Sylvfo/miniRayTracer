@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/23 16:17:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 20:01:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,17 @@ int	main(int argc, char **argv)
 	parse_scene_file(argv[1], num_obj);
 	pix = init_data(num_obj);
 	save_scene_file(argv[1], pix, num_obj);
+	
 ////////////////////////////////
-//	print_camera(pix);
+	print_camera(pix);
 //	print_spheres(pix, num_obj);
 //	print_planes(pix, num_obj);
 //	print_cylinders(pix, num_obj);
 //	print_lights(pix, num_obj);
 ////////////////////////////////
+	
+
+////////////////////////////////////////
 	raytracing(pix);
 //	printf("calculs done\n");
 //	printf("\n\nici pix  ");

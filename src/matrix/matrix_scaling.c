@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAmatrix_scaling.c                                 :+:      :+:    :+:   */
+/*   matrix_scaling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:48:08 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 19:46:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 18:11:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z)
 	matrix_fill(m_matrix, 1, 1, y);
 	matrix_fill(m_matrix, 2, 2, z);
 	matrix_fill(m_matrix, 3, 3, 1);
+}
+
+float	*create_scaling_matrix(float x, float y, float z)
+{
+	float	*m_scale;
+
+	m_scale = create_matrix(4, 4);
+	if (!m_scale)
+		return (NULL);
+	matrix_fill(m_scale, 0, 0, x);
+	matrix_fill(m_scale, 1, 1, y);
+	matrix_fill(m_scale, 2, 2, z);
+	matrix_fill(m_scale, 3, 3, 1);
+	return (m_scale);
 }
 
 ///////////////////

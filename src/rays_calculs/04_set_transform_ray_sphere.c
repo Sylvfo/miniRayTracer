@@ -6,12 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 22:33:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 19:38:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+/*
 void 	set_transformation(t_obj ***obj)
 {
 	int a;
@@ -36,6 +37,48 @@ void 	set_transformation(t_obj ***obj)
 			fill_translation_matrix(obj[a][b]->m_transl, obj[a][b]->p_coord->x, obj[a][b]->p_coord->y, obj[a][b]->p_coord->z);
 			matrix_multiplication_44_NA(obj[a][b]->m_transf, obj[a][b]->m_transl, obj[a][b]->m_tmp);			
 			obj[a][b]->m_inv = inverted_matrix_44(obj[a][b]->m_transf);
+			b++;
+		}
+		a++;
+	}
+}*/
+
+
+void	set_transformation(t_obj ***obj)
+{
+	int a = 1;
+	int b;
+
+	while (obj[a] != NULL)
+	{
+		b = 0;
+		while (obj[a][b] != NULL)
+		{
+			t_obj *o = obj[a][b];
+
+			// Matrice de transformation finale (commence à l'identité)
+		//	copy_matrix_44_stack(o->m_identity, o->m_transf);
+
+			// SCALE : uniquement pour sphères et cylindres
+			if (o->obj_type == SPHERE || o->obj_type == CYLINDER)
+			{
+				create_scaling_matrix_NA(o->m_scale, o->diam, o->diam, o->diam);
+				matrix_multiplication_44_NA(o->m_transf, o->m_scale, o->m_tmp);
+			}
+			// ROTATION : pour plans et cylindres
+			if (o->obj_type == PLAN || o->obj_type == CYLINDER)
+			{
+				rotation_from_vector_NA(o->m_rot, o->v_axe, o);
+				matrix_multiplication_44_NA(o->m_transf, o->m_rot, o->m_tmp);
+			}
+
+			// TRANSLATION : toujours
+			fill_translation_matrix(o->m_transl, o->p_coord->x, o->p_coord->y, o->p_coord->z);
+			matrix_multiplication_44_NA(o->m_transf, o->m_transl, o->m_tmp);
+
+			// Inverse finale
+			o->m_inv = inverted_matrix_44(o->m_transf);
+
 			b++;
 		}
 		a++;
@@ -72,8 +115,9 @@ void transform_lights(t_light ***lux)
 		y = 0;
 		while(lux[x][y] != NULL)
 		{
-			matrix_multiplication_44_coord_NA(lux[x][y]->p_world, lux[x][y]->m_transf, lux[x][y]->p_coord);
-		//	lux[x][y]->p_world = matrix_multiplication_44_coord(lux[x][y]->m_transf, lux[x][y]->p_coord);
+			//matrix_multiplication_44_coord_NA(lux[x][y]->p_world, lux[x][y]->m_transf, lux[x][y]->p_coord);
+			copy_coord(lux[x][y]->p_world,lux[x][y]->p_coord);
+			//lux[x][y]->p_world = matrix_multiplication_44_coord(lux[x][y]->m_transf, lux[x][y]->p_coord);
 			y++;
 		}
 		x++;

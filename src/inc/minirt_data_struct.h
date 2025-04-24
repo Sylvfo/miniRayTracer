@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 11:25:52 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 20:03:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,13 @@ typedef struct s_comps
 	int		obj_type;
 	t_obj	*obj;//pointeur closest
 	t_color *obj_color;
+	t_coord *p_world;
+	//pour normal at
+	t_coord *origin_zero;
+	t_coord *object_normal;
+	float 	*transp_inv;
+	t_coord *p_space;
+	float 	*obj_inv;
 
 // dans prepare computation
 	t_coord	*p_touch;//
@@ -193,6 +200,7 @@ typedef struct s_comps
 	t_coord *v_light_to_point;
 	float distance_light_p_touch;
 	t_coord *v_sphere_to_point;
+	t_coord *v_point_to_light;
 	//in specular
 	t_coord	*reflect_dir;
 	t_coord	*scalar;

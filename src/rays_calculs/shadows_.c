@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 11:35:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 14:04:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ bool intersect_objects_shadow(t_pix *pix, int lux_num)
 
 bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num)
 {
-	substraction_p_to_v_NA(pix->comps->v_sphere_to_point, pix->comps->p_touch, pix->obj[1][sphere_num]->p_world);
+	//substraction_p_to_v_NA(pix->comps->v_sphere_to_point, pix->comps->p_touch, pix->obj[1][sphere_num]->p_world);
+	substraction_p_to_v_NA(pix->comps->v_sphere_to_point, pix->comps->p_touch, pix->obj[1][sphere_num]->p_coord);
 	float a = dot_product(pix->comps->v_light_to_point, pix->comps->v_light_to_point);
 	float b = 2.0f * dot_product(pix->comps->v_sphere_to_point, pix->comps->v_light_to_point);
 	float c = dot_product(pix->comps->v_sphere_to_point, pix->comps->v_sphere_to_point) - pix->obj[1][sphere_num]->radius * pix->obj[1][sphere_num]->radius;			 

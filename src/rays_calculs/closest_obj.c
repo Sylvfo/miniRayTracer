@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   closest_obj.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:34:46 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:50:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void save_in_comps(t_pix *pix, int a, int b)
 	copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
 	pix->comps->obj_type = pix->hits[a][b]->obj_type;
 	copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
+	copy_coord(pix->comps->p_world, pix->obj[a][b]->p_world);
+	copy_matrix_44_stack(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
 }
 
 

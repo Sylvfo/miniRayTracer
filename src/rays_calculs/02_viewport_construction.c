@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 22:15:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 14:08:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 		printf("false in p cam world \n");
 	// Point final(viewport??) transformé dans le repère monde
 	matrix_multiplication_44_coord_NA(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
-	//pix->p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
+//	pix->p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
 	if (is_point(pix->p_viewport_world) == false)
 		printf("false in p cam p_viewport_world \n");
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
-	pix->r_dir = substraction(pix->p_viewport_world, cam->p_cam_world);
-	pix->r_dir = normalize_vector(pix->r_dir);
+	substraction_p_to_v_NA(pix->r_dir, pix->p_viewport_world, cam->p_cam_world);
+//	pix->r_dir = substraction(pix->p_viewport_world, cam->p_cam_world);
+	normalize_vector_NA(pix->r_dir);
+//	pix->r_dir = normalize_vector(pix->r_dir);
 	copy_coord(pix->r_origin, cam->p_cam_world);;
 }
 

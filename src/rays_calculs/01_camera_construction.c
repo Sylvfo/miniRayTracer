@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 22:38:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 16:52:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	constructing_camera(t_pix ***pix)
 		printf("pix[0][0]->cam->m_inverse dans constr\n");
 		exit (0);
 	}
+	
 	matrix_multiplication_44_coord_NA(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
 	pixel_size(pix[0][0]);
 }
@@ -92,6 +93,7 @@ void	view_camera(t_camera *cam)
 		exit (0);
 	}
 	matrix_multiplication_44_NA2(cam->m_transf, cam->m_orient, cam->m_transl);
+	//matrix_mult_44_new_NA2(cam->m_transf, cam->m_orient, cam->m_transl);
 	if (!cam->m_transf)
 	{
 		printf("pas cam->m_transf 2\n");

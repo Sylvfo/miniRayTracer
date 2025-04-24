@@ -6,14 +6,42 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 17:43:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 11:41:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// celle de corentin
+// À ajouter dans votre bibliothèque de matrices
+float *transpose_matrix(float *m)
+{
+	float *result;
+	int i;
+	int j;
+	
+	if (!m || m[0] != 4 || m[1] != 4)
+		return (NULL);
+	
+	result = create_matrix(4, 4);
+	if (!result)
+		return (NULL);
+	
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			matrix_fill(result, i, j, m[2 + j * 4 + i]);
+			j++;
+		}
+		i++;
+	}
+	return (result);
+}
 
-//cool!
+//celle de syl
 void	transposing_matrix_44(float *m_matrix)
 {
 	float	m_tmp[18];

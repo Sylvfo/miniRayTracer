@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   transform_rotation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:37:38 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 15:36:13 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:37:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
 //obj[x][y]->m_rot = create_rotation_from_vector(obj[x][y]->v_axe);
-
+/* A EFFACER
 void rotation_from_vector(float *m_rot, t_coord *to)
 {
     t_coord *axis;
@@ -33,7 +33,7 @@ void rotation_from_vector(float *m_rot, t_coord *to)
 	matrix_rotation_rodrigues(axis, angle, m_rot);
 	free(axis);
 	free(from);
-}
+}*/
 
 
 void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)

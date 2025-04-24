@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 18:55:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 17:05:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ float	*create_indentity_matrix_44(void);
 bool	matrix_comparision(float *m_a, float *m_b);
 
 //matrix_operations.c
-void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b);
+void matrix_multiplication_44_NA2(float *out, float *a, float *b);
+//void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b);
 void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp);
 //void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b, float *m_tmp);
-float	*matrix_multiplication_44(float *m_a, float *m_b);
+//float	*matrix_multiplication_44(float *m_a, float *m_b);
 void	matrix_division(float *m_matrix, float div);
 //t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);
-
+void update_world_position(t_obj *obj);
+void	matrix_mult_44_new_NA2(float *m_result, float *m_a, float *m_b);
 
 //matrix_mult_matrix_p_v.c
 t_coord	*matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);
@@ -40,11 +42,13 @@ void	matrix_multiplication_44_coord_NA(t_coord *new_point_vector, float *m_a, t_
 bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
 void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
 void	fill_point_vector(t_coord *new_point_vector, int count, float sum);
+void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp);
 
 //matrix_utils.c
 void	print_matrix(float *m_matrix);
 
 //matrix_transposing.c
+float	*transpose_matrix(float *m);
 void	transposing_matrix_44(float *m_matrix);
 void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
 

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/24 11:26:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 20:02:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->p_world = malloc(sizeof(t_coord));
 			obj[a][b]->v_sph_camera = create_vector(0, 0, 0);
 			obj[a][b]->origin_zero = create_point(0,0,0);
-			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
-			obj[a][b]->object_normal = malloc(sizeof(t_coord));
-			obj[a][b]->transp_inv = create_matrix(4, 4);
+		//	obj[a][b]->p_object_space = malloc(sizeof(t_coord));
+		//	obj[a][b]->object_normal = malloc(sizeof(t_coord));
+		//	obj[a][b]->transp_inv = create_matrix(4, 4);
 			if (obj[a][b]->obj_type == SPHERE)
 				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
 			b++;
@@ -170,6 +170,13 @@ bool init_comps(t_pix ***pix)
 			pix[x][y]->comps->reflect_dir = create_vector(0, 0, 0);
 			pix[x][y]->comps->scalar = create_vector(0, 0, 0);
 			pix[x][y]->comps->view_dir = create_vector(0, 0, 0);
+			pix[x][y]->comps->p_world = create_point(0, 0, 0);
+			pix[x][y]->comps->p_space = create_point(0, 0, 0);
+			pix[x][y]->comps->origin_zero = create_point(0, 0, 0);
+			pix[x][y]->comps->object_normal = create_vector(0, 0, 0);
+			pix[x][y]->comps->transp_inv = create_matrix(4, 4);
+			pix[x][y]->comps->obj_inv = create_matrix(4, 4);
+			pix[x][y]->comps->v_point_to_light = create_point(0, 0, 0);
 			y++;
 		}
 		x++;

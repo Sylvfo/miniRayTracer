@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 10:57:22 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 18:32:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ void apply_transformation(t_pix ***pix)
 					matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					//pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
 				//	pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
-				//	if (pix[x][y]->obj[a][b]->obj_type == SPHERE)
-				//		pix[x][y]->obj[a][b]->p_world = matrix_multiplication_44_point(pix[x][y]->obj[a][b]->m_transf, pix[x][y]->obj[a][b]->p_coord);
-					//	matrix_multiplication_44_coord_NA(pix[x][y]->obj[a][b]->p_world, pix[x][y]->obj[a][b]->m_transf, pix[x][y]->obj[a][b]->p_coord);
-					//	
 					b++;
 				}
 				a++;
@@ -77,18 +73,10 @@ void apply_transf_sph_center(t_pix *pix)
 		b = 0;
 		while(pix->obj[a][b] != NULL)// a changer
 		{	
-	//		pix->obj[a][b]->p_world = create_point(0, 0, 0);
+		//	pix->obj[a][b]->p_world = create_point(0, 0, 0);
+		//	copy_coord(pix->obj[a][b]->p_world, pix->obj[a][b]->p_coord);
 			matrix_multiplication_44_coord_NA(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
-		//	print_point(pix->obj[a][b]->p_world);
-			pix->obj[a][b]->p_world = matrix_multiplication_44_point(pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
-		//	print_point(pix->obj[a][b]->p_world);
-			/*		//	update_world_position(pix->obj[a][b]);
-			printf("\np_coord avant ");
-			print_point(pix->obj[a][b]->p_coord);
-//			printf("p_world resultat ");
-			print_matrix(pix->obj[a][b]->m_inv);
-			printf("p_world resultat ");
-			print_point(pix->obj[a][b]->p_world);*/
+			print_point(pix->obj[a][b]->p_world);
 			b++;
 		}
 		a++;
@@ -96,27 +84,5 @@ void apply_transf_sph_center(t_pix *pix)
 }
 
 
-void update_world_position(t_obj *obj)
-{
-    if (!obj) return;
-    
-    // Multiplier la position locale par la matrice de transformation
-    obj->p_world->x = obj->m_transf[2] * obj->p_coord->x + 
-                    obj->m_transf[6] * obj->p_coord->y + 
-                    obj->m_transf[10] * obj->p_coord->z + 
-                    obj->m_transf[14];
-                    
-    obj->p_world->y = obj->m_transf[3] * obj->p_coord->x + 
-                    obj->m_transf[7] * obj->p_coord->y + 
-                    obj->m_transf[11] * obj->p_coord->z + 
-                    obj->m_transf[15];
-                    
-    obj->p_world->z = obj->m_transf[4] * obj->p_coord->x + 
-                    obj->m_transf[8] * obj->p_coord->y + 
-                    obj->m_transf[12] * obj->p_coord->z + 
-                    obj->m_transf[16];
-                    
-    obj->p_world->t = 1.0f; // Important pour un point
-}
 
 

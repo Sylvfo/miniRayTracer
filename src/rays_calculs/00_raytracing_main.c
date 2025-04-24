@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 16:42:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 20:01:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void raytracing(t_pix ***pix)
 	start = time_now(start, " set_transf");
 
 	main_intersections(pix);
+	//print_matrix(pix[0][0]->obj[1][2]->m_inv);
+//	exit(0);
 	start = time_now(start, " intersections");
 	//trie les intersection selon la plus proche du viewport (et camera)
 	find_closest_obj(pix);
