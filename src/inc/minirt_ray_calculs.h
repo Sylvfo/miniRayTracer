@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 19:17:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 09:56:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ float 	compute_pointlight(t_pix *pix, t_light *lux);
 float light_intensity(t_pix *pix);//rajouter plusieurs lampes
 float 	compute_ambient(t_pix *pix);
 float	compute_specular(t_pix *pix, t_light *lux);
-
+void	prepare_v_light(t_pix *pix, int lux_num);
 
 //shadows_.c
 bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num);

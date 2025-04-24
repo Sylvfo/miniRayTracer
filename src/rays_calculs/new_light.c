@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 15:32:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 11:31:54 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ float light_intensity(t_pix *pix)
 	{
  		if (pix->comps->obj_type != NONE)
 		{
+			prepare_v_light(pix, i);
 			if (intersect_objects_shadow(pix, i) == false)
 			{
 				intensity += compute_pointlight(pix, pix->lux[1][i]);
-			//	intensity += compute_specular(pix, pix->lux[1][0]);
+				intensity += compute_specular(pix, pix->lux[1][0]);
 			}
 		}
         i++;
@@ -62,26 +63,22 @@ float light_intensity(t_pix *pix)
     return (intensity);
 }
 
+// le rayon entre tous les p touch et toutes les lumières
+void	prepare_v_light(t_pix *pix, int lux_num)
+{
+	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
+	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
+	normalize_vector_NA(pix->comps->v_light_to_point);
+}
+
+
 float compute_pointlight(t_pix *pix, t_light *lux)
 {
-    t_coord *v_light;
     float n_dot_l;
     float intensity;
 
 	intensity = 0.0;
-    // Vérifier si le point d'intersection est dans l'ombre pour cette lumière
-//    if (is_in_shadow(pix->comps->p_touch, lux, pix->obj))
-//		return 0.0;
-/*	if (intersect_objects_shadow(pix) == true)
-	{
-		printf("i");
-		return 0.0;
-	}	*/
-    
-//	printf(".");
-    v_light = substraction(lux->p_world, pix->comps->p_touch);
-    v_light = normalize_vector(v_light);
-    n_dot_l = dot_product(pix->comps->v_norm_parral, v_light);
+    n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);
     if (n_dot_l > 0)
     {
         intensity = lux->ratio * n_dot_l;// /
@@ -91,79 +88,31 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 //	float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
 //	intensity = lux->ratio * n_dot_l * attenuation;
 	}
-    free(v_light);
     return intensity;
 }
-
-
-
-/* avant modif rays. 
-bool is_in_shadow(t_coord *point, t_light *light, t_obj ***objects)
-{
-	t_coord *r_shadow_point;
-	t_coord *r_shodow_dir;
-	
-	t_ray shadow_ray;
-	t_hits hits;
-
-	shadow_ray.p_origin = point;
-	//syl a modifié light->p_coord par light p_world
-	shadow_ray.v_dir = substraction(light->p_world, point);
-	//probleme normalize()
-	//corr par syl
-	shadow_ray.v_dir = normalize_vector(shadow_ray.v_dir);
-
-	hits = intersect_objects(objects, &shadow_ray);
-	if (hits.t_count > 0 && hits.t1 > EPSILON)
-	{
-	//	printf(".");
-		return (true); // Le point est dans l'ombre
-	}
-//	printf("-");
-		return (false);
-}*/
 
 
 //5
 float	compute_specular(t_pix *pix, t_light *lux)
 {
-	t_coord	*view_dir;
-	t_coord	*reflect_dir;
 	float	specular_intensity;
 	float	reflect_dot_view;
-	t_coord *light_dir;
+	float	dot_p;
 
 	specular_intensity = 0.0;
-	// Calcul du vecteur lumière (L)
-	light_dir = normalize_vector(substraction(lux->p_world, pix->comps->p_touch));
-	// Calcul de la réflexion du vecteur lumière : R = 2 (N . L) N - L
-	reflect_dir = substraction(
-		scalar_mult(
-			pix->comps->v_norm_parral,
-			2.0 * dot_product(
-				pix->comps->v_norm_parral,
-				light_dir
-			)
-		),
-		light_dir
-	);
-	reflect_dir = normalize_vector(reflect_dir);
-
-	// Vecteur d'observation (inverse du vecteur vers le point d'intersection)
+	dot_p = dot_product(pix->comps->v_norm_parral,pix->comps->v_light_to_point);
+	scalar_mult_NA(pix->comps->scalar, pix->comps->v_norm_parral,2.0 * dot_p);
+	substraction_p_to_v_NA(pix->comps->reflect_dir,  pix->comps->scalar, pix->comps->v_light_to_point);
+	normalize_vector_NA(pix->comps->reflect_dir);
 	//ici syl a modifié
 	//view_dir = normalize_vector(scalar_mult(pix->comps->v_norm_parral, -1.0));
-	view_dir = normalize_vector(substraction(pix->cam->p_coord, pix->comps->p_touch));
-
-	// Produit scalaire entre R et V (reflect_dot_view)
-	reflect_dot_view = dot_product(reflect_dir, view_dir);
+	substraction_p_to_v_NA(pix->comps->view_dir, pix->cam->p_coord, pix->comps->p_touch);
+	normalize_vector_NA(pix->comps->view_dir);
+	reflect_dot_view = dot_product(pix->comps->reflect_dir, pix->comps->view_dir);
 	if (reflect_dot_view > 0)
 	{
-		// Application de shininess et factor de specular
-		specular_intensity = lux->ratio * pow(reflect_dot_view, 50.0) * 0.5;
+		specular_intensity = lux->ratio * pow(reflect_dot_view, SHININESS) * 0.5;
 	}
-	free(view_dir);
-	free(reflect_dir);
-	free(light_dir);
 	return (specular_intensity);
 }
 
@@ -172,20 +121,7 @@ float	compute_specular(t_pix *pix, t_light *lux)
 
 
 
-/*
-//2 PLUS UTILISEE
-void ComputeLighting(t_pix *pix)
-{
-	float intensity;
 
-	intensity = light_intensity(pix);
-	pix->color->r = pix->comps->obj->color->r;
-	pix->color->g = pix->comps->obj->color->g;
-	pix->color->b = pix->comps->obj->color->b;
-	scalar_mult_color(pix->color, intensity);
-	
-	//scalar_mult_color(pix->color, intensity);
-}*/
 
 
 /*

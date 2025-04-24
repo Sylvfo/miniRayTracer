@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 19:15:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 11:25:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,19 @@ typedef struct s_obj
 	//calcul intersect sphere
 	t_coord *v_sph_camera;
 	t_coord	*p_world;
+	
 	//pour normal at
 	t_coord *origin_zero;
 	t_coord *p_object_space;
 	t_coord *object_normal;
 	float 	*transp_inv;
+	// pour intersect shadow
+//	t_coord *v_light_to_point;
+	float	radius;
+	
+
+	//
+	
 	// 
 	int		obj_type;
 	
@@ -181,6 +189,14 @@ typedef struct s_comps
 	t_coord	*v_eye; //inverse du ray de base
 	t_coord	*v_norm_parral;
 	bool	inside;
+	// dans shadows lights
+	t_coord *v_light_to_point;
+	float distance_light_p_touch;
+	t_coord *v_sphere_to_point;
+	//in specular
+	t_coord	*reflect_dir;
+	t_coord	*scalar;
+	t_coord *view_dir;
 }	t_comps;
 
 ////////// CANVA //////////

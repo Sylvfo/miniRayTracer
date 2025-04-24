@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/23 18:02:19 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 11:24:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 //# define VIEWP_HIGHT 1000 // déplace dans ima
 # define BAKGROUND_COLOR 12701914// bleu pale 12639977 //11152468
 # define DIST_VIEWP_ORIGIN 10 //Normalement c est 1 ou -1
+
+#define SHININESS 50.0
 
 // not to interract with the last object touched. no neg value. 1 is for safety
 # define RAY_T_MIN 0.0001f

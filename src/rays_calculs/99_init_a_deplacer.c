@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/23 22:27:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 11:26:08 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
 			obj[a][b]->object_normal = malloc(sizeof(t_coord));
 			obj[a][b]->transp_inv = create_matrix(4, 4);
+			if (obj[a][b]->obj_type == SPHERE)
+				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
 			b++;
 		}
 		a++;
@@ -163,7 +165,11 @@ bool init_comps(t_pix ***pix)
 			pix[x][y]->comps->p_touch = malloc(sizeof(t_coord));
 			pix[x][y]->comps->v_eye = malloc(sizeof(t_coord));
 			pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));
-			
+			pix[x][y]->comps->v_light_to_point = create_vector(0, 0, 0);
+			pix[x][y]->comps->v_sphere_to_point = create_vector(0, 0, 0);
+			pix[x][y]->comps->reflect_dir = create_vector(0, 0, 0);
+			pix[x][y]->comps->scalar = create_vector(0, 0, 0);
+			pix[x][y]->comps->view_dir = create_vector(0, 0, 0);
 			y++;
 		}
 		x++;

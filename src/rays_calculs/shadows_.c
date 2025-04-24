@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 16:15:42 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/24 11:35:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool intersect_objects_shadow(t_pix *pix, int lux_num)
 		{
 			if (a == SPHERE)
 				in_shadow = intersect_sphere_shadow(pix, b, lux_num);
-/*			else if (a == PLAN)
+	/*		else if (a == PLAN)
 				in_shadow = intersect_plan_shadow(pix, b, lux_num);
 			else if (a == CYLINDER)
 				in_shadow = intersect_cylinder_shadow(pix, b, lux_num);*/
@@ -43,38 +43,30 @@ bool intersect_objects_shadow(t_pix *pix, int lux_num)
 
 bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num)
 {
-	t_coord *light_to_point;
-	t_coord *light_dir;
-	t_coord *sphere_to_point;
-	float distance_light_p_touch;
-	
-	//p_coord
-	light_to_point = substraction(pix->lux[1][0]->p_coord, pix->comps->p_touch);
-//	light_to_point = substraction(pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
-	distance_light_p_touch = length_vector(light_to_point);
-	light_dir = normalize_vector(light_to_point);
-	//echelle?
-    float radius = pix->obj[1][sphere_num]->diam / 2.0f;
-	//p_coord ou p_world???
-//	sphere_to_point = substraction( pix->obj[1][sphere_num]->p_world, pix->comps->p_touch);
-//	sphere_to_point = substraction(pix->comps->p_touch, pix->obj[1][sphere_num]->p_coord);
-	sphere_to_point = substraction(pix->comps->p_touch, pix->obj[1][sphere_num]->p_world);
-	float a = dot_product(light_dir, light_dir);
-	float b = 2.0f * dot_product(sphere_to_point, light_dir);
-	float c = dot_product(sphere_to_point, sphere_to_point) - radius * radius;			 
+	substraction_p_to_v_NA(pix->comps->v_sphere_to_point, pix->comps->p_touch, pix->obj[1][sphere_num]->p_world);
+	float a = dot_product(pix->comps->v_light_to_point, pix->comps->v_light_to_point);
+	float b = 2.0f * dot_product(pix->comps->v_sphere_to_point, pix->comps->v_light_to_point);
+	float c = dot_product(pix->comps->v_sphere_to_point, pix->comps->v_sphere_to_point) - pix->obj[1][sphere_num]->radius * pix->obj[1][sphere_num]->radius;			 
     float discriminant = b*b - 4*a*c;
     if (discriminant < 0)
 		return false;
     float sqrt_discr = sqrtf(discriminant);
     float t1 = (-b - sqrt_discr) / (2*a);
     float t2 = (-b + sqrt_discr) / (2*a);
-    return ((t1 > EPSILON && t1 < distance_light_p_touch) || 
-           (t2 > EPSILON && t2 < distance_light_p_touch));
+	return ((t1 > EPSILON && t1 < pix->comps->distance_light_p_touch) || 
+			(t2 > EPSILON && t2 < pix->comps->distance_light_p_touch));
 }
+
 /*
 bool intersect_plan_shadow(t_pix *pix, int pln_num, int lux_num)
 {
-	
+	if (fabs(pix->hits[2][plan_num]->r_dir->y) < EPSILON)
+	{
+		pix->hits[2][plan_num]->t_count = 0;
+		pix->hits[2][plan_num]->t1 = 0;
+		pix->hits[2][plan_num]->t2 = 0;
+		return ;
+	}
 }
 
 bool intersect_cylinder_shadow(t_pix *pix, int pln_num, int lux_num)
