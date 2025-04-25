@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/24 20:01:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/25 11:53:02 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,30 @@ int	main(int argc, char **argv)
 	
 ////////////////////////////////
 	print_camera(pix);
-//	print_spheres(pix, num_obj);
-//	print_planes(pix, num_obj);
-//	print_cylinders(pix, num_obj);
-//	print_lights(pix, num_obj);
+	print_spheres(pix, num_obj);
+	print_planes(pix, num_obj);
+	print_cylinders(pix, num_obj);
+	print_lights(pix, num_obj);
 ////////////////////////////////
-	
-
+/*	float *m_test = create_matrix(4,4);
+	print_matrix(m_test);
+	matrix_fill(m_test, 0, 1, 1);
+	matrix_fill(m_test, 0, 2, 2);
+	matrix_fill(m_test, 0, 3, 3);
+	matrix_fill(m_test, 1, 0, 4);
+	print_matrix_44(m_test);*/
+/*	float *test_id = create_indentity_matrix_44();
+	print_matrix_44(test_id);
+	float *test_scale = create_matrix(4, 4);
+	create_scaling_matrix_NA(test_scale, 22, 23, 24);
+	print_matrix_44(test_scale);
+	float *test_transl = create_matrix(4, 4);
+	fill_translation_matrix(test_transl, 72,73,74);
+	print_matrix_44(test_transl);
+	float *test_rot = create_matrix(4, 4);
+	fill_translation_matrix(test_rot, 20);
+	print_matrix_44(test_rot);
+	exit(0);*/
 ////////////////////////////////////////
 	raytracing(pix);
 //	printf("calculs done\n");

@@ -27,6 +27,8 @@ bool	matrix_comparision(float *m_a, float *m_b);
 
 //matrix_operations.c
 void matrix_multiplication_44_NA2(float *out, float *a, float *b);
+void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p);
+
 //void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b);
 void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp);
 //void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b, float *m_tmp);
@@ -43,9 +45,11 @@ bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
 void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
 void	fill_point_vector(t_coord *new_point_vector, int count, float sum);
 void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp);
-
+void	matrix_mult_2(float *ma, float *mb);
+void matrix_mult_3(float *result, float *ma, float *mb);
 //matrix_utils.c
 void	print_matrix(float *m_matrix);
+void	print_matrix_44(float *m);
 
 //matrix_transposing.c
 float	*transpose_matrix(float *m);

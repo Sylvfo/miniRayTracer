@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_m_transformations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 18:32:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/25 11:51:41 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void matrix_transformations(t_pix ***pix)
 
 	// calcule les matrix de transfo pour tous les objets
 	set_transformation(pix[0][0]->obj);
+	printf("Abb \n");
 	// applique toutes les transfo sur chaque ray de chaque pixel pour chaque object
 	apply_transformation(pix);
+	printf("Bub \n");
 	//faire pour tous les objets
 	apply_transf_sph_center(pix[0][0]);
 	//pareil pour les lumières
@@ -46,8 +48,10 @@ void apply_transformation(t_pix ***pix)
 				b = 0;
 				while(pix[x][y]->obj[a][b] != NULL)
 				{
-					matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_origin, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);
-					matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
+					matrix_point_multiplication_new(pix[x][y]->hits[a][b]->r_origin, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);
+					matrix_point_multiplication_new(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
+			//		matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_origin, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);
+			//		matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					//pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
 				//	pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					b++;
@@ -75,7 +79,8 @@ void apply_transf_sph_center(t_pix *pix)
 		{	
 		//	pix->obj[a][b]->p_world = create_point(0, 0, 0);
 		//	copy_coord(pix->obj[a][b]->p_world, pix->obj[a][b]->p_coord);
-			matrix_multiplication_44_coord_NA(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
+			matrix_point_multiplication_new(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
+			//matrix_multiplication_44_coord_NA(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
 			print_point(pix->obj[a][b]->p_world);
 			b++;
 		}

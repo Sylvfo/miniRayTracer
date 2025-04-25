@@ -41,7 +41,8 @@ void transpose_matrix_NA(float *result, float *m)
 //normal = normalize(p_object_space - origin)
 void	normal_at_NA(t_comps *comps)
 {
-	matrix_multiplication_44_coord_NA(comps->p_space, comps->obj_inv, comps->p_touch);
+	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
+	//matrix_multiplication_44_coord_NA(comps->p_space, comps->obj_inv, comps->p_touch);
 //	comps->p_space = matrix_multiplication_44_coord(comps->obj_inv, comps->p_touch);
 	if (!comps->p_space)
 	{
@@ -58,7 +59,8 @@ void	normal_at_NA(t_comps *comps)
 	transpose_matrix_NA(comps->transp_inv, comps->obj_inv);
 	//print_matrix(comps->obj_inv);
 	//print_matrix(comps->transp_inv);
-	matrix_multiplication_44_coord_NA(comps->v_norm_parral, comps->transp_inv, comps->object_normal);
+	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
+	//matrix_multiplication_44_coord_NA(comps->v_norm_parral, comps->transp_inv, comps->object_normal);
 	print_vector(comps->v_norm_parral);
 	
 	comps->v_norm_parral->t = 0;

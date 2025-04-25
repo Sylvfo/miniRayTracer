@@ -40,6 +40,7 @@ float	*inverted_matrix_44(float *m_matrix)
 	float	*m_inverted;
 	float	determinant;
 
+	printf("in inverted\n");
 	if (check_matrix_44(m_matrix) == false)
 	{
 		printf("aa\n");
@@ -52,10 +53,14 @@ float	*inverted_matrix_44(float *m_matrix)
 	}
 	m_inverted = create_matrix(4, 4);
 	if (!m_inverted)
+	{
+		printf("problem in inverted \n");
 		return (NULL);
+	}	
 	matrix_cofactors_44(m_matrix, m_inverted);
 	transposing_matrix_44(m_inverted);
 	determinant = determinant_44(m_matrix);
+	printf("det %.2f \n", determinant);
 	matrix_division(m_inverted, determinant);
 	return (m_inverted);
 }

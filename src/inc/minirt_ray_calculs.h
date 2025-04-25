@@ -78,9 +78,10 @@ void apply_transf_sph_center(t_pix *pix);
 void update_world_position(t_obj *obj);
 //transform_rotation.c
 void rotation_from_vector(float *m_rot, t_coord *to);
-void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj);
-
-void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot);
+//void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj);
+void rotation_from_vector_NA(t_obj *obj);
+void matrix_rotation_rodrigues(t_obj *obj, float angle);
+//void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot);
 
 //intersect_plan.c
 void intersect_plan(t_pix *pix, int plan_num);

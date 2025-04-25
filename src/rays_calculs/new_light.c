@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 20:07:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/25 11:42:39 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	new_light(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			intensity = light_intensity(pix[x][y]);
+		//	intensity = light_intensity(pix[x][y]);
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
@@ -133,8 +133,8 @@ void	prepare_v_light(t_pix *pix, int lux_num)
 
 	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
 	normalize_vector_NA(pix->comps->v_light_to_point);
-//	substraction_p_to_v_NA(pix->comps->v_point_to_light, pix->comps->p_touch, pix->lux[1][lux_num]->p_world);
-//	normalize_vector_NA(pix->comps->v_point_to_light);
+	substraction_p_to_v_NA(pix->comps->v_point_to_light, pix->comps->p_touch, pix->lux[1][lux_num]->p_world);
+	normalize_vector_NA(pix->comps->v_point_to_light);
 	
 }
 

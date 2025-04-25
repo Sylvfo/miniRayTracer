@@ -75,15 +75,13 @@ typedef struct s_obj
 	float	*m_transf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
 	float	*m_tmp;
 	// pour matrix rotation
-	t_coord *axis;
+	//t_coord *axis;
+	t_coord *v_axe_r;
 	t_coord *from;
-
-	
 	//
 	//calcul intersect sphere
 	t_coord *v_sph_camera;
 	t_coord	*p_world;
-	
 	//pour normal at
 	t_coord *origin_zero;
 	t_coord *p_object_space;
@@ -92,14 +90,8 @@ typedef struct s_obj
 	// pour intersect shadow
 //	t_coord *v_light_to_point;
 	float	radius;
-	
-
 	//
-	
-	// 
 	int		obj_type;
-	
-
 // un truc pour obj modifié pour calculs quand on déplace un objet....	
 	//	float	*m_rot_x;
 //	float	*m_rot_y;

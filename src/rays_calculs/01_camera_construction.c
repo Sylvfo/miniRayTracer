@@ -25,8 +25,8 @@ void	constructing_camera(t_pix ***pix)
 		printf("pix[0][0]->cam->m_inverse dans constr\n");
 		exit (0);
 	}
-	
-	matrix_multiplication_44_coord_NA(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
+	matrix_point_multiplication_new(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
+	//matrix_multiplication_44_coord_NA(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
 	pixel_size(pix[0][0]);
 }
 

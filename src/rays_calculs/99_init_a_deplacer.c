@@ -95,14 +95,18 @@ bool 	init_matrix_obj(t_obj ***obj)
 		{
 			obj[a][b]->m_transl = create_indentity_matrix_44();
 			obj[a][b]->m_transf = create_indentity_matrix_44();
-			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
-				obj[a][b]->m_scale = create_matrix(4, 4);
-			if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
+			//if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
+			//obj[a][b]->m_scale = create_indentity_matrix_44();
+			obj[a][b]->m_scale = create_matrix(4, 4);
+			obj[a][b]->m_rot = create_matrix(4 , 4);
+			obj[a][b]->from = create_vector(0, 1, 0);
+			obj[a][b]->v_axe_r = create_vector(0, 0, 0);
+			/*if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
 			{
-				obj[a][b]->m_rot = create_indentity_matrix_44();
+				obj[a][b]->m_rot = create_matrix(4 , 4);
 				obj[a][b]->from = create_vector(0, 1, 0);
-				obj[a][b]->axis = create_vector(0, 0, 0);
-			}
+				obj[a][b]->v_axe_r = create_vector(0, 0, 0);
+			}*/
 			obj[a][b]->m_tmp = create_matrix(4, 4);
 			obj[a][b]->m_inv = create_matrix(4, 4);
 			obj[a][b]->p_world = malloc(sizeof(t_coord));

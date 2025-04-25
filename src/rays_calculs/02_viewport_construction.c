@@ -39,7 +39,8 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	if (is_point(cam->p_cam_world) == false)
 		printf("false in p cam world \n");
 	// Point final(viewport??) transformé dans le repère monde
-	matrix_multiplication_44_coord_NA(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
+	matrix_point_multiplication_new(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
+//	matrix_multiplication_44_coord_NA(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
 //	pix->p_viewport_world = matrix_multiplication_44_coord(pix->cam->m_inverse, pix->p_viewport);
 	if (is_point(pix->p_viewport_world) == false)
 		printf("false in p cam p_viewport_world \n");

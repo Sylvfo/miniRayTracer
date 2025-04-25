@@ -20,6 +20,7 @@ void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z)
 	matrix_fill(m_matrix, 3, 3, 1);
 }
 
+/*
 float	*create_scaling_matrix(float x, float y, float z)
 {
 	float	*m_scale;
@@ -32,7 +33,7 @@ float	*create_scaling_matrix(float x, float y, float z)
 	matrix_fill(m_scale, 2, 2, z);
 	matrix_fill(m_scale, 3, 3, 1);
 	return (m_scale);
-}
+}*/
 
 ///////////////////
 // DESSOUS PAS ENCORE UTILISER. A VOIR POUR BONUS???

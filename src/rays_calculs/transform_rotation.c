@@ -35,7 +35,56 @@ void rotation_from_vector(float *m_rot, t_coord *to)
 	free(from);
 }*/
 
+//v_axe_r
+//void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
+void rotation_from_vector_NA(t_obj *obj)
+{
+    float 	angle;
+	float 	dot;
 
+    // Produit vectoriel pour obtenir l'axe de rotation
+//	obj->v_axe_r = cross_product(obj->from, to);
+	cross_product_NA(obj->v_axe_r, obj->from, obj->v_axe);
+	dot = dot_product(obj->from, obj->v_axe);// Produit scalaire pour obtenir l'angle
+    angle = acos(dot); // angle en radians
+    if (fabs(angle) < EPSILON)
+		return; // Pas besoin de rotation. ce sera identity matrix...
+	normalize_vector(obj->v_axe_r);
+	matrix_rotation_rodrigues(obj, angle);
+}
+
+void matrix_rotation_rodrigues(t_obj *obj, float angle)
+{
+	float c;
+	float s;
+	float t;
+
+	c = cos(angle);
+    s = sin(angle);
+    t = 1 - c;
+
+	//obj->m_rot = create_matrix(4, 4);
+    // Matrice 3x3 de rotation de Rodrigues + extension en 4x4
+	matrix_fill(obj->m_rot, 0, 0, (c + t*obj->v_axe_r->x*obj->v_axe_r->x));
+    matrix_fill(obj->m_rot, 0, 1, t*obj->v_axe_r->x*obj->v_axe_r->y - s*obj->v_axe_r->z);
+    matrix_fill(obj->m_rot, 0, 2, t*obj->v_axe_r->x*obj->v_axe_r->z + s*obj->v_axe_r->y);
+    matrix_fill(obj->m_rot, 0, 3, 0);
+    matrix_fill(obj->m_rot, 1, 0, t*obj->v_axe_r->x*obj->v_axe_r->y + s*obj->v_axe_r->z);
+    matrix_fill(obj->m_rot, 1, 1, t*obj->v_axe_r->y*obj->v_axe_r->y + c);
+    matrix_fill(obj->m_rot, 1, 2, t*obj->v_axe_r->y*obj->v_axe_r->z - s*obj->v_axe_r->x);
+    matrix_fill(obj->m_rot, 1, 3, 0);
+    matrix_fill(obj->m_rot, 2, 0, t*obj->v_axe_r->x*obj->v_axe_r->z - s*obj->v_axe_r->y);
+    matrix_fill(obj->m_rot, 2, 1, t*obj->v_axe_r->y*obj->v_axe_r->z + s*obj->v_axe_r->x);
+    matrix_fill(obj->m_rot, 2, 2, t*obj->v_axe_r->z*obj->v_axe_r->z + c);
+    matrix_fill(obj->m_rot, 2, 3, 0);
+    matrix_fill(obj->m_rot, 3, 0, 0);
+    matrix_fill(obj->m_rot, 3, 1, 0);
+    matrix_fill(obj->m_rot, 3, 2, 0);
+    matrix_fill(obj->m_rot, 3, 3, 1);
+}
+
+
+/*
 void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
 {
     float 	angle;
@@ -48,8 +97,7 @@ void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
     if (fabs(angle) < EPSILON)
 		return; // Pas besoin de rotation. ce sera identity matrix...
 	obj->axis = normalize_vector(obj->axis);
-	matrix_rotation_rodrigues(obj->axis, angle, m_rot);
-
+//	matrix_rotation_rodrigues(obj->axis, angle, m_rot);
 }
 
 void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot)
@@ -79,3 +127,6 @@ void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot)
     matrix_fill(m_rot, 3, 2, 0);
     matrix_fill(m_rot, 3, 3, 1);
 }
+
+
+*/

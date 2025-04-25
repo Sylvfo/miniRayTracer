@@ -46,6 +46,7 @@ t_coord	*negat(t_coord *v_1);
 void negat_NA(t_coord *result, t_coord *old);
 float	dot_product(t_coord *v_1, t_coord *v_2);
 t_coord	*cross_product(t_coord *v_1, t_coord *v_2);
+void cross_product_NA(t_coord *result, t_coord *v_1, t_coord *v_2);
 
 ///////// COLORS ////////////
 //set_colors.c
