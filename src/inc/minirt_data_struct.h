@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 20:03:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/28 16:14:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_obj
 	float	*m_transl;
 	float	*m_rot;
 	float	*m_scale;
-	float	*m_inv;
+	
 	float	*m_transf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
 	float	*m_tmp;
 	// pour matrix rotation
@@ -79,6 +79,9 @@ typedef struct s_obj
 	t_coord *v_axe_r;
 	t_coord *from;
 	//
+	//for inverted
+	float	*m_inv;
+	float	*m_submatrix;
 	//calcul intersect sphere
 	t_coord *v_sph_camera;
 	t_coord	*p_world;
@@ -141,6 +144,7 @@ typedef struct s_camera
 	float		*m_tmp;
 	//
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
+	//
 	float		view_width;// viewport
 	float		view_height; // viewport
 	float		canva_height; // taille image ima_h

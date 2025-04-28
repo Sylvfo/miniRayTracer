@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/25 11:53:02 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/27 15:05:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minirt.h"
+
 
  void	print_spheres(t_pix ***pix, t_num_obj *num_obj)
 {
@@ -77,6 +78,7 @@ void	error_exit(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
+
 int	main(int argc, char **argv)
 {
 	t_pix		***pix;
@@ -100,20 +102,20 @@ int	main(int argc, char **argv)
 	save_scene_file(argv[1], pix, num_obj);
 	
 ////////////////////////////////
-	print_camera(pix);
+/*	print_camera(pix);
 	print_spheres(pix, num_obj);
 	print_planes(pix, num_obj);
 	print_cylinders(pix, num_obj);
 	print_lights(pix, num_obj);
 ////////////////////////////////
-/*	float *m_test = create_matrix(4,4);
+	float *m_test = create_matrix(4,4);
 	print_matrix(m_test);
 	matrix_fill(m_test, 0, 1, 1);
 	matrix_fill(m_test, 0, 2, 2);
 	matrix_fill(m_test, 0, 3, 3);
 	matrix_fill(m_test, 1, 0, 4);
-	print_matrix_44(m_test);*/
-/*	float *test_id = create_indentity_matrix_44();
+	print_matrix_44(m_test);
+	float *test_id = create_indentity_matrix_44();
 	print_matrix_44(test_id);
 	float *test_scale = create_matrix(4, 4);
 	create_scaling_matrix_NA(test_scale, 22, 23, 24);
@@ -126,6 +128,10 @@ int	main(int argc, char **argv)
 	print_matrix_44(test_rot);
 	exit(0);*/
 ////////////////////////////////////////
+
+
+
+
 	raytracing(pix);
 //	printf("calculs done\n");
 //	printf("\n\nici pix  ");

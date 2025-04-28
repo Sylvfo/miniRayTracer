@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 17:49:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 17:13:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,17 @@ void	normal_at_NA(t_comps *comps)
 	transpose_matrix_NA(comps->transp_inv, comps->obj_inv);
 	//print_matrix(comps->obj_inv);
 	//print_matrix(comps->transp_inv);
+	if (!comps->transp_inv)
+	{
+		printf("transpose missing in norm \n");
+	}
 	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
-	//matrix_multiplication_44_coord_NA(comps->v_norm_parral, comps->transp_inv, comps->object_normal);
-	print_vector(comps->v_norm_parral);
+	if (!comps->p_space)
+	{
+		printf("comps->p_space missing in norm \n");
+	}
+	matrix_point_multiplication_new(comps->v_norm_parral, comps->transp_inv, comps->object_normal);
+//	print_vector(comps->v_norm_parral);
 	
 	comps->v_norm_parral->t = 0;
 

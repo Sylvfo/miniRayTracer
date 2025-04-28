@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_m_transformations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/25 11:51:41 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/27 16:52:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ void apply_transformation(t_pix ***pix)
 				{
 					matrix_point_multiplication_new(pix[x][y]->hits[a][b]->r_origin, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);
 					matrix_point_multiplication_new(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
-			//		matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_origin, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);
-			//		matrix_multiplication_44_coord_NA(pix[x][y]->hits[a][b]->r_dir, pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
-					//pix[x][y]->hits[a][b]->r_origin = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_origin);									
-				//	pix[x][y]->hits[a][b]->r_dir = matrix_multiplication_44_coord(pix[x][y]->obj[a][b]->m_inv, pix[x][y]->r_dir);
 					b++;
 				}
 				a++;
@@ -81,7 +77,7 @@ void apply_transf_sph_center(t_pix *pix)
 		//	copy_coord(pix->obj[a][b]->p_world, pix->obj[a][b]->p_coord);
 			matrix_point_multiplication_new(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
 			//matrix_multiplication_44_coord_NA(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
-			print_point(pix->obj[a][b]->p_world);
+		//	print_point(pix->obj[a][b]->p_world);
 			b++;
 		}
 		a++;

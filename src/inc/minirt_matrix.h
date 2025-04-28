@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 17:05:58 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/28 15:58:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_matrix_44(float *m);
 float	*transpose_matrix(float *m);
 void	transposing_matrix_44(float *m_matrix);
 void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
+void	copy_matrix_44(float *m_result, float *m_matrix);
 
 //INVERSION///
 //matrix_determinant.c
@@ -66,8 +67,12 @@ float	determinant_44(float *m_44);
 float	minor_33(float *m_matrix, int row, int col);
 float	minor_44(float *m_matrix, int row, int col);
 float	cofactors(int row, int col);
+void	matrix_cofactors_44NA(float *m_matrix, float *m_cofactors);
+
 
 //matrix_submatrix.c
+float	*submatrix_44NA(float *m_matrix, float *m_submatrix, int row_to_rm, int col_to_rm);
+
 float	*submatrix(float *m_matrix, int row_to_remove, int col_to_remove);
 int		get_curr_row(int i, float width);
 int		get_curr_col(int i, float width);
@@ -75,8 +80,12 @@ int		check_submatrix(float *m_matrix, int row_rm, int col_rm);
 
 //test_inverting.c
 float	*inverted_matrix_44(float *m_matrix);
-float	*inverted_matrix_44_NA(float *m_matrix);
+//float	*inverted_matrix_44_NA(float *m_matrix);
 void	matrix_cofactors_44(float *m_matrix, float *m_cofactors);
+void inverted_matrix_44_NA(float *m_inverted, float *m_matrix, float *m_submatrix);
+
+////////////////!!!GPT
+int inverse4x4(float *src, float *dest);
 
 //matrix_check.c
 bool	check_matrix_44(float *m_a);
@@ -117,4 +126,7 @@ bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian);
 
 t_coord *matrix_multiplication_44_point(float *m_, t_coord *p);
 t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v);
+
+
+
 #endif

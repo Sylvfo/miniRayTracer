@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:54:35 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/24 18:30:01 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 15:55:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	matrix_from_coord(t_coord *p_v_1, float coord[4])
 	coord[3] = p_v_1->t;
 }
 
+/*
 // new_point_vector->t = sum;  reprendre celui d avant pour avoir le meme???
 void	fill_point_vector(t_coord *new_point_vector, int count, float sum)
 {
@@ -51,9 +52,9 @@ void	fill_point_vector(t_coord *new_point_vector, int count, float sum)
 		new_point_vector->z = sum;
 	else
 		new_point_vector->t = sum;
-}
+}*/
 
-
+/*
 //on laisse au cas où
 t_coord *matrix_multiplication_44_point(float *m_, t_coord *p)
 {
@@ -72,7 +73,7 @@ t_coord *matrix_multiplication_44_point(float *m_, t_coord *p)
 //	new_point->z = m_[4] * p->x + m_[8] * p->y + m_[12] * p->z + m_[16]; // Colonne 2
 	new_point->t = 1.0f;
 	return (new_point);
-}
+}*/
 
 /*
 t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v)

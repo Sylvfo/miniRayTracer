@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_transposing.c                               :+:      :+:    :+:   */
+/*   BBmatrix_transposing.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 11:41:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/28 15:57:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,23 @@ void	copy_matrix_44_stack(float *m_matrix, float *m_tmp)
 	while (i < 18)
 	{
 		m_tmp[i] = m_matrix[i];
+		i++;
+	}
+}
+
+void	copy_matrix_44(float *m_result, float *m_matrix)
+{
+	int	i;
+
+	if (!m_matrix || !m_result)
+	{
+		printf("no matrix in copy matrix 44\n");
+		return;
+	}
+	i = 0;
+	while (i < 18)
+	{
+		m_result[i] = m_matrix[i];
 		i++;
 	}
 }

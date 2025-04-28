@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_invert.c                                    :+:      :+:    :+:   */
+/*   AAmatrix_invert.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 13:20:53 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 15:59:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ bool	is_matrix_invertible(float *m_matrix)
 	return (true);
 }
 
+
+
 // a supprimer quand toutes matrices allouees 
 float	*inverted_matrix_44(float *m_matrix)
 {
@@ -41,7 +43,7 @@ float	*inverted_matrix_44(float *m_matrix)
 	float	determinant;
 
 	printf("in inverted\n");
-	if (check_matrix_44(m_matrix) == false)
+/*	if (check_matrix_44(m_matrix) == false)
 	{
 		printf("aa\n");
 		return (NULL);
@@ -51,12 +53,13 @@ float	*inverted_matrix_44(float *m_matrix)
 		printf("bb\n");
 		return (NULL);
 	}
-	m_inverted = create_matrix(4, 4);
+	
 	if (!m_inverted)
 	{
 		printf("problem in inverted \n");
 		return (NULL);
-	}	
+	}	*/
+	m_inverted = create_matrix(4, 4);
 	matrix_cofactors_44(m_matrix, m_inverted);
 	transposing_matrix_44(m_inverted);
 	determinant = determinant_44(m_matrix);
@@ -65,24 +68,45 @@ float	*inverted_matrix_44(float *m_matrix)
 	return (m_inverted);
 }
 
-//NA no allocation. a garder a la fin
-float	*inverted_matrix_44_NA(float *m_matrix)
+bool	is_matrix_invertible_44_NA(float *m_matrix)
 {
-	float	*m_inverted;
 	float	determinant;
 
-	if (check_matrix_44(m_matrix) == false)
-		return (NULL);
-	if (is_matrix_invertible(m_matrix) == false)
-		return (NULL);
-	m_inverted = create_matrix(4, 4);
-	if (!m_inverted)
-		return (NULL);
-	matrix_cofactors_44(m_matrix, m_inverted);
-	transposing_matrix_44(m_inverted);
 	determinant = determinant_44(m_matrix);
-	matrix_division(m_inverted, determinant);
-	return (m_inverted);
+/*	else
+		return (false);*/
+	if (determinant == 0)
+		return (false);
+	return (true);
+}
+
+
+
+//float	*submatrix_44NA(float *m_matrix, float *m_submatrix, int row_to_rm, int col_to_rm);
+
+void	matrix_cofactors_44NA(float *m_matrix, float *m_cofactors)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	l;
+
+	i = 2;
+	j = 0;
+	k = 0;
+	l = 6;
+	while (i < 18)
+	{
+		if (i >= l)
+		{
+			j++;
+			k = 0;
+			l += 4;
+		}
+		m_cofactors[i] = minor_44(m_matrix, j, k);
+		k++;
+		i++;
+	}
 }
 
 void	matrix_cofactors_44(float *m_matrix, float *m_cofactors)

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 17:54:47 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 17:13:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void prepare_computation(t_pix ***pix)
 			//	normal = normalize(p_object_space - origin)
 			//	t_coord *p_zero =  create_point(0,0,0);
 
-				pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, pix[x][y]->comps->p_world);
+			//	pix[x][y]->comps->v_norm_parral = substraction(pix[x][y]->comps->p_touch, pix[x][y]->comps->p_world);
 				//rajouté par syl pour calcul dessous se fasse pour deux vecteurs normées.
-				normalize_vector(pix[x][y]->comps->v_norm_parral);
+			//	normalize_vector(pix[x][y]->comps->v_norm_parral);
 
-			//	normal_at_NA(pix[x][y]->comps);
+				normal_at_NA(pix[x][y]->comps);
 				if (dot_product(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_eye) < 0)
 				{
 					//printf(",");

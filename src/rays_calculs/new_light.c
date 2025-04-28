@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/25 11:42:39 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:54:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	new_light(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-		//	intensity = light_intensity(pix[x][y]);
+			intensity = light_intensity(pix[x][y]);
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
@@ -113,7 +113,6 @@ float light_intensity(t_pix *pix)
  		if (pix->comps->obj_type != NONE)
 		{
 			prepare_v_light(pix, i);
-		//	intensity += compute_pointlight(pix, pix->lux[1][i]);
 			if (intersect_objects_shadow(pix, i) == false)
 			{
 				intensity += compute_pointlight(pix, pix->lux[1][i]);
@@ -128,7 +127,9 @@ float light_intensity(t_pix *pix)
 // le rayon entre tous les p touch et toutes les lumières
 void	prepare_v_light(t_pix *pix, int lux_num)
 {
-	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
+	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->comps->p_touch, pix->lux[1][lux_num]->p_world);
+
+	//substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
 	//pix->comps->v_light_to_point= substraction(pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
 
 	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
@@ -143,15 +144,28 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 {
     float n_dot_l;
     float intensity;
+//    float distance;
+  //  float attenuation;
+
 	intensity = 0.0;
-//	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_point_to_light);
-    n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);
+	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_point_to_light);
+ //   n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);
     if (n_dot_l > 0)
     {
-        intensity = lux->ratio * n_dot_l;// /
+	/*	float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
+	//	distance = pix->comps->distance_light_p_touch;
+        // attenuation douce pour éviter de "couper" la lumière trop vite
+        float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
+        intensity = lux->ratio * n_dot_l * attenuation;*/
+
+		//celui ci normalement
+		intensity = lux->ratio * n_dot_l;// /
+
+
+
                    // (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
 		//pris de gpt pour calculer l atténuation de la lumière par la distanche...
-//	float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
+	//float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
 //	float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
 //	intensity = lux->ratio * n_dot_l * attenuation;
 	}

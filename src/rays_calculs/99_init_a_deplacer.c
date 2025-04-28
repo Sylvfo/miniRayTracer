@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/24 20:02:41 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/28 16:00:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->cam->m_transf = create_matrix(4, 4);
 	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
 	pix[0][0]->cam->p_origin_zero = create_point(0,0,0);
-	pix[0][0]->cam->view_height = 200;// 1000;
-	pix[0][0]->cam->view_width = 200;// 1000;
+	pix[0][0]->cam->view_height = WND_WIDTH;//200;// 1000;
+	pix[0][0]->cam->view_width = WND_HEIGHT;//200;// 1000;
 	pix[0][0]->cam->m_tmp = create_matrix(4, 4);
 	pix[0][0]->cam->m_inverse = create_matrix(4, 4);
 /*	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
@@ -95,10 +95,8 @@ bool 	init_matrix_obj(t_obj ***obj)
 		{
 			obj[a][b]->m_transl = create_indentity_matrix_44();
 			obj[a][b]->m_transf = create_indentity_matrix_44();
-			//if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
-			//obj[a][b]->m_scale = create_indentity_matrix_44();
-			obj[a][b]->m_scale = create_matrix(4, 4);
-			obj[a][b]->m_rot = create_matrix(4 , 4);
+			obj[a][b]->m_scale = create_indentity_matrix_44();
+			obj[a][b]->m_rot = create_indentity_matrix_44();
 			obj[a][b]->from = create_vector(0, 1, 0);
 			obj[a][b]->v_axe_r = create_vector(0, 0, 0);
 			/*if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
@@ -112,9 +110,9 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->p_world = malloc(sizeof(t_coord));
 			obj[a][b]->v_sph_camera = create_vector(0, 0, 0);
 			obj[a][b]->origin_zero = create_point(0,0,0);
-		//	obj[a][b]->p_object_space = malloc(sizeof(t_coord));
-		//	obj[a][b]->object_normal = malloc(sizeof(t_coord));
-		//	obj[a][b]->transp_inv = create_matrix(4, 4);
+			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
+			obj[a][b]->object_normal = malloc(sizeof(t_coord));
+			obj[a][b]->transp_inv = create_matrix(4, 4);
 			if (obj[a][b]->obj_type == SPHERE)
 				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
 			b++;

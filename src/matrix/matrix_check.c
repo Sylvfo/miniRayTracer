@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:00:57 by syl               #+#    #+#             */
-/*   Updated: 2025/04/13 16:22:23 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 13:27:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	check_matrix_33(float *m_a)
 	}
 	if (m_a[0] != 3 || m_a[1] != 3)
 	{
-//		printf("Matrix not 3x3\n");
+		printf("Matrix not 3x3\n");
 		return (false);
 	}
 	return (true);

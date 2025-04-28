@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:42:19 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 18:41:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 17:13:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p)
 //	if (is_point(p) == false)
 //		printf("laaaaalaaaaa\n");
 	if (check_matrix_44(m) == false )
-		printf("UUUUUUUUUUUUUUUUUU\n");
+		printf("no matrix in matrix_point_multiplication_new \n");
 	if (check_matrix_44_coord(m, p) == false)
 	{
 		printf("no point or matrix in new mult\n");
 		exit(0) ;
 	}
-	
 	if (!result)
 	{
 		printf("no result in new mult\n");
@@ -35,7 +34,7 @@ void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p)
 	result->x = m[2] * p->x + m[3] * p->y + m[4] * p->z + m[5] * p->t;
 	result->y = m[6] * p->x + m[7] * p->y + m[8] * p->z + m[9] * p->t;
 	result->z = m[10] * p->x + m[11] * p->y + m[12] * p->z + m[13] * p->t;
-	//result->t = m[14] * p->x + m[15] * p->y + m[16] * p->z + m[17] * p->t;
+//	result->t = m[14] * p->x + m[15] * p->y + m[16] * p->z + m[17] * p->t;
 	result->t = p->t;
 }
 
@@ -103,6 +102,68 @@ void matrix_mult_3(float *result, float *ma, float *mb)
 	result[16] = ma[14] * mb[4] + ma[15] * mb[8] + ma[16] * mb[12] + ma[17] * mb[16];
 	result[17] = ma[14] * mb[5] + ma[15] * mb[9] + ma[16] * mb[13] + ma[17] * mb[17];
 }
+
+/*
+void matrix_mult_2(float *ma, float *mb)
+{
+    float tmp[18];
+    int i, j, k;
+
+    if (!ma || !mb)
+    {
+        printf("problem in matrix mult 2\n");
+        return;
+    }
+
+    tmp[0] = 4; // lignes
+    tmp[1] = 4; // colonnes
+
+    for (i = 0; i < 4; ++i)
+    {
+        for (j = 0; j < 4; ++j)
+        {
+            tmp[2 + i * 4 + j] = 0.0f;
+            for (k = 0; k < 4; ++k)
+            {
+                tmp[2 + i * 4 + j] += ma[2 + i * 4 + k] * mb[2 + k * 4 + j];
+            }
+        }
+    }
+
+    for (i = 0; i < 18; ++i)
+        ma[i] = tmp[i];
+}*/
+
+/*
+#define IDX(i,j) (2 + (i) * 4 + (j))
+
+void matrix_mult_2(float *ma, float *mb)
+{
+    float tmp[18];
+    int i, j, k;
+
+    if (!ma || !mb)
+    {
+        printf("problem in matrix_mult_2\n");
+        return;
+    }
+
+    for (i = 0; i < 18; ++i)
+        tmp[i] = ma[i];
+
+    ma[0] = 4;
+    ma[1] = 4;
+
+    for (i = 0; i < 4; ++i)
+    {
+        for (j = 0; j < 4; ++j)
+        {
+            ma[IDX(i,j)] = 0.0f;
+            for (k = 0; k < 4; ++k)
+                ma[IDX(i,j)] += tmp[IDX(i,k)] * mb[IDX(k,j)];
+        }
+    }
+}*/
 
 
 /*
@@ -246,7 +307,7 @@ void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp)
 	copy_matrix_44_stack(m_tmp, m_a);
 }*/
 
-
+/*
 //celui ci pour une nouvelle matrice
 //void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b)
 void	matrix_mult_44_new_NA2(float *m_result, float *m_a, float *m_b)
@@ -282,8 +343,9 @@ void	matrix_mult_44_new_NA2(float *m_result, float *m_a, float *m_b)
 	}
 	m_result[0] = 4;
 	m_result[1] = 4;
-}
+}*/
 
+/*
 //celui ci pour une nouvelle matrice
 void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b)
 {
@@ -318,9 +380,9 @@ void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b)
 	}
 	m_result[0] = 4;
 	m_result[1] = 4;
-}
+}*/
 
-
+/*
 //celui ci pour une matric ma qui devient m result
 //void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp)
 void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp)
@@ -357,7 +419,7 @@ void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp)
 	copy_matrix_44_stack(m_tmp, m_a);
 	m_a[0] = 4;
 	m_a[1] = 4;
-}
+}*/
 
 /*
 void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp)
@@ -390,7 +452,7 @@ void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp)
 	m_a[1] = 4;
 }*/
 
-
+/*
 //celui ci pour une matric ma qui devient m result
 //void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp)
 void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp)
@@ -425,4 +487,4 @@ void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp)
 		count++;
 	}
 	copy_matrix_44_stack(m_tmp, m_a);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 16:52:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/28 16:23:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	constructing_camera(t_pix ***pix)
 	pix[0][0]->cam->fov *= 3.1415 / 180;
 	view_camera(pix[0][0]->cam);
 //	print_matrix(pix[0][0]->cam->m_transf);
-	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
+//	inverse4x4(pix[0][0]->cam->m_transf);
+//	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
+//	copy_matrix_44(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transf);
+	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
 	if (!pix[0][0]->cam->m_inverse)
 	{
 		printf("pix[0][0]->cam->m_inverse dans constr\n");
@@ -92,7 +95,8 @@ void	view_camera(t_camera *cam)
 		printf("pas cam->m_transf\n");
 		exit (0);
 	}
-	matrix_multiplication_44_NA2(cam->m_transf, cam->m_orient, cam->m_transl);
+	matrix_mult_3(cam->m_transf, cam->m_orient, cam->m_transl);
+//	matrix_multiplication_44_NA2(cam->m_transf, cam->m_orient, cam->m_transl);
 	//matrix_mult_44_new_NA2(cam->m_transf, cam->m_orient, cam->m_transl);
 	if (!cam->m_transf)
 	{

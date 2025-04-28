@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:37:38 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 11:37:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/27 17:13:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,51 @@ void rotation_from_vector(float *m_rot, t_coord *to)
 	free(from);
 }*/
 
+void rotation_from_vector_NA(t_obj *obj)
+{
+    // Validate input
+    if (!obj || !obj->from || !obj->v_axe || !obj->v_axe_r || !obj->m_rot) {
+        fprintf(stderr, "Error: Null pointer in rotation_from_vector_NA\n");
+        return;
+    }
+
+    // Initialize rotation matrix to identity by default
+ //   set_identity_matrix(obj->m_rot);
+
+    // Get rotation axis via cross product
+    cross_product_NA(obj->v_axe_r, obj->from, obj->v_axe);
+    
+    // Calculate angle between vectors
+    float dot = dot_product(obj->from, obj->v_axe);
+    
+    // Clamp dot product to avoid numerical instability in acos()
+    dot = fmaxf(-1.0f, fminf(1.0f, dot));
+    float angle = acosf(dot);
+
+    // Skip if angle is too small
+    if (fabs(angle) < EPSILON) {
+        return;
+    }
+
+    // Normalize rotation axis
+    if (!normalize_vector(obj->v_axe_r)) {
+        fprintf(stderr, "Warning: Failed to normalize rotation axis\n");
+        return;
+    }
+
+    // Create rotation matrix using Rodrigues' formula
+    matrix_rotation_rodrigues(obj, angle);
+}
+
+
 //v_axe_r
 //void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
-void rotation_from_vector_NA(t_obj *obj)
+/*void rotation_from_vector_NA(t_obj *obj)
 {
     float 	angle;
 	float 	dot;
 
+    init_matrix_zero(obj->m_rot);
     // Produit vectoriel pour obtenir l'axe de rotation
 //	obj->v_axe_r = cross_product(obj->from, to);
 	cross_product_NA(obj->v_axe_r, obj->from, obj->v_axe);
@@ -51,8 +89,9 @@ void rotation_from_vector_NA(t_obj *obj)
 		return; // Pas besoin de rotation. ce sera identity matrix...
 	normalize_vector(obj->v_axe_r);
 	matrix_rotation_rodrigues(obj, angle);
-}
+}*/
 
+/*
 void matrix_rotation_rodrigues(t_obj *obj, float angle)
 {
 	float c;
@@ -81,8 +120,58 @@ void matrix_rotation_rodrigues(t_obj *obj, float angle)
     matrix_fill(obj->m_rot, 3, 1, 0);
     matrix_fill(obj->m_rot, 3, 2, 0);
     matrix_fill(obj->m_rot, 3, 3, 1);
-}
+}*/
+void matrix_rotation_rodrigues(t_obj *obj, float angle)
+{
+    // Validate input
+    if (!obj || !obj->v_axe_r || !obj->m_rot) {
+        fprintf(stderr, "Error: Null pointer in matrix_rotation_rodrigues\n");
+        return;
+    }
 
+    float c = cosf(angle);
+    float s = sinf(angle);
+    float t = 1.0f - c;
+
+    float x = obj->v_axe_r->x;
+    float y = obj->v_axe_r->y;
+    float z = obj->v_axe_r->z;
+
+    // Precompute common terms
+    float xx = x * x;
+    float yy = y * y;
+    float zz = z * z;
+    float xy = x * y;
+    float xz = x * z;
+    float yz = y * z;
+    float xs = x * s;
+    float ys = y * s;
+    float zs = z * s;
+
+    // Initialize matrix to zero first
+    init_matrix_zero(obj->m_rot);
+
+    // Fill rotation matrix using matrix_fill (Row-major order)
+    matrix_fill(obj->m_rot, 0, 0, t*xx + c);
+    matrix_fill(obj->m_rot, 0, 1, t*xy - zs);
+    matrix_fill(obj->m_rot, 0, 2, t*xz + ys);
+    matrix_fill(obj->m_rot, 0, 3, 0.0f);
+
+    matrix_fill(obj->m_rot, 1, 0, t*xy + zs);
+    matrix_fill(obj->m_rot, 1, 1, t*yy + c);
+    matrix_fill(obj->m_rot, 1, 2, t*yz - xs);
+    matrix_fill(obj->m_rot, 1, 3, 0.0f);
+
+    matrix_fill(obj->m_rot, 2, 0, t*xz - ys);
+    matrix_fill(obj->m_rot, 2, 1, t*yz + xs);
+    matrix_fill(obj->m_rot, 2, 2, t*zz + c);
+    matrix_fill(obj->m_rot, 2, 3, 0.0f);
+
+    matrix_fill(obj->m_rot, 3, 0, 0.0f);
+    matrix_fill(obj->m_rot, 3, 1, 0.0f);
+    matrix_fill(obj->m_rot, 3, 2, 0.0f);
+    matrix_fill(obj->m_rot, 3, 3, 1.0f);
+}
 
 /*
 void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)

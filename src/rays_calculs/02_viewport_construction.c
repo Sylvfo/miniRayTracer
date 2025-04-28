@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 14:08:00 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/28 14:40:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void init_viewport_x_y(t_pix *pix, int x, int y)
 {
 	pix->p_viewport->x = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
 	pix->p_viewport->y =  pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
+	////z?????
 }
 
