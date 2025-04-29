@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/29 13:50:39 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 15:17:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void init_viewport(t_pix ***pix)
 	}
 }
 
-// svp laisse les commentaires ici
 //calcul les rays entre la camera et chaque pixel du viewport
 // le ray n est pas encore transformé par les matrices de transformation des objets
 void init_camera_pix_ray(t_pix *pix, t_camera *cam)
@@ -125,7 +124,7 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 	if (is_point(cam->p_cam_world) == false)
 		printf("false in p cam world \n");
 	// Point final(viewport??) transformé dans le repère monde
-	matrix_point_multiplication_new(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
+	matrix_point_multiplication_new(pix->p_viewport_world, pix->cam->m_transf, pix->p_viewport);
 
 
 //	matrix_multiplication_44_coord_NA(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
@@ -134,18 +133,17 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 		printf("false in p cam p_viewport_world \n");
 	//creation du ray entre la camera et le viewport modifiés selon la caméra
 	substraction_p_to_v_NA(pix->r_dir, pix->p_viewport_world, cam->p_cam_world);
-//	pix->r_dir = substraction(pix->p_viewport_world, cam->p_cam_world);
 	normalize_vector_NA(pix->r_dir);
-//	pix->r_dir = normalize_vector(pix->r_dir);
-	copy_coord(pix->r_origin, cam->p_cam_world);;
+
+
+	copy_coord(pix->r_origin, cam->p_cam_world);
 }
 
 
-//calcul les coordonnées xy sur le viewport de chaque pixel
+// ca c est juste
 void init_viewport_x_y(t_pix *pix, int x, int y)
 {
 	pix->p_viewport->x = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
 	pix->p_viewport->y =  pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
-	////z?????
 }
 

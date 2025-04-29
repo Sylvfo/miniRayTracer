@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/29 09:37:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 14:51:18 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_camera
 	float		*m_orient;
 	float		*m_transl;
 	float		*m_transf; // initialiser comme identity matrix
-	float 		*m_inverse;
+//	float 		*m_inverse;
 	t_coord		*p_cam_world;
 	float		*m_tmp;
 	//

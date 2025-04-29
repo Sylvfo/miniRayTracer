@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/29 13:59:42 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 16:33:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->cam->p_origin_zero = create_point(0,0,0);
 	pix[0][0]->cam->view_height = WND_WIDTH;//200;// 1000;
 	pix[0][0]->cam->view_width = WND_HEIGHT;//200;// 1000;
+	pix[0][0]->cam->canva_height = WND_HEIGHT;
+	pix[0][0]->cam->canva_width = WND_WIDTH;
+	pix[0][0]->cam->fov *= 3.1415 / 180;
 	pix[0][0]->cam->m_tmp = create_matrix(4, 4);
-	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
+//	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
 /*	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
 		|| !pix[0][0]->cam->m_orient || !pix[0][0]->cam->m_transl || !pix[0][0]->cam->m_transf)
 	{
@@ -58,8 +61,8 @@ bool init_a_deplacer(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			pix[x][y]->p_viewport = create_point(0,0,-1);
-		//	pix[x][y]->p_viewport = create_point(0,0,0);
+		//	pix[x][y]->p_viewport = create_point(0,0,-1);
+			pix[x][y]->p_viewport = create_point(0,0,0);
 			pix[x][y]->p_viewport_world = create_point(0,0,0);
 			pix[x][y]->cam->p_cam_world = create_point(0,0,0);
 			pix[x][y]->r_dir = malloc(sizeof(t_coord));
