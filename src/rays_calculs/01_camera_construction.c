@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 16:23:25 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 13:58:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,35 @@
 
 void	constructing_camera(t_pix ***pix)
 {
+	
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
 	pix[0][0]->cam->canva_width = WND_WIDTH;
 	pix[0][0]->cam->fov *= 3.1415 / 180;
+
 	view_camera(pix[0][0]->cam);
-//	print_matrix(pix[0][0]->cam->m_transf);
-//	inverse4x4(pix[0][0]->cam->m_transf);
-//	pix[0][0]->cam->m_inverse = inverted_matrix_44(pix[0][0]->cam->m_transf);
-//	copy_matrix_44(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transf);
-	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
+	print_matrix(pix[0][0]->cam->m_transf);
+	
+/*	float *m_scale = create_indentity_matrix_44();
+	create_scaling_matrix_NA(m_scale, -1, 1, -1);
+	matrix_mult_2(pix[0][0]->cam->m_inverse, m_scale);*/
+//	print_matrix(pix[0][0]->cam->m_inverse);
+	
+//	fill_translation_matrix(pix[0][0]->cam->m_transl, 0, 0, 0);
+//	matrix_mult_2(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transl);
+
+	copy_matrix_44(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transf);
+	print_matrix(pix[0][0]->cam->m_inverse);
 	if (!pix[0][0]->cam->m_inverse)
 	{
 		printf("pix[0][0]->cam->m_inverse dans constr\n");
 		exit (0);
 	}
 	matrix_point_multiplication_new(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
+
 	//matrix_multiplication_44_coord_NA(pix[0][0]->cam->p_cam_world, pix[0][0]->cam->m_inverse, pix[0][0]->cam->p_origin_zero);
 	pixel_size(pix[0][0]);
 }
+
 
 void	pixel_size(t_pix *pix)
 {
@@ -54,6 +65,81 @@ void	pixel_size(t_pix *pix)
 	pix->cam->pixel_size = (pix->cam->half_width * 2) / pix->cam->canva_width;
 }
 
+// creer la matrice de transformation de la camera pour pouvoir la bouger
+void	view_camera(t_camera *cam)
+{
+//	substraction_p_to_v_NA(pix[0][0]->cam->v_forward, pix[0][0]->cam->p_origin_zero, pix[0][0]->cam->p_coord);
+//	normalize_vector_NA(pix[0][0]->cam->v_forward);
+	
+	// Vérifier que v_forward n'est pas colinéaire avec v_up// changer v up??
+	if (fabs(cam->v_axe->x) < 1e-6 && fabs(cam->v_axe->z) < 1e-6) 
+		vector_fill(cam->vn_axe_y, 0, 0, 1);// Si la caméra regarde pile en haut/bas, chan	
+	
+	//test
+/*	t_coord *p_point = create_point(4, -2, 8);
+	cam->v_up->x = 1;
+	cam->v_up->y = 1;
+	cam->v_up->z = 0;
+	substraction_p_to_v_NA(cam->v_forward, p_point, cam->p_coord);
+	normalize_vector_NA(cam->v_forward);*/
+
+	copy_coord(cam->v_forward, cam->v_axe);
+
+	//negat_NA(cam->v_forward, cam->v_axe);
+	cross_product_NA(cam->v_left, cam->v_forward, cam->v_up);
+	cam->v_true_up = cross_product(cam->v_forward, cam->v_left);
+
+	matrix_fill(cam->m_orient, 0, 0, cam->v_left->x);
+	matrix_fill(cam->m_orient, 0, 1, cam->v_left->y);
+	matrix_fill(cam->m_orient, 0, 2, cam->v_left->z);
+	matrix_fill(cam->m_orient, 0, 3, 0);
+
+	matrix_fill(cam->m_orient, 1, 0, cam->v_true_up->x);
+	matrix_fill(cam->m_orient, 1, 1, cam->v_true_up->y);
+	matrix_fill(cam->m_orient, 1, 2, cam->v_true_up->z);
+	matrix_fill(cam->m_orient, 1, 3, 0);
+
+	matrix_fill(cam->m_orient, 2, 0, -1 * cam->v_forward->x);
+	matrix_fill(cam->m_orient, 2, 1, -1 * cam->v_forward->y);
+	matrix_fill(cam->m_orient, 2, 2, -1 * cam->v_forward->z);
+	matrix_fill(cam->m_orient, 2, 3, 0);
+
+	matrix_fill(cam->m_orient, 3, 0, 0);
+	matrix_fill(cam->m_orient, 3, 1, 0);
+	matrix_fill(cam->m_orient, 3, 2, 0);
+	matrix_fill(cam->m_orient, 3, 3, 1);
+
+	print_matrix(cam->m_orient);
+//	print_matrix_44(cam->m_orient);
+
+	fill_translation_matrix(cam->m_transl, -1 * cam->p_coord->x,
+		-1 * cam->p_coord->y, -1 * cam->p_coord->z);
+//	print_matrix(cam->m_transl);
+	if (!cam->m_transl)
+	{
+		printf("pas trans cam\n");
+		exit (0);
+	}
+	if (!cam->m_orient)
+	{
+		printf("pas cam->m_orient\n");
+		exit (0);
+	}
+	if (!cam->m_transf)
+	{
+		printf("pas cam->m_transf\n");
+		exit (0);
+	}
+	matrix_mult_3(cam->m_transf, cam->m_orient, cam->m_transl);
+	if (!cam->m_transf)
+	{
+		printf("pas cam->m_transf 2\n");
+		exit (0);
+	}
+}
+
+
+/*
 // creer la matrice de transformation de la camera pour pouvoir la bouger
 void	view_camera(t_camera *cam)
 {
@@ -104,3 +190,4 @@ void	view_camera(t_camera *cam)
 		exit (0);
 	}
 }
+*/

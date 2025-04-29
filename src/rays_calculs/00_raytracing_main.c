@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 15:52:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 13:28:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ void raytracing(t_pix ***pix)
 	init_viewport(pix);
 	// calculs matriciels pour déplacer et scale les objets
 	start = time_now(start, " viewport");
+
+	printf("pix[0][0]->p_viewport %.2f, %.2f, %.2f \n", pix[0][0]->p_viewport->x, pix[0][0]->p_viewport->y, pix[0][0]->p_viewport->z);
+	printf("pix[0][0]->p_viewport_word %.2f, %.2f, %.2f \n", pix[0][0]->p_viewport_world->x, pix[0][0]->p_viewport_world->y, pix[0][0]->p_viewport_world->z);
+
+
+	printf("pix[WND_WIDTH][WND_HEIGHT]->p_viewport %.2f, %.2f, %.2f \n", pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport->x, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport->y, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport->z);
+	printf("pix[WND_WIDTH][WND_HEIGHT]->p_viewport_word %.2f, %.2f, %.2f \n", pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport_world->x, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport_world->y, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport_world->z);
+
+	printf("pix[524][324]->p_viewport %.2f, %.2f, %.2f \n", pix[524][324]->p_viewport->x, pix[524][324]->p_viewport->y, pix[524][324]->p_viewport->z);
+	printf("pix[524][324]->p_viewport_word %.2f, %.2f, %.2f \n", pix[524][324]->p_viewport_world->x, pix[524][324]->p_viewport_world->y, pix[524][324]->p_viewport_world->z);
+/*	# define WND_WIDTH 1050
+	# define WND_HEIGHT 650*/
+
+
+
+
 
 	matrix_transformations(pix);
 	start = time_now(start, " set_transf");

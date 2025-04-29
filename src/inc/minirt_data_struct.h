@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 16:14:30 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 09:37:02 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,12 @@ typedef struct s_light
 typedef struct s_camera
 {
 	//depuis parsing
-	t_coord		*p_coord;
-	t_coord		*v_axe;
+	t_coord		*p_coord;//from
+	t_coord		*v_axe;//up
 	float		fov;
 	// pour bouger cam
+	t_coord		*v_forward;
+	t_coord		*v_up;
 	t_coord		*vn_axe_y; // a faire 1 seule fois au debut
 	t_coord		*v_left;
 	t_coord		*v_true_up;

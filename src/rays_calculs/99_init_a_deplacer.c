@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/28 16:00:06 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/29 13:59:42 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ bool init_a_deplacer(t_pix ***pix)
 	// camera
 	pix[0][0]->cam->vn_axe_y = create_vector(0, 1, 0);// Axe Y global par défaut
 	pix[0][0]->cam->v_left = create_vector(0, 1, 0);//or init?
+	pix[0][0]->cam->v_forward = create_vector(0, 0, 0);
+	pix[0][0]->cam->v_up = create_vector(0, 1, 0);
 	pix[0][0]->cam->v_true_up = create_vector(0, 0, 0);
-	pix[0][0]->cam->m_orient = create_matrix(4, 4);
+	pix[0][0]->cam->m_orient = create_indentity_matrix_44();
 	pix[0][0]->cam->m_transl = create_indentity_matrix_44();
-	pix[0][0]->cam->m_transf = create_matrix(4, 4);
+	pix[0][0]->cam->m_transf = create_indentity_matrix_44();
 	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
 	pix[0][0]->cam->p_origin_zero = create_point(0,0,0);
 	pix[0][0]->cam->view_height = WND_WIDTH;//200;// 1000;
 	pix[0][0]->cam->view_width = WND_HEIGHT;//200;// 1000;
 	pix[0][0]->cam->m_tmp = create_matrix(4, 4);
-	pix[0][0]->cam->m_inverse = create_matrix(4, 4);
+	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
 /*	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
 		|| !pix[0][0]->cam->m_orient || !pix[0][0]->cam->m_transl || !pix[0][0]->cam->m_transf)
 	{
@@ -57,6 +59,7 @@ bool init_a_deplacer(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			pix[x][y]->p_viewport = create_point(0,0,-1);
+		//	pix[x][y]->p_viewport = create_point(0,0,0);
 			pix[x][y]->p_viewport_world = create_point(0,0,0);
 			pix[x][y]->cam->p_cam_world = create_point(0,0,0);
 			pix[x][y]->r_dir = malloc(sizeof(t_coord));
