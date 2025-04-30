@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/29 13:28:25 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 13:13:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,23 @@ void raytracing(t_pix ***pix)
 	// calculs matriciels pour déplacer et scale les objets
 	start = time_now(start, " viewport");
 
+	printf("pix[0][0]->r_origin \n");
+	print_point(pix[0][0]->r_origin);
+
 	printf("pix[0][0]->p_viewport %.2f, %.2f, %.2f \n", pix[0][0]->p_viewport->x, pix[0][0]->p_viewport->y, pix[0][0]->p_viewport->z);
 	printf("pix[0][0]->p_viewport_word %.2f, %.2f, %.2f \n", pix[0][0]->p_viewport_world->x, pix[0][0]->p_viewport_world->y, pix[0][0]->p_viewport_world->z);
+
+//	printf("pix[524][324]->p_viewport %.2f, %.2f, %.2f \n", pix[524][324]->p_viewport->x, pix[524][324]->p_viewport->y, pix[524][324]->p_viewport->z);
+//	printf("pix[524][324]->p_viewport_word %.2f, %.2f, %.2f \n", pix[524][324]->p_viewport_world->x, pix[524][324]->p_viewport_world->y, pix[524][324]->p_viewport_world->z);
+
+	printf("pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport %.2f, %.2f, %.2f \n", pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport->x, pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport->y, pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport->z);
+	printf("pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport_word %.2f, %.2f, %.2f \n", pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport_world->x, pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport_world->y, pix[WND_WIDTH/2][WND_HEIGHT/2]->p_viewport_world->z);
 
 
 	printf("pix[WND_WIDTH][WND_HEIGHT]->p_viewport %.2f, %.2f, %.2f \n", pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport->x, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport->y, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport->z);
 	printf("pix[WND_WIDTH][WND_HEIGHT]->p_viewport_word %.2f, %.2f, %.2f \n", pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport_world->x, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport_world->y, pix[WND_WIDTH-1][WND_HEIGHT-1]->p_viewport_world->z);
 
-	printf("pix[524][324]->p_viewport %.2f, %.2f, %.2f \n", pix[524][324]->p_viewport->x, pix[524][324]->p_viewport->y, pix[524][324]->p_viewport->z);
-	printf("pix[524][324]->p_viewport_word %.2f, %.2f, %.2f \n", pix[524][324]->p_viewport_world->x, pix[524][324]->p_viewport_world->y, pix[524][324]->p_viewport_world->z);
-/*	# define WND_WIDTH 1050
+	/*	# define WND_WIDTH 1050
 	# define WND_HEIGHT 650*/
 
 
@@ -69,6 +76,7 @@ void raytracing(t_pix ***pix)
 	//intersect rayons avec sphere
 	new_light(pix);
 	start = time_now(start, " new lights");
+//	test_couleur(pix);
 	return;
 }
 
@@ -84,7 +92,7 @@ void test_couleur(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			if (pix[x][y]->comps->obj_type == SPHERE)
+/*			if (pix[x][y]->comps->obj_type == SPHERE)
 			{
 				pix[x][y]->color->r = 0.6;
 				pix[x][y]->color->g = 0;
@@ -95,9 +103,16 @@ void test_couleur(t_pix ***pix)
 				pix[x][y]->color->r = 0;
 				pix[x][y]->color->g = 0.8;
 				pix[x][y]->color->b = 0;
-			}		
+			}		*/
+			if (y < 100)
+			{
+				pix[x][y]->color->r = 0;
+				pix[x][y]->color->g = 0.4;
+				pix[x][y]->color->b = 0;
+			}	
 			y++;
 		}
 		x++;
 	}
 }
+

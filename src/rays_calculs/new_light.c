@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 13:54:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 13:04:10 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	new_light(t_pix ***pix)
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
-			//display_normal_as_color(pix[x][y]);
+		//	display_normal_as_color(pix[x][y]);
 			//display_dotNL_heatmap(pix[x][y]);
 			//display_dotNL_as_color(pix[x][y]);
 			scalar_mult_color(pix[x][y]->color, intensity);

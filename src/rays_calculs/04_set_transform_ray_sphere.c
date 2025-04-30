@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/29 12:13:44 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 11:56:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void set_transformation(t_obj ***obj)
             }
 
             // Apply rotation for planes and cylinders
-            if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
+      	    if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
             {
                 rotation_from_vector_NA(obj[a][b]);
                 matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_rot);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:57:11 by syl               #+#    #+#             */
-/*   Updated: 2025/04/29 15:17:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 10:01:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,7 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 			pix->r_original->v_dir->y,
 			pix->r_original->v_dir->z);
 		
-}
-
-//calcul les coordonnées xy sur le viewport de chaque pixel
-void init_viewport_x_y(t_pix *pix, int x, int y)
-{
-	pix->vpx = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
-	pix->vpy = pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
 }*/
-
 
 void init_viewport(t_pix ***pix)
 {
@@ -117,12 +109,48 @@ void init_viewport(t_pix ***pix)
 	}
 }
 
+
 //calcul les rays entre la camera et chaque pixel du viewport
 // le ray n est pas encore transformé par les matrices de transformation des objets
 void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 {	
-	if (is_point(cam->p_cam_world) == false)
+	if (is_point(cam->p_cam_world) == false || is_point(pix->p_viewport) == false)
 		printf("false in p cam world \n");
+
+	//calcul du point origin du rayon 
+	//donc point focal camera transformé dans le repère monde
+	//en fait la camera est à zero et le viewport à -1
+	//celui là le même pour tous les rayons???
+	matrix_point_multiplication_new(pix->r_origin, pix->cam->m_inverse, pix->cam->p_origin_zero);
+
+
+	//calcul de la position du pixel du viewport dans le world
+	matrix_point_multiplication_new(pix->p_viewport_world, pix->cam->m_inverse, pix->p_viewport);
+
+	//calcul du vecteur de direction du rayon entre la camera et le pixel viewport world
+	//
+	substraction_p_to_v_NA(pix->r_dir, pix->p_viewport_world, pix->r_origin);
+	normalize_vector_NA(pix->r_dir);
+}
+
+
+// ca c est juste
+void init_viewport_x_y(t_pix *pix, int x, int y)
+{
+	pix->p_viewport->x = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
+	pix->p_viewport->y =  pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
+}
+
+/*
+//calcul les rays entre la camera et chaque pixel du viewport
+// le ray n est pas encore transformé par les matrices de transformation des objets
+void init_camera_pix_ray(t_pix *pix, t_camera *cam)
+{	
+	if (is_point(cam->p_cam_world) == false || is_point(pix->p_viewport) == false)
+		printf("false in p cam world \n");
+
+	//cre
+
 	// Point final(viewport??) transformé dans le repère monde
 	matrix_point_multiplication_new(pix->p_viewport_world, pix->cam->m_transf, pix->p_viewport);
 
@@ -138,12 +166,4 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam)
 
 	copy_coord(pix->r_origin, cam->p_cam_world);
 }
-
-
-// ca c est juste
-void init_viewport_x_y(t_pix *pix, int x, int y)
-{
-	pix->p_viewport->x = pix->cam->half_width - ((x + 0.5) * pix->cam->pixel_size);
-	pix->p_viewport->y =  pix->cam->half_height - ((y + 0.5) * pix->cam->pixel_size);
-}
-
+*/
