@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 13:04:10 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 16:56:30 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	new_light(t_pix ***pix)
 	int	y;
 	float intensity;
 
-	intensity = 1;
+	intensity = 0.0;
 	x = 0;
 	while (x < WND_WIDTH)
 	{
@@ -84,10 +84,11 @@ void	new_light(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			intensity = light_intensity(pix[x][y]);
+		//	printf("intensity3 %.2f \n\n\n", intensity);
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
-		//	display_normal_as_color(pix[x][y]);
+			//display_normal_as_color(pix[x][y]);
 			//display_dotNL_heatmap(pix[x][y]);
 			//display_dotNL_as_color(pix[x][y]);
 			scalar_mult_color(pix[x][y]->color, intensity);
@@ -106,6 +107,13 @@ float light_intensity(t_pix *pix)
 	intensity = 0.0;
 	// Lumière ambiante
 	intensity += pix->lux[0][0]->ratio;
+	//intensity = pix->lux[0][0]->ratio;
+//	printf("intensite %.2f \n", pix->lux[0][0]->ratio);
+//	printf("intensity %.2f \n\n\n", intensity);
+
+	
+
+//	intensity = 0.8;
 	// Lumières ponctuelles
 	i = 0;
     while (pix->lux[1][i] != NULL && i < 2)

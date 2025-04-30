@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 09:47:59 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 16:16:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ typedef struct s_camera
 	float		*m_transl;
 	float		*m_transf; // initialiser comme identity matrix
 	float 		*m_inverse;
-	t_coord		*p_cam_world;
-	float		*m_tmp;
+//	t_coord		*p_cam_world;
+//	float		*m_tmp;
 	//
 	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
 	//

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/30 09:48:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 16:39:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,15 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->cam->m_transl = create_indentity_matrix_44();
 	pix[0][0]->cam->m_transf = create_indentity_matrix_44();
 	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
-	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
+//	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
 	pix[0][0]->cam->p_origin_zero = create_point(0,0,0);
 	pix[0][0]->cam->view_height = WND_HEIGHT;//image size
 	pix[0][0]->cam->view_width = WND_WIDTH;//image size
-//	pix[0][0]->cam->canva_height = WND_HEIGHT;//200;//viewport size
-//	pix[0][0]->cam->canva_width = WND_WIDTH;//200;//viewport	
 	pix[0][0]->cam->canva_height = WND_HEIGHT;//200;//viewport size
 	pix[0][0]->cam->canva_width = WND_WIDTH;//200;//viewport
 	pix[0][0]->cam->fov *= 0.0174533;
 //	pix[0][0]->cam->fov = pix[0][0]->cam->fov * 3.141592653589793 / 180;
-	pix[0][0]->cam->m_tmp = create_matrix(4, 4);
+//	pix[0][0]->cam->m_tmp = create_matrix(4, 4);
 //	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
 /*	if (!pix[0][0]->cam->m_transf || !pix[0][0]->cam->v_left || !pix[0][0]->cam->v_true_up
 		|| !pix[0][0]->cam->m_orient || !pix[0][0]->cam->m_transl || !pix[0][0]->cam->m_transf)
@@ -68,7 +66,7 @@ bool init_a_deplacer(t_pix ***pix)
 			pix[x][y]->p_viewport = create_point(0,0,-1);
 		//	pix[x][y]->p_viewport = create_point(0,0,0);
 			pix[x][y]->p_viewport_world = create_point(0,0,0);
-			pix[x][y]->cam->p_cam_world = create_point(0,0,0);
+		//	pix[x][y]->cam->p_cam_world = create_point(0,0,0);
 			pix[x][y]->r_dir = malloc(sizeof(t_coord));
 			pix[x][y]->r_origin = malloc(sizeof(t_coord));
 			
@@ -104,19 +102,19 @@ bool 	init_matrix_obj(t_obj ***obj)
 		while(obj[a][b] != NULL)
 		{
 			obj[a][b]->m_transl = create_indentity_matrix_44();
-			obj[a][b]->m_transf = create_indentity_matrix_44();
 			obj[a][b]->m_scale = create_indentity_matrix_44();
 			obj[a][b]->m_rot = create_indentity_matrix_44();
+			obj[a][b]->m_transf = create_indentity_matrix_44();
 			obj[a][b]->from = create_vector(0, 1, 0);
 			obj[a][b]->v_axe_r = create_vector(0, 0, 0);
+	//		obj[a][b]->m_tmp = create_matrix(4, 4);
+			obj[a][b]->m_inv = create_matrix(4, 4);
 			/*if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
 			{
 				obj[a][b]->m_rot = create_matrix(4 , 4);
 				obj[a][b]->from = create_vector(0, 1, 0);
 				obj[a][b]->v_axe_r = create_vector(0, 0, 0);
 			}*/
-			obj[a][b]->m_tmp = create_matrix(4, 4);
-			obj[a][b]->m_inv = create_matrix(4, 4);
 			obj[a][b]->p_world = malloc(sizeof(t_coord));
 			obj[a][b]->v_sph_camera = create_vector(0, 0, 0);
 			obj[a][b]->origin_zero = create_point(0,0,0);
@@ -125,6 +123,8 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->transp_inv = create_matrix(4, 4);
 			if (obj[a][b]->obj_type == SPHERE)
 				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
+			else
+				obj[a][b]->radius = 0.0;
 			b++;
 		}
 		a++;

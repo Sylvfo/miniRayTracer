@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:37:38 by syl               #+#    #+#             */
-/*   Updated: 2025/04/27 17:13:12 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/30 16:51:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void rotation_from_vector(float *m_rot, t_coord *to)
 	free(axis);
 	free(from);
 }*/
+
 
 void rotation_from_vector_NA(t_obj *obj)
 {
@@ -71,10 +72,10 @@ void rotation_from_vector_NA(t_obj *obj)
     matrix_rotation_rodrigues(obj, angle);
 }
 
-
+/*
 //v_axe_r
 //void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
-/*void rotation_from_vector_NA(t_obj *obj)
+void rotation_from_vector_NA(t_obj *obj)
 {
     float 	angle;
 	float 	dot;
@@ -91,7 +92,7 @@ void rotation_from_vector_NA(t_obj *obj)
 	matrix_rotation_rodrigues(obj, angle);
 }*/
 
-/*
+
 void matrix_rotation_rodrigues(t_obj *obj, float angle)
 {
 	float c;
@@ -120,7 +121,9 @@ void matrix_rotation_rodrigues(t_obj *obj, float angle)
     matrix_fill(obj->m_rot, 3, 1, 0);
     matrix_fill(obj->m_rot, 3, 2, 0);
     matrix_fill(obj->m_rot, 3, 3, 1);
-}*/
+}
+
+/*
 void matrix_rotation_rodrigues(t_obj *obj, float angle)
 {
     // Validate input
@@ -171,7 +174,7 @@ void matrix_rotation_rodrigues(t_obj *obj, float angle)
     matrix_fill(obj->m_rot, 3, 1, 0.0f);
     matrix_fill(obj->m_rot, 3, 2, 0.0f);
     matrix_fill(obj->m_rot, 3, 3, 1.0f);
-}
+}*/
 
 /*
 void rotation_from_vector_NA(float *m_rot, t_coord *to, t_obj *obj)
