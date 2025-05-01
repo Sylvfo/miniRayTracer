@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 17:14:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 13:29:14 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,95 @@ void 	set_transformation(t_obj ***obj)
 	}
 }*/
 
+//rotation // scaling // translation
+void set_transformation(t_obj ***obj)
+{
+    int a = 1;  // Start from 1 assuming obj[0] is something else
+    int b;
+
+    while(obj[a] != NULL)
+    {
+        b = 0;
+        while(obj[a][b] != NULL)
+        {
+			            // Apply translation
+/*            fill_translation_matrix(obj[a][b]->m_transl, 
+                                  obj[a][b]->p_coord->x, 
+                                  obj[a][b]->p_coord->y, 
+                                  obj[a][b]->p_coord->z);
+            
+			float *m_transl_inv = create_matrix(4, 4);
+			inverse4x4(obj[a][b]->m_transl, m_transl_inv);
+		//	m_transl_inv = inverted_matrix_44(obj[a][b]->m_transl);
+		//	inverted_matrix_44_NA(obj[a][b]->m_transl, m_transl_inv);
+			matrix_mult_2(obj[a][b]->m_transf, m_transl_inv);
+			
+			copy_matrix_44(obj[a][b]->m_inv, obj[a][b]->m_transf);*/
+
+			fill_translation_matrix(obj[a][b]->m_transl, 
+				obj[a][b]->p_coord->x, 
+				obj[a][b]->p_coord->y, 
+				obj[a][b]->p_coord->z);
+		//	matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_transl);
+			// Calculate inverse transformation
+		/*	if (!inverse4x4(obj[a][b]->m_transf, obj[a][b]->m_inv))
+			{
+				printf("Warning: Could not invert transformation matrix for object %d-%d\n", a, b);
+				exit(0);
+				free(obj[a][b]->m_inv);
+				obj[a][b]->m_inv = create_indentity_matrix_44();
+				//	set_identity_matrix(obj[a][b]->m_inv);  // Fallback to identity
+			}*/
+			copy_matrix_44(obj[a][b]->m_inv, obj[a][b]->m_transl);
+
+
+
+
+/*        	if (obj[a][b]->obj_type == SPHERE)// || obj[a][b]->obj_type == CYLINDER)
+            {
+                create_scaling_matrix_NA(obj[a][b]->m_scale, 
+                                       obj[a][b]->diam, 
+                                       obj[a][b]->diam, 
+                                       obj[a][b]->diam);
+				float *m_scale_inv = create_matrix(4, 4);
+				inverse4x4(obj[a][b]->m_scale, m_scale_inv);
+                matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_scale);
+			//	printf("scaling matrix \n");
+			//	print_matrix_44(obj[a][b]->m_scale);
+            }
+			// Apply rotation for planes and cylinders
+      	  //  if (obj[a][b]->obj_type == PLAN);// || obj[a][b]->obj_type == CYLINDER)
+			if (a == 2)
+		  	{
+                rotation_from_vector_NA(obj[a][b]);
+				float *m_rot_inv = create_matrix(4, 4);
+				inverse4x4(m_rot_inv, obj[a][b]->m_rot);
+                matrix_mult_2(obj[a][b]->m_transf, m_rot_inv);
+            }
+
+			if (!obj[a][b]->m_transl)
+			{
+				printf("miss transl \n");
+				obj[a][b]->m_transl = create_indentity_matrix_44();
+			}*/
+
+            // Calculate inverse transformation
+        /*    if (!inverse4x4(obj[a][b]->m_transf, obj[a][b]->m_inv))
+            {
+                printf("Warning: Could not invert transformation matrix for object %d-%d\n", a, b);
+				exit(0);
+				free(obj[a][b]->m_inv);
+				obj[a][b]->m_inv = create_indentity_matrix_44();
+				//	set_identity_matrix(obj[a][b]->m_inv);  // Fallback to identity
+            }*/
+            b++;
+        }
+        a++;
+    }
+}
+
+/*
+//rotation // scaling // translation
 void set_transformation(t_obj ***obj)
 {
     int a = 1;  // Start from 1 assuming obj[0] is something else
@@ -155,12 +244,13 @@ void set_transformation(t_obj ***obj)
         while(obj[a][b] != NULL)
         {
 			// Apply rotation for planes and cylinders
-      	    if (obj[a][b]->obj_type == PLAN);// || obj[a][b]->obj_type == CYLINDER)
-            {
+      	  //  if (obj[a][b]->obj_type == PLAN);// || obj[a][b]->obj_type == CYLINDER)
+			if (a == 2)
+		  	{
                 rotation_from_vector_NA(obj[a][b]);
                 matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_rot);
             }
-            if (obj[a][b]->obj_type == SPHERE)// || obj[a][b]->obj_type == CYLINDER)
+        	if (obj[a][b]->obj_type == SPHERE)// || obj[a][b]->obj_type == CYLINDER)
             {
                 create_scaling_matrix_NA(obj[a][b]->m_scale, 
                                        obj[a][b]->diam, 
@@ -169,6 +259,9 @@ void set_transformation(t_obj ***obj)
                 matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_scale);
 				printf("scaling matrix \n");
 				print_matrix_44(obj[a][b]->m_scale);
+				float *m_scale_inv = create_matrix(4, 4);
+
+				
             }
 			if (!obj[a][b]->m_transl)
 			{
@@ -195,92 +288,8 @@ void set_transformation(t_obj ***obj)
         a++;
     }
 }
+*/
 
-//ACTUELLLE!!!!!!!!!!!!
-/*void 	set_transformation(t_obj ***obj)
-{
-	int a;
-	int b;
-
-	a = 1;
-	while(obj[a] != NULL)
-	{
-		b = 0;
-		while(obj[a][b] != NULL)
-		{
-			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
-			{
-				create_scaling_matrix_NA(obj[a][b]->m_scale, obj[a][b]->diam, obj[a][b]->diam, obj[a][b]->diam);
-			//	obj[a][b]->m_inv = inverted_matrix_44(obj[a][b]->m_transf);
-				matrix_mult_2(obj[a][b]->m_scale, obj[a][b]->m_scale);
-			}
-			if (!obj[a][b]->m_transf)
-				printf("miss transf\n");
-			//if (a == 2 || a == 3)
-			if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
-			{
-				rotation_from_vector_NA(obj[a][b]);
-				//obj[a][b]->m_rot = inverted_matrix_44(obj[a][b]->m_rot);
-				matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_rot);
-			}
-			if (!obj[a][b]->m_transf)
-				printf("miss transf 2\n");
-			fill_translation_matrix(obj[a][b]->m_transl, obj[a][b]->p_coord->x, obj[a][b]->p_coord->y, obj[a][b]->p_coord->z);
-		//	obj[a][b]->m_transl = inverted_matrix_44(obj[a][b]->m_transl);
-			matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_transl);
-			if (!obj[a][b]->m_transf)
-				printf("miss transf 3\n");
-			obj[a][b]->m_inv = inverted_matrix_44(obj[a][b]->m_transf);
-			//inverse4x4(obj[a][b]->m_transf, obj[a][b]->m_inv);
-			if (!obj[a][b]->m_inv)
-				printf("miss inv\n");
-			b++;
-		}
-		a++;
-	}
-}*/
-
-/*
-void	set_transformation(t_obj ***obj)s
-{
-	int a = 1;
-	int b;
-
-	while (obj[a] != NULL)
-	{
-		b = 0;
-		while (obj[a][b] != NULL)
-		{
-			t_obj *o = obj[a][b];
-
-			// Matrice de transformation finale (commence à l'identité)
-		//	copy_matrix_44_stack(o->m_identity, o->m_transf);
-
-			// SCALE : uniquement pour sphères et cylindres
-			if (o->obj_type == SPHERE || o->obj_type == CYLINDER)
-			{
-				create_scaling_matrix_NA(o->m_scale, o->diam, o->diam, o->diam);
-				matrix_multiplication_44_NA(o->m_transf, o->m_scale, o->m_tmp);
-			}
-			// ROTATION : pour plans et cylindres
-			if (o->obj_type == PLAN || o->obj_type == CYLINDER)
-			{
-				rotation_from_vector_NA(o->m_rot, o->v_axe, o);
-				matrix_multiplication_44_NA(o->m_transf, o->m_rot, o->m_tmp);
-			}
-
-			// TRANSLATION : toujours
-			fill_translation_matrix(o->m_transl, o->p_coord->x, o->p_coord->y, o->p_coord->z);
-			matrix_multiplication_44_NA(o->m_transf, o->m_transl, o->m_tmp);
-
-			// Inverse finale
-			o->m_inv = inverted_matrix_44(o->m_transf);
-
-			b++;
-		}
-		a++;
-	}
-}*/
 
 void set_transformation_light(t_light ***lux)
 {

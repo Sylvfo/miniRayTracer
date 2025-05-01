@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/30 16:39:07 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 11:22:19 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,10 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->object_normal = malloc(sizeof(t_coord));
 			obj[a][b]->transp_inv = create_matrix(4, 4);
 			if (obj[a][b]->obj_type == SPHERE)
+			{
 				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
+			//	obj[a][b]->diam = obj[a][b]->diam / 2.0f;
+			}
 			else
 				obj[a][b]->radius = 0.0;
 			b++;

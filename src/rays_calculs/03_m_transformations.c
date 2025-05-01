@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 16:53:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 13:28:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ void apply_transf_sph_center(t_pix *pix)
 		while(pix->obj[a][b] != NULL)// a changer
 		{	
 		//	pix->obj[a][b]->p_world = create_point(0, 0, 0);
-		//	copy_coord(pix->obj[a][b]->p_world, pix->obj[a][b]->p_coord);
+			print_point(pix->obj[a][b]->p_coord);
+			//copy_coord(pix->obj[a][b]->p_world, pix->obj[a][b]->p_coord);
 			matrix_point_multiplication_new(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
-			//matrix_multiplication_44_coord_NA(pix->obj[a][b]->p_world, pix->obj[a][b]->m_transf, pix->obj[a][b]->p_coord);
+			print_point(pix->obj[a][b]->p_coord);
 		//	print_point(pix->obj[a][b]->p_world);
 			b++;
 		}

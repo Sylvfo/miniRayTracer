@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 15:37:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 13:25:25 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,15 @@ void raytracing(t_pix ***pix)
 	//intersect rayons avec sphere
 	new_light(pix);
 	start = time_now(start, " new lights");
+
+
+/*	float *m_scale_test = create_indentity_matrix_44();
+	create_scaling_matrix_NA(m_scale_test, 77, 88, 99);
+	print_matrix(m_scale_test);
+
+	float *m_trans_test = create_indentity_matrix_44();
+	fill_translation_matrix(m_trans_test, 33, 44, 55);
+	print_matrix(m_trans_test);*/
 //	test_couleur(pix);
 	return;
 }

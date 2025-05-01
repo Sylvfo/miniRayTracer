@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 17:42:01 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 13:28:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void main_intersections(t_pix ***pix)
 				b++;
 			}
 			b = 0;
-		/*	while(pix[x][y]->obj[2][b] != NULL)
+			while(pix[x][y]->obj[2][b] != NULL)
 			{
 				intersect_plan(pix[x][y], b);
 				b++;
-			}*/
+			}
 		/*	b = 0;
 			while(pix[x][y]->obj[3][b] != NULL)
 			{
@@ -49,7 +49,7 @@ void main_intersections(t_pix ***pix)
 			y++;
 		}
 		x++;
-	}	
+	}	ssssssssssss
 }
 
 void intersect_sphere(t_pix *pix, int sphere_num)
@@ -67,8 +67,8 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	if (discriminant < 0) // ca veut dire que l objet ne croise pas le point. 
 	{
 		pix->hits[1][sphere_num]->t_count = 0;
-		pix->hits[1][sphere_num]->t1 = 0;
-		pix->hits[1][sphere_num]->t2 = 0;
+		pix->hits[1][sphere_num]->t1 = INT_MAX;
+		pix->hits[1][sphere_num]->t2 = INT_MAX;
 		return;
 	}
 	pix->hits[1][sphere_num]->t_count = 2;

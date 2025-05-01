@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 17:32:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 11:03:29 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	fill_translation_matrix(float *m_transl, float x, float y, float z)
 	matrix_fill(m_transl, 1, 3, y);
 	matrix_fill(m_transl, 2, 3, z);
 	matrix_fill(m_transl, 3, 3, 1);
+//	printf(" \nm_transl");
+//	print_matrix(m_transl);
 }
 
 
