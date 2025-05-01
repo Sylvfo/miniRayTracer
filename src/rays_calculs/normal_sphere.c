@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:17:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/27 17:13:15 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 18:27:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void transpose_matrix_NA(float *result, float *m)
 //normal = normalize(p_object_space - origin)
 void	normal_at_NA(t_comps *comps)
 {
+	//p_touch dans espace objet
 	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
 	//matrix_multiplication_44_coord_NA(comps->p_space, comps->obj_inv, comps->p_touch);
 //	comps->p_space = matrix_multiplication_44_coord(comps->obj_inv, comps->p_touch);
@@ -53,8 +54,8 @@ void	normal_at_NA(t_comps *comps)
 //	comps->obj->object_normal = substraction(comps->obj->p_object_space, comps->obj->origin_zero);
 	substraction_p_to_v_NA(comps->object_normal, comps->p_space, comps->origin_zero);
 //	substraction_p_to_v_NA(comps->obj->object_normal, comps->obj->p_object_space, comps->obj->origin_zero);
+///	normalize_vector_NA(comps->object_normal);
 
-	//copy_coord(comps->v_norm_parral, )
 
 	transpose_matrix_NA(comps->transp_inv, comps->obj_inv);
 	//print_matrix(comps->obj_inv);
@@ -63,7 +64,6 @@ void	normal_at_NA(t_comps *comps)
 	{
 		printf("transpose missing in norm \n");
 	}
-	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
 	if (!comps->p_space)
 	{
 		printf("comps->p_space missing in norm \n");

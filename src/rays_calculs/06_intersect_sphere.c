@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 13:28:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 18:06:03 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void main_intersections(t_pix ***pix)
 			y++;
 		}
 		x++;
-	}	ssssssssssss
+	}	
 }
 
 void intersect_sphere(t_pix *pix, int sphere_num)

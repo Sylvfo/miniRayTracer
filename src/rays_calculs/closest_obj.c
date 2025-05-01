@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 17:39:01 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 19:05:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void save_in_comps(t_pix *pix, int a, int b)
 	copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
 	copy_coord(pix->comps->p_world, pix->obj[a][b]->p_world);
 	copy_matrix_44_stack(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
+//	copy_matrix_44(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
+//	copy_matrix_44(pix->obj[a][b]->m_transl, pix->comps->m_transl);
 }
 
 

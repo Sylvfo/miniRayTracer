@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/04/27 17:13:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 18:21:17 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void prepare_computation(t_pix ***pix)
 			{
 			//	pix[x][y]->comps->v_norm_parral = malloc(sizeof(t_coord));//mneme
 				copy_coord(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->obj->v_axe);
-				pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
+		//		pix[x][y]->comps->v_norm_parral = normalize_vector(pix[x][y]->comps->v_norm_parral);
 			}		
 			y++;
 		}

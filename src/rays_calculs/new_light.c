@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 13:22:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 18:43:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	new_light(t_pix ***pix)
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
-			//display_normal_as_color(pix[x][y]);
+		//	display_normal_as_color(pix[x][y]);
 			//display_dotNL_heatmap(pix[x][y]);
 			//display_dotNL_as_color(pix[x][y]);
 			scalar_mult_color(pix[x][y]->color, intensity);
@@ -135,15 +135,15 @@ float light_intensity(t_pix *pix)
 // le rayon entre tous les p touch et toutes les lumières
 void	prepare_v_light(t_pix *pix, int lux_num)
 {
-	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->comps->p_touch, pix->lux[1][lux_num]->p_world);
+	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
 
 	//substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
 	//pix->comps->v_light_to_point= substraction(pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
 
 	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
 	normalize_vector_NA(pix->comps->v_light_to_point);
-	substraction_p_to_v_NA(pix->comps->v_point_to_light, pix->comps->p_touch, pix->lux[1][lux_num]->p_world);
-	normalize_vector_NA(pix->comps->v_point_to_light);
+
+
 	
 }
 
@@ -155,6 +155,8 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 //    float distance;
   //  float attenuation;
 
+	substraction_p_to_v_NA(pix->comps->v_point_to_light, lux->p_world, pix->comps->p_touch);
+	normalize_vector_NA(pix->comps->v_point_to_light);
 	intensity = 0.0;
 	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_point_to_light);
  //   n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);

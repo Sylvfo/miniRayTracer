@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 15:37:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/01 18:00:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	view_camera(t_camera *cam)
 	copy_coord(cam->v_forward, cam->v_axe);
 
 	if (cam->v_axe->x == 0 && fabs(cam->v_axe->y) == 1 &&  cam->v_axe->z == 0)
-		vector_fill(cam->v_up, 1, 0, 0);
+		vector_fill(cam->v_up, 0, 0, -1);
 
 //	negat_NA(cam->v_forward, cam->v_axe);
 	cross_product_NA(cam->v_left, cam->v_up, cam->v_forward);
