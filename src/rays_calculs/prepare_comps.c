@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 18:21:17 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 10:18:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void prepare_computation(t_pix ***pix)
 			position_NA(pix[x][y]->comps->p_touch, pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 		//	pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 			// Calculer le vecteur œil : inverse de la direction du rayon
-			copy_coord(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
+		//	copy_coord(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
 			negat_NA(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
 			// Calculer la normale au point d'intersection
 			if (pix[x][y]->comps->obj_type == SPHERE)
 			{
-				if (!pix[x][y]->comps->obj->p_world)
+			/*	if (!pix[x][y]->comps->obj->p_world)
 				{
 					printf("no worlds");
-				}
+				}*/
 			//	print_point(pix[x][y]->comps->obj->p_world);
 				//ici sylvie modifie pour tester avec un normal at plus simple
 			//	normal = normalize(p_object_space - origin)

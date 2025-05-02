@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 19:05:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 11:15:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void set_transformation(t_obj ***obj)
 			matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_transl);
 
 			// Rotation
-			if (a == 2)
+			if (a == 2 || obj[a][b]->obj_type == CYLINDER)
 			{
 				rotation_from_vector_NA(obj[a][b]);
 				matrix_mult_2(obj[a][b]->m_transf, obj[a][b]->m_rot);
@@ -182,7 +182,7 @@ void set_transformation(t_obj ***obj)
 			}
 
 			// Calculate inverse transformation
-			if (obj[a][b]->obj_type == SPHERE)// || obj[a][b]->obj_type == CYLINDER)
+			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
 			{
 				create_scaling_matrix_NA(obj[a][b]->m_scale, 
 										obj[a][b]->diam, 

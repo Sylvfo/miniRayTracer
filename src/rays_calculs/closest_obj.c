@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 19:05:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 10:27:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void find_closest_obj(t_pix ***pix)
 	}
 }
 
+/*
 void copy_hits_to_comps(t_comps *comps, t_hits *hits)
 {
 	comps->closestt = hits->t1;
 	copy_coord(comps->r_dir, hits->r_dir);
 	copy_coord(comps->r_origin, hits->r_origin);
 	comps->obj_type = hits->obj_type;
-}
+}*/
 
 void closest_obj(t_pix *pix)
 {

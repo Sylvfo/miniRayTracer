@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:29:35 by syl               #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:29 by sforster         ###   ########.fr       */
+/*   Updated: 2025/05/02 11:35:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void intersect_cylinder(t_pix *pix, int cyl_num)
 	{
 	//	printf("n");
 		pix->hits[3][cyl_num]->t_count = 0;// ca on peut mettre au début...
-		pix->hits[3][cyl_num]->t1 = 0;
-		pix->hits[3][cyl_num]->t2 = 0;
+		pix->hits[3][cyl_num]->t1 = INT_MAX;
+		pix->hits[3][cyl_num]->t2 = INT_MAX;
 		return;
 	}
 	b = 2 * pix->hits[3][cyl_num]->r_origin->x * pix->hits[3][cyl_num]->r_dir->x + 2 * pix->hits[3][cyl_num]->r_origin->z * pix->hits[3][cyl_num]->r_dir->z;
@@ -35,17 +35,19 @@ void intersect_cylinder(t_pix *pix, int cyl_num)
 	{
 	//	printf("b");
 		pix->hits[3][cyl_num]->t_count = 0;
-		pix->hits[3][cyl_num]->t1 = 0;
-		pix->hits[3][cyl_num]->t2 = 0;
+		pix->hits[3][cyl_num]->t1 = INT_MAX;
+		pix->hits[3][cyl_num]->t2 = INT_MAX;
 		return;
 	}
 	pix->hits[3][cyl_num]->t_count = 2;
 	float t1 = (-b - simple_sqrt(discriminant)) / (2*a);
 	float t2 = (-b + simple_sqrt(discriminant)) / (2*a);
+
 //	pix->hits[3][cyl_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
 //	pix->hits[3][cyl_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
 //	printf("t");
-	
+
+
 	// pour couper le cylindre
 	float y1;
 	float y2;
@@ -79,7 +81,7 @@ void intersect_cylinder(t_pix *pix, int cyl_num)
 	{
 		pix->hits[3][cyl_num]->t2 = 0;
 	}
-	intersect_caps(pix, cyl_num);
+//	intersect_caps(pix, cyl_num);
 }
 
 bool	check_cap(t_pix *pix, float t, int cyl_num)

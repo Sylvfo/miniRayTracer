@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 18:06:03 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 11:04:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void main_intersections(t_pix ***pix)
 				intersect_plan(pix[x][y], b);
 				b++;
 			}
-		/*	b = 0;
+			b = 0;
 			while(pix[x][y]->obj[3][b] != NULL)
 			{
 				intersect_cylinder(pix[x][y], b);
 				b++;
-			}*/
+			}
 			y++;
 		}
 		x++;

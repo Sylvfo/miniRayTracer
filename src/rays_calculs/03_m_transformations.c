@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 19:05:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 09:47:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void matrix_transformations(t_pix ***pix)
 	apply_transformation(pix);
 	printf("Bub \n");
 	//faire pour tous les objets
-	apply_transf_sph_center(pix[0][0]);
+//	apply_transf_sph_center(pix[0][0]);
 	//pareil pour les lumières
 	set_transformation_light(pix[0][0]->lux);
 	transform_lights(pix[0][0]->lux);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/01 19:05:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 11:06:53 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,25 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->p_object_space = malloc(sizeof(t_coord));
 			obj[a][b]->object_normal = malloc(sizeof(t_coord));
 			obj[a][b]->transp_inv = create_matrix(4, 4);
-			if (obj[a][b]->obj_type == SPHERE)
+		//	obj[a][b]->radius = obj[a][b]->diam / 4.0f;
+			obj[a][b]->diam = obj[a][b]->diam / 2.0f;
+			if (a == 3)
+				obj[a][b]->p_coord->z = 0;
+		/*	if (obj[a][b]->obj_type == SPHERE)
 			{
 				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
 				obj[a][b]->diam = obj[a][b]->diam / 2.0f;
 			}
-			else
-				obj[a][b]->radius = 0.0;
+			if (obj[a][b]->obj_type == CYLINDER)
+			{
+				obj[a][b]->radius = obj[a][b]->diam / 2.0f;
+				obj[a][b]->diam = obj[a][b]->diam / 2.0f;
+			}*/
+
+
+
+			/*else
+				obj[a][b]->radius = 0.0;*/
 			b++;
 		}
 		a++;

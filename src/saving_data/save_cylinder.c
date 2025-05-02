@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:39 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/14 16:43:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 11:42:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	save_cylinder(char *line, t_pix **pix, t_num_obj *num_obj)
 	cylinder->height = height;
 	cylinder->p_coord->x = coord.x;
 	cylinder->p_coord->y = coord.y;
-	cylinder->p_coord->y = coord.y;
+	cylinder->p_coord->z = coord.z;
 	cylinder->color->r = color.r;
 	cylinder->color->g = color.g;
 	cylinder->color->b = color.b;
