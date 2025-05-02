@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/05/01 18:43:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 16:16:48 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,13 @@ float light_intensity(t_pix *pix)
 	{
  		if (pix->comps->obj_type != NONE)
 		{
-			prepare_v_light(pix, i);
+			intensity += compute_pointlight(pix, pix->lux[1][i]);
+		/*	prepare_v_light(pix, i);
 			if (intersect_objects_shadow(pix, i) == false)
 			{
 				intensity += compute_pointlight(pix, pix->lux[1][i]);
 			//	intensity += compute_specular(pix, pix->lux[1][0]);
-			}
+			}*/
 		}
         i++;
 	}
@@ -155,7 +156,8 @@ float compute_pointlight(t_pix *pix, t_light *lux)
 //    float distance;
   //  float attenuation;
 
-	substraction_p_to_v_NA(pix->comps->v_point_to_light, lux->p_world, pix->comps->p_touch);
+  	substraction_p_to_v_NA(pix->comps->v_point_to_light, lux->p_world, pix->comps->p_touch);
+
 	normalize_vector_NA(pix->comps->v_point_to_light);
 	intensity = 0.0;
 	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_point_to_light);

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 13:47:30 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 11:15:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 13:57:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,7 +376,7 @@ void set_transformation_light(t_light ***lux)
 		while(lux[x][y] != NULL)
 		{
 			fill_translation_matrix(lux[x][y]->m_transf, lux[x][y]->p_coord->x, lux[x][y]->p_coord->y, lux[x][y]->p_coord->z);
-		//	inverted_matrix_44(lux[x][y]->m_transf);
+			inverted_matrix_44(lux[x][y]->m_transf);
 			y++;
 		}
 		x++;
@@ -395,7 +395,10 @@ void transform_lights(t_light ***lux)
 		y = 0;
 		while(lux[x][y] != NULL)
 		{
+			printf("\n points on lights \n");
+			print_point(lux[x][y]->p_coord);
 			matrix_point_multiplication_new(lux[x][y]->p_world, lux[x][y]->m_transf, lux[x][y]->p_coord);
+			print_point(lux[x][y]->p_world);
 			y++;
 		}
 		x++;

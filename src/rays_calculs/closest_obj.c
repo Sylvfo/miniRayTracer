@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 10:27:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 15:52:59 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void closest_obj(t_pix *pix)
 				save_in_comps(pix, a, b);
 			}
 			//rajouter si t2 est plus petit que t1?
-			else if (pix->hits[a][b]->t2 < pix->comps->closestt &&  pix->hits[a][b]->t2 > 0)// && pix->hits[x][y]->t2 > pix->hits[x][y]->t1)/// ou plus grand que zero...
+			else if (pix->hits[a][b]->t2 < pix->comps->closestt && pix->hits[a][b]->t2 > 0 && pix->hits[a][b]->t2 > pix->hits[a][b]->t1)
 			{
 				pix->comps->closestt = pix->hits[a][b]->t2;
 				save_in_comps(pix, a, b);
@@ -74,12 +74,14 @@ void save_in_comps(t_pix *pix, int a, int b)
 	pix->comps->obj = pix->obj[a][b];
 	copy_coord(pix->comps->r_dir, pix->hits[a][b]->r_dir);
 	copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
+	//normalize_vector_NA(pix->comps->r_origin);
 	pix->comps->obj_type = pix->hits[a][b]->obj_type;
 	copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
-	copy_coord(pix->comps->p_world, pix->obj[a][b]->p_world);
-	copy_matrix_44_stack(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
+//	copy_coord(pix->comps->p_world, pix->obj[a][b]->p_world);
+	copy_matrix_44(pix->comps->obj_inv, pix->obj[a][b]->m_inv);
 //	copy_matrix_44(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
 //	copy_matrix_44(pix->obj[a][b]->m_transl, pix->comps->m_transl);
+	//print_vector(pix->comps->r_dir);
 }
 
 

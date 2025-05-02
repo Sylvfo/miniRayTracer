@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 10:18:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 16:16:48 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,51 @@ void prepare_computation(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
+
 			if (x == 12 && y == 12)
 				start = time_now(start, " start");
 			// Calculer le point ou le rayon touche l objet
-			position_NA(pix[x][y]->comps->p_touch, pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
-		//	pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
+			if (pix[x][y]->comps->obj_type == SPHERE)
+			{
+			/*	printf("PIXEL (%d,%d)\n", x, y);
+				printf("r_origin : x=%f, y=%f, z=%f, t=%d\n",
+					pix[x][y]->comps->r_origin->x,
+					pix[x][y]->comps->r_origin->y,
+					pix[x][y]->comps->r_origin->z,
+					pix[x][y]->comps->r_origin->t);
+				printf("r_dir    : x=%f, y=%f, z=%f, t=%d\n",
+					pix[x][y]->comps->r_dir->x,
+					pix[x][y]->comps->r_dir->y,
+					pix[x][y]->comps->r_dir->z,
+					pix[x][y]->comps->r_dir->t);
+				printf("closestt : %f\n", pix[x][y]->comps->closestt);
+				printf("sphere center (p_world) : x=%f, y=%f, z=%f\n",
+					pix[x][y]->comps->p_world->x,
+					pix[x][y]->comps->p_world->y,
+					pix[x][y]->comps->p_world->z);*/
+				position_NA(pix[x][y]->comps->p_touch,
+					pix[x][y]->comps->r_origin,
+					pix[x][y]->comps->r_dir,
+					pix[x][y]->comps->closestt);
+				
+			
+		/*		printf("p_touch  : x=%f, y=%f, z=%f, t=%d\n",
+					pix[x][y]->comps->p_touch->x,
+					pix[x][y]->comps->p_touch->y,
+					pix[x][y]->comps->p_touch->z,
+					pix[x][y]->comps->p_touch->t);*/
+			}
+			
+
+				//	pix[x][y]->comps->p_touch = position(pix[x][y]->comps->r_origin, pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 			// Calculer le vecteur œil : inverse de la direction du rayon
 		//	copy_coord(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
 			negat_NA(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
 			// Calculer la normale au point d'intersection
 			if (pix[x][y]->comps->obj_type == SPHERE)
 			{
+			//	printf("p touch\n");
+			//	print_point(pix[x][y]->comps->p_touch);
 			/*	if (!pix[x][y]->comps->obj->p_world)
 				{
 					printf("no worlds");

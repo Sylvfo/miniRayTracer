@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 11:04:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 15:40:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	b = 2 * dot_product(pix->hits[1][sphere_num]->r_dir, pix->obj[1][sphere_num]->v_sph_camera);
 	c = dot_product(pix->obj[1][sphere_num]->v_sph_camera, pix->obj[1][sphere_num]->v_sph_camera) - 1;
 	discriminant = (b * b) - (4 * a * c);
-	if (discriminant < 0) // ca veut dire que l objet ne croise pas le point. 
+	if (discriminant < 1e-6) // ca veut dire que l objet ne croise pas le point. 
 	{
 		pix->hits[1][sphere_num]->t_count = 0;
 		pix->hits[1][sphere_num]->t1 = INT_MAX;
@@ -72,8 +72,15 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 		return;
 	}
 	pix->hits[1][sphere_num]->t_count = 2;
-	pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
-	pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
+	//pix->hits[1][sphere_num]->t1 = (-b - simple_sqrt(discriminant)) / (2*a);
+	//pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
+	pix->hits[1][sphere_num]->t1 = (-b - sqrt(discriminant)) / (2*a);
+	pix->hits[1][sphere_num]->t2 = (-b + sqrt(discriminant)) / (2*a);
+	if (pix->hits[1][sphere_num]->t2 - pix->hits[1][sphere_num]->t1 > 0.9)
+	{
+		printf("t1 %.2f \n", pix->hits[1][sphere_num]->t1);
+		printf("t2 %.2f \n", pix->hits[1][sphere_num]->t2);
+	}
 	pix->hits[1][sphere_num]->obj_type = SPHERE;
 	return ;
 }

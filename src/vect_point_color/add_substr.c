@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:45:30 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/30 09:54:40 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 15:55:44 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void addition_NA(t_coord *result, t_coord *p_v_1, t_coord *p_v_2)
 	result->x = p_v_1->x + p_v_2->x;
 	result->y = p_v_1->y + p_v_2->y;
 	result->z = p_v_1->z + p_v_2->z;
-	result->t = p_v_1->t + p_v_2->t;
+	result->t = 1;
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 10:06:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 16:16:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,14 @@ void raytracing(t_pix ***pix)
 	/*	# define WND_WIDTH 1050
 	# define WND_HEIGHT 650*/
 
+	
+
+
+
 	matrix_transformations(pix);
 	start = time_now(start, " set_transf");
+
+
 
 	main_intersections(pix);
 	//print_matrix(pix[0][0]->obj[1][2]->m_inv);

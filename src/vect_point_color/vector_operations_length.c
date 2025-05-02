@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/04/23 12:01:14 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 16:16:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 	v_tmp->y = v_1->y;
 	v_tmp->z = v_1->z;
 	v_tmp->t = 0;
-	free(v_1);
+//	free(v_1);
 	// Vérifier si l'entrée est un vecteur valide
 	
 
@@ -115,7 +115,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 
 
 	// Normaliser le vecteur
-	length = 1 / length;
+	length = 1.0f / length;
 	v_new->x = v_tmp->x * length;
 	v_new->y = v_tmp->y * length;
 	v_new->z = v_tmp->z * length;
