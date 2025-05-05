@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/04/24 14:02:58 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/05 16:15:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void init_viewport_x_y(t_pix *pix, int x, int y);
 
 //raycasting.c
 t_coord *position(t_coord *r_origin, t_coord *r_dir, float t);
-void position_NA(t_coord *result, t_coord *r_origin, t_coord *r_dir, float t);
+//void position_NA(t_coord *result, t_coord *r_origin, t_coord *r_dir, float t);
+void position_NA(t_pix *pix, t_coord *r_dir, float t);
 
 //m_transformations.c
 void matrix_transformations(t_pix ***pix);
