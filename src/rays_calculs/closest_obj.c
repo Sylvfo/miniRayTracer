@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 15:52:59 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/05 09:36:02 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void find_closest_obj(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			closest_obj(pix[x][y]);
+		/*	if (pix[x][y]->comps->closestt < 2147483648.00)
+				printf("closestt %.2f \n", pix[x][y]->comps->closestt);*/
 			y++;
 		}
 		x++;

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 15:40:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/05 10:05:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	//pix->hits[1][sphere_num]->t2 = (-b + simple_sqrt(discriminant)) / (2*a);
 	pix->hits[1][sphere_num]->t1 = (-b - sqrt(discriminant)) / (2*a);
 	pix->hits[1][sphere_num]->t2 = (-b + sqrt(discriminant)) / (2*a);
-	if (pix->hits[1][sphere_num]->t2 - pix->hits[1][sphere_num]->t1 > 0.9)
+/*	if (pix->hits[1][sphere_num]->t2 - pix->hits[1][sphere_num]->t1 > 1.8)
 	{
 		printf("t1 %.2f \n", pix->hits[1][sphere_num]->t1);
 		printf("t2 %.2f \n", pix->hits[1][sphere_num]->t2);
-	}
+	}*/
 	pix->hits[1][sphere_num]->obj_type = SPHERE;
 	return ;
 }

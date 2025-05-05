@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 16:16:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/05 09:51:32 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale)
 }
 
 
+
 /**
  * @brief find the norm of a vector
  * 
@@ -65,7 +66,10 @@ float	length_vector(t_coord *v_1)
 	float	length;
 
 	if (is_vector(v_1) == false)
+	{
+		printf("not a vector in lenght vector");
 		return (0);
+	}
 	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 //	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 	return (length);
@@ -129,7 +133,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 
 void	normalize_vector_NA(t_coord *v_1)
 {
-	float	length;
+	double	length;
 
 	if (is_vector(v_1) == false)
 	{
@@ -148,3 +152,54 @@ void	normalize_vector_NA(t_coord *v_1)
 	v_1->z = v_1->z * length;
 	v_1->t = 0;
 }
+
+
+void	normalize_vector_NA_fabs(t_coord *v_1)
+{
+	float	length;
+
+	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector. in NA\n");
+		return ;
+	}
+	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+
+//	printf("Vector in normalize_vector_NA_fabs\n");
+//	print_vector(v_1);
+//	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+//	printf("length in normalize vector NA fabs %.2f \n", length);
+	if (length < EPSILON)
+	{
+		printf("Error: Cannot normalize a zero-length vector.\n");
+		return ;
+	}
+	length = 1 / length;
+	v_1->x = v_1->x * length;
+	v_1->y = v_1->y * length;
+	v_1->z = v_1->z * length;
+	v_1->t = 0;
+}
+
+/*
+void	normalize_vector_NA(t_coord *v_1)
+{
+	float	length;
+
+	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector. in NA\n");
+		return ;
+	}
+	length = length_vector(v_1);
+	if (length == 0)
+	{
+		printf("Error: Cannot normalize a zero-length vector.\n");
+		return ;
+	}
+	length = 1 / length;
+	v_1->x = v_1->x * length;
+	v_1->y = v_1->y * length;
+	v_1->z = v_1->z * length;
+	v_1->t = 0;
+}*/

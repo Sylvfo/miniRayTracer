@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 16:16:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/05 09:52:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ void prepare_computation(t_pix ***pix)
 					pix[x][y]->comps->p_world->x,
 					pix[x][y]->comps->p_world->y,
 					pix[x][y]->comps->p_world->z);*/
+				printf("closestt in prep %.2f \n", pix[x][y]->comps->closestt);
+				print_vector(pix[x][y]->comps->r_dir);
 				position_NA(pix[x][y]->comps->p_touch,
-					pix[x][y]->comps->r_origin,
+						pix[x][y]->comps->r_origin,
 					pix[x][y]->comps->r_dir,
 					pix[x][y]->comps->closestt);
 				
