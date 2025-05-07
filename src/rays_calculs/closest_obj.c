@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/05 09:36:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/06 16:59:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void closest_obj(t_pix *pix)
 				save_in_comps(pix, a, b);
 			}
 			//rajouter si t2 est plus petit que t1?
-			else if (pix->hits[a][b]->t2 < pix->comps->closestt && pix->hits[a][b]->t2 > 0 && pix->hits[a][b]->t2 > pix->hits[a][b]->t1)
+			else if (pix->hits[a][b]->t2 < pix->comps->closestt && pix->hits[a][b]->t2 > 0)// && pix->hits[a][b]->t2 > pix->hits[a][b]->t1)
 			{
 				pix->comps->closestt = pix->hits[a][b]->t2;
 				save_in_comps(pix, a, b);
@@ -72,15 +72,17 @@ void closest_obj(t_pix *pix)
 
 void save_in_comps(t_pix *pix, int a, int b)
 {
-	pix->comps->t_count = 1;
+	pix->comps->t_count = pix->hits[a][b]->t_count;
 	pix->comps->obj = pix->obj[a][b];
 	copy_coord(pix->comps->r_dir, pix->hits[a][b]->r_dir);
 	copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
-	//normalize_vector_NA(pix->comps->r_origin);
 	pix->comps->obj_type = pix->hits[a][b]->obj_type;
 	copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
-//	copy_coord(pix->comps->p_world, pix->obj[a][b]->p_world);
 	copy_matrix_44(pix->comps->obj_inv, pix->obj[a][b]->m_inv);
+	if (pix->hits[a][b]->obj_type == CYLINDER)
+		pix->comps->height = pix->obj[a][b]->height;
+	if (pix->hits[a][b]->obj_type == PLAN)
+	copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
 //	copy_matrix_44(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
 //	copy_matrix_44(pix->obj[a][b]->m_transl, pix->comps->m_transl);
 	//print_vector(pix->comps->r_dir);

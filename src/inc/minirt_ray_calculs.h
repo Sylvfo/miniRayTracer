@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/05/05 16:15:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/06 17:09:10 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void save_in_comps(t_pix *pix, int a, int b);
 t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
 //void	normal_at_NA(t_pix *pix);
 void	normal_at_NA(t_comps *comps);
+void	normal_caps(t_comps *comps);
 
 void set_transformation(t_obj ***obj);
 void set_transformation_light(t_light ***lux);
@@ -89,6 +90,7 @@ void intersect_plan(t_pix *pix, int plan_num);
 
 //intersect_cylinder.c
 void intersect_cylinder(t_pix *pix, int cyl_num);
+void cut_cylinder(t_pix *pix, int cyl_num, float t1, float t2);
 bool	check_cap(t_pix *pix, float t, int cyl_num);
 void intersect_caps(t_pix *pix, int cyl_num);
 
@@ -104,7 +106,7 @@ void	prepare_v_light(t_pix *pix, int lux_num);
 //shadows_.c
 bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num);
 bool intersect_objects_shadow(t_pix *pix, int lux_num);
-
+bool intersect_plan_shadow(t_pix *pix, int pln_num, int lux_num);
 /*
 //light.c
 void main_light(t_pix ***pix);

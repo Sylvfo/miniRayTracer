@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/29 08:51:08 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/06 15:16:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	error_exit(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_pix		***pix;
@@ -100,13 +99,12 @@ int	main(int argc, char **argv)
 	parse_scene_file(argv[1], num_obj);
 	pix = init_data(num_obj);
 	save_scene_file(argv[1], pix, num_obj);
-	
 ////////////////////////////////
-	print_camera(pix);
+/*	print_camera(pix);
 	print_spheres(pix, num_obj);
 	print_planes(pix, num_obj);
 	print_cylinders(pix, num_obj);
-	print_lights(pix, num_obj);
+	print_lights(pix, num_obj);*/
 ////////////////////////////////
 /*	float *m_test = create_matrix(4,4);
 	print_matrix(m_test);

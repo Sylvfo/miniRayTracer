@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/05/05 09:51:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/06 09:41:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ void	normalize_vector_NA_fabs(t_coord *v_1)
 //	printf("length in normalize vector NA fabs %.2f \n", length);
 	if (length < EPSILON)
 	{
-		printf("Error: Cannot normalize a zero-length vector.\n");
+		printf("Error: Cannot normalize a zero-length vector in fabs.\n");
 		return ;
 	}
 	length = 1 / length;

@@ -6,14 +6,15 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/04/19 16:11:36 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 10:15:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // VERSION CORENTIN DU 14 AVRIL que j ai copié et modif dans new_light.c
-/*
+
 #include "../inc/minirt.h"
 
+/*
 float	compute_specular(t_pix *pix, t_light *lux)
 {
 	t_coord	*view_dir;

@@ -3,71 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   new_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:14:58 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 16:16:49 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/07 10:01:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-void	display_normal_as_color(t_pix *pix)
-{
-	t_coord	*n;
-
-	n = malloc(sizeof(t_coord));
-
-	copy_coord(n, pix->comps->v_norm_parral);
-//	n = pix->comps->v_norm_parral;
-//	normalize_vector_NA(n); // au cas où
-
-	// On remappe les valeurs [-1, 1] vers [0, 255]
-	pix->color->r = (unsigned char)((n->x + 1.0f) * 0.5f * 255);
-	pix->color->g = (unsigned char)((n->y + 1.0f) * 0.5f * 255);
-	pix->color->b = (unsigned char)((n->z + 1.0f) * 0.5f * 255);
-}
-
-void	display_dotNL_heatmap(t_pix *pix)
-{
-	float n_dot_l;
-	int r, g, b;
-
-	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);
-	if (n_dot_l < 0)
-		n_dot_l = 0;
-	if (n_dot_l > 1)
-		n_dot_l = 1;
-
-	// heatmap : noir → rouge → jaune → blanc
-	r = (int)(255 * n_dot_l);
-	g = (int)(255 * n_dot_l * n_dot_l); // g augmente plus lentement
-	b = (int)(80 * n_dot_l); // un peu de bleu, mais léger
-
-	pix->color->r = r;
-	pix->color->g = g;
-	pix->color->b = b;
-}
-
-void	display_dotNL_as_color(t_pix *pix)
-{
-	float n_dot_l;
-	int value;
-
-	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);
-
-	if (n_dot_l < 0)
-		n_dot_l = 0; // pas de lumière "derrière"
-
-	value = (int)(n_dot_l * 255.0f);
-	if (value > 255)
-		value = 255;
-
-	pix->color->r = value;
-	pix->color->g = value;
-	pix->color->b = value;
-}
-
 
 //1
 void	new_light(t_pix ***pix)
@@ -84,13 +27,9 @@ void	new_light(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			intensity = light_intensity(pix[x][y]);
-		//	printf("intensity3 %.2f \n\n\n", intensity);
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
-		//	display_normal_as_color(pix[x][y]);
-			//display_dotNL_heatmap(pix[x][y]);
-			//display_dotNL_as_color(pix[x][y]);
 			scalar_mult_color(pix[x][y]->color, intensity);
 			y++;
 		}
@@ -105,81 +44,50 @@ float light_intensity(t_pix *pix)
 	int i;
 
 	intensity = 0.0;
-	// Lumière ambiante
 	intensity += pix->lux[0][0]->ratio;
-	//intensity = pix->lux[0][0]->ratio;
-//	printf("intensite %.2f \n", pix->lux[0][0]->ratio);
-//	printf("intensity %.2f \n\n\n", intensity);
-
-	
 
 //	intensity = 0.8;
 	// Lumières ponctuelles
 	i = 0;
-    while (pix->lux[1][i] != NULL && i < 2)
+    while (pix->lux[1][i] != NULL)// && i < 2)
 	{
- 		if (pix->comps->obj_type != NONE)
+ 		if (pix->comps->obj_type == SPHERE || pix->comps->obj_type == PLAN || pix->comps->obj_type == CYLINDER)
 		{
-			intensity += compute_pointlight(pix, pix->lux[1][i]);
-		/*	prepare_v_light(pix, i);
+			prepare_v_light(pix, i);
 			if (intersect_objects_shadow(pix, i) == false)
 			{
-				intensity += compute_pointlight(pix, pix->lux[1][i]);
-			//	intensity += compute_specular(pix, pix->lux[1][0]);
-			}*/
+				intensity = intensity + compute_pointlight(pix, pix->lux[1][i]);
+				intensity = intensity + compute_specular(pix, pix->lux[1][i]);
+			}
 		}
         i++;
 	}
     return (intensity);
 }
 
-// le rayon entre tous les p touch et toutes les lumières
-void	prepare_v_light(t_pix *pix, int lux_num)
-{
-	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
-
-	//substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
-	//pix->comps->v_light_to_point= substraction(pix->lux[1][lux_num]->p_world, pix->comps->p_touch);
-
-	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
-	normalize_vector_NA(pix->comps->v_light_to_point);
-
-
-	
-}
-
-
 float compute_pointlight(t_pix *pix, t_light *lux)
 {
     float n_dot_l;
     float intensity;
-//    float distance;
-  //  float attenuation;
+    float distance;
+    float attenuation;
 
-  	substraction_p_to_v_NA(pix->comps->v_point_to_light, lux->p_world, pix->comps->p_touch);
-
-	normalize_vector_NA(pix->comps->v_point_to_light);
+	if (pix->comps->p_touch->x == 0 && pix->comps->p_touch->y == 0 && pix->comps->p_touch->z == 0)
+		printf("no p touch\n");
 	intensity = 0.0;
+  	substraction_p_to_v_NA(pix->comps->v_point_to_light, lux->p_coord, pix->comps->p_touch);
+	normalize_vector_NA(pix->comps->v_point_to_light);
 	n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_point_to_light);
- //   n_dot_l = dot_product(pix->comps->v_norm_parral, pix->comps->v_light_to_point);
     if (n_dot_l > 0)
     {
-	/*	float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
-	//	distance = pix->comps->distance_light_p_touch;
+	/*	distance = length_vector(pix->comps->v_point_to_light);
         // attenuation douce pour éviter de "couper" la lumière trop vite
-        float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
+		//BONUS??
+        attenuation = 1.0;// / (1.0 + 0.1 * distance + 0.05 * distance * distance);
         intensity = lux->ratio * n_dot_l * attenuation;*/
 
 		//celui ci normalement
 		intensity = lux->ratio * n_dot_l;// /
-
-
-
-                   // (length_vector(pix->comps->v_norm_parral) * length_vector(v_light));
-		//pris de gpt pour calculer l atténuation de la lumière par la distanche...
-	//float distance = length_vector(substraction(lux->p_world, pix->comps->p_touch));
-//	float attenuation = 1.0 / (1.0 + 0.1 * distance + 0.05 * distance * distance);
-//	intensity = lux->ratio * n_dot_l * attenuation;
 	}
     return intensity;
 }
@@ -203,8 +111,6 @@ float	compute_specular(t_pix *pix, t_light *lux)
 	normalize_vector_NA(pix->comps->view_dir);
 	
 	reflect_dot_view = dot_product(pix->comps->reflect_dir, pix->comps->view_dir);
-	if (reflect_dot_view < 0)
-		printf("l");
 	if (reflect_dot_view > 0)
 	{
 		specular_intensity = lux->ratio * pow(reflect_dot_view, SHININESS) * 0.5;

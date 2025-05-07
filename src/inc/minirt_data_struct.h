@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/04/30 16:16:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/06 15:31:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,36 +65,30 @@ typedef struct s_obj
 	float	diam;
 	float	height;
 	t_coord	*v_axe;
+	int		obj_type;
 	bool	closed_up; // for cylinder, for bonus...
 	bool	closed_down; // for cylinder, for bonus...
 // 	pour calcul transf matrix
-	float	*m_transl;
-	float	*m_rot;
-	float	*m_scale;
-	
+	float	*m_transl; // IMPORTANT
+	float	*m_rot; // IMPORTANT
+	float	*m_scale; // IMPORTANT
 	float	*m_transf;// matrice de transformation. résultat de toutes les transformation. m_transf = Rotation * Transl * Scale
-	float	*m_tmp;
-	// pour matrix rotation
-	//t_coord *axis;
-	t_coord *v_axe_r;
-	t_coord *from;
-	//
-	//for inverted
 	float	*m_inv;
-	float	*m_submatrix;
+	t_coord *v_axe_r; // pour matrix rotation IMPORTANT
+	t_coord *from;// pour matrix rotation IMPORTANT
+	//for inverted
+	t_coord *v_sph_camera; //IMPORTANT DANS INTERSECT SPHERE
+	float	radius; //UTILISE??
+//	float	*m_submatrix;//??
 	//calcul intersect sphere
-	t_coord *v_sph_camera;
-	t_coord	*p_world;
+//	t_coord	*p_world;
 	//pour normal at
-	t_coord *origin_zero;
-	t_coord *p_object_space;
-	t_coord *object_normal;
-	float 	*transp_inv;
+//	t_coord *origin_zero;
+//	t_coord *p_object_space;
+//	t_coord *object_normal;
+//	float 	*transp_inv;
 	// pour intersect shadow
 //	t_coord *v_light_to_point;
-	float	radius;
-	//
-	int		obj_type;
 // un truc pour obj modifié pour calculs quand on déplace un objet....	
 	//	float	*m_rot_x;
 //	float	*m_rot_y;
@@ -120,42 +114,35 @@ typedef struct s_light
 	t_coord		*p_coord;
 	float		ratio; //brightnessss
 	t_color		*color;
-	float		*m_identity;
-	float		*m_transf;// pas forcément besoin?
+//	float		*m_identity;
+//	float		*m_transf;// pas forcément besoin?
 //	float		*m_transl;
-	t_coord		*p_world;
+//	t_coord		*p_world;
 }	t_light;
 
 typedef struct s_camera
 {
 	//depuis parsing
-	t_coord		*p_coord;//from
-	t_coord		*v_axe;//up
-	float		fov;
+	t_coord		*p_coord;//PARS
+	t_coord		*v_axe;//PARS
+	float		fov;//PARS
+	t_coord		*p_zero;// utilisé dans intersect sphere// a mettre ailleurs?
 	// pour bouger cam
-	t_coord		*v_forward;
-	t_coord		*v_up;
-	t_coord		*vn_axe_y; // a faire 1 seule fois au debut
-	t_coord		*v_left;
-	t_coord		*v_true_up;
-	float		*m_orient;
-	float		*m_transl;
-	float		*m_transf; // initialiser comme identity matrix
-	float 		*m_inverse;
-//	t_coord		*p_cam_world;
-//	float		*m_tmp;
-	//
-	t_coord		*p_origin_zero;// utilisé dans intersect sphere// a mettre ailleurs?
-	//
-	float		view_width;// viewport
-	float		view_height; // viewport
-	float		canva_height; // taille image ima_h
-	float		canva_width; // taille image ima_w
+	t_coord		*v_up;// INIT TOUS PAREIL (0, 1, 0)
+	t_coord		*v_left; // INIT (0, 0, 0)
+	t_coord		*v_true_up; // INIT (0, 0, 0)
+	float		*m_orient; // IN VIEW CAM initialiser identity matrix utilisé 1x
+	float		*m_transl; // IN VIEW CAM initialiser identity matrix utilisé 1x
+	float		*m_transf; // IN VIEW CAM initialiser identity matrix utilisé 1x
+	float 		*m_inverse; // IN CAM PIX RAY
+	float		view_width;// IMPORTANT viewport
+	float		view_height; // IMPORTANT viewport
+	float		canva_height; // IMPORTANT taille image ima_h
+	float		canva_width; // IMPORTANT taille image ima_w
 	float    	half_height;//est-ce que c est vraiment important laisser dans data struct? O
 	float		half_width;// pareil, on utilise 1 fois...
-	float		pixel_size;
+	float		pixel_size;//IMPORTANT
 	struct t_camera	*saved_camera; // (si on se perd. ou camera origines)
-//	int			render_type; pour les bonus. type render, type preview
 }	t_camera;
 
 ////////// ?? //////////
@@ -174,35 +161,36 @@ typedef struct s_image
 typedef struct s_comps
 {
 //	dans closestt?
-	t_coord	*r_origin;
-	t_coord	*r_dir;
-	float	closestt;
-	int 	t_count;
-	int		obj_type;
+	t_coord	*r_origin; // utile??
+	t_coord	*r_dir; // IMPORTANT DANS POSITION PREPARE COMP. 
+	float	closestt;  //IMPORTANT DANS PREPARE COMP.
+	int 	t_count; // utile??
+	int		obj_type; //IMPORTANT DANS PREPARE COMP.
 	t_obj	*obj;//pointeur closest
 	t_color *obj_color;
-	t_coord *p_world;
+//	t_coord *p_world;
 	//pour normal at
 	t_coord *origin_zero;
-	t_coord *object_normal;
-	float 	*transp_inv;
-	t_coord *p_space;
-	float 	*obj_inv;
-
+	t_coord *object_normal; // IMPORTANT DANS INTERSECT SPHERE a fusionner avec v_norm_parral??
+	float 	*transp_inv;//IMPORTANT DANS NORMAL AT 
+	t_coord *p_space;//IMPORTANT DANS NORMAL AT 
+	float 	*obj_inv; //IMPORTANT DANS NORMAL AT 
+	
 // dans prepare computation
 	t_coord	*p_touch;//
 	t_coord	*v_eye; //inverse du ray de base
-	t_coord	*v_norm_parral;
-	bool	inside;
+	t_coord	*v_norm_parral; //IMPORTANT DANS NORMAL AT ET POUR LUM
+	bool	inside;// important??
 	// dans shadows lights
 	t_coord *v_light_to_point;
 	float distance_light_p_touch;
-	t_coord *v_sphere_to_point;
-	t_coord *v_point_to_light;
+	t_coord *v_sphere_to_point; // in shad??
+	t_coord *v_point_to_light; // IMPORTANT DANS COMPUTE POINTLIGHT
 	//in specular
 	t_coord	*reflect_dir;
 	t_coord	*scalar;
 	t_coord *view_dir;
+	float	height;
 }	t_comps;
 
 ////////// CANVA //////////
@@ -214,18 +202,18 @@ typedef struct s_pix
 	t_obj		***obj;
 	t_light		***lux;
 
-	t_coord		*p_viewport; // point sur le viewport avec xy. 
-	t_coord		*p_viewport_world;
+	t_coord		*p_viewport; // point sur le viewport avec xy. UTILISE 1x
+	t_coord		*p_viewport_world;// point sur le viewport avec xy. UTILISE 1x
 	//ray original à garder =)
-	t_coord		*r_origin;
-	t_coord		*r_dir;
-	t_color		*color; // OK
+	t_coord		*r_origin; // IMPORTANT UTILISE DANS INIT PIX RAY
+	t_coord		*r_dir; // IMPORTANT CALCULE DANS INIT PIX RAY
+	t_color		*color; // IMPORTANT
 	t_hits		***hits; //array de hits pour stocker les intersections objets
 	t_comps		*comps; // ici on peut faire une array pour mettre les objets dans l ordre où ils se font toucher...
-//	t_matrix	*neo;
 //	int			t_count;//ici compter le nombre d intersection?
 }	t_pix;
 
+//	t_matrix	*neo;
 /* apparement ça sert à rien...
 typedef struct s_matrix
 {
