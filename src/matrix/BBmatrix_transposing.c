@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 15:57:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 10:48:40 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,30 @@ float *transpose_matrix(float *m)
 		i++;
 	}
 	return (result);
+}
+
+void transpose_matrix_NA(float *result, float *m)
+{
+	int i;
+	int j;
+	
+	if (!m || m[0] != 4 || m[1] != 4)
+	{
+		printf("problème\n");
+		return;
+	}
+	
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			matrix_fill(result, i, j, m[2 + j * 4 + i]);
+			j++;
+		}
+		i++;
+	}
 }
 
 //celle de syl

@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/06 10:26:35 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 10:21:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	constructing_camera(t_pix ***pix)
 	//calcul de la taille des pixels
 	pixel_size(pix[0][0]);
 }
-
 
 // creer la matrice de transformation de la camera pour pouvoir la bouger
 void	view_camera(t_camera *cam)

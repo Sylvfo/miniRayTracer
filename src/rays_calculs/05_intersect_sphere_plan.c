@@ -1,55 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   06_intersect_sphere.c                              :+:      :+:    :+:   */
+/*   05_intersect_sphere_plan.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/05/06 11:13:16 by syl              ###   ########.fr       */
+/*   Created: 2025/04/10 14:04:59 by syl               #+#    #+#             */
+/*   Updated: 2025/05/07 10:34:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-// si t1 et / ou t2 négatifs, c est que c est derrière la camera
-void main_intersections(t_pix ***pix)
+//intersect scaled plan
+void intersect_plan(t_pix *pix, int plan_num)
 {
-	int	x;
-	int	y;
-	int a;
-	int b;
-
-	//printf("enter intersect\n");
-	a = 1;
-	x = 0;
-	while (x < WND_WIDTH)
+	//empty set, no intersection
+	// fabs mets tous les nombres en positif
+	if (fabs(pix->hits[2][plan_num]->r_dir->y) < EPSILON)
 	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			b = 0;
-			while(pix[x][y]->obj[1][b] != NULL)
-			{
-				intersect_sphere(pix[x][y], b);
-				b++;
-			}
-			b = 0;
-			while(pix[x][y]->obj[2][b] != NULL)
-			{
-				intersect_plan(pix[x][y], b);
-				b++;
-			}
-			b = 0;
-			while(pix[x][y]->obj[3][b] != NULL)
-			{
-				intersect_cylinder(pix[x][y], b);
-				b++;
-			}
-			y++;
-		}
-		x++;
-	}	
+		pix->hits[2][plan_num]->t_count = 0;
+		pix->hits[2][plan_num]->t1 = INT_MAX;
+		pix->hits[2][plan_num]->t2 = INT_MAX;
+		pix->hits[2][plan_num]->obj_type = PLAN;
+		return ;
+	}
+	//origin.y + t * dir.y = 0 c est l équation de l intersection entre le plan et le ray
+	pix->hits[2][plan_num]->t1 = -(pix->hits[2][plan_num]->r_origin->y / pix->hits[2][plan_num]->r_dir->y);
+	pix->hits[2][plan_num]->t2 = INT_MAX;
+	pix->hits[2][plan_num]->t_count = 1;
+	pix->hits[2][plan_num]->obj_type = PLAN;
 }
 
 void intersect_sphere(t_pix *pix, int sphere_num)
@@ -78,43 +58,3 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	return ;
 }
 
-
-/*
-// si t1 et / ou t2 négatifs, c est que c est derrière la camera
-void main_intersections(t_pix ***pix)
-{
-	int	x;
-	int	y;
-	int a;
-	int b;
-
-	//printf("enter intersect\n");
-	a = 1;
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			a = 1;
-			while (a < 4)
-			{
-				b = 0;
-				while(pix[x][y]->obj[a][b] != NULL)
-				{
-					if (a == 1)// (a == SPHERE)
-						intersect_sphere(pix[x][y], b);
-					if (a == 2)// (a == PLAN)
-						intersect_plan(pix[x][y], b);
-					if (a == 3)//(a == CYLINDER)
-						intersect_cylinder(pix[x][y], b);		
-						b++;
-					}
-					a++;
-				}
-				y++;
-			}
-			x++;
-		}	
-	}
-*/

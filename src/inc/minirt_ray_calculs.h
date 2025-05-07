@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/05/06 17:09:10 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 10:43:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,8 @@ bool 	init_matrix_hits(t_hits ***hits);
 bool init_comps(t_pix ***pix);
 bool init_lights(t_light ***lights);
 
-//raytracing_main.c
-void raytracing(t_pix ***pix);
-
 // a effacer après
 struct timeval time_now(struct timeval start, char *str);
-
-//camera_construction.c 
-void constructing_camera(t_pix ***pix);
-void pixel_size(t_pix *pix);
-//float *view_camera(t_coord *p_coordcam, t_coord *v_dircam);
-void view_camera(t_camera *cam);
-
-//viewport_construction.c
-void init_viewport(t_pix ***pix);
-void init_camera_pix_ray(t_pix *pix, t_camera *cam);
-void init_viewport_x_y(t_pix *pix, int x, int y);
-
-//raycasting.c
-t_coord *position(t_coord *r_origin, t_coord *r_dir, float t);
-//void position_NA(t_coord *result, t_coord *r_origin, t_coord *r_dir, float t);
-void position_NA(t_pix *pix, t_coord *r_dir, float t);
-
-//m_transformations.c
-void matrix_transformations(t_pix ***pix);
-void apply_transformation(t_pix ***pix);
-
-//intersect_sphere.c
-void intersect_sphere(t_pix *pix, int sphere_num);
-void main_intersections(t_pix ***pix);
 
 //ray_test.c 
 void ray_testing();
@@ -58,11 +31,65 @@ void test_ray(void);
 void test_sphere(t_pix ***pix);
 void test_normal_at(void);
 
-//closest_obj.c
+
+//////////////////////////////////
+
+//00_raytracing_main.c
+void raytracing(t_pix ***pix);
+
+//01_camera_construction.c
+void constructing_camera(t_pix ***pix);
+void view_camera(t_camera *cam);
+void pixel_size(t_pix *pix);
+
+//02_viewport_construction.c
+void init_viewport(t_pix ***pix);
+void init_camera_pix_ray(t_pix *pix, t_camera *cam);
+void init_viewport_x_y(t_pix *pix, int x, int y);
+
+//03_m_transformations.c
+void matrix_transformations(t_pix ***pix);
+void set_transformation(t_obj ***obj);
+void apply_transformation(t_pix ***pix);
+
+//04_intersect_main.c
+void main_intersections(t_pix ***pix);
+void intersect_pix_obj(t_pix *pix);
+
+//05_intersect_sphere_plan.c
+void intersect_sphere(t_pix *pix, int sphere_num);
+void intersect_plan(t_pix *pix, int plan_num);
+
+//06_intersect_cylinder.c
+void intersect_cylinder(t_pix *pix, int cyl_num);
+void cut_cylinder(t_pix *pix, int cyl_num, float t1, float t2);
+bool check_cap(t_pix *pix, float t, int cyl_num);
+void intersect_caps(t_pix *pix, int cyl_num);
+
+//07_closest_obj.c
 void find_closest_obj(t_pix ***pix);
 void closest_obj(t_pix *pix);
-void prepare_computation(t_pix ***pix);
 void save_in_comps(t_pix *pix, int a, int b);
+
+//08_prepare_comps.c
+void prepare_computation(t_pix ***pix);
+
+
+
+
+//raycasting.c
+t_coord *position(t_coord *r_origin, t_coord *r_dir, float t);
+//void position_NA(t_coord *result, t_coord *r_origin, t_coord *r_dir, float t);
+void position_NA(t_pix *pix, t_coord *r_dir, float t);
+
+
+
+
+
+//closest_obj.c
+
+
+
 
 //intersect_sphere.c
 t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
@@ -70,7 +97,7 @@ t_coord	*normal_at(t_obj *object, t_coord *point_on_object);
 void	normal_at_NA(t_comps *comps);
 void	normal_caps(t_comps *comps);
 
-void set_transformation(t_obj ***obj);
+
 void set_transformation_light(t_light ***lux);
 void transform_lights(t_light ***lux);
 void transform_obj(t_pix *pix, float *m_transf, int obj_type, int obj_num);
@@ -85,14 +112,6 @@ void rotation_from_vector_NA(t_obj *obj);
 void matrix_rotation_rodrigues(t_obj *obj, float angle);
 //void matrix_rotation_rodrigues(t_coord *axis, float angle, float *m_rot);
 
-//intersect_plan.c
-void intersect_plan(t_pix *pix, int plan_num);
-
-//intersect_cylinder.c
-void intersect_cylinder(t_pix *pix, int cyl_num);
-void cut_cylinder(t_pix *pix, int cyl_num, float t1, float t2);
-bool	check_cap(t_pix *pix, float t, int cyl_num);
-void intersect_caps(t_pix *pix, int cyl_num);
 
 //new_light
 void	new_light(t_pix ***pix);
