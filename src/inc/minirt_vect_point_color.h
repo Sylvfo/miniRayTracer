@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/05/03 10:39:01 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 11:10:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void vector_fill(t_coord *vect, float x, float y, float z);
 
 //math.c
 float	simple_sqrt(float x);
+
+//raycasting.c
+void position_NA(t_pix *pix, t_coord *r_dir, float t);
 
 #endif
 

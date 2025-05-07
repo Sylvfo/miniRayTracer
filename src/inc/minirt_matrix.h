@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/28 15:58:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 11:21:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ float	*transpose_matrix(float *m);
 void	transposing_matrix_44(float *m_matrix);
 void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
 void	copy_matrix_44(float *m_result, float *m_matrix);
+void transpose_matrix_NA(float *result, float *m);
 
 //INVERSION///
 //matrix_determinant.c
@@ -83,6 +84,11 @@ float	*inverted_matrix_44(float *m_matrix);
 //float	*inverted_matrix_44_NA(float *m_matrix);
 void	matrix_cofactors_44(float *m_matrix, float *m_cofactors);
 void inverted_matrix_44_NA(float *m_inverted, float *m_matrix, float *m_submatrix);
+
+//matrix_rotation_rodrigues.c 
+void rotation_from_vector_NA(t_obj *obj);
+void matrix_rotation_rodrigues(t_obj *obj, float angle);
+
 
 ////////////////!!!GPT
 int inverse4x4(float *src, float *dest);
