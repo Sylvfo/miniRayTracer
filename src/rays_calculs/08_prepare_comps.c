@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:47:23 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 11:21:28 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,16 @@ void prepare_computation(t_pix ***pix)
 	int x;
 	int y;
 
-	// a effacer
-	struct timeval start;
-	gettimeofday(&start, NULL);
 	x = 0;
 	while (x < WND_WIDTH)
 	{
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-	/*		if (x == 12 && y == 12)
-				start = time_now(start, " start");*/
 			if (pix[x][y]->comps->obj_type != NONE)
 				position_NA(pix[x][y], pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
-			// Calculer le vecteur œil : inverse de la direction du rayon
 			negat_NA(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
-			// Calculer la normale au point d'intersection
-			if (pix[x][y]->comps->obj_type == SPHERE)
+			if (pix[x][y]->comps->obj_type == SPHERE  || pix[x][y]->comps->obj_type == CYLINDER)
 			{
 				normal_at_NA(pix[x][y]->comps);
 				if (dot_product(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_eye) < 0)
@@ -43,14 +36,6 @@ void prepare_computation(t_pix ***pix)
 					negat_NA(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_norm_parral);
 				}
 			}
-			if (pix[x][y]->comps->obj_type == CYLINDER)
-			{
-			/*	if (pix[x][y]->comps->t_count == 8)
-					normal_caps(pix[x][y]->comps);
-				else*/
-				normal_at_NA(pix[x][y]->comps);
-			}
-			// normal at plan c est pareil que l axe donné au début
 			else if (pix[x][y]->comps->obj_type == PLAN)
 				copy_coord(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->obj->v_axe);		
 			y++;
@@ -62,17 +47,12 @@ void prepare_computation(t_pix ***pix)
 //normal = normalize(p_object_space - origin)
 void	normal_at_NA(t_comps *comps)
 {
-	//p_touch dans espace objet
 	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
-
-	// Calculer la normale dans l'espace local de l'objet
 	substraction_p_to_v_NA(comps->object_normal, comps->p_space, comps->origin_zero);
 	normalize_vector_NA(comps->object_normal);///A RETIRER??
 	transpose_matrix_NA(comps->transp_inv, comps->obj_inv);
 	matrix_point_multiplication_new(comps->v_norm_parral, comps->transp_inv, comps->object_normal);
 	normalize_vector_NA(comps->v_norm_parral);
-//	if (comps->obj_type == CYLINDER && comps->p_space->x == 1, comps->p_space->y == 0, comps->p_space->z == 0)
-//		print_vector(comps->v_norm_parral);
 	if (comps->obj_type == CYLINDER)
 		normal_caps(comps);	
 
@@ -85,7 +65,6 @@ void	normal_caps(t_comps *comps)
 	dist = (comps->p_space->x * comps->p_space->x) + (comps->p_space->z * comps->p_space->z);
 	if (dist <= 1 && comps->p_space->y >= comps->height - EPSILON)
 	{
-	//	printf("cyl height %.2f \n", comps->height);
 		comps->v_norm_parral->x = 0;
 		comps->v_norm_parral->y = 1;
 		comps->v_norm_parral->z = 0;
@@ -93,16 +72,13 @@ void	normal_caps(t_comps *comps)
 	}
 	if (dist <= 1 && comps->p_space->y <= -comps->height + EPSILON)
 	{
-	//	printf("cyl height %.2f \n", comps->height);
 		comps->v_norm_parral->x = 0;
 		comps->v_norm_parral->y = -1;
 		comps->v_norm_parral->z = 0;
 		return;
 	}
-//	printf(".");
-
 	comps->v_norm_parral->x = comps->p_space->x;
 	comps->v_norm_parral->y = 0;
 	comps->v_norm_parral->z = comps->p_space->z;
-//	print_vector(comps->v_norm_parral);
 }
+

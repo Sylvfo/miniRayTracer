@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_tests.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:12:13 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/22 17:58:26 by sforster         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:23:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,17 @@ void	test_mult_product_inverse(void);
 //matrix_transf_testing.c
 void test_transformation(void);
 void test_scaling(void);
+
+//ray_test.c 
+void ray_testing();
+void sphere_testing();
+void test_ray(void);
+void test_sphere(t_pix ***pix);
+void test_normal_at(void);
+
+//camera
+void test_camera3(void);
+void test_camera2(t_pix ***pix);
+void test_camera(t_pix ***pix);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shadows_.c                                         :+:      :+:    :+:   */
+/*   10_shadows.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:04:38 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 11:43:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // le rayon entre tous les p touch et toutes les lumières
 void	prepare_v_light(t_pix *pix, int lux_num)
 {
-//	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->comps->p_touch, pix->lux[1][lux_num]->p_coord);
 	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_coord, pix->comps->p_touch);
 	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
 	normalize_vector_NA(pix->comps->v_light_to_point);

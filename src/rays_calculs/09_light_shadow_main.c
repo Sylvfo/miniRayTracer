@@ -6,13 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:44:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:45:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 11:14:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//1
 void	new_light(t_pix ***pix)
 {
 	int	x;
@@ -37,8 +36,7 @@ void	new_light(t_pix ***pix)
 	}
 }
 
-//2
-float light_intensity(t_pix *pix)
+float	light_intensity(t_pix *pix)
 {
 	float intensity;
 	int i;
@@ -46,10 +44,8 @@ float light_intensity(t_pix *pix)
 	intensity = 0.0;
 	intensity += pix->lux[0][0]->ratio;
 
-//	intensity = 0.8;
-	// Lumières ponctuelles
 	i = 0;
-    while (pix->lux[1][i] != NULL)// && i < 2)
+    while (pix->lux[1][i] != NULL)
 	{
  		if (pix->comps->obj_type == SPHERE || pix->comps->obj_type == PLAN || pix->comps->obj_type == CYLINDER)
 		{

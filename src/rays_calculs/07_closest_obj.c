@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:41:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 11:11:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,44 +87,3 @@ void save_in_comps(t_pix *pix, int a, int b)
 //	copy_matrix_44(pix->obj[a][b]->m_transl, pix->comps->m_transl);
 	//print_vector(pix->comps->r_dir);
 }
-
-
-/*
-void closest_obj(t_pix *pix)
-{
-	int	a;
-	int	b;
-
-	a = 1;
-	while (a < 4)//pix->hits[a] != NULL
-	{
-		b = 0;
-		while (pix->hits[a][b] != NULL)
-		{
-			if (pix->hits[a][b]->t1 < pix->comps->closestt && pix->hits[a][b]->t1 > 0)
-			{
-				pix->comps->closestt = pix->hits[a][b]->t1;
-				pix->comps->obj = pix->obj[a][b];
-				copy_coord(pix->comps->r_dir, pix->hits[a][b]->r_dir);
-				copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
-				pix->comps->t_count = 1;
-				pix->comps->obj_type = pix->hits[a][b]->obj_type;
-				copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
-			}
-			//rajouter si t2 est plus petit que t1?
-			else if (pix->hits[a][b]->t2 < pix->comps->closestt &&  pix->hits[a][b]->t2 > 0)// && pix->hits[x][y]->t2 > pix->hits[x][y]->t1)/// ou plus grand que zero...
-			{
-				pix->comps->closestt = pix->hits[a][b]->t2;
-				pix->comps->obj = pix->obj[a][b];
-				copy_coord(pix->comps->r_dir, pix->hits[a][b]->r_dir);
-				copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
-				pix->comps->t_count = 1;
-				pix->comps->obj_type = pix->hits[a][b]->obj_type;
-				copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
-			}
-			b++;
-		}
-		a++;
-	}
-}*/
-
