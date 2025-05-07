@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:00:02 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/15 14:10:22 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 17:20:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,43 +120,10 @@ void	multipling_color(t_color *c_1, t_color *c_2)
 		printf("miss a colour \n");
 		return ;
 	}
-//	f("Color 1: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n",c_1->r, c_1->g, c_1->b, c_1->rgb);
-//	printf("Color 2: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n", c_2->r, c_2->g, c_2->b, c_2->rgb);
 	c_1->r *= c_2->r;
 	c_1->g *= c_2->g;
 	c_1->b *= c_2->b;
 	color_float_to_int(c_1);
 }
 
-/* pareil mais malloc
-t_color *multipling_color(t_color *c_1, t_color *c_2)
-{
-	t_color *c_newcolor;
 
-	c_newcolor = malloc(sizeof(t_color));
-	if (!c_newcolor)
-		return (NULL);
-	c_newcolor->r = c_1->r * c_2->r;
-	c_newcolor->g = c_1->g * c_2->g;
-	c_newcolor->b = c_1->b * c_2->b;
-	return (c_newcolor);	
-}
-*/
-
-//pareil mais malloc....
-/*
-t_color *scalar_mult_color(t_color *c_1, float scale) 
-{
-	t_color *c_newcolor;
-
-// check size scale...not neg, not too big...
-	c_newcolor = malloc(sizeof(t_color));
-	if (!c_newcolor)
-		return (NULL);
-	c_newcolor->r = scale * c_1->r;
-	c_newcolor->g = scale * c_1->g;
-	c_newcolor->b = scale * c_1->b;
-	free (c_1);///A VOIR...
-	return (c_newcolor);
-}
-*/

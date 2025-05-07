@@ -6,13 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/04/16 18:02:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 16:21:18 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//plus ou moins verifie
 bool	matrix_comparision(float *m_a, float *m_b)
 {
 	int	i;

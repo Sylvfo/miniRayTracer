@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:21:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 17:28:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ float	*transpose_matrix(float *m);
 void	transposing_matrix_44(float *m_matrix);
 void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
 void	copy_matrix_44(float *m_result, float *m_matrix);
-void transpose_matrix_NA(float *result, float *m);
+void	transpose_matrix_NA(float *result, float *m);
 
 //INVERSION///
 //matrix_determinant.c
