@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:09:23 by cmegret           #+#    #+#             */
-/*   Updated: 2025/03/10 15:47:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/16 15:39:42 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ static void	initialize_object_arrays(t_obj ***obj, t_num_obj *num_obj)
 	obj[1][num_obj->sphere] = NULL;
 	obj[2][num_obj->plan] = NULL;
 	obj[3][num_obj->cylinder] = NULL;
+	obj[4] = NULL;
 }
 
 t_obj	***init_object(t_num_obj *num_obj)

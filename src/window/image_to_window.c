@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 12:33:58 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/18 18:45:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 // 1200 = canva height
 //1600 = canva width
-void	pix_to_window(t_pix ***pix)
+void    pix_to_window(t_pix ***pix)
 {
-	int	x;
-	int	y;
+    int        x;
+    int        y;
+    t_image    *ima;
 
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			color_float_to_int(pix[x][y]->color);
-//			mlx_pixel_put(pix[0][0]->ima->mlx_ptr, pix[0][0]->ima->mlx_win,
-//				x, y, pix[x][y]->color->rgb);
-			mlx_pixel_put(pix[x][y]->ima->mlx_ptr, pix[x][y]->ima->mlx_win,
-				x, y, pix[x][y]->color->rgb);
-			y++;
-		}
-		x++;
-	}
+    ima = pix[0][0]->ima; // Un seul contexte image partagé
+    x = 0;
+    while (x < WND_WIDTH)
+    {
+        y = 0;
+        while (y < WND_HEIGHT)
+        {
+            color_float_to_int(pix[x][y]->color);
+            my_mlx_pixel_put(ima, x, y, pix[x][y]->color->rgb); // Mets le pixel dans le buffer image
+            y++;
+        }
+        x++;
+    }
+    mlx_put_image_to_window(ima->mlx_ptr, ima->mlx_win, ima->img, 0, 0); // Affiche l'image complète
 }

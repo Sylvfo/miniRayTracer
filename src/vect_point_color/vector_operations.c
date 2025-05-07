@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:43:15 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/22 12:45:01 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:36:42 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ t_coord *negat(t_coord *v)
     result->z = -v->z;
     result->t = v->t; // conserver le type ou autre information
     return result;
+}
+
+void negat_NA(t_coord *result, t_coord *old)
+{
+    if (!result || !old)
+        return ;
+    result->x = -old->x;
+    result->y = -old->y;
+    result->z = -old->z;
+    result->t = old->t; // conserver le type ou autre information
 }
 
 /**
@@ -78,4 +88,16 @@ t_coord	*cross_product(t_coord *v_1, t_coord *v_2)
 	v_new->y = (v_1->z * v_2->x) - (v_1->x * v_2->z);
 	v_new->z = (v_1->x * v_2->y) - (v_1->y * v_2->x);
 	return (v_new);
+}
+
+
+void cross_product_NA(t_coord *result, t_coord *v_1, t_coord *v_2)
+{
+	if (!result)
+		return ;
+	if (is_vector(v_1) == false || is_vector(v_2) == false)
+		return ;
+	result->x = (v_1->y * v_2->z) - (v_1->z * v_2->y);
+	result->y = (v_1->z * v_2->x) - (v_1->x * v_2->z);
+	result->z = (v_1->x * v_2->y) - (v_1->y * v_2->x);
 }

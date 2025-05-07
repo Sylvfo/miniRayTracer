@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_create_point_vector.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:37:18 by sforster          #+#    #+#             */
-/*   Updated: 2025/03/21 13:38:47 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/04/22 17:58:20 by sforster         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,14 +6,14 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:27:28 by syl               #+#    #+#             */
-/*   Updated: 2025/04/04 12:14:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/19 16:11:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
 #define TOL 0.0001
-
+//ANCIENS
 /* t_coord *vec_sub(t_coord *a, t_coord *b)
 {
 	t_coord *result = malloc(sizeof(t_coord));

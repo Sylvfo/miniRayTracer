@@ -32,3 +32,32 @@ void	print_matrix(float *m_matrix)
 		k += (int)m_matrix[0];
 	}
 }
+
+void print_matrix_44(float *m)
+{
+	int i = 0;
+	printf("%.2f - ", m[0]);
+	printf("%.2f \n", m[1]);
+
+	printf("%.2f - ", m[2]);
+	printf("%.2f - ", m[3]);
+	printf("%.2f - ", m[4]);
+	printf("%.2f \n", m[5]);
+
+	printf("%.2f - ", m[6]);
+	printf("%.2f - ", m[7]);
+	printf("%.2f - ", m[8]);
+	printf("%.2f \n", m[9]);
+
+	printf("%.2f - ", m[10]);
+	printf("%.2f - ", m[11]);
+	printf("%.2f - ", m[12]);
+	printf("%.2f \n", m[13]);
+
+		printf("%.2f - ", m[14]);
+	printf("%.2f - ", m[15]);
+	printf("%.2f - ", m[16]);
+	printf("%.2f \n", m[17]);
+
+
+}

@@ -18,6 +18,7 @@ void init_camera_pix_ray(t_pix *pix, t_camera *cam) {
 
 
     // Origine de la caméra dans le repère monde
+    
     p_origin = matrix_multiplication_44_coord(m_inverse, create_point(0, 0, 0));
 
     // Point final transformé dans le repère monde

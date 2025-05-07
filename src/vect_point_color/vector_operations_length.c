@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 23:59:34 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/06 09:41:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ t_coord	*scalar_mult(t_coord *v_1, float scale)
 	return (v_new);
 }
 
+void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale)
+{
+	if (is_vector(v_1) == false)
+		return ;
+	result->x = scale * v_1->x;
+	result->y = scale * v_1->y;
+	result->z = scale * v_1->z;
+	result->t = 0;
+}
+
+
+
 /**
  * @brief find the norm of a vector
  * 
@@ -54,8 +66,12 @@ float	length_vector(t_coord *v_1)
 	float	length;
 
 	if (is_vector(v_1) == false)
+	{
+		printf("not a vector in lenght vector");
 		return (0);
-	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+	}
+	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+//	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
 	return (length);
 }
 
@@ -74,7 +90,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 
 	if (is_vector(v_1) == false)
 	{
-		printf("Error: Input is not a valid vector.\n");
+		printf("Error: Input is not a valid vector. A\n");
 		return (NULL);
 	}
 	v_tmp = malloc(sizeof(t_coord));
@@ -82,7 +98,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 	v_tmp->y = v_1->y;
 	v_tmp->z = v_1->z;
 	v_tmp->t = 0;
-	free(v_1);
+//	free(v_1);
 	// Vérifier si l'entrée est un vecteur valide
 	
 
@@ -90,7 +106,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 	length = length_vector(v_tmp);
 	if (length == 0)
 	{
-		printf("Error: Cannot normalize a zero-length vector.\n");
+		printf("Error: Cannot normalize a zero-length vector. B\n");
 		return (NULL);
 	}
 	// Allouer de la mémoire pour le vecteur normalisé
@@ -103,7 +119,7 @@ t_coord	*normalize_vector(t_coord *v_1)
 
 
 	// Normaliser le vecteur
-	length = 1 / length;
+	length = 1.0f / length;
 	v_new->x = v_tmp->x * length;
 	v_new->y = v_tmp->y * length;
 	v_new->z = v_tmp->z * length;
@@ -114,3 +130,76 @@ t_coord	*normalize_vector(t_coord *v_1)
 
 	return (v_new);
 }
+
+void	normalize_vector_NA(t_coord *v_1)
+{
+	double	length;
+
+	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector. in NA\n");
+		return ;
+	}
+	length = length_vector(v_1);
+	if (length == 0)
+	{
+		printf("Error: Cannot normalize a zero-length vector.\n");
+		return ;
+	}
+	length = 1 / length;
+	v_1->x = v_1->x * length;
+	v_1->y = v_1->y * length;
+	v_1->z = v_1->z * length;
+	v_1->t = 0;
+}
+
+
+void	normalize_vector_NA_fabs(t_coord *v_1)
+{
+	float	length;
+
+	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector. in NA\n");
+		return ;
+	}
+	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+
+//	printf("Vector in normalize_vector_NA_fabs\n");
+//	print_vector(v_1);
+//	length = (float)simple_sqrt((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+//	printf("length in normalize vector NA fabs %.2f \n", length);
+	if (length < EPSILON)
+	{
+		printf("Error: Cannot normalize a zero-length vector in fabs.\n");
+		return ;
+	}
+	length = 1 / length;
+	v_1->x = v_1->x * length;
+	v_1->y = v_1->y * length;
+	v_1->z = v_1->z * length;
+	v_1->t = 0;
+}
+
+/*
+void	normalize_vector_NA(t_coord *v_1)
+{
+	float	length;
+
+	if (is_vector(v_1) == false)
+	{
+		printf("Error: Input is not a valid vector. in NA\n");
+		return ;
+	}
+	length = length_vector(v_1);
+	if (length == 0)
+	{
+		printf("Error: Cannot normalize a zero-length vector.\n");
+		return ;
+	}
+	length = 1 / length;
+	v_1->x = v_1->x * length;
+	v_1->y = v_1->y * length;
+	v_1->z = v_1->z * length;
+	v_1->t = 0;
+}*/

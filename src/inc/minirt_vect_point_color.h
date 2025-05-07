@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 10:29:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/03 10:39:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,24 @@ bool	is_point(t_coord *p_point);
 ////////////MATH/////////////
 // add_substr.c
 t_coord	*addition(t_coord *p_v_1, t_coord *p_v_2);
+void addition_NA(t_coord *result, t_coord *p_v_1, t_coord *p_v_2);
 t_coord	*substraction(t_coord *p_v_1, t_coord *p_v_2);
+void substraction_p_to_v_NA(t_coord *v_result, t_coord *p_v_1, t_coord *p_v_2);
 
 //vector_operations_length.c
 t_coord	*scalar_mult(t_coord *v_1, float scale);
+void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale);
 float	length_vector(t_coord *v_1);
+void	normalize_vector_NA_fabs(t_coord *v_1);
 t_coord	*normalize_vector(t_coord *v_1);
+void	normalize_vector_NA(t_coord *v_1);
 
 //vector_operations.c
 t_coord	*negat(t_coord *v_1);
+void negat_NA(t_coord *result, t_coord *old);
 float	dot_product(t_coord *v_1, t_coord *v_2);
 t_coord	*cross_product(t_coord *v_1, t_coord *v_2);
+void cross_product_NA(t_coord *result, t_coord *v_1, t_coord *v_2);
 
 ///////// COLORS ////////////
 //set_colors.c
@@ -57,10 +64,13 @@ t_color	*substraction_color(t_color *c_1, t_color *c_2);
 void	scalar_mult_color(t_color *c_1, float scale);
 void	multipling_color(t_color *c_1, t_color *c_2);
 
+//copy_coord.c
+void copy_coord(t_coord *new, t_coord *origin);
+void copy_color(t_color *new, t_color *origin);
+void vector_fill(t_coord *vect, float x, float y, float z);
+
 //math.c
 float	simple_sqrt(float x);
 
-//copy_ray.c
-//void copy_ray(t_ray *r1, t_ray *r2);
-t_ray *copy_ray(t_ray *r2);
 #endif
+

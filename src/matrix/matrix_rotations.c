@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_rotations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sforster <sforster@student.42.fr>          +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:07:11 by syl               #+#    #+#             */
-/*   Updated: 2025/03/03 15:17:32 by sforster         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:49:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 // enum donc 4 = left et 5 right
 
 
+///////////////////
+// DESSOUS PAS ENCORE UTILISER. A VOIR POUR BONUS???
+
+/*
 //	A MODIFIER!!!!
 t_coord	*rotations(t_coord *p_point, int axe, int dir, float radian)
 {
@@ -114,4 +118,4 @@ float	*create_rotation_z_matrix(float radian)
 	matrix_fill(m_rotation, 2, 2, 1);
 	matrix_fill(m_rotation, 3, 3, 1);
 	return (m_rotation);
-}
+}*/

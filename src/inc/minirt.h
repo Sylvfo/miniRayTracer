@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/06 14:36:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 10:02:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,22 @@
 # include "minirt_ray_calculs.h"
 # include "minirt_vect_point_color.h"
 
+//a effacer
+#include <sys/time.h>
+
 // voir quelle taille....
 # define EPSILON 0.001
 # define PI 3.1415926535
 # define PIRAD 0.017453   //pi already divided by 180 to find radian. 
 
-# define WND_WIDTH 300
-# define WND_HEIGHT 300
+# define WND_WIDTH 1200
+# define WND_HEIGHT 800
 //# define VIEWP_WIDTH 1800 //dplacé dans ima
 //# define VIEWP_HIGHT 1000 // déplace dans ima
-# define BAKGROUND_COLOR 11152468 //11152468
-# define DIST_VIEWP_ORIGIN 10 //Normalement c est 1 ou -1
+# define BAKGROUND_COLOR 12701914// bleu pale 12639977 //11152468
+# define DIST_VIEWP_ORIGIN -1 //Normalement c est 1 ou -1
+
+#define SHININESS 80.0
 
 // not to interract with the last object touched. no neg value. 1 is for safety
 # define RAY_T_MIN 0.0001f
@@ -58,6 +63,14 @@
 # define GREEN3 "\033[0;92m"   // Vert brillant
 # define GREEN4 "\033[0;36m"   // Cyan-vert
 
+enum e_obj_type
+{
+	NONE,
+	SPHERE,
+	PLAN,
+	CYLINDER,
+};
+
 enum e_axes
 {
 	axe_x,
@@ -67,7 +80,8 @@ enum e_axes
 	right_h,
 };
 
-int		main(int argc, char **argv);
+int	main(int argc, char **argv);
+//int		main(int argc, char **argv);
 void	error_exit(const char *msg);
 
 #endif

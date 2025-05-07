@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 09:52:24 by syl              ###   ########.fr       */
+/*   Updated: 2025/04/17 17:36:44 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,20 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 
 	i = 0;
 	hits[0][0] = malloc(sizeof(t_hits));
-	hits[0][0]->r_ray_calculs = malloc(sizeof(t_ray));
+//	hits[0][0]->r_ray_calculs = malloc(sizeof(t_ray));
 	//rajoutée par sylvi pour rays
-	hits[0][0]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+//	hits[0][0]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
 	//rajoutée par sylvi pour rays
-	hits[0][0]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+//	hits[0][0]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+	hits[0][0]->r_dir = malloc(sizeof(t_coord));
+	hits[0][0]->r_origin = malloc(sizeof(t_coord));
+	hits[0][0]->obj_type = NONE;
 	while (i < num_obj->sphere)
 	{
 		hits[1][i] = malloc(sizeof(t_hits));
 
 		//rajoutée par sylvi pour rays
-		hits[1][i]->r_ray_calculs = malloc(sizeof(t_ray));
+	/*	hits[1][i]->r_ray_calculs = malloc(sizeof(t_ray));
 		if (hits[1][i]->r_ray_calculs == NULL)
 		{
 			printf("problem with malloc\n");
@@ -58,19 +61,51 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 		//rajoutée par sylvi pour rays
 		hits[1][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
 		//rajoutée par sylvi pour rays
-		hits[1][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
+		hits[1][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));*/
+		hits[1][i]->r_dir = malloc(sizeof(t_coord));
+		hits[1][i]->r_origin = malloc(sizeof(t_coord));
+		hits[1][i]->obj_type = SPHERE;
 		i++;
 	}
 	i = 0;
 	while (i < num_obj->plan)
 	{
 		hits[2][i] = malloc(sizeof(t_hits));
+		//rajoutée par sylvi pour rays
+	/*	hits[2][i]->r_ray_calculs = malloc(sizeof(t_ray));
+		if (hits[2][i]->r_ray_calculs == NULL)
+		{
+			printf("problem with malloc\n");
+			exit(1);
+		}
+		//rajoutée par sylvi pour rays
+		hits[2][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+		//rajoutée par sylvi pour rays
+		hits[2][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));*/
+		hits[2][i]->r_dir = malloc(sizeof(t_coord));
+		hits[2][i]->r_origin = malloc(sizeof(t_coord));
+		hits[2][i]->obj_type = PLAN;
 		i++;
 	}
 	i = 0;
 	while (i < num_obj->cylinder)
 	{
 		hits[3][i] = malloc(sizeof(t_hits));
+		//rajoutée par sylvi pour rays
+/*		hits[3][i]->r_ray_calculs = malloc(sizeof(t_ray));
+		if (hits[3][i]->r_ray_calculs == NULL)
+		{
+			printf("problem with malloc\n");
+			exit(1);
+		}
+		//rajoutée par sylvi pour rays
+		hits[3][i]->r_ray_calculs->p_origin = malloc(sizeof(t_coord));
+		//rajoutée par sylvi pour rays
+		hits[3][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));*/
+		hits[3][i]->r_dir = malloc(sizeof(t_coord));
+		hits[3][i]->r_origin = malloc(sizeof(t_coord));
+
+		hits[3][i]->obj_type = CYLINDER;
 		i++;
 	}
 	hits[0][1] = NULL;
@@ -82,6 +117,8 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 t_hits ***init_hits(t_num_obj *num_obj)
 {
 	t_hits ***hits;
+
+	hits = NULL;
 
 	hits = 	 malloc(5 * sizeof(t_hits **));
 	if (!hits)
@@ -104,8 +141,12 @@ void	assign_hits_to_pix(t_pix ***pix, t_hits ***hits, t_num_obj *num_obj)
 		j = 0;
 		while (j < WND_HEIGHT)
 		{
+			pix[i][j]->hits = NULL;
 			pix[i][j]->hits = init_hits(num_obj);
 			pix[i][j]->comps = malloc(sizeof(t_comps));
+			pix[i][j]->comps->r_dir = malloc(sizeof(t_coord));
+			pix[i][j]->comps->r_origin = malloc(sizeof(t_coord));
+			pix[i][j]->comps->obj_color = malloc(sizeof(t_color));
 			j++;
 		}
 		i++;

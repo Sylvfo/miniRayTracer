@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 15:36:21 by syl               #+#    #+#             */
-/*   Updated: 2025/04/06 15:51:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/02 13:57:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void print_vector(t_coord *v_vector)
 {
 	if (is_vector(v_vector) == false)
 		return ;
-	printf("vector : x %.5f, y %.2f, z %.5f\n", v_vector->x, v_vector->y, v_vector->z);
+	printf("vector : x %.5f, y %.5f, z %.5f\n", v_vector->x, v_vector->y, v_vector->z);
 }
 
 /**
@@ -39,8 +39,8 @@ void print_vector(t_coord *v_vector)
  */
 void print_point(t_coord *p_point)
 {
-	if (is_point(p_point) == false)
-		return ;
-	printf("point : x %.5f, y %.5f, z %.5f\n", p_point->x, p_point->y, p_point->z);
+/*	if (is_point(p_point) == false)
+		return ;*/
+	printf("point : x %.5f, y %.5f, z %.5f t %i\n", p_point->x, p_point->y, p_point->z, p_point->t);
 }
 
