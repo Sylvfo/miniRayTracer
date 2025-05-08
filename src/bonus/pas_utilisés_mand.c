@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_operation.c                                  :+:      :+:    :+:   */
+/*   pas_utilisés_mand.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 17:00:02 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/15 14:10:22 by syl              ###   ########.fr       */
+/*   Created: 2025/05/08 10:26:24 by syl               #+#    #+#             */
+/*   Updated: 2025/05/08 10:49:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,36 +71,6 @@ t_color	*substraction_color(t_color *c_1, t_color *c_2)
 	return (c_newcolor);
 }
 
-/**
- * @brief to scale a color 
- * 
- * 0.5 to make it half
- * 
- * NOT VERIFIED
- * 
- * @param c_1 a color
- * @param scale
- * 
- * @return -- change in data base
- */
-void	scalar_mult_color(t_color *c_1, float scale)
-{
-	if (scale < 0) //too big??
-	{
-		printf("negative scale \n");
-		return ;
-	}
-	c_1->r *= scale;
-	c_1->g *= scale;
-	c_1->b *= scale;
-	//test
-	if (c_1->r > 1)
-		c_1->r = 1;
-	if (c_1->g > 1)
-		c_1->g = 1;
-	if (c_1->b > 1)
-		c_1->b = 1;
-}
 
 /**
  * @brief multiply 2 colors
@@ -120,43 +90,31 @@ void	multipling_color(t_color *c_1, t_color *c_2)
 		printf("miss a colour \n");
 		return ;
 	}
-//	f("Color 1: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n",c_1->r, c_1->g, c_1->b, c_1->rgb);
-//	printf("Color 2: r=%.3f, g=%.3f, b=%.3f, rgb=0x%X\n", c_2->r, c_2->g, c_2->b, c_2->rgb);
 	c_1->r *= c_2->r;
 	c_1->g *= c_2->g;
 	c_1->b *= c_2->b;
 	color_float_to_int(c_1);
 }
 
-/* pareil mais malloc
-t_color *multipling_color(t_color *c_1, t_color *c_2)
-{
-	t_color *c_newcolor;
-
-	c_newcolor = malloc(sizeof(t_color));
-	if (!c_newcolor)
-		return (NULL);
-	c_newcolor->r = c_1->r * c_2->r;
-	c_newcolor->g = c_1->g * c_2->g;
-	c_newcolor->b = c_1->b * c_2->b;
-	return (c_newcolor);	
-}
-*/
-
-//pareil mais malloc....
+/**
+ * @brief convert float to byte
+ * 
+ * when calculation is done
+ * goes with color_float_to_int(t_color *c_color)
+ * 
+ * NOT VERIFIED
+ * 
+ * @param f float
+ * 
+ * @return --- change in data base pix
+ */
 /*
-t_color *scalar_mult_color(t_color *c_1, float scale) 
+COPIE AVEC VALEUR RGB 0 a 1
+int	float_to_byte(float f)
 {
-	t_color *c_newcolor;
-
-// check size scale...not neg, not too big...
-	c_newcolor = malloc(sizeof(t_color));
-	if (!c_newcolor)
-		return (NULL);
-	c_newcolor->r = scale * c_1->r;
-	c_newcolor->g = scale * c_1->g;
-	c_newcolor->b = scale * c_1->b;
-	free (c_1);///A VOIR...
-	return (c_newcolor);
-}
-*/
+	if (f <= 0.0f)
+		return (0);
+	if (f >= 1.0f)
+		return (255);
+	return ((int)(f * 255.0f + 0.5f));
+}*/

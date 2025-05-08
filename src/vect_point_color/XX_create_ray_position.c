@@ -1,34 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_comparison.c                                :+:      :+:    :+:   */
+/*   create_ray_position.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 15:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 16:21:18 by syl              ###   ########.fr       */
+/*   Created: 2025/02/27 11:17:39 by syl               #+#    #+#             */
+/*   Updated: 2025/05/08 10:34:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
-
-bool	matrix_comparision(float *m_a, float *m_b)
-{
-	int	i;
-
-	if (m_a[0] != m_b[0] || m_a[1] != m_b[1])
-	{
-		printf("[matrix_comparision] : Comparision between matrix not the same size\n");
-		return (false);
-	}
-	i = 2;
-	while (i < (int)((m_a[0] * m_a[1]) + 2))
-	{
-		if (fabs(m_a[i] - m_b[i]) > EPSILON)
-		{
-			return (false);
-		}
-		i++;
-	}
-	return (true);
-}

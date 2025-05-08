@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:48:40 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/07 16:35:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ float *transpose_matrix(float *m)
 	result = create_matrix(4, 4);
 	if (!result)
 		return (NULL);
-	
 	i = 0;
 	while (i < 4)
 	{
