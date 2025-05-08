@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:04:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:34:00 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:31:23 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void intersect_plan(t_pix *pix, int plan_num)
 		pix->hits[2][plan_num]->t_count = 0;
 		pix->hits[2][plan_num]->t1 = INT_MAX;
 		pix->hits[2][plan_num]->t2 = INT_MAX;
-		pix->hits[2][plan_num]->obj_type = PLAN;
+		pix->hits[2][plan_num]->type = PLAN;
 		return ;
 	}
 	//origin.y + t * dir.y = 0 c est l équation de l intersection entre le plan et le ray
 	pix->hits[2][plan_num]->t1 = -(pix->hits[2][plan_num]->r_origin->y / pix->hits[2][plan_num]->r_dir->y);
 	pix->hits[2][plan_num]->t2 = INT_MAX;
 	pix->hits[2][plan_num]->t_count = 1;
-	pix->hits[2][plan_num]->obj_type = PLAN;
+	pix->hits[2][plan_num]->type = PLAN;
 }
 
 void intersect_sphere(t_pix *pix, int sphere_num)
@@ -54,7 +54,7 @@ void intersect_sphere(t_pix *pix, int sphere_num)
 	pix->hits[1][sphere_num]->t_count = 2;
 	pix->hits[1][sphere_num]->t1 = (-b - sqrt(discriminant)) / (2*a);
 	pix->hits[1][sphere_num]->t2 = (-b + sqrt(discriminant)) / (2*a);
-	pix->hits[1][sphere_num]->obj_type = SPHERE;
+	pix->hits[1][sphere_num]->type = SPHERE;
 	return ;
 }
 

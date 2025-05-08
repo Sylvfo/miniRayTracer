@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:44:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:14:15 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:31:42 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ float	light_intensity(t_pix *pix)
 	i = 0;
     while (pix->lux[1][i] != NULL)
 	{
- 		if (pix->comps->obj_type == SPHERE || pix->comps->obj_type == PLAN || pix->comps->obj_type == CYLINDER)
+ 		if (pix->comps->type == SPHERE || pix->comps->type == PLAN || pix->comps->type == CYLINDER)
 		{
 			prepare_v_light(pix, i);
 			if (intersect_objects_shadow(pix, i) == false)

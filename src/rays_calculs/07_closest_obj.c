@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:11:00 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:31:20 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void copy_hits_to_comps(t_comps *comps, t_hits *hits)
 	comps->closestt = hits->t1;
 	copy_coord(comps->r_dir, hits->r_dir);
 	copy_coord(comps->r_origin, hits->r_origin);
-	comps->obj_type = hits->obj_type;
+	comps->type = hits->type;
 }*/
 
 void closest_obj(t_pix *pix)
@@ -76,12 +76,12 @@ void save_in_comps(t_pix *pix, int a, int b)
 	pix->comps->obj = pix->obj[a][b];
 	copy_coord(pix->comps->r_dir, pix->hits[a][b]->r_dir);
 	copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
-	pix->comps->obj_type = pix->hits[a][b]->obj_type;
+	pix->comps->type = pix->hits[a][b]->type;
 	copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
 	copy_matrix_44(pix->comps->obj_inv, pix->obj[a][b]->m_inv);
-	if (pix->hits[a][b]->obj_type == CYLINDER)
+	if (pix->hits[a][b]->type == CYLINDER)
 		pix->comps->height = pix->obj[a][b]->height;
-	if (pix->hits[a][b]->obj_type == PLAN)
+	if (pix->hits[a][b]->type == PLAN)
 	copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
 //	copy_matrix_44(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
 //	copy_matrix_44(pix->obj[a][b]->m_transl, pix->comps->m_transl);

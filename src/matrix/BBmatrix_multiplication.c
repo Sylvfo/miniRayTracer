@@ -6,37 +6,34 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 13:42:19 by syl               #+#    #+#             */
-/*   Updated: 2025/05/02 09:57:32 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:51:53 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-//new one
-/// CELLE CI POUR UNE MATRIX ET UN POINT
-//void	matrix_multiplication_44_coord_NA(t_coord *new_point_vector, float *m_a, t_coord *p_v_1)
 void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p)
 {
-//	if (is_point(p) == false)
-//		printf("laaaaalaaaaa\n");
-	if (check_matrix_44(m) == false )
-		printf("no matrix in matrix_point_multiplication_new \n");
-	if (check_matrix_44_coord(m, p) == false)
-	{
-		printf("no point or matrix in new mult\n");
-		exit(0) ;
-	}
-	if (!result)
-	{
-		printf("no result in new mult\n");
-		exit(0) ;
-	}
+	float x = p->x;
+	float y = p->y;
+	float z = p->z;
+	float t = p->t;
+
+	result->x = m[2] * x + m[3] * y + m[4] * z + m[5] * t;
+	result->y = m[6] * x + m[7] * y + m[8] * z + m[9] * t;
+	result->z = m[10] * x + m[11] * y + m[12] * z + m[13] * t;
+	result->t = p->t;
+}
+
+/*
+//FONCTIONNE
+void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p)
+{
 	result->x = m[2] * p->x + m[3] * p->y + m[4] * p->z + m[5] * p->t;
 	result->y = m[6] * p->x + m[7] * p->y + m[8] * p->z + m[9] * p->t;
 	result->z = m[10] * p->x + m[11] * p->y + m[12] * p->z + m[13] * p->t;
-//	result->t = m[14] * p->x + m[15] * p->y + m[16] * p->z + m[17] * p->t;
 	result->t = p->t;
-}
+}*/
 
 void matrix_mult_2(float *ma, float *mb)
 {

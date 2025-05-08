@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 17:28:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:27:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	init_matrix_zero(float *m_matrix);
 void	matrix_fill(float *m_matrix, int row, int col, float number);
 float	*create_indentity_matrix_44(void);
 
+//matrix_transl_scale.c
+void	translation_matrix_coord(t_obj *obj);
+void	scaling_matrix_coord(t_obj *obj);
+void	fill_translation_matrix(float *m_transl, float x, float y, float z);
 //matrix_comparison.c
 bool	matrix_comparision(float *m_a, float *m_b);
 
@@ -102,17 +106,18 @@ bool	check_matrix_44_44(float *m_a, float *m_b);
 ///////// MATRIX TRANSFORMATION ////////////
 
 //matrix_translation.c
-float *create_translation_matrix(float x, float y, float z);
+//float *create_translation_matrix(float x, float y, float z);
 t_coord *translation(t_coord *p_point, float x, float y, float z);
 t_coord *translation_inverse(t_coord *p_point, float x, float y, float z);
 void translation_on_identity(float *m_identity, float x, float y, float z);
-void	fill_translation_matrix(float *m_transl, float x, float y, float z);
+//void	fill_translation_matrix(float *m_transl, float x, float y, float z);
+void	translation_matrix_coord(t_obj *obj);
 
 //matrix_scaling.c
 t_coord *scaling(t_coord *v_p_old, float x, float y, float z);
-float *create_scaling_matrix(float x, float y, float z);
+//float *create_scaling_matrix(float x, float y, float z);
 t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
-void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z);
+//void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z);
 
 //matrix_rotation.c
 //float *create_rotation_x_matrix(float radian);

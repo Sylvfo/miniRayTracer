@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:21:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:31:34 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void prepare_computation(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			if (pix[x][y]->comps->obj_type != NONE)
+			if (pix[x][y]->comps->type != NONE)
 				position_NA(pix[x][y], pix[x][y]->comps->r_dir, pix[x][y]->comps->closestt);
 			negat_NA(pix[x][y]->comps->v_eye, pix[x][y]->comps->r_dir);
-			if (pix[x][y]->comps->obj_type == SPHERE  || pix[x][y]->comps->obj_type == CYLINDER)
+			if (pix[x][y]->comps->type == SPHERE  || pix[x][y]->comps->type == CYLINDER)
 			{
 				normal_at_NA(pix[x][y]->comps);
 				if (dot_product(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_eye) < 0)
@@ -36,7 +36,7 @@ void prepare_computation(t_pix ***pix)
 					negat_NA(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->v_norm_parral);
 				}
 			}
-			else if (pix[x][y]->comps->obj_type == PLAN)
+			else if (pix[x][y]->comps->type == PLAN)
 				copy_coord(pix[x][y]->comps->v_norm_parral, pix[x][y]->comps->obj->v_axe);		
 			y++;
 		}
@@ -53,7 +53,7 @@ void	normal_at_NA(t_comps *comps)
 	transpose_matrix_NA(comps->transp_inv, comps->obj_inv);
 	matrix_point_multiplication_new(comps->v_norm_parral, comps->transp_inv, comps->object_normal);
 	normalize_vector_NA(comps->v_norm_parral);
-	if (comps->obj_type == CYLINDER)
+	if (comps->type == CYLINDER)
 		normal_caps(comps);	
 
 }

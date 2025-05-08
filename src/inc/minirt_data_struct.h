@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:58:45 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:30:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_obj
 	float	diam;
 	float	height;
 	t_coord	*v_axe;
-	int		obj_type;
+	int		type;
 	bool	closed_up; // for cylinder, for bonus...
 	bool	closed_down; // for cylinder, for bonus...
 // 	pour calcul transf matrix
@@ -103,7 +103,7 @@ typedef struct s_hits
 	int	 		t_count;
 	t_coord		*r_origin;
 	t_coord		*r_dir;
-	int			obj_type;
+	int			type;
 }	t_hits;
 
 // light[0][0] = ambiant light.
@@ -165,7 +165,7 @@ typedef struct s_comps
 	t_coord	*r_dir; // IMPORTANT DANS POSITION PREPARE COMP. 
 	float	closestt;  //IMPORTANT DANS PREPARE COMP.
 	int 	t_count; // utile??
-	int		obj_type; //IMPORTANT DANS PREPARE COMP.
+	int		type; //IMPORTANT DANS PREPARE COMP.
 	t_obj	*obj;//pointeur closest
 	t_color *obj_color;
 //	t_coord *p_world;

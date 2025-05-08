@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:27:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:56:58 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:53:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 void	raytracing(t_pix ***pix)
 {
 	struct timeval	start;
+	struct timeval	total;
 
 	gettimeofday(&start, NULL);
+	gettimeofday(&total, NULL);
 	if (init_a_deplacer(pix) == false)
 		exit(0);
 	start = time_now(start, " init");
@@ -37,5 +39,6 @@ void	raytracing(t_pix ***pix)
 	start = time_now(start, " prepare computation");
 	new_light(pix);
 	start = time_now(start, " new lights");
+	total = time_now(total, " total");
 	return ;
 }

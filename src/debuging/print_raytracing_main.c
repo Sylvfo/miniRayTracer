@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:56:01 by syl               #+#    #+#             */
-/*   Updated: 2025/05/06 09:56:58 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:30:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ void raytracing(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			if (pix[x][y]->comps->obj_type == SPHERE)
+			if (pix[x][y]->comps->type == SPHERE)
 			{
 				pix[x][y]->color->r = 0.6;
 				pix[x][y]->color->g = 0;
 				pix[x][y]->color->b = 0;
 			}
-			if (pix[x][y]->comps->obj_type == PLAN)
+			if (pix[x][y]->comps->type == PLAN)
 			{
 				pix[x][y]->color->r = 0;
 				pix[x][y]->color->g = 0.8;
