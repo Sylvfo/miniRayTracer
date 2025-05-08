@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 11:27:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 17:21:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,51 +16,57 @@
 # include "minirt_data_struct.h"
 
 ///////// MATRIX ////////////
+
+//matrix_print.c
+void	print_matrix(float *m_matrix);
+void	print_matrix_44(float *m);
+
+//matrix_transl_scale.c
+void	translation_matrix_coord(t_obj *obj);
+void	scaling_matrix_coord(t_obj *obj);
+void	fill_translation_matrix(float *m_transl, float x, float y, float z);
+
 //matrix_creation.c
 float	*create_matrix(unsigned int row, unsigned int col);
 void	init_matrix_zero(float *m_matrix);
 void	matrix_fill(float *m_matrix, int row, int col, float number);
 float	*create_indentity_matrix_44(void);
 
-//matrix_transl_scale.c
-void	translation_matrix_coord(t_obj *obj);
-void	scaling_matrix_coord(t_obj *obj);
-void	fill_translation_matrix(float *m_transl, float x, float y, float z);
-//matrix_comparison.c
-bool	matrix_comparision(float *m_a, float *m_b);
+//matrix_utils.c
+void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
+bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
 
 //matrix_operations.c
-void matrix_multiplication_44_NA2(float *out, float *a, float *b);
-void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p);
-
-//void	matrix_multiplication_44_NA2(float *m_result, float *m_a, float *m_b);
-void	matrix_multiplication_44_NA(float *m_a, float *m_b, float *m_tmp);
-//void	matrix_multiplication_44_NA(float *m_result, float *m_a, float *m_b, float *m_tmp);
-//float	*matrix_multiplication_44(float *m_a, float *m_b);
 void	matrix_division(float *m_matrix, float div);
-//t_coord	*matrix_multiplication_44_point(float *m_a, t_coord *p_v_1);
-void update_world_position(t_obj *obj);
-void	matrix_mult_44_new_NA2(float *m_result, float *m_a, float *m_b);
-
-//matrix_mult_matrix_p_v.c
-t_coord	*matrix_multiplication_44_coord(float *m_a, t_coord *p_v_1);
-void	matrix_multiplication_44_coord_NA(t_coord *new_point_vector, float *m_a, t_coord *p_v_1);
-bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1);
-void	matrix_from_coord(t_coord *p_v_1, float coord[4]);
-void	fill_point_vector(t_coord *new_point_vector, int count, float sum);
-void	matrix_multi_44_ret_NA(float *m_a, float *m_b, float *m_tmp);
-void	matrix_mult_2(float *ma, float *mb);
-void matrix_mult_3(float *result, float *ma, float *mb);
-//matrix_utils.c
-void	print_matrix(float *m_matrix);
-void	print_matrix_44(float *m);
 
 //matrix_transposing.c
-float	*transpose_matrix(float *m);
-void	transposing_matrix_44(float *m_matrix);
-void	copy_matrix_44_stack(float *m_matrix, float *m_tmp);
-void	copy_matrix_44(float *m_result, float *m_matrix);
 void	transpose_matrix_NA(float *result, float *m);
+//utile???
+void	transposing_matrix_44(float *m_matrix);
+void	copy_matrix_44(float *m_result, float *m_matrix);
+ 
+//matrix_check.c
+bool	check_matrix_44(float *m_a);
+bool	check_matrix_33(float *m_a);
+bool	check_matrix_22(float *m_a);
+bool	check_matrix_44_44(float *m_a, float *m_b);
+
+//matrix_rotation_rodrigues.c 
+void	rotation_from_vector_NA(t_obj *obj);
+void	matrix_rotation_rodrigues(t_obj *obj, float angle, float c, float s);
+
+//matrix_multiplication.c
+void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p);
+void	matrix_mult_2(float *ma, float *mb);
+void	matrix_mult_3(float *res, float *ma, float *mb);
+
+
+
+
+void	inverse_matrix_44(float *m_inverted, float *m_matrix);
+
+
+
 
 //INVERSION///
 //matrix_determinant.c
@@ -89,34 +95,27 @@ float	*inverted_matrix_44(float *m_matrix);
 void	matrix_cofactors_44(float *m_matrix, float *m_cofactors);
 void inverted_matrix_44_NA(float *m_inverted, float *m_matrix, float *m_submatrix);
 
-//matrix_rotation_rodrigues.c 
-void rotation_from_vector_NA(t_obj *obj);
-void matrix_rotation_rodrigues(t_obj *obj, float angle);
 
 
 ////////////////!!!GPT
 int inverse4x4(float *src, float *dest);
 
-//matrix_check.c
-bool	check_matrix_44(float *m_a);
-bool	check_matrix_33(float *m_a);
-bool	check_matrix_22(float *m_a);
-bool	check_matrix_44_44(float *m_a, float *m_b);
+
 
 ///////// MATRIX TRANSFORMATION ////////////
 
 //matrix_translation.c
 //float *create_translation_matrix(float x, float y, float z);
-t_coord *translation(t_coord *p_point, float x, float y, float z);
-t_coord *translation_inverse(t_coord *p_point, float x, float y, float z);
-void translation_on_identity(float *m_identity, float x, float y, float z);
+//t_coord *translation(t_coord *p_point, float x, float y, float z);
+//t_coord *translation_inverse(t_coord *p_point, float x, float y, float z);
+//void translation_on_identity(float *m_identity, float x, float y, float z);
 //void	fill_translation_matrix(float *m_transl, float x, float y, float z);
-void	translation_matrix_coord(t_obj *obj);
+//void	translation_matrix_coord(t_obj *obj);
 
 //matrix_scaling.c
-t_coord *scaling(t_coord *v_p_old, float x, float y, float z);
+//t_coord *scaling(t_coord *v_p_old, float x, float y, float z);
 //float *create_scaling_matrix(float x, float y, float z);
-t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
+//t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
 //void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z);
 
 //matrix_rotation.c
@@ -126,17 +125,17 @@ t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
 //float *_x_matrix_inverse(float radian);
 
 //matrix_rotations.c
-t_coord *rotations(t_coord *p_point, int axe, int dir,  float radian);
-float *create_rotation_x_matrix(float radian);
-float *create_rotation_y_matrix(float radian);
-float *create_rotation_z_matrix(float radian);
+//t_coord *rotations(t_coord *p_point, int axe, int dir,  float radian);
+//float *create_rotation_x_matrix(float radian);
+//float *create_rotation_y_matrix(float radian);
+//float *create_rotation_z_matrix(float radian);
 
 //matrix_rotations_utils.c
-float degree_to_radian(float degree);
-bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian);
+//float degree_to_radian(float degree);
+//bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian);
 
-t_coord *matrix_multiplication_44_point(float *m_, t_coord *p);
-t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v);
+//t_coord *matrix_multiplication_44_point(float *m_, t_coord *p);
+//t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v);
 
 
 

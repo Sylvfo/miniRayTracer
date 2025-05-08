@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/06 15:16:26 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 17:41:12 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,6 @@ int	main(int argc, char **argv)
 	print_matrix_44(test_rot);
 	exit(0);*/
 ////////////////////////////////////////
-
-
-
-
 	raytracing(pix);
 //	printf("calculs done\n");
 //	printf("\n\nici pix  ");

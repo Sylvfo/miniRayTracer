@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:37:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 17:17:51 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 15:42:03 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,12 @@ float	simple_sqrt(float x)
 		i++;
 	}
 	return (estimation);
+}
+
+float	degree_to_radian(float degree)
+{
+	float	radian;
+
+	radian = degree * PIRAD;
+	return (radian);
 }

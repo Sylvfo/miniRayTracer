@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:18:41 by syl               #+#    #+#             */
-/*   Updated: 2025/04/27 15:59:31 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 17:21:38 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,30 @@ bool	is_matrix_invertible(float *m_matrix)
 }
 
 
+// a supprimer quand toutes matrices allouees
+//float	*inverted_matrix_44(float *m_matrix)
 
-// a supprimer quand toutes matrices allouees 
-float	*inverted_matrix_44(float *m_matrix)
+//int inverse4x4(float *m_matrix, float	*m_inverted)
+void	inverse_matrix_44(float *m_inverted, float *m_matrix)
 {
-	float	*m_inverted;
 	float	determinant;
 
-	printf("in inverted\n");
-/*	if (check_matrix_44(m_matrix) == false)
+/*	printf("in inverted\n");
+	if (check_matrix_44(m_matrix) == false)
 	{
 		printf("aa\n");
-		return (NULL);
+		return (0);
 	}
 	if (is_matrix_invertible(m_matrix) == false)
 	{
 		printf("bb\n");
-		return (NULL);
+		return (0);
 	}
 	
 	if (!m_inverted)
 	{
 		printf("problem in inverted \n");
-		return (NULL);
+		return (0);
 	}	*/
 	m_inverted = create_matrix(4, 4);
 	matrix_cofactors_44(m_matrix, m_inverted);
@@ -65,8 +66,8 @@ float	*inverted_matrix_44(float *m_matrix)
 	determinant = determinant_44(m_matrix);
 	printf("det %.2f \n", determinant);
 	matrix_division(m_inverted, determinant);
-	return (m_inverted);
 }
+
 
 bool	is_matrix_invertible_44_NA(float *m_matrix)
 {
@@ -133,3 +134,37 @@ void	matrix_cofactors_44(float *m_matrix, float *m_cofactors)
 		i++;
 	}
 }
+
+
+/*
+float	*inverted_matrix_44(float *m_matrix)
+{
+	float	*m_inverted;
+	float	determinant;
+
+	printf("in inverted\n");
+	if (check_matrix_44(m_matrix) == false)
+	{
+		printf("aa\n");
+		return (NULL);
+	}
+	if (is_matrix_invertible(m_matrix) == false)
+	{
+		printf("bb\n");
+		return (NULL);
+	}
+	
+	if (!m_inverted)
+	{
+		printf("problem in inverted \n");
+		return (NULL);
+	}	
+	m_inverted = create_matrix(4, 4);
+	matrix_cofactors_44(m_matrix, m_inverted);
+	transposing_matrix_44(m_inverted);
+	determinant = determinant_44(m_matrix);
+	printf("det %.2f \n", determinant);
+	matrix_division(m_inverted, determinant);
+	return (m_inverted);
+}
+*/

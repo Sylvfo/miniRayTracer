@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 13:59:43 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 17:42:19 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	set_transformation_obj(t_obj *obj)
 		matrix_mult_2(obj->m_transf, obj->m_scale);
 	}
 	inverse4x4(obj->m_transf, obj->m_inv);
+//	inverse_matrix_44(obj->m_inv, obj->m_transf);
 }
 
 void	apply_transformation(t_pix ***pix)
