@@ -6,13 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:43:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 14:44:11 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-// le rayon entre tous les p touch et toutes les lumières
 void	prepare_v_light(t_pix *pix, int lux_num)
 {
 	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_coord, pix->comps->p_touch);
@@ -20,7 +19,6 @@ void	prepare_v_light(t_pix *pix, int lux_num)
 	normalize_vector_NA(pix->comps->v_light_to_point);
 }
 
-//main
 bool intersect_objects_shadow(t_pix *pix, int lux_num)
 {
 	int a;

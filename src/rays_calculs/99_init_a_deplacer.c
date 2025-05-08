@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/08 11:31:55 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 14:08:21 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,9 @@ bool 	init_matrix_hits(t_hits ***hits)
 			//mneme
 			hits[a][b]->r_origin = create_point(0,0,0);
 			hits[a][b]->r_dir = create_vector(0,0,0);
+			hits[a][b]->t_count = 0;
+			hits[a][b]->t1 = INT_MAX;
+			hits[a][b]->t2 = INT_MAX;
 			b++;
 		}
 		a++;
