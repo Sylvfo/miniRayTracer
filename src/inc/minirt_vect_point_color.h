@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:15:23 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 17:27:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 10:53:50 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,31 @@ void	print_point(t_coord *p_point);
 void	negat_NA(t_coord *result, t_coord *old);
 float	dot_product(t_coord *v_1, t_coord *v_2);
 void	cross_product_NA(t_coord *result, t_coord *v_1, t_coord *v_2);
+void	position_NA(t_pix *pix, t_coord *r_dir, float t);
 
 //vector_operations_length.c
-t_coord	*scalar_mult(t_coord *v_1, float scale);
 void	scalar_mult_NA(t_coord *result, t_coord *v_1, float scale);
 float	length_vector(t_coord *v_1);
-void	normalize_vector_NA_fabs(t_coord *v_1);
-t_coord	*normalize_vector(t_coord *v_1);
 void	normalize_vector_NA(t_coord *v_1);
-
-///////// COLORS ////////////
-//set_colors.c
-t_color	*create_color(int r, int g, int b);
-float	int_to_float(int value);
-void	color_float_to_int(t_color *c_color);
-int		float_to_byte(float f);
-void	change_color(t_color *c_color, int r, int g, int b);
-void	color_int_to_rgb(int int_color, t_color *rgb);
-
-//color_operations.c
-void	addition_color(t_color *c_1, t_color *c_2);
-t_color	*substraction_color(t_color *c_1, t_color *c_2);
-void	scalar_mult_color(t_color *c_1, float scale);
-void	multipling_color(t_color *c_1, t_color *c_2);
-
-//copy_coord.c
-void copy_coord(t_coord *new, t_coord *origin);
-void copy_color(t_color *new, t_color *origin);
-void vector_fill(t_coord *vect, float x, float y, float z);
 
 //math.c
 float	simple_sqrt(float x);
 
-//raycasting.c
-void position_NA(t_pix *pix, t_coord *r_dir, float t);
+//copy_coord.c
+void	copy_coord(t_coord *new, t_coord *origin);
+void	copy_color(t_color *new, t_color *origin);
+void	vector_fill(t_coord *vect, float x, float y, float z);
+
+//color_operation.c
+void	scalar_mult_color(t_color *c_1, float scale);
+float	int_to_float(int value);
+void	color_float_to_int(t_color *c_color);
+int		float_to_byte(float f);
+void	color_int_to_rgb(int int_color, t_color *rgb);
+
+//set_colors.c
+t_color	*create_color(int r, int g, int b);
+void	change_color(t_color *c_color, int r, int g, int b);
 
 #endif
 

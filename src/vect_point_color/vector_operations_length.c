@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 21:36:44 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 17:16:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 10:35:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ float	length_vector(t_coord *v_1)
 		printf("not a vector in lenght vector");
 		return (0);
 	}
-	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y) + (v_1->z * v_1->z));
+	length = (float)sqrtf((v_1->x * v_1->x) + (v_1->y * v_1->y)
+			+ (v_1->z * v_1->z));
 	return (length);
 }
 
@@ -66,4 +67,3 @@ void	normalize_vector_NA(t_coord *v_1)
 	v_1->z = v_1->z * length;
 	v_1->t = 0;
 }
-

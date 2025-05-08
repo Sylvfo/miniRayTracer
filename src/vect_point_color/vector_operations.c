@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:43:15 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/07 17:11:22 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 10:34:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,28 @@ float	dot_product(t_coord *v_1, t_coord *v_2)
 	dot = (v_1->x * v_2->x) + (v_1->y * v_2->y) + (v_1->z * v_2->z);
 	return (dot);
 }
+
+void	position_NA(t_pix *pix, t_coord *r_dir, float t)
+{
+	t_coord	tmp;
+	t_coord	r_dir_norm;
+
+	copy_coord(&r_dir_norm, r_dir);
+	normalize_vector_NA(&r_dir_norm);
+	scalar_mult_NA(&tmp, &r_dir_norm, t);
+	addition_NA(pix->comps->p_touch, pix->cam->p_coord, &tmp);
+}
+
+/*
+void position_NA(t_pix *pix, t_coord *r_dir, float t)
+{
+    t_coord    tmp;
+	t_coord	*r_dir_norm;
+
+	r_dir_norm = create_vector(0,0,0);
+	copy_coord(r_dir_norm, r_dir);
+	normalize_vector_NA(r_dir_norm);
+    scalar_mult_NA(&tmp, r_dir_norm, t);
+	addition_NA(pix->comps->p_touch, pix->cam->p_coord, &tmp);
+}
+*/

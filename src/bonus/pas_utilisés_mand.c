@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_operation.c                                  :+:      :+:    :+:   */
+/*   pas_utilisés_mand.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 17:00:02 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/07 17:20:34 by syl              ###   ########.fr       */
+/*   Created: 2025/05/08 10:26:24 by syl               #+#    #+#             */
+/*   Updated: 2025/05/08 10:49:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,36 +71,6 @@ t_color	*substraction_color(t_color *c_1, t_color *c_2)
 	return (c_newcolor);
 }
 
-/**
- * @brief to scale a color 
- * 
- * 0.5 to make it half
- * 
- * NOT VERIFIED
- * 
- * @param c_1 a color
- * @param scale
- * 
- * @return -- change in data base
- */
-void	scalar_mult_color(t_color *c_1, float scale)
-{
-	if (scale < 0) //too big??
-	{
-		printf("negative scale \n");
-		return ;
-	}
-	c_1->r *= scale;
-	c_1->g *= scale;
-	c_1->b *= scale;
-	//test
-	if (c_1->r > 1)
-		c_1->r = 1;
-	if (c_1->g > 1)
-		c_1->g = 1;
-	if (c_1->b > 1)
-		c_1->b = 1;
-}
 
 /**
  * @brief multiply 2 colors
@@ -126,4 +96,25 @@ void	multipling_color(t_color *c_1, t_color *c_2)
 	color_float_to_int(c_1);
 }
 
-
+/**
+ * @brief convert float to byte
+ * 
+ * when calculation is done
+ * goes with color_float_to_int(t_color *c_color)
+ * 
+ * NOT VERIFIED
+ * 
+ * @param f float
+ * 
+ * @return --- change in data base pix
+ */
+/*
+COPIE AVEC VALEUR RGB 0 a 1
+int	float_to_byte(float f)
+{
+	if (f <= 0.0f)
+		return (0);
+	if (f >= 1.0f)
+		return (255);
+	return ((int)(f * 255.0f + 0.5f));
+}*/
