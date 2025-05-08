@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:43 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/13 15:15:13 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:32:00 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	update_plane_properties(t_obj *plane, t_coord *coord,
 	plane->v_axe->x = orientation->x;
 	plane->v_axe->y = orientation->y;
 	plane->v_axe->z = orientation->z;
-	plane->obj_type = 2;
+	plane->type = 2;
 }
 
 void	save_plane(char *line, t_pix **pix, t_num_obj *num_obj)

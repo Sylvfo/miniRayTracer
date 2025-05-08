@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:39 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/06 14:12:39 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:31:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	save_cylinder(char *line, t_pix **pix, t_num_obj *num_obj)
 	cylinder->v_axe->x = orientation.x;
 	cylinder->v_axe->y = orientation.y;
 	cylinder->v_axe->z = orientation.z;
-	cylinder->obj_type = CYLINDER;
+	cylinder->type = CYLINDER;
 	cylinder->closed_up = false;
 	cylinder->closed_down = true;
 	num_obj->cylinder++;

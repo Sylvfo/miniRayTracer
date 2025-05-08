@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/07 10:12:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:31:55 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,16 @@ bool 	init_matrix_obj(t_obj ***obj)
 			obj[a][b]->m_transl = create_indentity_matrix_44();
 			obj[a][b]->m_transf = create_indentity_matrix_44();
 			obj[a][b]->m_inv = create_matrix(4, 4);
-			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
+			if (obj[a][b]->type == SPHERE || obj[a][b]->type == CYLINDER)
 				obj[a][b]->m_scale = create_indentity_matrix_44();
-			if (obj[a][b]->obj_type == PLAN || obj[a][b]->obj_type == CYLINDER)
+			if (obj[a][b]->type == PLAN || obj[a][b]->type == CYLINDER)
 			{
 				obj[a][b]->m_rot = create_indentity_matrix_44();
 				obj[a][b]->from = create_vector(0, 1, 0);// in rotation from vector
 				obj[a][b]->v_axe_r = create_vector(0, 0, 0);//in rotation rodriguez
 			}
 			obj[a][b]->v_sph_camera = create_vector(0, 0, 0);
-			if (obj[a][b]->obj_type == SPHERE || obj[a][b]->obj_type == CYLINDER)
+			if (obj[a][b]->type == SPHERE || obj[a][b]->type == CYLINDER)
 			{
 				obj[a][b]->radius = obj[a][b]->diam / 4.0f; 
 				obj[a][b]->diam = obj[a][b]->diam / 2.0f;
@@ -150,7 +150,7 @@ bool init_comps(t_pix ***pix)
 			pix[x][y]->comps->closestt = INT_MAX;
 			pix[x][y]->comps->t_count = 0;
 			pix[x][y]->comps->obj = pix[x][y]->obj[0][0];
-			pix[x][y]->comps->obj_type = NONE;
+			pix[x][y]->comps->type = NONE;
 			copy_color(pix[x][y]->comps->obj_color, pix[x][y]->obj[0][0]->color);
 			pix[x][y]->comps->r_dir = malloc(sizeof(t_coord));
 			pix[x][y]->comps->r_origin = malloc(sizeof(t_coord));

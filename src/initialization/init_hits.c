@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/04/17 17:36:44 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 11:30:51 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 //	hits[0][0]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));
 	hits[0][0]->r_dir = malloc(sizeof(t_coord));
 	hits[0][0]->r_origin = malloc(sizeof(t_coord));
-	hits[0][0]->obj_type = NONE;
+	hits[0][0]->type = NONE;
 	while (i < num_obj->sphere)
 	{
 		hits[1][i] = malloc(sizeof(t_hits));
@@ -64,7 +64,7 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 		hits[1][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));*/
 		hits[1][i]->r_dir = malloc(sizeof(t_coord));
 		hits[1][i]->r_origin = malloc(sizeof(t_coord));
-		hits[1][i]->obj_type = SPHERE;
+		hits[1][i]->type = SPHERE;
 		i++;
 	}
 	i = 0;
@@ -84,7 +84,7 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 		hits[2][i]->r_ray_calculs->v_dir = malloc(sizeof(t_coord));*/
 		hits[2][i]->r_dir = malloc(sizeof(t_coord));
 		hits[2][i]->r_origin = malloc(sizeof(t_coord));
-		hits[2][i]->obj_type = PLAN;
+		hits[2][i]->type = PLAN;
 		i++;
 	}
 	i = 0;
@@ -105,7 +105,7 @@ static void	initialize_hits_arrays(t_hits ***hits, t_num_obj *num_obj)
 		hits[3][i]->r_dir = malloc(sizeof(t_coord));
 		hits[3][i]->r_origin = malloc(sizeof(t_coord));
 
-		hits[3][i]->obj_type = CYLINDER;
+		hits[3][i]->type = CYLINDER;
 		i++;
 	}
 	hits[0][1] = NULL;
