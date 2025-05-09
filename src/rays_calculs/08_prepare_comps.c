@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 14:41:39 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 17:04:28 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	normal_at_NA(t_comps *comps)
 	substraction_p_to_v_NA(comps->object_normal,
 		comps->p_space, comps->origin_zero);
 	normalize_vector_NA(comps->object_normal);
-	transpose_matrix_NA(comps->transp_inv, comps->obj_inv);
+	transpose_matrix(comps->transp_inv, comps->obj_inv);
 	matrix_point_multiplication_new(comps->v_norm_parral,
 		comps->transp_inv, comps->object_normal);
 	normalize_vector_NA(comps->v_norm_parral);

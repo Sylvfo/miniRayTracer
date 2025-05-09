@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/09 15:28:15 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 17:04:22 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	set_transformation_obj(t_obj *obj)
 	matrix_mult_2(obj->m_transf, obj->m_transl);
 	if (obj->type == PLAN || obj->type == CYLINDER)
 	{
-		rotation_from_vector_NA(obj);
+		rotation_from_vector(obj);
 		matrix_mult_2(obj->m_transf, obj->m_rot);
 	}
 	if (obj->type == SPHERE || obj->type == CYLINDER)
@@ -58,12 +58,7 @@ void	set_transformation_obj(t_obj *obj)
 		scaling_matrix_coord(obj);
 		matrix_mult_2(obj->m_transf, obj->m_scale);
 	}
-//	inverse4x4(obj->m_transf, obj->m_inv);
-//	inverse_matrix_44(obj->m_inv, obj->m_transf);
-	new_inverse_matrix_44(obj->m_inv, obj->m_transf);
-//	printf("inverse \n");
-//	print_matrix(obj->m_inv);
-//	print_matrix_44(obj->m_inv);
+	inverse_matrix_44(obj->m_inv, obj->m_transf);
 }
 
 void	apply_transformation(t_pix ***pix)
