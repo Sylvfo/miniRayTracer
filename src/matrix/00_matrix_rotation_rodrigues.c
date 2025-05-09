@@ -6,13 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:01:11 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 16:02:00 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 17:04:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	rotation_from_vector_NA(t_obj *obj)
+void	rotation_from_vector(t_obj *obj)
 {
 	float	dot;
 	float	angle;
@@ -21,7 +21,7 @@ void	rotation_from_vector_NA(t_obj *obj)
 
 	if (!obj || !obj->from || !obj->v_axe || !obj->v_axe_r || !obj->m_rot)
 	{
-		fprintf(stderr, "Error: Null pointer in rotation_from_vector_NA\n");
+		fprintf(stderr, "Error: Null pointer in rotation_from_vector\n");
 		return ;
 	}
 	cross_product_NA(obj->v_axe_r, obj->from, obj->v_axe);
