@@ -6,19 +6,11 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:35:09 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/08 14:08:21 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 18:58:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-//difficiles
-//translation matrix
-//inverted matrix
-//matrix_multiplication_44_coord
-//matrix_multiplication_44_NA...
-//create_translation_matrix
-
 
 bool init_a_deplacer(t_pix ***pix)
 {
@@ -27,7 +19,6 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->obj[0][0]->color->g = int_to_float(pix[0][0]->obj[0][0]->color->g);
 	pix[0][0]->obj[0][0]->color->b = int_to_float(pix[0][0]->obj[0][0]->color->b);
 
-	// camera
 	pix[0][0]->cam->v_left = create_vector(0, 0, 0);//or init?
 	pix[0][0]->cam->v_up = create_vector(0, 1, 0);
 	pix[0][0]->cam->v_true_up = create_vector(0, 0, 0);
@@ -35,7 +26,6 @@ bool init_a_deplacer(t_pix ***pix)
 	pix[0][0]->cam->m_transl = create_indentity_matrix_44();
 	pix[0][0]->cam->m_transf = create_indentity_matrix_44();
 	pix[0][0]->cam->m_inverse = create_indentity_matrix_44();
-//	pix[0][0]->cam->p_cam_world = create_point(0, 0, 0);
 	pix[0][0]->cam->p_zero = create_point(0,0,0);
 	pix[0][0]->cam->view_height = WND_HEIGHT;//image size
 	pix[0][0]->cam->view_width = WND_WIDTH;//image size
@@ -69,8 +59,6 @@ bool init_a_deplacer(t_pix ***pix)
 		return (false);
 	}
 	init_comps(pix);
-	
-//	init_lights(pix[0][0]->lux);
 	return true;
 }
 
@@ -167,7 +155,6 @@ bool init_comps(t_pix ***pix)
 			pix[x][y]->comps->reflect_dir = create_vector(0, 0, 0);
 			pix[x][y]->comps->scalar = create_vector(0, 0, 0);
 			pix[x][y]->comps->view_dir = create_vector(0, 0, 0);
-//			pix[x][y]->comps->p_world = create_point(0, 0, 0);
 			pix[x][y]->comps->p_space = create_point(0, 0, 0);
 			pix[x][y]->comps->origin_zero = create_point(0, 0, 0);
 			pix[x][y]->comps->object_normal = create_vector(0, 0, 0);
@@ -179,42 +166,3 @@ bool init_comps(t_pix ***pix)
 		x++;
 	}
 }
-
-bool init_lights(t_light ***lights)
-{
-	int a;
-	int b;
-
-	a = 0;
-	while(lights[a] != NULL)// on pourra changer après pour les autres objets...
-	{
-		b = 0;
-		while(lights[a][b] != NULL)
-		{
-		//	lights[a][b]->m_transf = create_indentity_matrix_44();
-		//	lights[a][b]->p_world = create_point(0,0,0);
-			b++;
-		}
-		a++;
-	}
-	return true;
-}
-
-/*
-void	blabla(t_pix ***pix)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			color_float_to_int(pix[x][y]->color);
-			y++;
-		}
-		x++;
-	}
-}*/
