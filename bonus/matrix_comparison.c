@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   matrix_comparison.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 17:08:38 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/09 15:17:45 by syl              ###   ########.fr       */
+/*   Created: 2025/02/13 15:18:41 by syl               #+#    #+#             */
+/*   Updated: 2025/05/08 15:17:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void    my_mlx_pixel_put(t_image *img, int x, int y, int color)
+/*
+bool	matrix_comparision(float *m_a, float *m_b)
 {
-	char    *dst;
+	int	i;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
+	if (m_a[0] != m_b[0] || m_a[1] != m_b[1])
+	{
+		printf("[matrix_comparision] : Comparision between matrix not the same size\n");
+		return (false);
+	}
+	i = 2;
+	while (i < (int)((m_a[0] * m_a[1]) + 2))
+	{
+		if (fabs(m_a[i] - m_b[i]) > EPSILON)
+		{
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}*/

@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_rotations_utils.c                           :+:      :+:    :+:   */
+/*   00_matrix_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 14:40:09 by syl               #+#    #+#             */
-/*   Updated: 2025/02/27 10:36:54 by syl              ###   ########.fr       */
+/*   Created: 2025/02/14 14:54:35 by sforster          #+#    #+#             */
+/*   Updated: 2025/05/08 15:27:13 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-float	degree_to_radian(float degree)
+bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1)
 {
-	float	radian;
-
-	radian = degree * PIRAD;
-	return (radian);
+	if (!m_a)
+	{
+		printf("Matrix is missing S\n");
+		return (false);
+	}
+	if (m_a[0] != 4 || m_a[1] != 4)
+	{
+		printf("Matrix not 4x4 in multiplication\n");
+		return (false);
+	}
+	if (!p_v_1)
+	{
+		printf("vect or point is missing\n");
+		return (false);
+	}
+	return (true);
 }
 
-bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian)
+void	matrix_from_coord(t_coord *p_v_1, float coord[4])
 {
-	if (axe < 0 || axe > 2)
-		return (false);
-	if (dir != 3 && dir != 4)
-		return (false);
-	if (radian < (-2 * M_PI) || radian > (2 * M_PI))
-		return (false);
-	if (is_point(p_point) == false)
-		return (false);
-	return (true);
+	coord[0] = p_v_1->x;
+	coord[1] = p_v_1->y;
+	coord[2] = p_v_1->z;
+	coord[3] = p_v_1->t;
 }

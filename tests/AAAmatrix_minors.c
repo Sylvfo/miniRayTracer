@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_minors.c                                    :+:      :+:    :+:   */
+/*   AAAmatrix_minors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 10:30:15 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 16:15:10 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 16:13:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
+/*
 //The minor of an element at row i and column j is the determinant of the sub-
 //matrix at (i,j).
 // also minor is the determinant of the submatrix
@@ -28,6 +28,7 @@ float	minor_44(float *m_matrix, int row, int col)
 	return (determinant);
 }
 
+
 //The minor of an element at row i and column j is the determinant of the sub-
 //matrix at (i,j).
 // also minor is the determinant of the submatrix
@@ -42,15 +43,8 @@ float	minor_33(float *m_matrix, int row, int col)
 	determinant = determinant_22(m_submatrix);
 	determinant *= cofactors(row, col);
 	return (determinant);
-}
+}*/
 
-//cofactors are minors that have (possibly) had their sign changed.
-float	cofactors(int row, int col)
-{
-	float	cofactor;
 
-	cofactor = 1;
-	if ((row + col) % 2 != 0)
-		cofactor = -1;
-	return (cofactor);
-}
+
+

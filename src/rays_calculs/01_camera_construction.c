@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 10:58:18 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 16:03:29 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	constructing_camera(t_pix ***pix)
 {
 	view_camera(pix[0][0]->cam);
-	inverse4x4(pix[0][0]->cam->m_transf, pix[0][0]->cam->m_inverse);
+	new_inverse_matrix_44(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transf);
+//	inverse4x4(pix[0][0]->cam->m_transf, pix[0][0]->cam->m_inverse);
+//	inverse_matrix_44(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transf);
 	pixel_size(pix[0][0]);
 }
 

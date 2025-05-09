@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_utils.c                                     :+:      :+:    :+:   */
+/*   00_matrix_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:03:54 by syl               #+#    #+#             */
-/*   Updated: 2025/02/17 14:35:35 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 15:24:58 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,27 @@ void	print_matrix(float *m_matrix)
 	}
 }
 
-void print_matrix_44(float *m)
+void	print_matrix_44(float *m)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	printf("%.2f - ", m[0]);
 	printf("%.2f \n", m[1]);
-
 	printf("%.2f - ", m[2]);
 	printf("%.2f - ", m[3]);
 	printf("%.2f - ", m[4]);
 	printf("%.2f \n", m[5]);
-
 	printf("%.2f - ", m[6]);
 	printf("%.2f - ", m[7]);
 	printf("%.2f - ", m[8]);
 	printf("%.2f \n", m[9]);
-
 	printf("%.2f - ", m[10]);
 	printf("%.2f - ", m[11]);
 	printf("%.2f - ", m[12]);
 	printf("%.2f \n", m[13]);
-
-		printf("%.2f - ", m[14]);
+	printf("%.2f - ", m[14]);
 	printf("%.2f - ", m[15]);
 	printf("%.2f - ", m[16]);
 	printf("%.2f \n", m[17]);
-
-
 }

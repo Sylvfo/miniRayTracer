@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 10:56:50 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 15:11:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ float	int_to_float(int value)
 	return ((float)value / 255.0f);
 }
 
-
 /**
  * @brief convert float to int 24-bit RGB
  * 
@@ -54,15 +53,15 @@ float	int_to_float(int value)
  */
 void	color_float_to_int(t_color *c_color)
 {
+	int	r;
+	int	g;
+	int	b;
+
 	if (!c_color)
-		return;
-
-	// Conversion des composantes en octets (0 à 255)
-	int	r = float_to_byte(c_color->r);
-	int	g = float_to_byte(c_color->g);
-	int	b = float_to_byte(c_color->b);
-
-	// Construction de la valeur RGB 24 bits
+		return ;
+	r = float_to_byte(c_color->r);
+	g = float_to_byte(c_color->g);
+	b = float_to_byte(c_color->b);
 	c_color->rgb = (r << 16) | (g << 8) | b;
 }
 
@@ -85,7 +84,6 @@ int	float_to_byte(float f)
 	if (f >= 255)
 		return (255);
 	return ((int)(f * 255));
-//	return ((int)(f * 0.5f));
 }
 
 void	color_int_to_rgb(int int_color, t_color *rgb)

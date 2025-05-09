@@ -1,44 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BBmatrix_mult_matrix_p_v.c                         :+:      :+:    :+:   */
+/*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 14:54:35 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/27 15:55:50 by syl              ###   ########.fr       */
+/*   Created: 2025/05/08 15:23:13 by syl               #+#    #+#             */
+/*   Updated: 2025/05/08 15:33:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
-
-bool	check_matrix_44_coord(float *m_a, t_coord *p_v_1)
-{
-	if (!m_a)
-	{
-		printf("Matrix is missing S\n");
-		return (false);
-	}
-	if (m_a[0] != 4 || m_a[1] != 4)
-	{
-		printf("Matrix not 4x4 in multiplication\n");
-		return (false);
-	}
-	if (!p_v_1)
-	{
-		printf("vect or point is missing\n");
-		return (false);
-	}
-	return (true);
-}
-
-void	matrix_from_coord(t_coord *p_v_1, float coord[4])
-{
-	coord[0] = p_v_1->x;
-	coord[1] = p_v_1->y;
-	coord[2] = p_v_1->z;
-	coord[3] = p_v_1->t;
-}
 
 /*
 // new_point_vector->t = sum;  reprendre celui d avant pour avoir le meme???
@@ -89,4 +60,30 @@ t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v)
 	new_vec->z = m_[5] * v->x + m_[8] * v->y + m_[12] * v->z; // Colonne 2
 	new_vec->t = 0.0f;
 	return (new_vec);
+}*/
+
+
+/*
+//a voir après
+void	matrix_division_44(float *m_matrix, float div)
+{
+	int	i;
+
+	if (!m_matrix)
+	{
+		printf("no matrix\n");
+		return ;
+	}
+	if (div == 0)
+	{
+		printf("devide by 0 in matrix_division\n");
+		return ;
+	}
+	i = 2;
+	div = (1 / div);
+	while (i < (m_matrix[0] * m_matrix[1]) + 2)
+	{
+		m_matrix[i] *= div;
+		i++;
+	}
 }*/

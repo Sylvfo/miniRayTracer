@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:07:11 by syl               #+#    #+#             */
-/*   Updated: 2025/05/07 11:01:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 15:42:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@
 //dir = direction
 // enum donc 4 = left et 5 right
 
+
+/*
+bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian)
+{
+	if (axe < 0 || axe > 2)
+		return (false);
+	if (dir != 3 && dir != 4)
+		return (false);
+	if (radian < (-2 * M_PI) || radian > (2 * M_PI))
+		return (false);
+	if (is_point(p_point) == false)
+		return (false);
+	return (true);
+}*/
 
 ///////////////////
 // DESSOUS PAS ENCORE UTILISER. A VOIR POUR BONUS???

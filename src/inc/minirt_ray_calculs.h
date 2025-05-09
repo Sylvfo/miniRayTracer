@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:12:16 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 10:21:57 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 14:35:15 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	init_viewport_x_y(t_pix *pix, int x, int y);
 //03_m_transformations.c
 void	matrix_transformations(t_pix ***pix);
 void	set_transformation(t_obj ***obj);
+void	set_transformation_obj(t_obj *obj);
 void	apply_transformation(t_pix ***pix);
+void	apply_transformation_obj(t_pix *pix);
 
 //04_intersect_main.c
 void	main_intersections(t_pix ***pix);
@@ -66,6 +68,7 @@ void	save_in_comps(t_pix *pix, int a, int b);
 void	prepare_computation(t_pix ***pix);
 void	normal_at_NA(t_comps *comps);
 void	normal_caps(t_comps *comps);
+void	prepare_computation_pix(t_pix *pix);
 
 //09_light_shadow_main.c
 void	new_light(t_pix ***pix);

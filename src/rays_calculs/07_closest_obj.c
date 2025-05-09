@@ -6,14 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 11:31:20 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/08 14:27:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-// POUR REFLEXION ET REFRACTION FAIRE DES ARRAYS....
-void find_closest_obj(t_pix ***pix)
+void	find_closest_obj(t_pix ***pix)
 {
 	int	x;
 	int	y;
@@ -25,24 +24,13 @@ void find_closest_obj(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			closest_obj(pix[x][y]);
-		/*	if (pix[x][y]->comps->closestt < 2147483648.00)
-				printf("closestt %.2f \n", pix[x][y]->comps->closestt);*/
 			y++;
 		}
 		x++;
 	}
 }
 
-/*
-void copy_hits_to_comps(t_comps *comps, t_hits *hits)
-{
-	comps->closestt = hits->t1;
-	copy_coord(comps->r_dir, hits->r_dir);
-	copy_coord(comps->r_origin, hits->r_origin);
-	comps->type = hits->type;
-}*/
-
-void closest_obj(t_pix *pix)
+void	closest_obj(t_pix *pix)
 {
 	int	a;
 	int	b;
@@ -53,13 +41,14 @@ void closest_obj(t_pix *pix)
 		b = 0;
 		while (pix->hits[a][b] != NULL)
 		{
-			if (pix->hits[a][b]->t1 < pix->comps->closestt && pix->hits[a][b]->t1 > 0)
+			if (pix->hits[a][b]->t1 < pix->comps->closestt
+					&& pix->hits[a][b]->t1 > 0)
 			{
 				pix->comps->closestt = pix->hits[a][b]->t1;
 				save_in_comps(pix, a, b);
 			}
-			//rajouter si t2 est plus petit que t1?
-			else if (pix->hits[a][b]->t2 < pix->comps->closestt && pix->hits[a][b]->t2 > 0)// && pix->hits[a][b]->t2 > pix->hits[a][b]->t1)
+			else if (pix->hits[a][b]->t2 < pix->comps->closestt
+					&& pix->hits[a][b]->t2 > 0)
 			{
 				pix->comps->closestt = pix->hits[a][b]->t2;
 				save_in_comps(pix, a, b);
@@ -70,7 +59,7 @@ void closest_obj(t_pix *pix)
 	}
 }
 
-void save_in_comps(t_pix *pix, int a, int b)
+void	save_in_comps(t_pix *pix, int a, int b)
 {
 	pix->comps->t_count = pix->hits[a][b]->t_count;
 	pix->comps->obj = pix->obj[a][b];
@@ -82,8 +71,5 @@ void save_in_comps(t_pix *pix, int a, int b)
 	if (pix->hits[a][b]->type == CYLINDER)
 		pix->comps->height = pix->obj[a][b]->height;
 	if (pix->hits[a][b]->type == PLAN)
-	copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
-//	copy_matrix_44(pix->obj[a][b]->m_inv, pix->comps->obj_inv);
-//	copy_matrix_44(pix->obj[a][b]->m_transl, pix->comps->m_transl);
-	//print_vector(pix->comps->r_dir);
+		copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
 }

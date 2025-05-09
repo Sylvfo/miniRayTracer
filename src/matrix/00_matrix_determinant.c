@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAAmatrix_determinant.c                            :+:      :+:    :+:   */
+/*   00_matrix_determinant.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 13:25:15 by syl               #+#    #+#             */
-/*   Updated: 2025/04/27 13:25:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 16:11:41 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
+/*
 float	determinant_22(float *m_22)
 {
 	float	determinant;
@@ -34,7 +34,6 @@ float	determinant_33(float *m_33)
 	return (determinant);
 }
 
-
 float	determinant_44(float *m_44)
 {
 	float	determinant;
@@ -46,4 +45,4 @@ float	determinant_44(float *m_44)
 	determinant += m_44[4] * minor_44(m_44, 0, 2);
 	determinant += m_44[5] * minor_44(m_44, 0, 3);
 	return (determinant);
-}
+}*/
