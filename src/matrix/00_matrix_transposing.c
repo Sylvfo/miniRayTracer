@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:27:31 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 15:40:44 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 14:40:24 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	transpose_matrix_NA(float *result, float *m)
 	}
 }
 
+/*
 //utile??
 void	transposing_matrix_44(float *m_matrix)
 {
@@ -55,7 +56,7 @@ void	transposing_matrix_44(float *m_matrix)
 			j += 4;
 		i++;
 	}
-}
+}*/
 
 void	copy_matrix_44(float *m_result, float *m_matrix)
 {

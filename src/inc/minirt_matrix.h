@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 17:21:15 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 16:33:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,81 +61,54 @@ void	matrix_mult_2(float *ma, float *mb);
 void	matrix_mult_3(float *res, float *ma, float *mb);
 
 
-
-
-void	inverse_matrix_44(float *m_inverted, float *m_matrix);
-
-
-
-
 //INVERSION///
 //matrix_determinant.c
-float	determinant_22(float *m_22);
-float	determinant_33(float *m_33);
-float	determinant_44(float *m_44);
+//float	determinant_22(float *m_22);
+//float	determinant_33(float *m_33);
+//float	determinant_44(float *m_44);
+
+
+void	new_inverse_matrix_44(float *m_inverted, float *m_matrix);
+void	new_submatrix_33(float *m_submatrix, float *m_matrix, int row_to_rm, int col_to_rm);
+float	new_minor_33(float *m);
+void	new_minor_44(float *m_minor, float *m_matrix);
+float	new_determinant_44(float *m_matrix, float *m_minor);
+void	init_stack_matrix_33(float *m_matrix);
+void	init_stack_matrix_44(float *m_matrix);
+void	transposing_matrix_44(float *m_matrix);
+
+
+int	get_curr_row(int i, float width);
+int	get_curr_col(int i, float width);
+int	check_submatrix(float *m_matrix, int row_rm, int col_rm);
+float	cofactors(int row, int col);
+//void	inverse_matrix_44(float *m_inverted, float *m_matrix);
+
+
 
 //matrix_minors.c
-float	minor_33(float *m_matrix, int row, int col);
-float	minor_44(float *m_matrix, int row, int col);
-float	cofactors(int row, int col);
-void	matrix_cofactors_44NA(float *m_matrix, float *m_cofactors);
+//float	minor_33(float *m_matrix, int row, int col);
+//float	minor_44(float *m_matrix, int row, int col);
+//float	cofactors(int row, int col);
+//void	matrix_cofactors_44NA(float *m_matrix, float *m_cofactors);
 
 
 //matrix_submatrix.c
-float	*submatrix_44NA(float *m_matrix, float *m_submatrix, int row_to_rm, int col_to_rm);
+//float	*submatrix_44NA(float *m_matrix, float *m_submatrix, int row_to_rm, int col_to_rm);
 
-float	*submatrix(float *m_matrix, int row_to_remove, int col_to_remove);
-int		get_curr_row(int i, float width);
-int		get_curr_col(int i, float width);
-int		check_submatrix(float *m_matrix, int row_rm, int col_rm);
+//float	*submatrix(float *m_matrix, int row_to_remove, int col_to_remove);
+//int		get_curr_row(int i, float width);
+//int		get_curr_col(int i, float width);
+//int		check_submatrix(float *m_matrix, int row_rm, int col_rm);
 
 //test_inverting.c
-float	*inverted_matrix_44(float *m_matrix);
+//float	*inverted_matrix_44(float *m_matrix);
 //float	*inverted_matrix_44_NA(float *m_matrix);
-void	matrix_cofactors_44(float *m_matrix, float *m_cofactors);
-void inverted_matrix_44_NA(float *m_inverted, float *m_matrix, float *m_submatrix);
-
-
+//void	matrix_cofactors_44(float *m_matrix, float *m_cofactors);
+//void inverted_matrix_44_NA(float *m_inverted, float *m_matrix, float *m_submatrix);
 
 ////////////////!!!GPT
-int inverse4x4(float *src, float *dest);
-
-
-
-///////// MATRIX TRANSFORMATION ////////////
-
-//matrix_translation.c
-//float *create_translation_matrix(float x, float y, float z);
-//t_coord *translation(t_coord *p_point, float x, float y, float z);
-//t_coord *translation_inverse(t_coord *p_point, float x, float y, float z);
-//void translation_on_identity(float *m_identity, float x, float y, float z);
-//void	fill_translation_matrix(float *m_transl, float x, float y, float z);
-//void	translation_matrix_coord(t_obj *obj);
-
-//matrix_scaling.c
-//t_coord *scaling(t_coord *v_p_old, float x, float y, float z);
-//float *create_scaling_matrix(float x, float y, float z);
-//t_coord *scaling_inverse(t_coord *v_p_old, float x, float y, float z);
-//void create_scaling_matrix_NA(float *m_matrix, float x, float y, float z);
-
-//matrix_rotation.c
-//float *create_rotation_x_matrix(float radian);
-//t_coord *rotation_axe_x(t_coord *p_point, float radian);
-//t_coord *rotation_axe_x_inverse(t_coord *p_point, float radian);
-//float *_x_matrix_inverse(float radian);
-
-//matrix_rotations.c
-//t_coord *rotations(t_coord *p_point, int axe, int dir,  float radian);
-//float *create_rotation_x_matrix(float radian);
-//float *create_rotation_y_matrix(float radian);
-//float *create_rotation_z_matrix(float radian);
-
-//matrix_rotations_utils.c
-//float degree_to_radian(float degree);
-//bool	check_rotation_values(t_coord *p_point, int axe, int dir, float radian);
-
-//t_coord *matrix_multiplication_44_point(float *m_, t_coord *p);
-//t_coord *matrix_multiplication_44_vector(float *m_, t_coord *v);
+//int inverse4x4(float *src, float *dest);
 
 
 

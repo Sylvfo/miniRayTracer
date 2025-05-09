@@ -6,12 +6,12 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 13:33:03 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 17:42:49 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/09 16:06:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
+/*
 #define IDX(i, j) (2 + (i) * 4 + (j))
 
 // Calcule le déterminant d'une matrice 3x3
@@ -74,4 +74,4 @@ int inverse4x4(float *src, float *dest)
 		}
 	}
 	return 1; // succès
-}
+}*/
