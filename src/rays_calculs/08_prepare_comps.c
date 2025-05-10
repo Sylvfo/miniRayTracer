@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   08_prepare_comps.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/09 17:04:28 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/10 12:39:25 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ void	normal_caps(t_comps *comps)
 {
 	float	dist;
 
-	dist = (comps->p_space->x * comps->p_space->x)
-		+ (comps->p_space->z * comps->p_space->z);
-	if (dist <= 1 && comps->p_space->y >= comps->height - EPSILON)
+	dist = (comps->p_space->x * comps->p_space->x) + (comps->p_space->z * comps->p_space->z);
+	// Debug : affiche la valeur de y et height
+	printf("[DEBUG CAPS] p_space->y=%.3f, height=%.3f\n", comps->p_space->y, comps->height);
+	if (dist <= 1 && fabs(comps->p_space->y - comps->height) < EPSILON)
 	{
 		comps->v_norm_parral->x = 0;
 		comps->v_norm_parral->y = 1;
 		comps->v_norm_parral->z = 0;
 		return ;
 	}
-	if (dist <= 1 && comps->p_space->y <= -comps->height + EPSILON)
+	if (dist <= 1 && fabs(comps->p_space->y + comps->height) < EPSILON)
 	{
 		comps->v_norm_parral->x = 0;
 		comps->v_norm_parral->y = -1;

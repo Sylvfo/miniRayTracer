@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   10_shadows.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 14:44:11 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/10 12:39:38 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ bool intersect_objects_shadow(t_pix *pix, int lux_num)
 		{
 			if (a == SPHERE)
 				in_shadow = intersect_sphere_shadow(pix, b, lux_num);
-	/*		else if (a == PLAN)
+			else if (a == PLAN)
 				in_shadow = intersect_plan_shadow(pix, b, lux_num);
 			else if (a == CYLINDER)
-				in_shadow = intersect_cylinder_shadow(pix, b, lux_num);*/
+				in_shadow = intersect_cylinder_shadow(pix, b, lux_num);
 			if (in_shadow == true)
 				return (true);
 			b++;
@@ -70,55 +70,26 @@ bool intersect_sphere_shadow(t_pix *pix, int sphere_num, int lux_num)
 			(t2 > EPSILON && t2 < pix->comps->distance_light_p_touch));
 }
 
-
 bool intersect_plan_shadow(t_pix *pix, int pln_num, int lux_num)
 {
-	if (fabs(dot_product(pix->obj[2][pln_num]->v_axe, pix->comps->v_light_to_point)) < EPSILON)
-		return false;
-	//empty set, no intersection
-	// fabs mets tous les nombres en positif
-//	if (fabs(pix->obj[2][pln_num]->r_dir->y) < EPSILON)
-//		return false;
-	//origin.y + t * dir.y = 0 c est l équation de l intersection entre le plan et le ray
-	return true;
+    t_coord *n = pix->obj[2][pln_num]->v_axe;
+    t_coord *p0 = pix->obj[2][pln_num]->p_coord;
+    t_coord *p = pix->comps->p_touch;
+    t_coord *d = pix->comps->v_light_to_point;
+    float denom = dot_product(n, d);
+    if (fabs(denom) < EPSILON)
+        return false; // Rayon parallèle au plan
+    t_coord p0_minus_p;
+    p0_minus_p.x = p0->x - p->x;
+    p0_minus_p.y = p0->y - p->y;
+    p0_minus_p.z = p0->z - p->z;
+    float t = dot_product(n, &p0_minus_p) / denom;
+    if (t > EPSILON && t < pix->comps->distance_light_p_touch)
+        return true; // Le plan bloque la lumière
+    return false;
 }
 
-/*
-bool intersect_cylinder_shadow(t_pix *pix, int pln_num, int lux_num)
+bool intersect_cylinder_shadow(t_pix *pix, int cyl_num, int lux_num)
 {
-	
-}*/
-
-/*
-t_hits intersect_object(t_obj *object, t_ray *ray)
-{
-	t_hits hits;
-	t_coord *oc;
-	float a, b, c, discriminant;
-
-	// Initialisation des hits
-	hits.t_count = 0;
-	hits.t1 = -1;
-	hits.t2 = -1;
-	// Calcul des coefficients pour l'équation quadratique
-	// !!!! ICI OBJET PAS DANS ESPACE WORLD
-	oc = substraction(ray->p_origin, object->p_coord);
-	a = dot_product(ray->v_dir, ray->v_dir);
-	b = 2.0 * dot_product(oc, ray->v_dir);
-	c = dot_product(oc, oc) - (object->diam / 2) * (object->diam / 2);
-	discriminant = b * b - 4 * a * c;
-	if (discriminant >= 0)
-	{
-		hits.t1 = (-b - sqrt(discriminant)) / (2.0 * a);
-		hits.t2 = (-b + sqrt(discriminant)) / (2.0 * a);
-
-		// Remplacement de l'opérateur ternaire
-		if (discriminant > 0)
-			hits.t_count = 2;
-		else
-			hits.t_count = 1;
-	}
-
-	free(oc);
-	return hits;
-}*/
+    return false;
+}

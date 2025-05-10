@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09_light_shadow_main.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:44:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/08 14:43:37 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/10 12:39:33 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	new_light(t_pix ***pix)
 	int		y;
 	float	intensity;
 
-	intensity = 0.0;
 	x = 0;
 	while (x < WND_WIDTH)
 	{
@@ -26,10 +25,13 @@ void	new_light(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			intensity = light_intensity(pix[x][y]);
+			// Calcul de la couleur avec lumière pour tous les objets
 			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
 			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
 			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
-			scalar_mult_color(pix[x][y]->color, intensity);
+			// Applique la lumière pour tous les objets (SPHERE, PLAN, CYLINDER)
+			if (pix[x][y]->comps->type == SPHERE || pix[x][y]->comps->type == PLAN || pix[x][y]->comps->type == CYLINDER)
+				scalar_mult_color(pix[x][y]->color, intensity);
 			y++;
 		}
 		x++;

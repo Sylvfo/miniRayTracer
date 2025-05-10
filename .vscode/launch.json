@@ -8,9 +8,9 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debugminirt",
-			"program": "/home/syl/42/miniRayTracder/minirt",
+			"program": "${workspaceFolder}/minirt",
 			"args": [
-				"/home/syl/42/miniRayTracder/hidden_m.rt"
+				"${workspaceFolder}/1cyl.rt"
 			],
 			"cwd": "${workspaceFolder}"
 		}
