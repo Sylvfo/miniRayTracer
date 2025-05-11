@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:12:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/21 19:21:00 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/11 13:46:37 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ int	validate_camera(char *line)
 	skip_whitespace((const char **)&line);
 	if (parse_coordinates(&line, &position.x, &position.y, &position.z))
 		return (1);
+	skip_whitespace((const char **)&line);
 	if (parse_coordinates(&line, &orientation.x,
 			&orientation.y, &orientation.z))
 		return (1);
-	if (validate_orientation_vector(orientation.x, orientation.y,
-			orientation.z))
+	if (validate_orientation_vector(orientation.x,
+			orientation.y, orientation.z))
 		return (1);
-	if (parse_camera_fov(&line, &fov) || check_only_spaces(line))
+	skip_whitespace((const char **)&line);
+	if (parse_camera_fov(&line, &fov))
 		return (1);
 	return (0);
 }

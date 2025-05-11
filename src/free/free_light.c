@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:34:26 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/19 16:34:32 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/11 15:27:57 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	free_light(t_light *light)
 {
 	if (!light)
 		return ;
-	free(light->p_coord);
-	free(light->color);
-	free(light->m_identity);
-	free(light->m_tranf);
-	free(light->m_transl);
-	free(light->p_world);
+	if (light->p_coord)
+		free(light->p_coord);
+	if (light->color)
+		free(light->color);
 	free(light);
 }

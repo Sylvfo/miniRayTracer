@@ -6,15 +6,12 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:34:56 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/19 16:39:52 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/11 17:59:08 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-/*
-** Libère une structure t_image.
-*/
 void	free_image(t_image *ima)
 {
 	if (!ima)
@@ -22,27 +19,32 @@ void	free_image(t_image *ima)
 	free(ima);
 }
 
-/*
-** Libère une structure t_comps et tous ses champs dynamiquement alloués.
-*/
 void	free_comps(t_comps *comps)
 {
 	if (!comps)
 		return ;
+	free(comps->r_origin);
+	free(comps->r_dir);
+	free(comps->obj_color);
+	free(comps->origin_zero);
+	free(comps->object_normal);
+	free(comps->transp_inv);
+	free(comps->p_space);
+	free(comps->obj_inv);
 	free(comps->p_touch);
 	free(comps->v_eye);
 	free(comps->v_norm_parral);
-	if (comps->r_ray)
-	{
-		free(comps->r_ray->p_origin);
-		free(comps->r_ray->v_dir);
-		free(comps->r_ray);
-	}
+	free(comps->v_light_to_point);
+	free(comps->v_sphere_to_point);
+	free(comps->v_point_to_light);
+	free(comps->reflect_dir);
+	free(comps->scalar);
+	free(comps->view_dir);
 	free(comps);
 }
 
 void	free_all(t_pix ***pix, int x, int y, t_num_obj *num_obj)
 {
-	free_pix(pix, x, y, num_obj);
-	free(num_obj);
+	/* free_pix(pix, x, y, num_obj);
+	free(num_obj); */
 }

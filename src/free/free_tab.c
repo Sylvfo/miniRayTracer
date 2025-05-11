@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:35:08 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/19 16:40:40 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/11 15:27:58 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,10 @@ static void	free_one_hit(t_hits *hit)
 {
 	if (!hit)
 		return ;
-	if (hit->r_ray_calculs)
-	{
-		free(hit->r_ray_calculs->p_origin);
-		free(hit->r_ray_calculs->v_dir);
-		free(hit->r_ray_calculs);
-	}
+	if (hit->r_origin)
+		free(hit->r_origin);
+	if (hit->r_dir)
+		free(hit->r_dir);
 	free(hit);
 }
 
