@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05_intersect_sphere_plan.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:04:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 19:53:02 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:06:56 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	intersect_sphere(t_pix *pix, int sph_num)
 	float	b;
 	float	c;
 
-	substraction_p_to_v_na(pix->obj[1][sph_num]->v_sph_camera,
+	substraction_p_to_v_NA(pix->obj[1][sph_num]->v_sph_camera,
 		pix->hits[1][sph_num]->r_origin, pix->cam->p_zero);
 	a = dot_product(pix->hits[1][sph_num]->r_dir, pix->hits[1][sph_num]->r_dir);
 	b = 2 * dot_product(pix->hits[1][sph_num]->r_dir,

@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   06_intersect_cylinder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:29:35 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 19:52:00 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:07:07 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+void	intersect_cylinder(t_pix *pix, int cyl_n)
+{
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
+
+	a = pix->hits[3][cyl_n]->r_dir->x * pix->hits[3][cyl_n]->r_dir->x
+		+ pix->hits[3][cyl_n]->r_dir->z * pix->hits[3][cyl_n]->r_dir->z;
+	if (fabs(a) < EPSILON)
+		return ;
+	b = 2 * pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_dir->x
+		+ 2 * pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_dir->z;
+	c = pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_origin->x
+		+ pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_origin->z
+		- 1;
+	discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+		return ;
+	pix->hits[3][cyl_n]->t_count = 2;
+	cut_cylinder(pix, cyl_n, (-b - simple_sqrt(discriminant)) / (2 * a),
+		(-b + simple_sqrt(discriminant)) / (2 * a));
+	intersect_caps(pix, cyl_n);
+}
 
 void	cut_cylinder(t_pix *pix, int cyl_n, float t1, float t2)
 {
@@ -76,29 +101,4 @@ void	intersect_caps(t_pix *pix, int cyl_n)
 			pix->hits[3][cyl_n]->t1 = t;
 		}
 	}
-}
-
-void	intersect_cylinder(t_pix *pix, int cyl_n)
-{
-	float	a;
-	float	b;
-	float	c;
-	float	discriminant;
-
-	a = pix->hits[3][cyl_n]->r_dir->x * pix->hits[3][cyl_n]->r_dir->x
-		+ pix->hits[3][cyl_n]->r_dir->z * pix->hits[3][cyl_n]->r_dir->z;
-	if (fabs(a) < EPSILON)
-		return ;
-	b = 2 * pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_dir->x
-		+ 2 * pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_dir->z;
-	c = pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_origin->x
-		+ pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_origin->z
-		- 1;
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
-		return ;
-	pix->hits[3][cyl_n]->t_count = 2;
-	cut_cylinder(pix, cyl_n, (-b - simple_sqrt(discriminant)) / (2 * a),
-		(-b + simple_sqrt(discriminant)) / (2 * a));
-	intersect_caps(pix, cyl_n);
 }

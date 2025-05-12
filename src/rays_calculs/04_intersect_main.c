@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   04_intersect_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 15:00:12 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:56:56 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:06:39 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+void	main_intersections(t_pix ***pix)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		while (y < WND_HEIGHT)
+		{
+			intersect_pix_obj(pix[x][y]);
+			y++;
+		}
+		x++;
+	}
+}
 
 void	intersect_pix_obj(t_pix *pix)
 {
@@ -32,23 +50,5 @@ void	intersect_pix_obj(t_pix *pix)
 			b++;
 		}
 		a++;
-	}
-}
-
-void	main_intersections(t_pix ***pix)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			intersect_pix_obj(pix[x][y]);
-			y++;
-		}
-		x++;
 	}
 }

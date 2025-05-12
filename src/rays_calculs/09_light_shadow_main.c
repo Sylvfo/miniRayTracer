@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   09_light_shadow_main.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:44:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:54:50 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:08:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+void	new_light(t_pix ***pix)
+{
+	int		x;
+	int		y;
+	float	intensity;
+
+	intensity = 0.0;
+	x = 0;
+	while (x < WND_WIDTH)
+	{
+		y = 0;
+		while (y < WND_HEIGHT)
+		{
+			intensity = light_intensity(pix[x][y]);
+			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
+			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
+			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
+			scalar_mult_color(pix[x][y]->color, intensity);
+			y++;
+		}
+		x++;
+	}
+}
 
 float	light_intensity(t_pix *pix)
 {
@@ -35,30 +59,4 @@ float	light_intensity(t_pix *pix)
 		i++;
 	}
 	return (intensity);
-}
-
-void	new_light(t_pix ***pix)
-{
-	int		x;
-	int		y;
-	float	intensity;
-
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			intensity = light_intensity(pix[x][y]);
-			pix[x][y]->color->r = pix[x][y]->comps->obj_color->r;
-			pix[x][y]->color->g = pix[x][y]->comps->obj_color->g;
-			pix[x][y]->color->b = pix[x][y]->comps->obj_color->b;
-			if (pix[x][y]->comps->type == SPHERE ||
-				pix[x][y]->comps->type == PLAN ||
-				pix[x][y]->comps->type == CYLINDER)
-				scalar_mult_color(pix[x][y]->color, intensity);
-			y++;
-		}
-		x++;
-	}
 }

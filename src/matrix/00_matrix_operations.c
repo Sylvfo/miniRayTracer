@@ -6,12 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:55:10 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/09 17:05:44 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/12 14:16:37 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+/*
 void	matrix_division(float *m_matrix, float div)
 {
 	int	i;
@@ -33,4 +34,4 @@ void	matrix_division(float *m_matrix, float div)
 		m_matrix[i] *= div;
 		i++;
 	}
-}
+}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_operation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:57:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 15:51:45 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:14:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,6 @@ float	int_to_float(int value)
 	if (value > 255)
 		return (1.0f);
 	return ((float)value / 255.0f);
-}
-
-/**
- * @brief convert float to byte
- * 
- * when calculation is done
- * goes with color_float_to_int(t_color *c_color)
- * 
- * A modifier rgb 0 a 1
- * 
- * @param f float
- * 
- * @return --- change in data base pix
- */
-int	float_to_byte(float f)
-{
-	if (f <= 0.0f)
-		return (0);
-	if (f >= 255)
-		return (255);
-	return ((int)(f * 255));
 }
 
 /**
@@ -84,6 +63,27 @@ void	color_float_to_int(t_color *c_color)
 	g = float_to_byte(c_color->g);
 	b = float_to_byte(c_color->b);
 	c_color->rgb = (r << 16) | (g << 8) | b;
+}
+
+/**
+ * @brief convert float to byte
+ * 
+ * when calculation is done
+ * goes with color_float_to_int(t_color *c_color)
+ * 
+ * A modifier rgb 0 a 1
+ * 
+ * @param f float
+ * 
+ * @return --- change in data base pix
+ */
+int	float_to_byte(float f)
+{
+	if (f <= 0.0f)
+		return (0);
+	if (f >= 255)
+		return (255);
+	return ((int)(f * 255));
 }
 
 void	color_int_to_rgb(int int_color, t_color *rgb)

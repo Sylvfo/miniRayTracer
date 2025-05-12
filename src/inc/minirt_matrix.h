@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_matrix.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 17:48:42 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:15:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define MINIRT_MATRIX_H
 
 # include "minirt_data_struct.h"
+
+///////// MATRIX ////////////
+
+//matrix_print.c
+void	print_matrix(float *m_matrix);
+void	print_matrix_44(float *m);
 
 //matrix_transl_scale.c
 void	translation_matrix_coord(t_obj *obj);
@@ -36,7 +42,7 @@ void	matrix_division(float *m_matrix, float div);
 //matrix_transposing.c
 void	transpose_matrix(float *result, float *m);
 void	copy_matrix_44(float *m_result, float *m_matrix);
-
+ 
 //matrix_check.c
 bool	check_matrix_44(float *m_a);
 bool	check_matrix_33(float *m_a);

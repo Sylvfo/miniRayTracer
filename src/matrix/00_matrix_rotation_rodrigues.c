@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_matrix_rotation_rodrigues.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 11:01:11 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 17:51:02 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:11:57 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	rotation_from_vector(t_obj *obj)
 		fprintf(stderr, "Error: Null pointer in rotation_from_vector\n");
 		return ;
 	}
-	cross_product_na(obj->v_axe_r, obj->from, obj->v_axe);
+	cross_product_NA(obj->v_axe_r, obj->from, obj->v_axe);
 	dot = dot_product(obj->from, obj->v_axe);
 	dot = fmaxf(-1.0f, fminf(1.0f, dot));
 	angle = acosf(dot);
 	if (fabs(angle) < EPSILON)
 		return ;
-	normalize_vector_na(obj->v_axe_r);
+	normalize_vector_NA(obj->v_axe_r);
 	c = cos(angle);
 	s = sin(angle);
 	matrix_rotation_rodrigues(obj, angle, c, s);

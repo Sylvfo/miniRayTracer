@@ -3,14 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 11:05:33 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:28:46 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minirt.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/06 15:51:07 by sforster          #+#    #+#             */
+/*   Updated: 2025/05/11 12:46:25 by syl              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "./inc/minirt.h"
+
+ void	print_spheres(t_pix ***pix, t_num_obj *num_obj)
+{
+	for (int i = 0; i < num_obj->sphere; i++)
+	{
+		printf("Sphere %d:\n", i + 1);
+		printf("  Position: (%f, %f, %f)\n", (*pix)[0][0].obj[1][i]->p_coord->x, (*pix)[0][0].obj[1][i]->p_coord->y, (*pix)[0][0].obj[1][i]->p_coord->z);
+		printf("  Diameter: %f\n", (*pix)[0][0].obj[1][i]->diam);
+		printf("  Color: (%f, %f, %f)\n", (*pix)[0][0].obj[1][i]->color->r, (*pix)[0][0].obj[1][i]->color->g, (*pix)[0][0].obj[1][i]->color->b);
+	}
+}
+
+void	print_planes(t_pix ***pix, t_num_obj *num_obj)
+{
+	for (int i = 0; i < num_obj->plan; i++)
+	{
+		printf("Plane %d:\n", i + 1);
+		printf("  Position: (%f, %f, %f)\n", (*pix)[0][0].obj[2][i]->p_coord->x, (*pix)[0][0].obj[2][i]->p_coord->y, (*pix)[0][0].obj[2][i]->p_coord->z);
+		printf("  Orientation: (%f, %f, %f)\n", (*pix)[0][0].obj[2][i]->v_axe->x, (*pix)[0][0].obj[2][i]->v_axe->y, (*pix)[0][0].obj[2][i]->v_axe->z);
+		printf("  Color: (%f, %f, %f)\n", (*pix)[0][0].obj[2][i]->color->r, (*pix)[0][0].obj[2][i]->color->g, (*pix)[0][0].obj[2][i]->color->b);
+	}
+}
+
+void	print_cylinders(t_pix ***pix, t_num_obj *num_obj)
+{
+	for (int i = 0; i < num_obj->cylinder; i++)
+	{
+		printf("Cylinder %d:\n", i + 1);
+		printf("  Position: (%f, %f, %f)\n", (*pix)[0][0].obj[3][i]->p_coord->x, (*pix)[0][0].obj[3][i]->p_coord->y, (*pix)[0][0].obj[3][i]->p_coord->z);
+		printf("  Orientation: (%f, %f, %f)\n", (*pix)[0][0].obj[3][i]->v_axe->x, (*pix)[0][0].obj[3][i]->v_axe->y, (*pix)[0][0].obj[3][i]->v_axe->z);
+		printf("  Diameter: %f\n", (*pix)[0][0].obj[3][i]->diam);
+		printf("  Height: %f\n", (*pix)[0][0].obj[3][i]->height);
+		printf("  Color: (%f, %f, %f)\n", (*pix)[0][0].obj[3][i]->color->r, (*pix)[0][0].obj[3][i]->color->g, (*pix)[0][0].obj[3][i]->color->b);
+	}
+}
+
+void	print_lights(t_pix ***pix, t_num_obj *num_obj)
+{
+	printf("Ambient Light:\n");
+	printf("  Ratio: %f\n", (*pix)[0]->lux[0][0]->ratio);
+	printf("  Color: (%f, %f, %f)\n", (*pix)[0]->lux[0][0]->color->r, (*pix)[0]->lux[0][0]->color->g, (*pix)[0]->lux[0][0]->color->b);
+	for (int i = 0; i < num_obj->light; i++)
+	{
+		printf("Light %d:\n", i + 1);
+		printf("  Position: (%f, %f, %f)\n", (*pix)[0]->lux[1][i]->p_coord->x, (*pix)[0]->lux[1][i]->p_coord->y, (*pix)[0]->lux[1][i]->p_coord->z);
+		printf("  Ratio: %f\n", (*pix)[0]->lux[1][i]->ratio);
+		printf("  Color: (%f, %f, %f)\n", (*pix)[0]->lux[1][i]->color->r, (*pix)[0]->lux[1][i]->color->g, (*pix)[0]->lux[1][i]->color->b);
+	}
+}
+
+void	print_camera(t_pix ***pix)
+{
+	printf("Camera:\n");
+	printf("  Position: (%f, %f, %f)\n", (*pix)[0][0].cam->p_coord->x, (*pix)[0][0].cam->p_coord->y, (*pix)[0][0].cam->p_coord->z);
+	printf("  Orientation: (%f, %f, %f)\n", (*pix)[0][0].cam->v_axe->x, (*pix)[0][0].cam->v_axe->y, (*pix)[0][0].cam->v_axe->z);
+	printf("  FOV: %f\n", (*pix)[0][0].cam->fov);
+}
+
+
+
 
 void	error_exit(const char *msg, t_program_context *context)
 {
@@ -78,6 +152,12 @@ int	main(int argc, char **argv)
 	context->mlx_ptr = context->ima->mlx_ptr;
 	context->mlx_win = context->ima->mlx_win;
 	save_scene_file(argv[1], context);
+	print_camera(context->pix);
+	print_spheres(context->pix, context->num_obj);
+	print_planes(context->pix, context->num_obj);
+	print_cylinders(context->pix, context->num_obj);
+	print_lights(context->pix, context->num_obj);
+//	exit(0);
 	raytracing(context->pix);
 	pix_to_window(context->pix);
 	image_hooks(context);
