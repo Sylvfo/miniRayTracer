@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:43 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 15:45:11 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 10:32:31 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	update_plane_properties(t_obj *plane, t_coord *coord,
 	plane->type = 2;
 }
 
-void	save_plane(char *line, t_pix **pix, t_num_obj *num_obj)
+void	save_plane(char *line, t_program_context *context)
 {
 	t_coord		coord;
 	t_coord		orientation;
@@ -62,9 +62,9 @@ void	save_plane(char *line, t_pix **pix, t_num_obj *num_obj)
 	color.r = int_to_float(color.r);
 	color.g = int_to_float(color.g);
 	color.b = int_to_float(color.b);
-	plane = pix[0][0].obj[2][num_obj->plan];
+	plane = context->pix[0][0]->obj[2][context->num_obj->plan];
 	if (!plane)
 		return ;
 	update_plane_properties(plane, &coord, &orientation, &color);
-	num_obj->plan++;
+	context->num_obj->plan++;
 }

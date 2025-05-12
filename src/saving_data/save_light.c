@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:30 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 15:45:18 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 10:33:32 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static void	save_other_light(char *line, t_pix **pix, t_num_obj *num_obj)
 	num_obj->light++;
 }
 
-void	save_light(char *line, t_pix **pix, t_num_obj *num_obj)
+void	save_light(char *line, t_program_context *context)
 {
 	if (line[0] == 'A')
-		save_ambient_light(line, pix);
+		save_ambient_light(line, context->pix[0]);
 	else if (line[0] == 'L')
-		save_other_light(line, pix, num_obj);
+		save_other_light(line, context->pix[0], context->num_obj);
 }

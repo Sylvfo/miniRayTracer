@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:39 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 15:48:40 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 10:31:44 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ static void	set_cylinder_obj(t_obj *cylinder, t_cylinder_params *params)
 	cylinder->closed_down = true;
 }
 
-void	save_cylinder(char *line, t_pix **pix, t_num_obj *num_obj)
+void	save_cylinder(char *line, t_program_context *context)
 {
 	t_cylinder_params	params;
 	t_obj				*cylinder;
 
 	line += 2;
 	parse_cylinder_params(&line, &params);
-	cylinder = pix[0][0].obj[3][num_obj->cylinder];
+	cylinder = context->pix[0][0]->obj[3][context->num_obj->cylinder];
 	if (!cylinder)
 		return ;
 	set_cylinder_obj(cylinder, &params);
-	num_obj->cylinder++;
+	context->num_obj->cylinder++;
 }

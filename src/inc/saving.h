@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:06:16 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 15:48:54 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 10:18:13 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ typedef struct s_cylinder_params
 	float	height;
 }	t_cylinder_params;
 
-void	save_line(char *line, t_pix ***pix, t_num_obj *num_obj);
-void	process_line(char *buf, t_pix ***pix, t_num_obj *num_obj);
-void	save_scene_file(const char *filename, t_pix ***pix, t_num_obj *num_obj);
-void	save_light(char *line, t_pix **pix, t_num_obj *num_obj);
-void	save_camera(char *line, t_pix **pix);
-void	save_sphere(char *line, t_pix **pix, t_num_obj *num_obj);
-void	save_plane(char *line, t_pix **pix, t_num_obj *num_obj);
-void	save_cylinder(char *line, t_pix **pix, t_num_obj *num_obj);
+// Ces fonctions prennent maintenant t_program_context *context
+void	save_line(char *line, t_program_context *context);
+void	process_line(char *buf, t_program_context *context);
+void	save_scene_file(const char *filename, t_program_context *context);
+
+// Signatures modifiées pour accepter t_program_context *context
+void	save_light(char *line, t_program_context *context);
+void	save_camera(char *line, t_program_context *context);
+void	save_sphere(char *line, t_program_context *context);
+void	save_plane(char *line, t_program_context *context);
+void	save_cylinder(char *line, t_program_context *context);
 
 #endif

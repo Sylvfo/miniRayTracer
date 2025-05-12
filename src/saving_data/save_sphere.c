@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:35 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 15:44:58 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 10:32:55 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	set_sphere_defaults(t_obj *sphere, float diameter)
 	sphere->type = SPHERE;
 }
 
-void	save_sphere(char *line, t_pix **pix, t_num_obj *num_obj)
+void	save_sphere(char *line, t_program_context *context)
 {
 	t_coord	coord;
 	t_color	color;
@@ -53,11 +53,11 @@ void	save_sphere(char *line, t_pix **pix, t_num_obj *num_obj)
 	color.r = int_to_float(color.r);
 	color.g = int_to_float(color.g);
 	color.b = int_to_float(color.b);
-	sphere = pix[0][0].obj[1][num_obj->sphere];
+	sphere = context->pix[0][0]->obj[1][context->num_obj->sphere];
 	if (!sphere)
 		return ;
 	set_sphere_coord(sphere, &coord);
 	set_sphere_color(sphere, &color);
 	set_sphere_defaults(sphere, diameter);
-	num_obj->sphere++;
+	context->num_obj->sphere++;
 }

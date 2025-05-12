@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/11 21:06:10 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 09:19:13 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # include "minirt_vect_point_color.h"
 # include "minirt_window.h"
 
-# define WND_WIDTH 1920
-# define WND_HEIGHT 1080
+# define WND_WIDTH 1080
+# define WND_HEIGHT 800
 
 # define BAKGROUND_COLOR 12701914
 # define EPSILON 0.00001
@@ -60,6 +60,6 @@ enum e_axes
 };
 
 int		main(int argc, char **argv);
-void	error_exit(const char *msg, t_pix ***pix, t_num_obj *num_obj);
+void	error_exit(const char *msg, t_program_context *context);
 
 #endif

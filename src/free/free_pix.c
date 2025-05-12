@@ -6,14 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:35:26 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 17:42:59 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:02:23 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-static void	free_pix_loop(t_pix ***pix, int x, int y, t_num_obj *num_obj);
-static void	free_pix_content(t_pix *pix, t_num_obj *num_obj);
 
 static void	init_free_counts(t_num_obj *num_obj, int *obj_count,
 	int *light_count, int *hits_count)
@@ -69,7 +66,7 @@ static void	free_hits_and_comps(t_pix *pix, int *hits_count)
 	pix->comps = NULL;
 }
 
-static void	free_pix_content(t_pix *pix, t_num_obj *num_obj)
+static void	free_pix_content(t_pix *pix, t_num_obj *num_obj, int i, int j)
 {
 	int	obj_count[4];
 	int	light_count[3];
@@ -78,8 +75,11 @@ static void	free_pix_content(t_pix *pix, t_num_obj *num_obj)
 	if (!pix)
 		return ;
 	init_free_counts(num_obj, obj_count, light_count, hits_count);
-	free_camera_and_image(pix);
-	free_obj_and_light_tabs(pix, obj_count, light_count);
+	if (i == 0 && j == 0)
+	{
+		free_camera_and_image(pix);
+		free_obj_and_light_tabs(pix, obj_count, light_count);
+	}
 	free_viewport_and_ray_data(pix);
 	free_hits_and_comps(pix, hits_count);
 }
@@ -93,7 +93,7 @@ static void	free_pix_inner_loop(t_pix ***pix, int i, int y, t_num_obj *num_obj)
 	{
 		if (pix[i][j])
 		{
-			free_pix_content(pix[i][j], num_obj);
+			free_pix_content(pix[i][j], num_obj, i, j);
 			free(pix[i][j]);
 			pix[i][j] = NULL;
 		}
@@ -105,8 +105,6 @@ static void	free_pix_loop(t_pix ***pix, int x, int y, t_num_obj *num_obj)
 {
 	int	i;
 
-	if (!pix)
-		return ;
 	i = 0;
 	while (i < x)
 	{
@@ -126,5 +124,4 @@ void	free_pix(t_pix ***pix, int x, int y, t_num_obj *num_obj)
 		return ;
 	free_pix_loop(pix, x, y, num_obj);
 	free(pix);
-	pix = NULL;
 }

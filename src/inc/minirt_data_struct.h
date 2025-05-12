@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 18:15:05 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 14:43:40 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 09:15:50 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,16 @@ typedef struct s_pix
 	t_hits		***hits;
 	t_comps		*comps;
 }	t_pix;
+
+typedef struct s_program_context
+{
+	t_pix		***pix;
+	t_num_obj	*num_obj;
+	int			width;
+	int			height;
+	t_image		*ima;
+	void		*mlx_ptr;
+	void		*mlx_win;
+}	t_program_context;
 
 #endif

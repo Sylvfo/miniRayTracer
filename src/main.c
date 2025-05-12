@@ -6,16 +6,27 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 20:41:24 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:05:33 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./inc/minirt.h"
 
-void	error_exit(const char *msg, t_pix ***pix, t_num_obj *num_obj)
+void	error_exit(const char *msg, t_program_context *context)
 {
 	fprintf(stderr, "%s\n", msg);
-	free_all(pix, WND_HEIGHT, WND_WIDTH, num_obj);
+	if (context)
+	{
+		if (context->pix || context->num_obj)
+			free_all(context->pix, context->width,
+				context->height, context->num_obj);
+		context->pix = NULL;
+		context->num_obj = NULL;
+		if (context->mlx_ptr && context->mlx_win)
+			mlx_destroy_window(context->mlx_ptr, context->mlx_win);
+		free(context);
+		context = NULL;
+	}
 	exit(EXIT_FAILURE);
 }
 
@@ -36,6 +47,45 @@ int	check_args(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
+	t_program_context	*context;
+
+	if (check_args(argc, argv) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	context = malloc(sizeof(t_program_context));
+	if (!context)
+	{
+		perror("Failed to allocate memory for program context");
+		return (EXIT_FAILURE);
+	}
+	ft_bzero(context, sizeof(t_program_context));
+	context->num_obj = malloc(sizeof(t_num_obj));
+	if (!context->num_obj)
+	{
+		perror("Failed to allocate memory for num_obj");
+		error_exit(NULL, context);
+	}
+	ft_bzero(context->num_obj, sizeof(t_num_obj));
+	parse_scene_file(argv[1], NULL, context);
+	context->pix = init_data(context->num_obj);
+	if (!context->pix)
+	{
+		perror("Failed to initialize pixel data");
+		error_exit(NULL, context);
+	}
+	context->width = WND_WIDTH;
+	context->height = WND_HEIGHT;
+	context->ima = context->pix[0][0]->ima;
+	context->mlx_ptr = context->ima->mlx_ptr;
+	context->mlx_win = context->ima->mlx_win;
+	save_scene_file(argv[1], context);
+	raytracing(context->pix);
+	pix_to_window(context->pix);
+	image_hooks(context);
+	return (EXIT_SUCCESS);
+}
+
+/*int	main(int argc, char **argv)
+{
 	t_pix		***pix;
 	t_num_obj	*num_obj;
 
@@ -55,6 +105,6 @@ int	main(int argc, char **argv)
 	raytracing(pix);
 	pix_to_window(pix);
 	image_hooks(pix[0][0]->ima);
-	//free_all(pix, WND_HEIGHT, WND_WIDTH, num_obj);
+	free_all(pix, WND_HEIGHT, WND_WIDTH, num_obj);
 	return (EXIT_SUCCESS);
-}
+}*/

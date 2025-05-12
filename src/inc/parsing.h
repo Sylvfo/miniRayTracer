@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/04/21 17:10:58 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 09:34:19 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int		validate_orientation_vector(float ox, float oy, float oz);
 int		validate_fov(float fov);
 
 /* Parsing */
-void	parse_scene_file(const char *filename, t_pix ***pix, t_num_obj *num_obj);
-void	process_buffer(char *buf, t_pix ***pix, t_num_obj *num_obj);
+void	parse_scene_file(const char *filename, t_pix ***pix,
+			t_program_context *context);
+void	process_buffer(char *buf, t_program_context *context);
 int		validate_ambient(char *line);
 int		validate_light(char *line, t_num_obj *num_obj);
 int		validate_camera(char *line);

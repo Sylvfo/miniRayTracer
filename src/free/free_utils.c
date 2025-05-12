@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:34:56 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 17:59:08 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:05:25 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_image(t_image *ima)
 {
 	if (!ima)
 		return ;
+	if (ima->mlx_ptr && ima->img)
+		mlx_destroy_image(ima->mlx_ptr, ima->img);
 	free(ima);
 }
 
@@ -45,6 +47,8 @@ void	free_comps(t_comps *comps)
 
 void	free_all(t_pix ***pix, int x, int y, t_num_obj *num_obj)
 {
-	/* free_pix(pix, x, y, num_obj);
-	free(num_obj); */
+	if (pix)
+		free_pix(pix, x, y, num_obj);
+	if (num_obj)
+		free(num_obj);
 }
