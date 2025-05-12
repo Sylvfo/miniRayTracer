@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:35:26 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 11:02:23 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:19:31 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ static void	free_viewport_and_ray_data(t_pix *pix)
 
 static void	free_hits_and_comps(t_pix *pix, int *hits_count)
 {
-	free_hits_tab(pix->hits, 4, hits_count);
-	pix->hits = NULL;
+	if (pix->hits)
+	{
+		free_hits_tab(pix->hits, 4, hits_count);
+		pix->hits = NULL;
+	}
 	free_comps(pix->comps);
 	pix->comps = NULL;
 }

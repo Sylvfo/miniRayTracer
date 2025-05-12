@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:35:08 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 15:27:58 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:39:04 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,36 @@ void	free_light_tab(t_light ***lux, int nb_type, int *nb_lux)
 {
 	int	i;
 	int	j;
+	int	count;
 
 	if (!lux)
 		return ;
 	i = 0;
 	while (i < nb_type)
 	{
-		j = 0;
-		while (nb_lux && j < nb_lux[i])
+		if (lux[i])
 		{
-			free_light(lux[i][j]);
-			j++;
+			j = 0;
+			count = 0;
+			if (nb_lux && i < 3)
+			{
+				count = nb_lux[i];
+			}
+			if (count > 0)
+			{
+				while (j < count)
+				{
+					if (lux[i][j])
+					{
+						free_light(lux[i][j]);
+						lux[i][j] = NULL;
+					}
+					j++;
+				}
+			}
+			free(lux[i]);
+			lux[i] = NULL;
 		}
-		free(lux[i]);
 		i++;
 	}
 	free(lux);
@@ -70,9 +87,15 @@ static void	free_one_hit(t_hits *hit)
 	if (!hit)
 		return ;
 	if (hit->r_origin)
+	{
 		free(hit->r_origin);
+		hit->r_origin = NULL;
+	}
 	if (hit->r_dir)
+	{
 		free(hit->r_dir);
+		hit->r_dir = NULL;
+	}
 	free(hit);
 }
 
@@ -90,12 +113,16 @@ void	free_hits_tab(t_hits ***hits, int nb_type, int *nb_hits)
 	while (i < nb_type)
 	{
 		j = 0;
-		while (nb_hits && j < nb_hits[i])
+		if (hits[i])
 		{
-			free_one_hit(hits[i][j]);
-			j++;
+			while (nb_hits && j < nb_hits[i])
+			{
+				if (hits[i][j])
+					free_one_hit(hits[i][j]);
+				j++;
+			}
+			free(hits[i]);
 		}
-		free(hits[i]);
 		i++;
 	}
 	free(hits);
