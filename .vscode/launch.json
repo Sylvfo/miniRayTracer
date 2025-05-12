@@ -10,7 +10,7 @@
 			"name": "Debug",
 			"program": "${workspaceFolder}/minirt",
 			"args": [
-				"${workspaceFolder}/image/test1.rt"
+				"${workspaceFolder}/image/simple.rt"
 			],
 			"cwd": "${workspaceFolder}"
 		}
