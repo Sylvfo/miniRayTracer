@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:51:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/12 14:06:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/12 17:54:31 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	constructing_camera(t_pix ***pix)
 {
 	view_camera(pix[0][0]->cam);
 	inverse_matrix_44(pix[0][0]->cam->m_inverse, pix[0][0]->cam->m_transf);
+//	print_matrix_44(pix[0][0]->cam->m_inverse);
 	pixel_size(pix[0][0]);
 }
 
 void	view_camera(t_camera *cam)
 {
+	print_vector(cam->v_up);
 	if (cam->v_axe->x == 0 && fabs(cam->v_axe->y) == 1 && cam->v_axe->z == 0)
 		vector_fill(cam->v_up, 0, 0, -1);
 	cross_product_NA(cam->v_left, cam->v_up, cam->v_axe);
@@ -46,6 +48,7 @@ void	view_camera(t_camera *cam)
 	fill_translation_matrix(cam->m_transl, -1 * cam->p_coord->x,
 		-1 * cam->p_coord->y, -1 * cam->p_coord->z);
 	matrix_mult_3(cam->m_transf, cam->m_orient, cam->m_transl);
+
 }
 
 void	pixel_size(t_pix *pix)

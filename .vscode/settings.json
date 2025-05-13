@@ -2,6 +2,7 @@
 	"files.associations": {
 		"minirt_data_struct.h": "c",
 		"minirt.h": "c",
-		"minirt_matrix.h": "c"
+		"minirt_matrix.h": "c",
+		"minirt_vect_point_color.h": "c"
 	}
 }

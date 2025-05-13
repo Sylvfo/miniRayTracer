@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene_camera.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:20:32 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 17:22:58 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 16:28:26 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,29 @@
 
 void	init_pix_camera(t_pix ***pix)
 {
+	//ici modifié par sylvie
+/*	pix[0][0]->cam = malloc(sizeof(t_camera));
+	if (!pix[0][0]->cam)
+		return ;*/
+	pix[0][0]->cam->p_coord = malloc(sizeof(t_coord));
+	pix[0][0]->cam->v_axe = malloc(sizeof(t_coord));
+	if (!pix[0][0]->cam->p_coord || !pix[0][0]->cam->v_axe)
+	{
+		free(pix[0][0]->cam->p_coord);
+		free(pix[0][0]->cam->v_axe);
+		free(pix[0][0]->cam);
+		return ;
+	}
+	pix[0][0]->cam->p_coord->x = 0.0f;
+	pix[0][0]->cam->p_coord->y = 0.0f;
+	pix[0][0]->cam->p_coord->z = 0.0f;
+	pix[0][0]->cam->p_coord->t = 1;
+	pix[0][0]->cam->v_axe->x = 0.0f;
+	pix[0][0]->cam->v_axe->y = 0.0f;
+	pix[0][0]->cam->v_axe->z = 1.0f;
+	pix[0][0]->cam->v_axe->t = 0;
+	pix[0][0]->cam->fov = 90.0f;
+
 	color_int_to_rgb(BAKGROUND_COLOR, pix[0][0]->obj[0][0]->color);
 	pix[0][0]->obj[0][0]->color->r
 		= int_to_float(pix[0][0]->obj[0][0]->color->r);
@@ -34,4 +57,8 @@ void	init_pix_camera(t_pix ***pix)
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
 	pix[0][0]->cam->canva_width = WND_WIDTH;
 	pix[0][0]->cam->fov *= 0.0174533;
+
+	//ici modifié par sylvie
+
+
 }

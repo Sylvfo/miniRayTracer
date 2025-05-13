@@ -6,7 +6,21 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:29:35 by syl               #+#    #+#             */
-/*   Updated: 2025/05/12 14:07:07 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/13 09:03:30 by syl              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minirt.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   06_intersect_cylinder.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/14 13:29:35 by syl               #+#    #+#             */
+/*   Updated: 2025/05/13 08:53:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +48,7 @@ void	intersect_cylinder(t_pix *pix, int cyl_n)
 	pix->hits[3][cyl_n]->t_count = 2;
 	cut_cylinder(pix, cyl_n, (-b - simple_sqrt(discriminant)) / (2 * a),
 		(-b + simple_sqrt(discriminant)) / (2 * a));
-	intersect_caps(pix, cyl_n);
+//	intersect_caps(pix, cyl_n);
 }
 
 void	cut_cylinder(t_pix *pix, int cyl_n, float t1, float t2)

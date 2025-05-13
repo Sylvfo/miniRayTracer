@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/12 14:34:25 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/12 15:41:04 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	prepare_v_light(t_pix *pix, int lux_num)
 {
 	substraction_p_to_v_NA(pix->comps->v_light_to_point, pix->lux[1][lux_num]->p_coord, pix->comps->p_touch);
 	pix->comps->distance_light_p_touch = length_vector(pix->comps->v_light_to_point);
-	printf("probleme here\n");
+//	printf("probleme here\n");
+	
 	normalize_vector_NA(pix->comps->v_light_to_point);
 }
 

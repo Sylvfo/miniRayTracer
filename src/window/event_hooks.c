@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/05/12 11:05:05 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/12 18:07:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	image_hooks(t_program_context *context)
 {
 	mlx_hook(context->mlx_win, 2, 1L << 0, ft_keys, context);
-	mlx_hook(context->mlx_win, 4, 1L << 2, position_mouse_pressed, context);
+//	mlx_hook(context->mlx_win, 4, 1L << 2, position_mouse_pressed, context);
 	mlx_hook(context->mlx_win, 17, 0, ft_exit, context);
 	mlx_loop(context->mlx_ptr);
 }

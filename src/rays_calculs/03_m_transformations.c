@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:01:13 by syl               #+#    #+#             */
-/*   Updated: 2025/05/12 14:06:29 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/13 08:48:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	set_transformation(t_obj ***obj)
 
 void	set_transformation_obj(t_obj *obj)
 {
+	if (obj->type == SPHERE || obj->type == CYLINDER)
+	{
+		obj->radius = obj->diam / 4.0f;
+		obj->diam = obj->diam / 2.0f;
+	}
 	translation_matrix_coord(obj);
 	matrix_mult_2(obj->m_transf, obj->m_transl);
 	if (obj->type == PLAN || obj->type == CYLINDER)

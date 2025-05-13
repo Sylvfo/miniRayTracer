@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 14:28:46 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/12 18:12:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ int	main(int argc, char **argv)
 	print_planes(context->pix, context->num_obj);
 	print_cylinders(context->pix, context->num_obj);
 	print_lights(context->pix, context->num_obj);
+	print_vector(context->pix[7][8]->cam->v_up);
+	context->pix[0][0]->cam->fov *= 0.0174533;
 //	exit(0);
 	raytracing(context->pix);
 	pix_to_window(context->pix);
