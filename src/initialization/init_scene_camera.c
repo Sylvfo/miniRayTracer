@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:20:32 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 17:22:58 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/13 14:39:54 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,4 @@ void	init_pix_camera(t_pix ***pix)
 	pix[0][0]->cam->view_width = WND_WIDTH;
 	pix[0][0]->cam->canva_height = WND_HEIGHT;
 	pix[0][0]->cam->canva_width = WND_WIDTH;
-	pix[0][0]->cam->fov *= 0.0174533;
 }

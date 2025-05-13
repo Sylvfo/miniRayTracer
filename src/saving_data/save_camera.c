@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:00 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 10:32:14 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/13 14:39:45 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	save_camera(char *line, t_program_context *context)
 	cam->v_axe->x = orientation.x;
 	cam->v_axe->y = orientation.y;
 	cam->v_axe->z = orientation.z;
-	cam->fov = fov;
+	cam->fov = fov * 0.0174533;
 }
