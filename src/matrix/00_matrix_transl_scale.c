@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_matrix_transl_scale.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/05/09 17:04:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/13 15:12:37 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,17 @@ void	fill_translation_matrix(float *m_transl, float x, float y, float z)
 
 void	scaling_matrix_coord(t_obj *obj)
 {
-	matrix_fill(obj->m_scale, 0, 0, obj->diam);
-	matrix_fill(obj->m_scale, 1, 1, obj->diam);
-	matrix_fill(obj->m_scale, 2, 2, obj->diam);
+	if (obj->type == CYLINDER)
+	{
+		matrix_fill(obj->m_scale, 0, 0, obj->diam);
+		matrix_fill(obj->m_scale, 1, 1, 1.0);
+		matrix_fill(obj->m_scale, 2, 2, obj->diam);
+	}
+	else
+	{
+		matrix_fill(obj->m_scale, 0, 0, obj->diam);
+		matrix_fill(obj->m_scale, 1, 1, obj->diam);
+		matrix_fill(obj->m_scale, 2, 2, obj->diam);
+	}
 	matrix_fill(obj->m_scale, 3, 3, 1);
 }
