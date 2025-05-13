@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:31:40 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:53:45 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	prepare_v_light(t_pix *pix, int lux_num)
 {
+	t_coord	offset_point;
+	t_coord	tmp;
+
+	scalar_mult_na(&tmp, pix->comps->v_norm_parral, EPSILON * 100);
+	addition_na(&offset_point, pix->comps->p_touch, &tmp);
 	substraction_p_to_v_na(pix->comps->v_light_to_point,
-		pix->lux[1][lux_num]->p_coord, pix->comps->p_touch);
+		pix->lux[1][lux_num]->p_coord, &offset_point);
 	pix->comps->distance_light_p_touch
 		= length_vector(pix->comps->v_light_to_point);
 	normalize_vector_na(pix->comps->v_light_to_point);

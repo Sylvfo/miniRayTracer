@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/13 14:36:40 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/13 15:52:34 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@
 # include "minirt_vect_point_color.h"
 # include "minirt_window.h"
 
-# define WND_WIDTH 1200
-# define WND_HEIGHT 800
+# define WND_WIDTH 1080
+# define WND_HEIGHT 900
 
 # define BAKGROUND_COLOR 12701914
-# define EPSILON 0.00001
+# define EPSILON 0.001
 # define PI 3.1415926535
 # define PIRAD 0.017453
 # define SHININESS 80.0
