@@ -44,7 +44,7 @@ NAME = minirt
 CC = cc
 
 # Flags de compilation
-CFLAGS = #-Wall -Wextra -Werror #-Iincludes
+CFLAGS = -Wall -Wextra -Werror #-Iincludes
 LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources
