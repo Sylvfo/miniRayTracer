@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:39 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 10:31:44 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/13 14:35:24 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	parse_cylinder_params(char **line, t_cylinder_params *params)
 
 static void	set_cylinder_obj(t_obj *cylinder, t_cylinder_params *params)
 {
-	cylinder->diam = params->diameter;
+	cylinder->diam = params->diameter / 2.0f;
+	cylinder->radius = params->diameter / 4.0f;
 	cylinder->height = params->height;
 	cylinder->p_coord->x = params->coord.x;
 	cylinder->p_coord->y = params->coord.y;

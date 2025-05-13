@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:13:35 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 10:32:55 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/13 14:35:16 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	set_sphere_coord(t_obj *sphere, t_coord *coord)
 
 static void	set_sphere_defaults(t_obj *sphere, float diameter)
 {
-	sphere->diam = diameter;
+	sphere->diam = diameter / 2.0f;
+	sphere->radius = diameter / 4.0f;
 	sphere->difuse = 0.7;
 	sphere->specular = 0.2;
 	sphere->type = SPHERE;
