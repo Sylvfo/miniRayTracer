@@ -13,6 +13,17 @@
 				"${workspaceFolder}/image/boulier.rt"
 			],
 			"cwd": "${workspaceFolder}"
-		}
+		},
+		{
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug + Make",
+            "program": "${workspaceFolder}/minirt",
+            "args": [
+                "${workspaceFolder}/image/boulier.rt"
+            ],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "make debug"
+        }
 	]
 }

@@ -6,60 +6,28 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 00:00:00 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 20:28:18 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 22:10:03 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-// Fonctions d'assistance pour libérer des types de données spécifiques
-static void free_coord(t_coord *coord)
+void free_coord(t_coord *coord)
 {
 	if (coord)
-	{
 		free(coord);
-	}
 }
 
-static void free_color(t_color *color)
+void free_color(t_color *color)
 {
 	if (color)
-	{
 		free(color);
-	}
 }
 
-// Fonction auxiliaire pour libérer une caméra
-static void free_camera(t_camera *cam)
-{
-    if (!cam)
-        return;
-        
-    free_coord(cam->p_coord);
-    free_coord(cam->v_axe);
-    free_coord(cam->p_zero);
-    free_coord(cam->v_up);
-    free_coord(cam->v_left);
-    free_coord(cam->v_true_up);
-    
-    if (cam->m_orient)
-        free(cam->m_orient);
-    if (cam->m_transl)
-        free(cam->m_transl);
-    if (cam->m_transf)
-        free(cam->m_transf);
-    if (cam->m_inverse)
-        free(cam->m_inverse);
-        
-    free(cam);
-}
-
-// Fonction auxiliaire pour libérer les composants (comps)
-static void free_comps(t_comps *comps)
+void free_comp(t_comps *comps)
 {
 	if (!comps)
 		return;
-		
 	free_coord(comps->r_origin);
 	free_coord(comps->r_dir);
 	free_coord(comps->p_touch);
@@ -73,203 +41,241 @@ static void free_comps(t_comps *comps)
 	free_coord(comps->p_space);
 	free_coord(comps->origin_zero);
 	free_coord(comps->object_normal);
-	
-	if (comps->obj_color)
-		free_color(comps->obj_color);
+	free_color(comps->obj_color);
 	if (comps->obj_inv)
 		free(comps->obj_inv);
 	if (comps->transp_inv)
 		free(comps->transp_inv);
-	
-	// Note: comps->obj n'est pas libéré ici car il semble être 
-	// un pointeur vers un objet géré ailleurs dans le code
-		
 	free(comps);
 }
 
-// Fonction auxiliaire pour libérer un objet
-static void free_obj(t_obj *obj)
+void free_obj(t_obj *obj)
 {
-    if (!obj)
-        return;
-        
-    free_coord(obj->p_coord);
-    free_coord(obj->v_axe);
-    free_coord(obj->v_axe_r);
-    free_coord(obj->from);
-    free_coord(obj->v_sph_camera);
-    free_color(obj->color);
-    
-    if (obj->m_transl)
-        free(obj->m_transl);
-    if (obj->m_rot)
-        free(obj->m_rot);
-    if (obj->m_scale)
-        free(obj->m_scale);
-    if (obj->m_transf)
-        free(obj->m_transf);
-    if (obj->m_inv)
-        free(obj->m_inv);
-        
-    free(obj);
+	if (!obj)
+		return;
+	free_coord(obj->p_coord);
+	free_coord(obj->v_axe);
+	free_coord(obj->v_axe_r);
+	free_coord(obj->from);
+	free_coord(obj->v_sph_camera);
+	free_color(obj->color);
+	if (obj->m_transl)
+		free(obj->m_transl);
+	if (obj->m_rot)
+		free(obj->m_rot);
+	if (obj->m_scale)
+		free(obj->m_scale);
+	if (obj->m_transf)
+		free(obj->m_transf);
+	if (obj->m_inv)
+		free(obj->m_inv);
+	free(obj);
 }
 
-// Fonction auxiliaire pour libérer un hit
-static void free_hits(t_hits *hit)
+void free_obj_2d(t_obj ***obj)
+{
+	int i, j;
+	if (!obj)
+		return;
+	for (i = 0; obj[i] != NULL; i++)
+	{
+		for (j = 0; obj[i][j] != NULL; j++)
+			free_obj(obj[i][j]);
+		free(obj[i]);
+	}
+	free(obj);
+}
+
+void free_hits(t_hits *hit)
 {
 	if (!hit)
 		return;
-	
-	//printf("Freeing hit at %p\n", (void*)hit);
 	free_coord(hit->r_origin);
 	free_coord(hit->r_dir);
-	//free(hit);
 }
 
-// Fonction auxiliaire pour libérer la table complète des hits
-static void	free_hits_table(t_hits ***hits)
+void free_hits_table(t_pix ***pix)
 {
-	int	i;
-	int	j;
-
-	if (!hits)
-		return ;
-	for (i = 0; i < 4; i++)
+	int i, j, k, l;
+	if (!pix)
+		return;
+	for (i = 0; pix[i] != NULL; i++)
 	{
-		if (!hits[i])
-			continue ;
-		j = 0;
-		while (hits[i][j] != NULL)
+		for (j = 0; pix[i][j] != NULL; j++)
 		{
-			if (hits[i][j]->r_dir)
-				free(hits[i][j]->r_dir);
-			if (hits[i][j]->r_origin)
-				free(hits[i][j]->r_origin);
-			free(hits[i][j]);
-			j++;
+			if (pix[i][j]->hits)
+			{
+				for (k = 0; pix[i][j]->hits[k] != NULL; k++)
+				{
+					l = 0;
+					while (pix[i][j]->hits[k][l] != NULL)
+					{
+						free_hits(pix[i][j]->hits[k][l]);
+						free(pix[i][j]->hits[k][l]);
+						l++;
+					}
+					free(pix[i][j]->hits[k]);
+				}
+				free(pix[i][j]->hits);
+				pix[i][j]->hits = NULL;
+			}
 		}
-		free(hits[i]);
 	}
-	//free(hits);
 }
 
-// Fonction principale de libération de mémoire
-void free_all(t_program_context *context)
+void free_image(t_image *ima)
 {
-	int i, j, k;
-	
+	if (!ima)
+		return;
+	if (ima->mlx_ptr && ima->img)
+		mlx_destroy_image(ima->mlx_ptr, ima->img);
+	free(ima);
+}
+
+void free_mlx(void *mlx_ptr, void *mlx_win)
+{
+	if (mlx_win && mlx_ptr)
+		mlx_destroy_window(mlx_ptr, mlx_win);
+	if (mlx_ptr)
+		mlx_destroy_display(mlx_ptr);
+	free(mlx_ptr);
+}
+
+void free_camera(t_camera *cam)
+{
+	if (!cam)
+		return;
+	free_coord(cam->p_coord);
+	free_coord(cam->v_axe);
+	free_coord(cam->p_zero);
+	free_coord(cam->v_up);
+	free_coord(cam->v_left);
+	free_coord(cam->v_true_up);
+	if (cam->m_orient)
+		free(cam->m_orient);
+	if (cam->m_transl)
+		free(cam->m_transl);
+	if (cam->m_transf)
+		free(cam->m_transf);
+	if (cam->m_inverse)
+		free(cam->m_inverse);
+	free(cam);
+}
+
+void free_lux(t_light **lux)
+{
+	int i;
+
+	if (!lux)
+		return;
+	for (i = 0; lux[i] != NULL; i++)
+	{
+		free_coord(lux[i]->p_coord);
+		free_color(lux[i]->color);
+		free(lux[i]);
+	}
+	free(lux);
+}
+
+void free_comps(t_pix ***pix)
+{
+	int i, j;
+	if (!pix)
+		return;
+	for (i = 0; pix[i] != NULL; i++)
+	{
+		for (j = 0; pix[i][j] != NULL; j++)
+		{
+			free_comp(pix[i][j]->comps);
+			pix[i][j]->comps = NULL;
+		}
+	}
+}
+
+void free_pixel(t_pix ***pix)
+{
+	int i, j;
+	if (!pix)
+		return;
+	for (i = 0; pix[i] != NULL; i++)
+	{
+		for (j = 0; pix[i][j] != NULL; j++)
+		{
+			free_coord(pix[i][j]->p_viewport);
+			free_coord(pix[i][j]->p_viewport_world);
+			free_coord(pix[i][j]->r_origin);
+			free_coord(pix[i][j]->r_dir);
+			free_color(pix[i][j]->color);
+			free(pix[i][j]);
+			pix[i][j] = NULL;
+		}
+		free(pix[i]);
+	}
+	free(pix);
+}
+
+void	free_all(t_program_context *context)
+{
 	if (!context)
 		return;
 
-	// 1. Image et MLX
+	// 1. Image
 	if (context->ima)
 	{
-		if (context->ima->mlx_ptr && context->ima->img)
-			mlx_destroy_image(context->ima->mlx_ptr, context->ima->img);
-		free(context->ima);
+		free_image(context->ima);
 		context->ima = NULL;
 	}
-	if (context->mlx_win && context->mlx_ptr)
-		mlx_destroy_window(context->mlx_ptr, context->mlx_win);
-	if (context->mlx_ptr)
-		mlx_destroy_display(context->mlx_ptr);
-	free(context->mlx_ptr);
-	context->mlx_ptr = NULL;
-	context->mlx_win = NULL;
 
-	// 2. Tableau de pixels
+	// 2. MLX
+	if (context->mlx_ptr || context->mlx_win)
+	{
+		free_mlx(context->mlx_ptr, context->mlx_win);
+		context->mlx_ptr = NULL;
+		context->mlx_win = NULL;
+	}
+
+	// 3. num_obj
+	if (context->num_obj)
+	{
+		free(context->num_obj);
+		context->num_obj = NULL;
+	}
+
+	// 4. Caméra, Lumières, Objets, Hits, Comps, Pixels
+	if (context->pix && context->pix[0] && context->pix[0][0])
+	{
+		if (context->pix[0][0]->cam)
+		{
+			free_camera(context->pix[0][0]->cam);
+			context->pix[0][0]->cam = NULL;
+		}
+		if (context->pix[0][0]->lux)
+		{
+			free_lux(context->pix[0][0]->lux);
+			context->pix[0][0]->lux = NULL;
+		}
+		if (context->pix[0][0]->obj)
+		{
+			free_obj_2d(context->pix[0][0]->obj);
+			context->pix[0][0]->obj = NULL;
+		}
+	}
+
+	// 5. Hits (table complète)
+	if (context->pix)
+		free_hits_table(context->pix);
+
+	// 6. Comps (table complète)
+	if (context->pix)
+		free_comps(context->pix);
+
+	// 7. Pixels (table complète)
 	if (context->pix)
 	{
-		// Libérer les ressources partagées (une seule fois)
-		if (context->pix[0] && context->pix[0][0])
-		{
-			// 2.1 Camera (une seule pour tous les pixels)
-			free_camera(context->pix[0][0]->cam);
-			
-			// 2.2 Objets (partagés par tous les pixels)
-			if (context->pix[0][0]->obj)
-			{
-				for (i = 0; context->pix[0][0]->obj[i] != NULL; i++)
-				{
-					for (j = 0; context->pix[0][0]->obj[i][j] != NULL; j++)
-						free_obj(context->pix[0][0]->obj[i][j]);
-					free(context->pix[0][0]->obj[i]);
-				}
-				free(context->pix[0][0]->obj);
-			}
-			
-			// 2.3 Lumières (partagées par tous les pixels)
-			if (context->pix[0][0]->lux)
-			{
-				for (i = 0; context->pix[0][0]->lux[i] != NULL; i++)
-				{
-					for (j = 0; context->pix[0][0]->lux[i][j] != NULL; j++)
-					{
-						free_coord(context->pix[0][0]->lux[i][j]->p_coord);
-						free_color(context->pix[0][0]->lux[i][j]->color);
-						free(context->pix[0][0]->lux[i][j]);
-					}
-					free(context->pix[0][0]->lux[i]);
-				}
-				free(context->pix[0][0]->lux);
-			}
-		}
-		
-		// 3. Libérer chaque pixel
-		for (i = 0; i < context->width; i++)
-		{
-			if (context->pix[i])
-			{
-				for (j = 0; j < context->height; j++)
-				{
-					if (context->pix[i][j])
-					{
-						// 3.1 Coord et Color par pixel
-						free_coord(context->pix[i][j]->p_viewport);
-						free_coord(context->pix[i][j]->p_viewport_world);
-						free_coord(context->pix[i][j]->r_origin);
-						free_coord(context->pix[i][j]->r_dir);
-						free_color(context->pix[i][j]->color);
-						
-						// 3.2 Hits par pixel
-						//free_hits_table(context->pix[i][j]->hits);
-						
-						// 3.2 Hits par pixel
-						if (context->pix[i][j]->hits)
-						{
-							// Se débarrasser de tous les tableaux de hits
-							for (k = 0; context->pix[i][j]->hits[k] != NULL; k++)
-							{
-								int l = 0;
-								while (context->pix[i][j]->hits[k][l] != NULL)
-								{
-									free_hits(context->pix[i][j]->hits[k][l]);
-									free(context->pix[i][j]->hits[k][l]);
-									l++;
-								}
-								free(context->pix[i][j]->hits[k]);
-							}
-							free(context->pix[i][j]->hits);
-						}
-						free(context->pix[i][j]->hits);
-						
-						// 3.3 Comps par pixel
-						free_comps(context->pix[i][j]->comps);
-						
-						// Libérer le pixel lui-même
-						free(context->pix[i][j]);
-					}
-				}
-				free(context->pix[i]);
-			}
-		}
-		free(context->pix);
+		free_pixel(context->pix);
+		context->pix = NULL;
 	}
-	
-	// 4. Nombre d'objets
-	if (context->num_obj)
-		free(context->num_obj);
-		
-	// 5. Contexte lui-même
+
+	// 8. Contexte
 	free(context);
 }

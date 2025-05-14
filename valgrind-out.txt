@@ -1,1320 +1,897 @@
-==9139== Memcheck, a memory error detector
-==9139== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==9139== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==9139== Command: ./minirt image/boulier.rt
-==9139== Parent PID: 3555
-==9139== 
---9139-- 
---9139-- Valgrind options:
---9139--    --leak-check=full
---9139--    --show-leak-kinds=all
---9139--    --track-origins=yes
---9139--    --verbose
---9139--    --log-file=valgrind-out.txt
---9139-- Contents of /proc/version:
---9139--   Linux version 5.15.0-139-generic (buildd@bos03-arm64-061) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #149-Ubuntu SMP Fri Apr 11 22:07:32 UTC 2025
---9139-- 
---9139-- Arch and hwcaps: ARM64, LittleEndian, v8-fhm-dpbcvadp-sha3-rdm-atomics-bf16-fp16-vfp16
---9139-- Page sizes: currently 4096, max supported 65536
---9139-- Valgrind library directory: /usr/libexec/valgrind
---9139-- Reading syms from /home/ubuntu/Documents/miniRayTracer/minirt
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
---9139--   Considering /usr/lib/debug/.build-id/46/771e9a54fff825356060bc1c8b4a44c1108bf8.debug ..
---9139--   .. build-id is valid
---9139-- Reading syms from /usr/libexec/valgrind/memcheck-arm64-linux
---9139--    object doesn't have a symbol table
---9139--    object doesn't have a dynamic symbol table
---9139-- Scheduler: using generic scheduler lock implementation.
---9139-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==9139== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-9139-by-ubuntu-on-???
-==9139== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-9139-by-ubuntu-on-???
-==9139== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-9139-by-ubuntu-on-???
-==9139== 
-==9139== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==9139== don't want to do, unless you know exactly what you're doing,
-==9139== or are doing some strange experiment):
-==9139==   /usr/bin/vgdb --pid=9139 ...command...
-==9139== 
-==9139== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==9139==   /path/to/gdb ./minirt
-==9139== and then give GDB the following command
-==9139==   target remote | /usr/bin/vgdb --pid=9139
-==9139== --pid is optional if only one valgrind process is running
-==9139== 
---9139-- REDIR: 0x401ee40 (ld-linux-aarch64.so.1:strlen) redirected to 0x580b918c (???)
---9139-- REDIR: 0x401de40 (ld-linux-aarch64.so.1:strcmp) redirected to 0x580b91e0 (???)
---9139-- REDIR: 0x401dd80 (ld-linux-aarch64.so.1:index) redirected to 0x580b91b4 (???)
---9139-- Reading syms from /usr/libexec/valgrind/vgpreload_core-arm64-linux.so
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libXext.so.6.4.0
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libm.so.6
---9139--   Considering /usr/lib/debug/.build-id/86/686e2c1e7d044eef264708abada31e1830baa5.debug ..
---9139--   .. build-id is valid
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libc.so.6
---9139--   Considering /usr/lib/debug/.build-id/2a/450fe74d1b79a321cc1b12337fc31a2c3fb834.debug ..
---9139--   .. build-id is valid
-==9139== WARNING: new redirection conflicts with existing -- ignoring it
---9139--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
---9139--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a520 aligned_alloc
-==9139== WARNING: new redirection conflicts with existing -- ignoring it
---9139--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
---9139--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a500 aligned_alloc
-==9139== WARNING: new redirection conflicts with existing -- ignoring it
---9139--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
---9139--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a520 aligned_alloc
-==9139== WARNING: new redirection conflicts with existing -- ignoring it
---9139--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
---9139--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a500 aligned_alloc
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libXau.so.6.0.0
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libXdmcp.so.6.0.0
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libbsd.so.0.11.5
---9139--    object doesn't have a symbol table
---9139-- Reading syms from /usr/lib/aarch64-linux-gnu/libmd.so.0.0.5
---9139--    object doesn't have a symbol table
---9139-- REDIR: 0x4b51620 (libc.so.6:memchr) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
---9139-- REDIR: 0x4b50650 (libc.so.6:strlen) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
---9139-- REDIR: 0x4b51f70 (libc.so.6:memcpy) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
---9139-- REDIR: 0x4b51990 (libc.so.6:memset) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
---9139-- REDIR: 0x4b51850 (libc.so.6:memmove) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
---9139-- REDIR: 0x4b50a40 (libc.so.6:rindex) redirected to 0x486ac40 (rindex)
---9139-- REDIR: 0x4b4d630 (libc.so.6:malloc) redirected to 0x4864fe0 (malloc)
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112F7C: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112F24: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112F3C: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112CF0: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D00: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D10: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D20: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112D37: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112D37: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D3C: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112D77: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112D77: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D7C: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112DC3: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112DC3: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112DC8: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112E03: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112E03: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112E08: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112E4F: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112E4F: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112E54: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112E9B: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112E9B: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112EA0: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
---9139-- REDIR: 0x4b598c0 (libc.so.6:__GI_strlen) redirected to 0x486b2a0 (__GI_strlen)
---9139-- REDIR: 0x4b507e4 (libc.so.6:strncmp) redirected to 0x486ba40 (strncmp)
---9139-- REDIR: 0x4b4e460 (libc.so.6:calloc) redirected to 0x4869e90 (calloc)
---9139-- REDIR: 0x4b57b40 (libc.so.6:__GI_memcpy) redirected to 0x486cf00 (__GI_memcpy)
---9139-- REDIR: 0x4b4dbc4 (libc.so.6:free) redirected to 0x4867a60 (free)
---9139-- REDIR: 0x4b53700 (libc.so.6:strchrnul) redirected to 0x486f914 (strchrnul)
---9139-- REDIR: 0x4bb3a20 (libc.so.6:__strcpy_chk) redirected to 0x486f980 (__strcpy_chk)
---9139-- REDIR: 0x4b59940 (libc.so.6:__strlen_asimd) redirected to 0x486b274 (strlen)
---9139-- REDIR: 0x4b51240 (libc.so.6:strstr) redirected to 0x4870160 (strstr)
---9139-- REDIR: 0x4b51680 (libc.so.6:bcmp) redirected to 0x486e5e0 (bcmp)
---9139-- REDIR: 0x4b58fc0 (libc.so.6:__GI_memset) redirected to 0x486ee50 (memset)
---9139-- REDIR: 0x4b57cd0 (libc.so.6:__GI_memmove) redirected to 0x486f230 (__GI_memmove)
---9139-- REDIR: 0x4b4de20 (libc.so.6:realloc) redirected to 0x486a110 (realloc)
---9139-- REDIR: 0x4b509d0 (libc.so.6:strncpy) redirected to 0x486b580 (strncpy)
---9139-- REDIR: 0x4b50000 (libc.so.6:strcmp) redirected to 0x486c2d0 (strcmp)
---9139-- REDIR: 0x4b50180 (libc.so.6:strcpy) redirected to 0x486b3c0 (strcpy)
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110F20: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110EC8: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110EE0: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110D98: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110DA8: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110DC8: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110DE8: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110E1C: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110E50: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11395C: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113CB3: cross_product_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11048F: rotation_from_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x114CAF: set_transformation_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x114D7F: set_transformation (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x114E0F: matrix_transformations (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116ADF: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11345F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C5F7: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B5B3: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B723: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11395C: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113F1B: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116B53: prepare_v_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x115403: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11551F: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116AFF: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11345F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C5F7: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B5B3: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B723: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11395C: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113F1B: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x115BE7: compute_specular (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11548B: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11551F: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116AFF: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11345F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C5F7: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B5B3: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B723: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A32F: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A33B: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A347: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A360: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A37C: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A398: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A3D0: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Invalid read of size 8
-==9139==    at 0x10A9C8: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Address 0x53a97b0 is 0 bytes after a block of size 16 alloc'd
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C6C7: allocate_light_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10CEF3: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E29B: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== Invalid free() / delete / delete[] / realloc()
-==9139==    at 0x4867AD0: free (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10AD6F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Address 0x56b6eb0 is 0 bytes inside a block of size 40 free'd
-==9139==    at 0x4867AD0: free (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10AD3F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Block was alloc'd at
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10E3E3: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-==9139== HEAP SUMMARY:
-==9139==     in use at exit: 2,560,736 bytes in 160,046 blocks
-==9139==   total heap usage: 4,040,787 allocs, 3,920,741 frees, 108,273,907 bytes allocated
-==9139== 
-==9139== Searching for pointers to 160,046 not-freed blocks
-==9139== Checked 157,032 bytes
-==9139== 
-==9139== 16 bytes in 1 blocks are definitely lost in loss record 1 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10B807: init_hits_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C3F7: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 16 bytes in 1 blocks are definitely lost in loss record 2 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10B86B: init_hits_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C3F7: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 16 bytes in 1 blocks are definitely lost in loss record 3 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10BD6F: init_hits_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C40F: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 16 bytes in 1 blocks are definitely lost in loss record 4 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10BDFF: init_hits_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C40F: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 16 bytes in 1 blocks are definitely lost in loss record 5 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C0FB: init_hits_cylinders (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C41B: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 16 bytes in 1 blocks are definitely lost in loss record 6 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C18B: init_hits_cylinders (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C41B: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 320 bytes in 20 blocks are definitely lost in loss record 7 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10B9E3: init_hits_spheres (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C403: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 320 bytes in 20 blocks are definitely lost in loss record 8 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10BA73: init_hits_spheres (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C403: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E42F: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 640,000 bytes in 40,000 blocks are definitely lost in loss record 9 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10E553: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 640,000 bytes in 40,000 blocks are definitely lost in loss record 10 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10E587: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 640,000 bytes in 40,000 blocks are definitely lost in loss record 11 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10E5BB: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 640,000 bytes in 40,000 blocks are definitely lost in loss record 12 of 12
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x11203F: create_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10C997: init_comps_vectors_creations (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10CB8F: init_comps_vectors (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10CD47: init_pix_comps (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E3BF: init_scene_structures (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2F3: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== LEAK SUMMARY:
-==9139==    definitely lost: 2,560,736 bytes in 160,046 blocks
-==9139==    indirectly lost: 0 bytes in 0 blocks
-==9139==      possibly lost: 0 bytes in 0 blocks
-==9139==    still reachable: 0 bytes in 0 blocks
-==9139==         suppressed: 0 bytes in 0 blocks
-==9139== 
-==9139== ERROR SUMMARY: 79294 errors from 58 contexts (suppressed: 1 from 1)
-==9139== 
-==9139== 1 errors in context 1 of 58:
-==9139== Invalid read of size 8
-==9139==    at 0x10A9C8: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Address 0x53a97b0 is 0 bytes after a block of size 16 alloc'd
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C6C7: allocate_light_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10CEF3: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E29B: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 2 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A3D0: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 3 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A398: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 4 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A37C: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 5 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A360: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 6 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A347: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 7 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A33B: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 8 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A32F: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10A78F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C58F: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B4AB: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B6C3: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 9 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110E50: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 10 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110E1C: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 11 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110DE8: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 12 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110DC8: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 13 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110DA8: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 14 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110D98: save_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110EFF: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 15 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112EA0: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 16 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112E9B: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 17 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112E9B: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 18 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112E54: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 19 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112E4F: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 20 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112E4F: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 21 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112E08: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 22 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112E03: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 23 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112E03: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 24 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112DC8: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 25 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112DC3: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 26 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112DC3: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 27 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D7C: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 28 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112D77: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 29 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112D77: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 30 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D3C: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 31 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x1175AC: ft_strncmp (ft_strncmp.c:27)
-==9139==    by 0x112D37: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 32 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11760C: ft_strncmp (ft_strncmp.c:25)
-==9139==    by 0x112D37: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 33 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D20: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 34 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D10: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 35 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112D00: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 1 errors in context 36 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112CF0: parse_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x112F5B: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 2 errors in context 37 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11395C: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113CB3: cross_product_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11048F: rotation_from_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x114CAF: set_transformation_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x114D7F: set_transformation (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x114E0F: matrix_transformations (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116ADF: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11345F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C5F7: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B5B3: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B723: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 2 errors in context 38 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110F20: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 2 errors in context 39 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110EE0: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 2 errors in context 40 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112F7C: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 2 errors in context 41 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112F3C: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 3 errors in context 42 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x110EC8: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x110FEF: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113453: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x110F38: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 3 errors in context 43 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x112F24: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11301F: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133A3: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a stack allocation
-==9139==    at 0x112F94: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 19568 errors in context 44 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11395C: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113F1B: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x115BE7: compute_specular (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11548B: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11551F: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116AFF: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11345F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C5F7: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B5B3: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B723: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 19662 errors in context 45 of 58:
-==9139== Conditional jump or move depends on uninitialised value(s)
-==9139==    at 0x11395C: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113F1B: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116B53: prepare_v_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x115403: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11551F: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x116AFF: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11345F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Uninitialised value was created by a heap allocation
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10C5F7: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B5B3: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B723: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10B2DB: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E253: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
-==9139== 
-==9139== 40000 errors in context 46 of 58:
-==9139== Invalid free() / delete / delete[] / realloc()
-==9139==    at 0x4867AD0: free (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10AD6F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Address 0x56b6eb0 is 0 bytes inside a block of size 40 free'd
-==9139==    at 0x4867AD0: free (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10AD3F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1172B7: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1180F7: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x11734F: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x113473: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==  Block was alloc'd at
-==9139==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
-==9139==    by 0x10E3E3: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E48F: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x10E2EB: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139==    by 0x1133AF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
-==9139== 
---9139-- 
---9139-- used_suppression:      1 X on SUSE11 writev uninit padding /usr/libexec/valgrind/default.supp:377
-==9139== 
-==9139== ERROR SUMMARY: 79294 errors from 58 contexts (suppressed: 1 from 1)
+==60137== Memcheck, a memory error detector
+==60137== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==60137== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==60137== Command: ./minirt image/boulier.rt
+==60137== Parent PID: 51568
+==60137== 
+--60137-- 
+--60137-- Valgrind options:
+--60137--    --leak-check=full
+--60137--    --show-leak-kinds=all
+--60137--    --track-origins=yes
+--60137--    --verbose
+--60137--    --log-file=valgrind-out.txt
+--60137-- Contents of /proc/version:
+--60137--   Linux version 5.15.0-139-generic (buildd@bos03-arm64-061) (gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #149-Ubuntu SMP Fri Apr 11 22:07:32 UTC 2025
+--60137-- 
+--60137-- Arch and hwcaps: ARM64, LittleEndian, v8-fhm-dpbcvadp-sha3-rdm-atomics-bf16-fp16-vfp16
+--60137-- Page sizes: currently 4096, max supported 65536
+--60137-- Valgrind library directory: /usr/libexec/valgrind
+--60137-- Reading syms from /home/ubuntu/Documents/miniRayTracer/minirt
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+--60137--   Considering /usr/lib/debug/.build-id/46/771e9a54fff825356060bc1c8b4a44c1108bf8.debug ..
+--60137--   .. build-id is valid
+--60137-- Reading syms from /usr/libexec/valgrind/memcheck-arm64-linux
+--60137--    object doesn't have a symbol table
+--60137--    object doesn't have a dynamic symbol table
+--60137-- Scheduler: using generic scheduler lock implementation.
+--60137-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==60137== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-60137-by-ubuntu-on-???
+==60137== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-60137-by-ubuntu-on-???
+==60137== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-60137-by-ubuntu-on-???
+==60137== 
+==60137== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==60137== don't want to do, unless you know exactly what you're doing,
+==60137== or are doing some strange experiment):
+==60137==   /usr/bin/vgdb --pid=60137 ...command...
+==60137== 
+==60137== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==60137==   /path/to/gdb ./minirt
+==60137== and then give GDB the following command
+==60137==   target remote | /usr/bin/vgdb --pid=60137
+==60137== --pid is optional if only one valgrind process is running
+==60137== 
+--60137-- REDIR: 0x401ee40 (ld-linux-aarch64.so.1:strlen) redirected to 0x580b918c (???)
+--60137-- REDIR: 0x401de40 (ld-linux-aarch64.so.1:strcmp) redirected to 0x580b91e0 (???)
+--60137-- REDIR: 0x401dd80 (ld-linux-aarch64.so.1:index) redirected to 0x580b91b4 (???)
+--60137-- Reading syms from /usr/libexec/valgrind/vgpreload_core-arm64-linux.so
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libXext.so.6.4.0
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libX11.so.6.4.0
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libm.so.6
+--60137--   Considering /usr/lib/debug/.build-id/86/686e2c1e7d044eef264708abada31e1830baa5.debug ..
+--60137--   .. build-id is valid
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libc.so.6
+--60137--   Considering /usr/lib/debug/.build-id/2a/450fe74d1b79a321cc1b12337fc31a2c3fb834.debug ..
+--60137--   .. build-id is valid
+==60137== WARNING: new redirection conflicts with existing -- ignoring it
+--60137--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
+--60137--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a520 aligned_alloc
+==60137== WARNING: new redirection conflicts with existing -- ignoring it
+--60137--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
+--60137--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a500 aligned_alloc
+==60137== WARNING: new redirection conflicts with existing -- ignoring it
+--60137--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
+--60137--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a520 aligned_alloc
+==60137== WARNING: new redirection conflicts with existing -- ignoring it
+--60137--     old: 0x04b4e330 (memalign            ) R-> (1011.0) 0x0486a540 memalign
+--60137--     new: 0x04b4e330 (memalign            ) R-> (1017.0) 0x0486a500 aligned_alloc
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libxcb.so.1.1.0
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libXau.so.6.0.0
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libXdmcp.so.6.0.0
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libbsd.so.0.11.5
+--60137--    object doesn't have a symbol table
+--60137-- Reading syms from /usr/lib/aarch64-linux-gnu/libmd.so.0.0.5
+--60137--    object doesn't have a symbol table
+--60137-- REDIR: 0x4b51620 (libc.so.6:memchr) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--60137-- REDIR: 0x4b50650 (libc.so.6:strlen) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--60137-- REDIR: 0x4b51f70 (libc.so.6:memcpy) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--60137-- REDIR: 0x4b51990 (libc.so.6:memset) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--60137-- REDIR: 0x4b51850 (libc.so.6:memmove) redirected to 0x4840710 (_vgnU_ifunc_wrapper)
+--60137-- REDIR: 0x4b50a40 (libc.so.6:rindex) redirected to 0x486ac40 (rindex)
+--60137-- REDIR: 0x4b4d630 (libc.so.6:malloc) redirected to 0x4864fe0 (malloc)
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x112CF8: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x112D9B: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11311F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a stack allocation
+==60137==    at 0x112D10: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+--60137-- REDIR: 0x4b598c0 (libc.so.6:__GI_strlen) redirected to 0x486b2a0 (__GI_strlen)
+--60137-- REDIR: 0x4b507e4 (libc.so.6:strncmp) redirected to 0x486ba40 (strncmp)
+--60137-- REDIR: 0x4b4e460 (libc.so.6:calloc) redirected to 0x4869e90 (calloc)
+--60137-- REDIR: 0x4b57b40 (libc.so.6:__GI_memcpy) redirected to 0x486cf00 (__GI_memcpy)
+--60137-- REDIR: 0x4b4dbc4 (libc.so.6:free) redirected to 0x4867a60 (free)
+--60137-- REDIR: 0x4b53700 (libc.so.6:strchrnul) redirected to 0x486f914 (strchrnul)
+--60137-- REDIR: 0x4bb3a20 (libc.so.6:__strcpy_chk) redirected to 0x486f980 (__strcpy_chk)
+--60137-- REDIR: 0x4b59940 (libc.so.6:__strlen_asimd) redirected to 0x486b274 (strlen)
+--60137-- REDIR: 0x4b51240 (libc.so.6:strstr) redirected to 0x4870160 (strstr)
+--60137-- REDIR: 0x4b51680 (libc.so.6:bcmp) redirected to 0x486e5e0 (bcmp)
+--60137-- REDIR: 0x4b58fc0 (libc.so.6:__GI_memset) redirected to 0x486ee50 (memset)
+--60137-- REDIR: 0x4b57cd0 (libc.so.6:__GI_memmove) redirected to 0x486f230 (__GI_memmove)
+--60137-- REDIR: 0x4b4de20 (libc.so.6:realloc) redirected to 0x486a110 (realloc)
+--60137-- REDIR: 0x4b509d0 (libc.so.6:strncpy) redirected to 0x486b580 (strncpy)
+--60137-- REDIR: 0x4b50000 (libc.so.6:strcmp) redirected to 0x486c2d0 (strcmp)
+--60137-- REDIR: 0x4b50180 (libc.so.6:strcpy) redirected to 0x486b3c0 (strcpy)
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x110C9C: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x110D6B: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131CF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a stack allocation
+==60137==    at 0x110CB4: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x1136D8: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x113A2F: cross_product_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11020B: rotation_from_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x114A2B: set_transformation_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x114AFB: set_transformation (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x114B8B: matrix_transformations (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11685B: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131DB: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C373: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B32F: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B49F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x1136D8: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x113C97: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1168CF: prepare_v_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11517F: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11529B: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11687B: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131DB: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C373: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B32F: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B49F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x1136D8: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x113C97: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x115963: compute_specular (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x115207: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11529B: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11687B: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131DB: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C373: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B32F: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B49F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10A8C8: free_lux (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD57: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x5bae0d0 is 0 bytes after a block of size 16 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C4FB: init_light_array (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C463: allocate_light_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CC6F: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10A904: free_lux (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD57: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x5bae080 is 0 bytes after a block of size 16 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C443: allocate_light_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CC6F: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A237: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A243: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A24F: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A268: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A284: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A2A0: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A2D8: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10A684: free_hits_table (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADCF: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3c400 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x117573: ft_calloc (ft_calloc.c:24)
+==60137==    by 0x10DB9B: init_pix_row (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DCCB: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10A6AC: free_hits_table (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADCF: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3ba60 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10DC93: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10A9D0: free_comps (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADEB: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3c400 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x117573: ft_calloc (ft_calloc.c:24)
+==60137==    by 0x10DB9B: init_pix_row (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DCCB: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10A9F8: free_comps (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADEB: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3ba60 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10DC93: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10AB90: free_pixel (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AE07: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3c400 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x117573: ft_calloc (ft_calloc.c:24)
+==60137==    by 0x10DB9B: init_pix_row (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DCCB: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== Invalid read of size 8
+==60137==    at 0x10ABD0: free_pixel (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AE07: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3ba60 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10DC93: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== HEAP SUMMARY:
+==60137==     in use at exit: 5,760,800 bytes in 360,050 blocks
+==60137==   total heap usage: 9,090,916 allocs, 8,730,866 frees, 243,477,099 bytes allocated
+==60137== 
+==60137== Searching for pointers to 360,050 not-freed blocks
+==60137== Checked 157,032 bytes
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 1 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10AE4B: init_ambient_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CC8F: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 2 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10AE63: init_ambient_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CC8F: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 3 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10AEFB: init_one_spotlight (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AFA7: init_spotlights (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CCC3: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 4 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10AF0F: init_one_spotlight (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AFA7: init_spotlights (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CCC3: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 5 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10B583: init_hits_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C173: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 6 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10B5E7: init_hits_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C173: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 7 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10BAEB: init_hits_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C18B: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 8 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10BB7B: init_hits_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C18B: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 9 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10BE77: init_hits_cylinders (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C197: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 16 bytes in 1 blocks are definitely lost in loss record 10 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10BF07: init_hits_cylinders (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C197: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 320 bytes in 20 blocks are definitely lost in loss record 11 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10B75F: init_hits_spheres (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C17F: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 320 bytes in 20 blocks are definitely lost in loss record 12 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10B7EF: init_hits_spheres (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C17F: initialize_hits_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E1AB: init_hits (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E20B: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 1,440,000 bytes in 90,000 blocks are definitely lost in loss record 13 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10E2CF: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 1,440,000 bytes in 90,000 blocks are definitely lost in loss record 14 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10E303: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 1,440,000 bytes in 90,000 blocks are definitely lost in loss record 15 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10E337: assign_hits_to_pix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E067: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 1,440,000 bytes in 90,000 blocks are definitely lost in loss record 16 of 16
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x111DBB: create_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C713: init_comps_vectors_creations (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C90B: init_comps_vectors (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CAC3: init_pix_comps (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E13B: init_scene_structures (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E06F: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== LEAK SUMMARY:
+==60137==    definitely lost: 5,760,800 bytes in 360,050 blocks
+==60137==    indirectly lost: 0 bytes in 0 blocks
+==60137==      possibly lost: 0 bytes in 0 blocks
+==60137==    still reachable: 0 bytes in 0 blocks
+==60137==         suppressed: 0 bytes in 0 blocks
+==60137== 
+==60137== ERROR SUMMARY: 89227 errors from 36 contexts (suppressed: 1 from 1)
+==60137== 
+==60137== 1 errors in context 1 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10ABD0: free_pixel (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AE07: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3ba60 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10DC93: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 2 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10A9F8: free_comps (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADEB: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3ba60 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10DC93: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 3 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10A6AC: free_hits_table (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADCF: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3ba60 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10DC93: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 4 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A2D8: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 5 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A2A0: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 6 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A284: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 7 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A268: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 8 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A24F: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 9 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A243: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 10 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x10A0A8: free_coord (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A237: free_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10A34F: free_obj_2d (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD9F: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C30B: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B227: init_obj_background (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B43F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 11 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10A904: free_lux (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD57: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x5bae080 is 0 bytes after a block of size 16 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C443: allocate_light_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CC6F: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 12 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x110C9C: process_line (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x110D6B: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131CF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a stack allocation
+==60137==    at 0x110CB4: save_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 1 errors in context 13 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x112CF8: process_buffer (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x112D9B: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11311F: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a stack allocation
+==60137==    at 0x112D10: parse_scene_file (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 2 errors in context 14 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10A8C8: free_lux (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AD57: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x5bae0d0 is 0 bytes after a block of size 16 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C4FB: init_light_array (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10C463: allocate_light_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10CC6F: init_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10E017: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 2 errors in context 15 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x1136D8: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x113A2F: cross_product_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11020B: rotation_from_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x114A2B: set_transformation_obj (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x114AFB: set_transformation (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x114B8B: matrix_transformations (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11685B: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131DB: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C373: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B32F: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B49F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 300 errors in context 16 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10AB90: free_pixel (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10AE07: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3c400 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x117573: ft_calloc (ft_calloc.c:24)
+==60137==    by 0x10DB9B: init_pix_row (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DCCB: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 300 errors in context 17 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10A9D0: free_comps (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADEB: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3c400 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x117573: ft_calloc (ft_calloc.c:24)
+==60137==    by 0x10DB9B: init_pix_row (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DCCB: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 300 errors in context 18 of 36:
+==60137== Invalid read of size 8
+==60137==    at 0x10A684: free_hits_table (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10ADCF: free_all (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117033: ft_keys (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x117E77: mlx_loop (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1170CB: image_hooks (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131EF: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Address 0x4d3c400 is 0 bytes after a block of size 2,400 alloc'd
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x117573: ft_calloc (ft_calloc.c:24)
+==60137==    by 0x10DB9B: init_pix_row (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DCCB: init_pix_matrix (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFAF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 44040 errors in context 19 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x1136D8: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x113C97: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x115963: compute_specular (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x115207: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11529B: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11687B: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131DB: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C373: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B32F: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B49F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+==60137== 
+==60137== 44254 errors in context 20 of 36:
+==60137== Conditional jump or move depends on uninitialised value(s)
+==60137==    at 0x1136D8: is_vector (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x113C97: scalar_mult_na (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1168CF: prepare_v_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11517F: light_intensity (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11529B: new_light (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11687B: raytracing (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x1131DB: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==  Uninitialised value was created by a heap allocation
+==60137==    at 0x4865058: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==60137==    by 0x10C373: init_obj_struct (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B32F: init_obj_plans (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B49F: initialize_object_arrays (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10B057: init_object (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x10DFCF: init_data (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137==    by 0x11312B: main (in /home/ubuntu/Documents/miniRayTracer/minirt)
+==60137== 
+--60137-- 
+--60137-- used_suppression:      1 X on SUSE11 writev uninit padding /usr/libexec/valgrind/default.supp:377
+==60137== 
+==60137== ERROR SUMMARY: 89227 errors from 36 contexts (suppressed: 1 from 1)
