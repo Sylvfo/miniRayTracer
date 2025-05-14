@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:02:20 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 22:08:32 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 23:44:06 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 # define FREE_ALL_H
 
 # include "minirt_data_struct.h"
+
+//Sylv
+void	new_free(t_pix ***pix);
+void	free_hits_inside(t_pix *pix);
+void	free_hits_inside_mid(t_pix *pix);
+void	free_hits_all(t_pix *pix);
+void	free_hits_S(t_pix ***pix);
+void	free_comps_S(t_pix ***pix);
+void	free_comps_inside(t_comps *comps);
+void free_lux_S(t_pix *pix);
+void free_lux_inside(t_light ***lux);
+void free_lux_all(t_light ***lux);
+void free_lux_mid(t_light ***lux);
+void free_lux_S(t_pix *pix);
+
+void free_obj_S(t_pix *pix);
+void free_obj_inside(t_obj ***obj);
+void free_obj_all(t_obj ***obj);
+void free_obj_mid(t_obj ***obj);
+void free_obj_S(t_pix *pix);
+
+void free_pix_inside(t_pix ***pix);
+void free_pix_mid(t_pix ***pix);
+void free_pix_all(t_pix ***pix);
+void	free_pix_S(t_pix ***pix);
 
 void	free_coord(t_coord *coord);
 void	free_color(t_color *color);

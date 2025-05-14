@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 11:24:23 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 22:31:09 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	main(int argc, char **argv)
 	raytracing(context->pix);
 	pix_to_window(context->pix);
 	image_hooks(context);
-	free_all(context);
+	new_free(context->pix);
+//	free_all(context);
 	return (EXIT_SUCCESS);
 }
 

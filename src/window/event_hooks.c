@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 11:23:25 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 22:49:33 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	ft_keys(int keycode, t_program_context *context)
 	if (keycode == 65307)
 	{
 		printf("ESC pressed.\nWindow closed\n");
-		free_all(context);
+		new_free(context->pix);
+	//	free_all(context);
 		exit(0);
 		return (0);
 	}
