@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 00:00:00 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 18:04:46 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 20:28:18 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static void free_hits(t_hits *hit)
 	//printf("Freeing hit at %p\n", (void*)hit);
 	free_coord(hit->r_origin);
 	free_coord(hit->r_dir);
-	free(hit);
+	//free(hit);
 }
 
 // Fonction auxiliaire pour libérer la table complète des hits
@@ -150,7 +150,7 @@ static void	free_hits_table(t_hits ***hits)
 		}
 		free(hits[i]);
 	}
-	free(hits);
+	//free(hits);
 }
 
 // Fonction principale de libération de mémoire
@@ -232,7 +232,26 @@ void free_all(t_program_context *context)
 						free_color(context->pix[i][j]->color);
 						
 						// 3.2 Hits par pixel
-						free_hits_table(context->pix[i][j]->hits);
+						//free_hits_table(context->pix[i][j]->hits);
+						
+						// 3.2 Hits par pixel
+						if (context->pix[i][j]->hits)
+						{
+							// Se débarrasser de tous les tableaux de hits
+							for (k = 0; context->pix[i][j]->hits[k] != NULL; k++)
+							{
+								int l = 0;
+								while (context->pix[i][j]->hits[k][l] != NULL)
+								{
+									free_hits(context->pix[i][j]->hits[k][l]);
+									free(context->pix[i][j]->hits[k][l]);
+									l++;
+								}
+								free(context->pix[i][j]->hits[k]);
+							}
+							free(context->pix[i][j]->hits);
+						}
+						free(context->pix[i][j]->hits);
 						
 						// 3.3 Comps par pixel
 						free_comps(context->pix[i][j]->comps);
