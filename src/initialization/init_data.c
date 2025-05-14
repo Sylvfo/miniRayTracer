@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:47:24 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/11 21:02:33 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 11:34:37 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static t_pix	**init_pix_row(int cols)
 	int		y;
 	int		k;
 
-	row = ft_calloc(cols, sizeof(t_pix *));
+	row = ft_calloc(cols, sizeof(t_pix *)); // row of t_pix* is calloc'd
 	if (!row)
 		return (NULL);
 	y = 0;
 	while (y < cols)
 	{
-		row[y] = malloc(sizeof(t_pix));
+		row[y] = ft_calloc(1, sizeof(t_pix)); // Changed malloc to ft_calloc
 		if (!row[y])
 		{
 			k = 0;
@@ -110,7 +110,6 @@ t_pix	***init_data(t_num_obj *num_obj)
 	t_camera	*cam;
 	t_obj		***obj;
 	t_light		***lux;
-	t_hits		***hits;
 
 	pix = init_pix_matrix(WND_WIDTH, WND_HEIGHT, num_obj);
 	if (!pix)
@@ -137,7 +136,7 @@ t_pix	***init_data(t_num_obj *num_obj)
 		return (NULL);
 	}
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
-	assign_hits_to_pix(pix, hits, num_obj);
+	assign_hits_to_pix(pix, NULL, num_obj);
 	if (!init_scene_structures(pix))
 	{
 		free_pix(pix, WND_WIDTH, WND_HEIGHT, num_obj);

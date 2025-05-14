@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/13 15:52:34 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 11:24:26 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,13 @@ enum e_axes
 
 int		main(int argc, char **argv);
 void	error_exit(const char *msg, t_program_context *context);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                              FREE                                          */
+/*                                                                            */
+/* ************************************************************************** */
+
+void				free_all(t_program_context *context);
 
 #endif

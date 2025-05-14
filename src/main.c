@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 11:05:33 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 11:24:23 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 void	error_exit(const char *msg, t_program_context *context)
 {
 	fprintf(stderr, "%s\n", msg);
-	if (context)
-	{
-		if (context->pix || context->num_obj)
-			free_all(context->pix, context->width,
-				context->height, context->num_obj);
-		context->pix = NULL;
-		context->num_obj = NULL;
-		if (context->mlx_ptr && context->mlx_win)
-			mlx_destroy_window(context->mlx_ptr, context->mlx_win);
-		free(context);
-		context = NULL;
-	}
 	exit(EXIT_FAILURE);
 }
 
@@ -81,6 +69,7 @@ int	main(int argc, char **argv)
 	raytracing(context->pix);
 	pix_to_window(context->pix);
 	image_hooks(context);
+	free_all(context);
 	return (EXIT_SUCCESS);
 }
 

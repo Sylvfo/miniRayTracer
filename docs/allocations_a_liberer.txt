@@ -1,0 +1,124 @@
+Liste des allocations dynamiques (malloc, calloc, etc.) à libérer :
+
+**lib/libft/**
+- ft_strtrim.c:
+    - res (char *)
+- ft_substr.c:
+    - dst (char *)
+- get_next_line_utils.c (dans ft_strndup):
+    - dest (char *)
+- ft_split.c: (Probablement, vérifier l'implémentation de ft_split)
+    - tab (char **)
+    - tab[i] (char *)
+- ft_strdup.c:
+    - dup (char *)
+- ft_itoa.c:
+    - str (char *)
+- ft_calloc.c: (Utilisé par d'autres fonctions, pas directement une variable à free par l'utilisateur final de calloc, mais la mémoire qu'il alloue)
+    - ptr (void *)
+
+**lib/minilibx-linux/** (Ces allocations sont généralement gérées par les fonctions de destruction de la minilibx comme mlx_destroy_image, mlx_destroy_window, mlx_destroy_display. Il faut s'assurer que ces fonctions de destruction sont appelées pour les structures correspondantes.)
+- mlx_init.c:
+    - xvar (t_xvar *) -> libéré par mlx_destroy_display si mlx_init réussit et que mlx_destroy_display est appelé.
+- mlx_int_str_to_wordtab.c:
+    - tab (char **)
+- mlx_new_image.c:
+    - img (t_img *) -> libéré par mlx_destroy_image
+    - img->data (char *) -> partie de t_img, géré par mlx_destroy_image
+    - (dans mlx_int_new_image) data (char *)
+- mlx_new_window.c:
+    - new_win (t_win_list *) -> libéré par mlx_destroy_window
+- mlx_xpm.c (dans mlx_int_static_line):
+    - copy (static char *) -> Cas particulier, free si non nul lors d'un réalloc. Doit être géré avec soin si utilisé globalement.
+
+**src/initialization/**
+- init_camera.c:
+    - camera (t_camera *)
+    - camera->p_coord (t_coord *)
+    - camera->v_axe (t_coord *)
+- init_data.c (dans init_pix_row, appelé par init_data):
+    - row (t_pix **) -> partie de context->pix
+    - row[y] (t_pix *) -> partie de context->pix[x][y]
+- init_data.c (dans init_data):
+    - context->pix (t_pix ***)
+- init_hits_alloc.c (dans allocate_hits_arrays):
+    - hits[0] (t_hits **)
+    - hits[1] (t_hits **)
+    - hits[2] (t_hits **)
+    - hits[3] (t_hits **)
+- init_hits_init.c (dans initialize_hit_element, appelé par initialize_hits_arrays):
+    - hits[i][j] (t_hits *) (pour chaque type d'objet et chaque objet)
+    - hits[i][j]->r_dir (t_coord *)
+    - hits[i][j]->r_origin (t_coord *)
+- init_hits.c:
+    - hits (t_hits ***) -> sera context->hits
+- init_light_alloc.c (dans init_ambient_light et init_light_array):
+    - light[0][0]->p_coord (t_coord *)
+    - light[0][0]->color (t_color *)
+    - (dans init_light_array) light_array (t_light **)
+    - (dans init_light_array) light_array[i] (t_light *)
+    - (dans init_light_array) light_array[i]->p_coord (t_coord *)
+    - (dans init_light_array) light_array[i]->color (t_color *)
+- init_light_init.c (dans allocate_light_arrays):
+    - light (t_light ***) -> sera context->light
+    - light[0] (t_light **)
+    - light[1] (t_light **)
+- init_object_alloc.c (dans allocate_object_arrays et initialize_object_arrays -> initialize_single_object):
+    - obj[0] (t_obj **)
+    - obj[1] (t_obj **)
+    - obj[2] (t_obj **)
+    - obj[3] (t_obj **)
+    - (dans initialize_single_object) obj[type][i] (t_obj *)
+    - (dans initialize_single_object) obj[type][i]->p_coord (t_coord *)
+    - (dans initialize_single_object) obj[type][i]->v_axe (t_coord *)
+    - (dans initialize_single_object) obj[type][i]->color (t_color *)
+- init_object.c:
+    - obj (t_obj ***) -> sera context->obj
+- init_scene_comps.c (dans init_scene_components):
+    - c->r_dir (t_coord *) (où c est context->scene_components)
+    - c->r_origin (t_coord *)
+    - c->p_touch (t_coord *)
+    - c->v_eye (t_coord *)
+    - c->v_norm_parral (t_coord *)
+- init_scene_viewport.c (dans init_pix_viewport):
+    - pix[x][y]->r_dir (t_coord *)
+    - pix[x][y]->r_origin (t_coord *)
+    (Note: pix[x][y]->p_viewport et pix[x][y]->p_viewport_world sont créés par create_point, donc alloués)
+
+**src/main.c**
+- main.c:
+    - context (t_program_context *)
+    - context->num_obj (t_num_obj *)
+    - context->scene_components (t_scene_components *) (si init_scene_components est appelé et alloue la structure elle-même)
+    - context->camera (t_camera *) (si init_camera est appelé)
+    - context->obj (t_obj ***) (si init_object est appelé)
+    - context->light (t_light ***) (si init_light_init est appelé)
+    - context->hits (t_hits ***) (si init_hits est appelé)
+    - context->image (t_image *) (si init_image est appelé)
+    - context->pix (t_pix ***) (si init_data est appelé)
+
+
+**src/matrix/**
+- 00_matrix_creation.c (dans create_matrix):
+    - m_matrix (float *)
+
+**src/parsing_terminate/**
+- init_matrix_ima.c (dans init_image):
+    - ima (t_image *) -> sera context->image. Contient mlx_ptr, mlx_win, img, addr. mlx_ptr doit être passé à mlx_destroy_display. mlx_win à mlx_destroy_window. img à mlx_destroy_image.
+- s_create_point_vector.c (dans create_point):
+    - p_point (t_coord *) (utilisé pour de nombreux t_coord dans le projet)
+- s_create_point_vector.c (dans create_vector): (similaire à create_point)
+    - p_vector (t_coord *)
+
+**src/vect_point_color/**
+- set_colors.c (dans create_color):
+    - c_newcolor (t_color *) (utilisé pour de nombreux t_color dans le projet)
+
+**Notes importantes pour la libération :**
+1.  **Ordre :** Toujours libérer les membres d'une structure avant la structure elle-même.
+2.  **Pointeur NULL :** Après un `free`, il est bon de mettre le pointeur à `NULL` pour éviter les double-free accidentels.
+3.  **Conditions :** Toujours vérifier si un pointeur est non-NULL avant de le `free`.
+4.  **MinilibX :** Utiliser `mlx_destroy_image`, `mlx_destroy_window`, et `mlx_destroy_display` pour les ressources MinilibX. `mlx_destroy_display` doit être appelé en dernier pour la MinilibX.
+5.  **Tableaux de pointeurs :** Pour les tableaux de pointeurs (ex: `char **split_result`, `t_obj **objects`), il faut libérer chaque pointeur du tableau, puis le tableau lui-même.
+6.  **Structures imbriquées :** `t_program_context` semble être la structure principale. Sa libération sera la dernière étape pour les données du programme.
+7.  **Libft :** Les fonctions comme `ft_split` retournent de la mémoire allouée qui doit être gérée par l'appelant. Les fonctions de création (`create_point`, `create_color`) retournent aussi de la mémoire à gérer.

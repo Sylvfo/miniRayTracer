@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:21:36 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 12:43:13 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 11:34:36 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ bool		initialize_object_arrays(t_obj ***obj, t_num_obj *num_obj);
 bool		init_obj_struct(t_obj **o, bool has_v_axe);
 bool		allocate_object_arrays(t_obj ***obj, t_num_obj *num_obj);
 void		free_object(t_obj ***obj, t_num_obj *num_obj);
+
+void		free_pix(t_pix ***pix, int rows, int cols, t_num_obj *num_obj);
 
 t_camera	*init_camera(void);
 

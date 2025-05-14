@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/05/13 14:58:16 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 11:23:25 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,7 @@ int	mouse_hook(int keycode, t_program_context *context)
 
 int	ft_exit(t_program_context *context)
 {
-	if (context)
-	{
-		free_all(context->pix, context->width,
-			context->height, context->num_obj);
-		context->pix = NULL;
-		context->num_obj = NULL;
-		if (context->mlx_ptr && context->mlx_win)
-			mlx_destroy_window(context->mlx_ptr, context->mlx_win);
-		free(context);
-		context = NULL;
-	}
+	free_all(context);
 	exit(0);
 	return (0);
 }
@@ -57,17 +47,8 @@ int	ft_keys(int keycode, t_program_context *context)
 	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 	{
-		if (context)
-		{
-			free_all(context->pix, context->width,
-				context->height, context->num_obj);
-			if (context->ima && context->mlx_ptr && context->ima->img)
-				mlx_destroy_image(context->mlx_ptr, context->ima->img);
-			if (context->mlx_ptr && context->mlx_win)
-				mlx_destroy_window(context->mlx_ptr, context->mlx_win);
-			free(context);
-		}
 		printf("ESC pressed.\nWindow closed\n");
+		free_all(context);
 		exit(0);
 		return (0);
 	}
