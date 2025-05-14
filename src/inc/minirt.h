@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/14 17:25:05 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/14 22:44:36 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # include "minirt_vect_point_color.h"
 # include "minirt_window.h"
 
-# define WND_WIDTH 1080
-# define WND_HEIGHT 900
+# define WND_WIDTH 600
+# define WND_HEIGHT 600
 
 # define BAKGROUND_COLOR 12701914
 # define EPSILON 0.00001

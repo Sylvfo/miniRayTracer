@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   08_prepare_comps.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 21:57:02 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/14 23:00:29 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,28 @@ void	normal_at_cyl(t_comps *comps);
 
 void	prepare_computation_pix(t_pix *pix)
 {
-	position_na(pix, pix->comps->r_dir, pix->comps->closestt);
-	negat_na(pix->comps->v_eye, pix->comps->r_dir);
+	t_coord	term_for_p_local;
+	t_coord	p_local_on_surface;
+
+	// Calcul de P_local = O_local + t_local * D_local
+	// pix->comps->r_origin est O_local (depuis save_in_comps)
+	// pix->comps->r_dir est D_local (depuis save_in_comps)
+	// pix->comps->closestt est t_local
+	scalar_mult_na(&term_for_p_local, pix->comps->r_dir, pix->comps->closestt);
+	addition_na(&p_local_on_surface, pix->comps->r_origin, &term_for_p_local);
+	// p_local_on_surface.t est mis à 1 par addition_na, ce qui est correct pour un point.
+
+	// Transformation de P_local vers P_world (sera pix->comps->p_touch)
+	// pix->comps->obj->m_transf est la matrice objet-vers-monde
+	matrix_point_multiplication_new(pix->comps->p_touch,
+		pix->comps->obj->m_transf, &p_local_on_surface);
+
+	// Calcul de v_eye en utilisant la direction du rayon MONDE originale pour le pixel
+	// pix->r_dir est la direction du rayon monde (devrait être normalisée à la création du rayon)
+	negat_na(pix->comps->v_eye, pix->r_dir);
+	// Optionnel: si pix->r_dir n'est pas garanti d'être normalisé, décommentez :
+	// normalize_vector_na(pix->comps->v_eye);
+
 	if (pix->comps->type == SPHERE)
 	{
 		normal_at_na(pix->comps);
@@ -26,24 +46,20 @@ void	prepare_computation_pix(t_pix *pix)
 	}
 	if (pix->comps->type == CYLINDER)
 	{
-	//	copy_coord(pix->comps->v_norm_parral, pix->comps->obj->v_axe);
 		normal_at_cyl(pix->comps);
-	//	if (dot_product(pix->comps->v_norm_parral, pix->comps->v_eye) < 0)
-	//		negat_na(pix->comps->v_norm_parral, pix->comps->v_norm_parral);
 	}	
 	else if (pix->comps->type == PLAN)
 	{
-	//	vector_fill(pix->comps->object_normal, 0, 1, 0);
-		copy_coord(pix->comps->v_norm_parral, pix->comps->object_normal);
-
-
-		
-		transpose_matrix(pix->comps->transp_inv, pix->comps->obj_inv);
-		matrix_point_multiplication_new_2(pix->comps->v_norm_parral,
-		pix->comps->transp_inv, pix->comps->object_normal);
+		// La normale d'un plan est constante et est définie par obj->v_axe.
+		// Elle est déjà en coordonnées monde.
+		copy_coord(pix->comps->v_norm_parral, pix->comps->obj->v_axe);
 		normalize_vector_na(pix->comps->v_norm_parral);
-	//	print_vector(pix->comps->v_norm_parral);
 
+		// S'assurer que la normale pointe "vers l'extérieur" par rapport à la caméra/rayon.
+		// Si le produit scalaire avec v_eye est négatif, la normale pointe dans la même direction générale que v_eye (vers l'intérieur de la surface du point de vue du rayon),
+		// donc nous l'inversons pour qu'elle pointe vers l'extérieur.
+		if (dot_product(pix->comps->v_norm_parral, pix->comps->v_eye) < 0)
+			negat_na(pix->comps->v_norm_parral, pix->comps->v_norm_parral);
 	}
 	
 }
