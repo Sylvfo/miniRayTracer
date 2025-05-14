@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 23:47:36 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 00:06:13 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	prepare_v_light(t_pix *pix, int lux_num)
 	t_coord	tmp;
 
 	// Réduction du décalage pour potentiellement améliorer les ombres des objets proches
-	scalar_mult_na(&tmp, pix->comps->v_norm_parral, EPSILON);
+	scalar_mult_na(&tmp, pix->comps->v_norm_parral, EPSILON * 10.0f);
 	addition_na(&offset_point, pix->comps->p_touch, &tmp);
 	substraction_p_to_v_na(pix->comps->v_light_to_point,
 		pix->lux[1][lux_num]->p_coord, &offset_point);
