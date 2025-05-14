@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:47:24 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 11:34:37 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 15:54:27 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_pix	***init_pix_matrix(int rows, int cols, t_num_obj *num_obj)
 		pix[x] = init_pix_row(cols);
 		if (!pix[x])
 		{
-			free_pix(pix, x, cols, num_obj);
+			//todo free all previous rows
 			return (NULL);
 		}
 		x++;
@@ -117,21 +117,21 @@ t_pix	***init_data(t_num_obj *num_obj)
 	obj = init_object(num_obj);
 	if (!obj)
 	{
-		free_pix(pix, WND_WIDTH, WND_HEIGHT, num_obj);
+		//todo free all previous rows
 		return (NULL);
 	}
 	cam = init_camera();
 	if (!cam)
 	{
 		free_object(obj, num_obj);
-		free_pix(pix, WND_WIDTH, WND_HEIGHT, num_obj);
+		//todo free all previous rows
 		return (NULL);
 	}
 	lux = init_light(num_obj);
 	if (!lux)
 	{
 		free_object(obj, num_obj);
-		free_pix(pix, WND_WIDTH, WND_HEIGHT, num_obj);
+		//todo free all previous rows
 		free(cam);
 		return (NULL);
 	}
@@ -139,7 +139,7 @@ t_pix	***init_data(t_num_obj *num_obj)
 	assign_hits_to_pix(pix, NULL, num_obj);
 	if (!init_scene_structures(pix))
 	{
-		free_pix(pix, WND_WIDTH, WND_HEIGHT, num_obj);
+		//todo free all previous rows
 		return (NULL);
 	}
 	init_ima(pix);

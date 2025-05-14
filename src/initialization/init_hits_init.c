@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:47:15 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 11:33:27 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 17:58:22 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ static void	init_hits_background(t_hits ***hits)
 		return ;
 	hits[0][0] = malloc(sizeof(t_hits));
 	if (!hits[0][0])
+	{
+		free(hits[0]);
+		hits[0] = NULL;
 		return ;
+	}
 	hits[0][0]->r_dir = malloc(sizeof(t_coord));
 	if (!hits[0][0]->r_dir)
 	{
 		free(hits[0][0]);
 		hits[0][0] = NULL;
+		free(hits[0]);
+		hits[0] = NULL;
 		return ;
 	}
 	hits[0][0]->r_origin = malloc(sizeof(t_coord));
@@ -32,6 +38,8 @@ static void	init_hits_background(t_hits ***hits)
 		free(hits[0][0]->r_dir);
 		free(hits[0][0]);
 		hits[0][0] = NULL;
+		free(hits[0]);
+		hits[0] = NULL;
 		return ;
 	}
 	hits[0][0]->type = NONE;
@@ -52,13 +60,13 @@ static void	init_hits_spheres(t_hits ***hits, t_num_obj *num_obj)
 	{
 		hits[1][i] = malloc(sizeof(t_hits));
 		if (!hits[1][i])
-			return ;
+			break;
 		hits[1][i]->r_dir = malloc(sizeof(t_coord));
 		if (!hits[1][i]->r_dir)
 		{
 			free(hits[1][i]);
 			hits[1][i] = NULL;
-			return ;
+			break;
 		}
 		hits[1][i]->r_origin = malloc(sizeof(t_coord));
 		if (!hits[1][i]->r_origin)
@@ -66,13 +74,28 @@ static void	init_hits_spheres(t_hits ***hits, t_num_obj *num_obj)
 			free(hits[1][i]->r_dir);
 			free(hits[1][i]);
 			hits[1][i] = NULL;
-			return ;
+			break;
 		}
 		hits[1][i]->type = SPHERE;
 		hits[1][i]->t1 = INT_MAX;
 		hits[1][i]->t2 = INT_MAX;
 		hits[1][i]->t_count = 0;
 		i++;
+	}
+	if (i < num_obj->sphere)
+	{
+		while (i-- > 0)
+		{
+			if (hits[1][i])
+			{
+				free(hits[1][i]->r_dir);
+				free(hits[1][i]->r_origin);
+				free(hits[1][i]);
+			}
+		}
+		free(hits[1]);
+		hits[1] = NULL;
+		return ;
 	}
 	hits[1][num_obj->sphere] = NULL;
 }
@@ -88,13 +111,13 @@ static void	init_hits_plans(t_hits ***hits, t_num_obj *num_obj)
 	{
 		hits[2][i] = malloc(sizeof(t_hits));
 		if (!hits[2][i])
-			return ;
+			break;
 		hits[2][i]->r_dir = malloc(sizeof(t_coord));
 		if (!hits[2][i]->r_dir)
 		{
 			free(hits[2][i]);
 			hits[2][i] = NULL;
-			return ;
+			break;
 		}
 		hits[2][i]->r_origin = malloc(sizeof(t_coord));
 		if (!hits[2][i]->r_origin)
@@ -102,13 +125,28 @@ static void	init_hits_plans(t_hits ***hits, t_num_obj *num_obj)
 			free(hits[2][i]->r_dir);
 			free(hits[2][i]);
 			hits[2][i] = NULL;
-			return ;
+			break;
 		}
 		hits[2][i]->type = PLAN;
 		hits[2][i]->t1 = INT_MAX;
 		hits[2][i]->t2 = INT_MAX;
 		hits[2][i]->t_count = 0;
 		i++;
+	}
+	if (i < num_obj->plan)
+	{
+		while (i-- > 0)
+		{
+			if (hits[2][i])
+			{
+				free(hits[2][i]->r_dir);
+				free(hits[2][i]->r_origin);
+				free(hits[2][i]);
+			}
+		}
+		free(hits[2]);
+		hits[2] = NULL;
+		return ;
 	}
 	hits[2][num_obj->plan] = NULL;
 }
@@ -124,13 +162,13 @@ static void	init_hits_cylinders(t_hits ***hits, t_num_obj *num_obj)
 	{
 		hits[3][i] = malloc(sizeof(t_hits));
 		if (!hits[3][i])
-			return ;
+			break;
 		hits[3][i]->r_dir = malloc(sizeof(t_coord));
 		if (!hits[3][i]->r_dir)
 		{
 			free(hits[3][i]);
 			hits[3][i] = NULL;
-			return ;
+			break;
 		}
 		hits[3][i]->r_origin = malloc(sizeof(t_coord));
 		if (!hits[3][i]->r_origin)
@@ -138,13 +176,28 @@ static void	init_hits_cylinders(t_hits ***hits, t_num_obj *num_obj)
 			free(hits[3][i]->r_dir);
 			free(hits[3][i]);
 			hits[3][i] = NULL;
-			return ;
+			break;
 		}
 		hits[3][i]->type = CYLINDER;
 		hits[3][i]->t1 = INT_MAX;
 		hits[3][i]->t2 = INT_MAX;
 		hits[3][i]->t_count = 0;
 		i++;
+	}
+	if (i < num_obj->cylinder)
+	{
+		while (i-- > 0)
+		{
+			if (hits[3][i])
+			{
+				free(hits[3][i]->r_dir);
+				free(hits[3][i]->r_origin);
+				free(hits[3][i]);
+			}
+		}
+		free(hits[3]);
+		hits[3] = NULL;
+		return ;
 	}
 	hits[3][num_obj->cylinder] = NULL;
 }
