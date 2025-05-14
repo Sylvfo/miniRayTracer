@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 00:00:00 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 17:59:04 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 18:04:46 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,33 @@ static void free_hits(t_hits *hit)
 	free(hit);
 }
 
+// Fonction auxiliaire pour libérer la table complète des hits
+static void	free_hits_table(t_hits ***hits)
+{
+	int	i;
+	int	j;
+
+	if (!hits)
+		return ;
+	for (i = 0; i < 4; i++)
+	{
+		if (!hits[i])
+			continue ;
+		j = 0;
+		while (hits[i][j] != NULL)
+		{
+			if (hits[i][j]->r_dir)
+				free(hits[i][j]->r_dir);
+			if (hits[i][j]->r_origin)
+				free(hits[i][j]->r_origin);
+			free(hits[i][j]);
+			j++;
+		}
+		free(hits[i]);
+	}
+	free(hits);
+}
+
 // Fonction principale de libération de mémoire
 void free_all(t_program_context *context)
 {
@@ -191,45 +218,31 @@ void free_all(t_program_context *context)
 		// 3. Libérer chaque pixel
 		for (i = 0; i < context->width; i++)
 		{
-			if (!context->pix[i])
-				continue;
-				
-			for (j = 0; j < context->height; j++)
+			if (context->pix[i])
 			{
-				if (!context->pix[i][j])
-					continue;
-					
-				// 3.1 Coord et Color par pixel
-				free_coord(context->pix[i][j]->p_viewport);
-				free_coord(context->pix[i][j]->p_viewport_world);
-				free_coord(context->pix[i][j]->r_origin);
-				free_coord(context->pix[i][j]->r_dir);
-				free_color(context->pix[i][j]->color);
-				
-				// 3.2 Hits par pixel
-				if (context->pix[i][j]->hits)
+				for (j = 0; j < context->height; j++)
 				{
-					// Se débarrasser de tous les tableaux de hits
-					for (k = 0; context->pix[i][j]->hits[k] != NULL; k++)
+					if (context->pix[i][j])
 					{
-						int l = 0;
-						while (context->pix[i][j]->hits[k][l] != NULL)
-						{
-							free_hits(context->pix[i][j]->hits[k][l]);
-							l++;
-						}
-						free(context->pix[i][j]->hits[k]);
+						// 3.1 Coord et Color par pixel
+						free_coord(context->pix[i][j]->p_viewport);
+						free_coord(context->pix[i][j]->p_viewport_world);
+						free_coord(context->pix[i][j]->r_origin);
+						free_coord(context->pix[i][j]->r_dir);
+						free_color(context->pix[i][j]->color);
+						
+						// 3.2 Hits par pixel
+						free_hits_table(context->pix[i][j]->hits);
+						
+						// 3.3 Comps par pixel
+						free_comps(context->pix[i][j]->comps);
+						
+						// Libérer le pixel lui-même
+						free(context->pix[i][j]);
 					}
-					free(context->pix[i][j]->hits);
 				}
-				
-				// 3.3 Comps par pixel
-				free_comps(context->pix[i][j]->comps);
-				
-				// Libérer le pixel lui-même
-				free(context->pix[i][j]);
+				free(context->pix[i]);
 			}
-			free(context->pix[i]);
 		}
 		free(context->pix);
 	}

@@ -1,430 +1,430 @@
-==200965== Memcheck, a memory error detector
-==200965== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==200965== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==200965== Command: ./minirt image/boulier.rt
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C302: process_buffer (scene_parsing.c:51)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C2B3: process_buffer (scene_parsing.c:54)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C2C7: process_buffer (scene_parsing.c:54)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C066: parse_line (scene_parsing.c:20)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C071: parse_line (scene_parsing.c:20)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C07C: parse_line (scene_parsing.c:22)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C08B: parse_line (scene_parsing.c:22)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117D1A: ft_strncmp (ft_strncmp.c:25)
-==200965==    by 0x10C0AB: parse_line (scene_parsing.c:24)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117CD3: ft_strncmp (ft_strncmp.c:27)
-==200965==    by 0x10C0AB: parse_line (scene_parsing.c:24)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C0AE: parse_line (scene_parsing.c:24)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117D1A: ft_strncmp (ft_strncmp.c:25)
-==200965==    by 0x10C0F5: parse_line (scene_parsing.c:26)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117CD3: ft_strncmp (ft_strncmp.c:27)
-==200965==    by 0x10C0F5: parse_line (scene_parsing.c:26)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C0F8: parse_line (scene_parsing.c:26)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117D1A: ft_strncmp (ft_strncmp.c:25)
-==200965==    by 0x10C14A: parse_line (scene_parsing.c:29)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117CD3: ft_strncmp (ft_strncmp.c:27)
-==200965==    by 0x10C14A: parse_line (scene_parsing.c:29)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C14D: parse_line (scene_parsing.c:29)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117D1A: ft_strncmp (ft_strncmp.c:25)
-==200965==    by 0x10C194: parse_line (scene_parsing.c:31)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117CD3: ft_strncmp (ft_strncmp.c:27)
-==200965==    by 0x10C194: parse_line (scene_parsing.c:31)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C197: parse_line (scene_parsing.c:31)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117D1A: ft_strncmp (ft_strncmp.c:25)
-==200965==    by 0x10C1E9: parse_line (scene_parsing.c:34)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117CD3: ft_strncmp (ft_strncmp.c:27)
-==200965==    by 0x10C1E9: parse_line (scene_parsing.c:34)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C1EC: parse_line (scene_parsing.c:34)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117D1A: ft_strncmp (ft_strncmp.c:25)
-==200965==    by 0x10C23B: parse_line (scene_parsing.c:37)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x117CD3: ft_strncmp (ft_strncmp.c:27)
-==200965==    by 0x10C23B: parse_line (scene_parsing.c:37)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10C23E: parse_line (scene_parsing.c:37)
-==200965==    by 0x10C2EB: process_buffer (scene_parsing.c:57)
-==200965==    by 0x10C3D4: parse_scene_file (scene_parsing.c:79)
-==200965==    by 0x10AB8F: main (main.c:56)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B83F: process_line (save_scene_file.c:36)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B7F0: process_line (save_scene_file.c:39)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B804: process_line (save_scene_file.c:39)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B6DB: save_line (save_scene_file.c:18)
-==200965==    by 0x10B828: process_line (save_scene_file.c:42)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B6E6: save_line (save_scene_file.c:18)
-==200965==    by 0x10B828: process_line (save_scene_file.c:42)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B709: save_line (save_scene_file.c:20)
-==200965==    by 0x10B828: process_line (save_scene_file.c:42)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B72C: save_line (save_scene_file.c:22)
-==200965==    by 0x10B828: process_line (save_scene_file.c:42)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B75B: save_line (save_scene_file.c:24)
-==200965==    by 0x10B828: process_line (save_scene_file.c:42)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10B78A: save_line (save_scene_file.c:26)
-==200965==    by 0x10B828: process_line (save_scene_file.c:42)
-==200965==    by 0x10B951: save_scene_file (save_scene_file.c:65)
-==200965==    by 0x10AC43: main (main.c:68)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x1119B5: is_vector (check_type_coord.c:24)
-==200965==    by 0x11175B: cross_product_na (vector_operations.c:19)
-==200965==    by 0x111FF5: rotation_from_vector (00_matrix_rotation_rodrigues.c:27)
-==200965==    by 0x1105E8: set_transformation_obj (03_m_transformations.c:60)
-==200965==    by 0x1106B0: set_transformation (03_m_transformations.c:82)
-==200965==    by 0x11072D: matrix_transformations (03_m_transformations.c:91)
-==200965==    by 0x110770: raytracing (00_raytracing_main.c:22)
-==200965==    by 0x10AC52: main (main.c:69)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x1119B5: is_vector (check_type_coord.c:24)
-==200965==    by 0x11143D: scalar_mult_na (vector_operations_length.c:17)
-==200965==    by 0x110BAC: prepare_v_light (10_shadows.c:20)
-==200965==    by 0x11082E: light_intensity (09_light_shadow_main.c:28)
-==200965==    by 0x110944: new_light (09_light_shadow_main.c:52)
-==200965==    by 0x1107A0: raytracing (00_raytracing_main.c:26)
-==200965==    by 0x10AC52: main (main.c:69)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x1119B5: is_vector (check_type_coord.c:24)
-==200965==    by 0x11143D: scalar_mult_na (vector_operations_length.c:17)
-==200965==    by 0x10E8B0: compute_specular (11_light.c:41)
-==200965==    by 0x1108AE: light_intensity (09_light_shadow_main.c:32)
-==200965==    by 0x110944: new_light (09_light_shadow_main.c:52)
-==200965==    by 0x1107A0: raytracing (00_raytracing_main.c:26)
-==200965==    by 0x10AC52: main (main.c:69)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D34C: free_coord (free_all.c:18)
-==200965==    by 0x10D629: free_obj (free_all.c:98)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D34C: free_coord (free_all.c:18)
-==200965==    by 0x10D639: free_obj (free_all.c:99)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D34C: free_coord (free_all.c:18)
-==200965==    by 0x10D649: free_obj (free_all.c:100)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D665: free_obj (free_all.c:103)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D682: free_obj (free_all.c:105)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D69F: free_obj (free_all.c:107)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Conditional jump or move depends on uninitialised value(s)
-==200965==    at 0x10D6D9: free_obj (free_all.c:111)
-==200965==    by 0x10D916: free_all (free_all.c:168)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965== 
-==200965== Invalid read of size 8
-==200965==    at 0x10DB20: free_all (free_all.c:177)
-==200965==    by 0x10BE99: ft_keys (event_hooks.c:51)
-==200965==    by 0x1187A5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x10BF4B: image_hooks (event_hooks.c:63)
-==200965==    by 0x10AC6D: main (main.c:71)
-==200965==  Address 0x53997b0 is 0 bytes after a block of size 16 alloc'd
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x115EE3: allocate_light_arrays (init_light_init.c:19)
-==200965==    by 0x116668: init_light (init_light.c:55)
-==200965==    by 0x114829: init_data (init_data.c:130)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 
-==200965== HEAP SUMMARY:
-==200965==     in use at exit: 2,560,736 bytes in 160,046 blocks
-==200965==   total heap usage: 4,040,723 allocs, 3,880,677 frees, 108,283,616 bytes allocated
-==200965== 
-==200965== 16 bytes in 1 blocks are definitely lost in loss record 1 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x116CBA: init_hits_background (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x117876: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 16 bytes in 1 blocks are definitely lost in loss record 2 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x116D24: init_hits_background (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x117876: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 16 bytes in 1 blocks are definitely lost in loss record 3 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x117216: init_hits_plans (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x11789C: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 16 bytes in 1 blocks are definitely lost in loss record 4 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x1172A6: init_hits_plans (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x11789C: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 16 bytes in 1 blocks are definitely lost in loss record 5 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x11758C: init_hits_cylinders (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x1178AF: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 16 bytes in 1 blocks are definitely lost in loss record 6 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x11761C: init_hits_cylinders (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x1178AF: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 320 bytes in 20 blocks are definitely lost in loss record 7 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x116EA3: init_hits_spheres (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x117889: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 320 bytes in 20 blocks are definitely lost in loss record 8 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x116F33: init_hits_spheres (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x117889: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
-==200965==    by 0x113EA6: init_hits (init_hits.c:25)
-==200965==    by 0x113F0F: assign_hits_to_pix (init_hits.c:40)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 640,000 bytes in 40,000 blocks are definitely lost in loss record 9 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x113FE1: assign_hits_to_pix (init_hits.c:46)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 640,000 bytes in 40,000 blocks are definitely lost in loss record 10 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x114019: assign_hits_to_pix (init_hits.c:47)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 640,000 bytes in 40,000 blocks are definitely lost in loss record 11 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x114050: assign_hits_to_pix (init_hits.c:48)
-==200965==    by 0x114887: init_data (init_data.c:139)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== 640,000 bytes in 40,000 blocks are definitely lost in loss record 12 of 12
-==200965==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==200965==    by 0x10DFCA: create_vector (s_create_point_vector.c:54)
-==200965==    by 0x116822: init_comps_vectors_creations (init_scene_comps.c:33)
-==200965==    by 0x116A32: init_comps_vectors (init_scene_comps.c:55)
-==200965==    by 0x116BED: init_pix_comps (init_scene_comps.c:89)
-==200965==    by 0x114390: init_scene_structures (init_scene.c:29)
-==200965==    by 0x114893: init_data (init_data.c:140)
-==200965==    by 0x10AB9F: main (main.c:57)
-==200965== 
-==200965== LEAK SUMMARY:
-==200965==    definitely lost: 2,560,736 bytes in 160,046 blocks
-==200965==    indirectly lost: 0 bytes in 0 blocks
-==200965==      possibly lost: 0 bytes in 0 blocks
-==200965==    still reachable: 0 bytes in 0 blocks
-==200965==         suppressed: 0 bytes in 0 blocks
-==200965== 
-==200965== Use --track-origins=yes to see where uninitialised values come from
-==200965== For lists of detected and suppressed errors, rerun with: -s
-==200965== ERROR SUMMARY: 39294 errors from 57 contexts (suppressed: 3 from 1)
+==204905== Memcheck, a memory error detector
+==204905== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==204905== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==204905== Command: ./minirt image/boulier.rt
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C302: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C2B3: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C2C7: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C066: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C071: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C07C: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C08B: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117D41: ft_strncmp (ft_strncmp.c:25)
+==204905==    by 0x10C0AB: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117CFA: ft_strncmp (ft_strncmp.c:27)
+==204905==    by 0x10C0AB: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C0AE: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117D41: ft_strncmp (ft_strncmp.c:25)
+==204905==    by 0x10C0F5: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117CFA: ft_strncmp (ft_strncmp.c:27)
+==204905==    by 0x10C0F5: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C0F8: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117D41: ft_strncmp (ft_strncmp.c:25)
+==204905==    by 0x10C14A: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117CFA: ft_strncmp (ft_strncmp.c:27)
+==204905==    by 0x10C14A: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C14D: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117D41: ft_strncmp (ft_strncmp.c:25)
+==204905==    by 0x10C194: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117CFA: ft_strncmp (ft_strncmp.c:27)
+==204905==    by 0x10C194: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C197: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117D41: ft_strncmp (ft_strncmp.c:25)
+==204905==    by 0x10C1E9: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117CFA: ft_strncmp (ft_strncmp.c:27)
+==204905==    by 0x10C1E9: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C1EC: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117D41: ft_strncmp (ft_strncmp.c:25)
+==204905==    by 0x10C23B: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x117CFA: ft_strncmp (ft_strncmp.c:27)
+==204905==    by 0x10C23B: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10C23E: parse_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C2EB: process_buffer (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10C3D4: parse_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB8F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B83F: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B7F0: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B804: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B6DB: save_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B828: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B6E6: save_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B828: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B709: save_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B828: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B72C: save_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B828: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B75B: save_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B828: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10B78A: save_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B828: process_line (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10B951: save_scene_file (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC43: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x1119DC: is_vector (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x111782: cross_product_na (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11201C: rotation_from_vector (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11060F: set_transformation_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1106D7: set_transformation (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x110754: matrix_transformations (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x110797: raytracing (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC52: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x1119DC: is_vector (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x111464: scalar_mult_na (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x110BD3: prepare_v_light (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x110855: light_intensity (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11096B: new_light (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1107C7: raytracing (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC52: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x1119DC: is_vector (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x111464: scalar_mult_na (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10E8D7: compute_specular (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1108D5: light_intensity (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11096B: new_light (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1107C7: raytracing (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC52: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D34C: free_coord (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10D629: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D34C: free_coord (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10D639: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D34C: free_coord (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10D649: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D665: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D682: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D69F: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Conditional jump or move depends on uninitialised value(s)
+==204905==    at 0x10D6D9: free_obj (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10DAB2: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== Invalid read of size 8
+==204905==    at 0x10DCBC: free_all (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BE99: ft_keys (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1187C5: mlx_loop (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10BF4B: image_hooks (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AC6D: main (in /home/corentin/miniRayTracer/minirt)
+==204905==  Address 0x53997b0 is 0 bytes after a block of size 16 alloc'd
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x115F0A: allocate_light_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11668F: init_light (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x114850: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 
+==204905== HEAP SUMMARY:
+==204905==     in use at exit: 2,560,736 bytes in 160,046 blocks
+==204905==   total heap usage: 4,040,717 allocs, 3,880,671 frees, 108,283,096 bytes allocated
+==204905== 
+==204905== 16 bytes in 1 blocks are definitely lost in loss record 1 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x116CE1: init_hits_background (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11789D: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 16 bytes in 1 blocks are definitely lost in loss record 2 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x116D4B: init_hits_background (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x11789D: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 16 bytes in 1 blocks are definitely lost in loss record 3 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x11723D: init_hits_plans (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1178C3: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 16 bytes in 1 blocks are definitely lost in loss record 4 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x1172CD: init_hits_plans (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1178C3: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 16 bytes in 1 blocks are definitely lost in loss record 5 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x1175B3: init_hits_cylinders (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1178D6: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 16 bytes in 1 blocks are definitely lost in loss record 6 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x117643: init_hits_cylinders (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1178D6: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 320 bytes in 20 blocks are definitely lost in loss record 7 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x116ECA: init_hits_spheres (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1178B0: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 320 bytes in 20 blocks are definitely lost in loss record 8 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x116F5A: init_hits_spheres (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1178B0: initialize_hits_arrays (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113ECD: init_hits (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x113F36: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 640,000 bytes in 40,000 blocks are definitely lost in loss record 9 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x114008: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 640,000 bytes in 40,000 blocks are definitely lost in loss record 10 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x114040: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 640,000 bytes in 40,000 blocks are definitely lost in loss record 11 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x114077: assign_hits_to_pix (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148AE: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== 640,000 bytes in 40,000 blocks are definitely lost in loss record 12 of 12
+==204905==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==204905==    by 0x10DFF1: create_vector (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x116849: init_comps_vectors_creations (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x116A59: init_comps_vectors (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x116C14: init_pix_comps (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1143B7: init_scene_structures (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x1148BA: init_data (in /home/corentin/miniRayTracer/minirt)
+==204905==    by 0x10AB9F: main (in /home/corentin/miniRayTracer/minirt)
+==204905== 
+==204905== LEAK SUMMARY:
+==204905==    definitely lost: 2,560,736 bytes in 160,046 blocks
+==204905==    indirectly lost: 0 bytes in 0 blocks
+==204905==      possibly lost: 0 bytes in 0 blocks
+==204905==    still reachable: 0 bytes in 0 blocks
+==204905==         suppressed: 0 bytes in 0 blocks
+==204905== 
+==204905== Use --track-origins=yes to see where uninitialised values come from
+==204905== For lists of detected and suppressed errors, rerun with: -s
+==204905== ERROR SUMMARY: 39294 errors from 57 contexts (suppressed: 3 from 1)
