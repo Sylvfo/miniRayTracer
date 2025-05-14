@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_closest_obj.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:55:17 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 17:45:01 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	save_in_comps(t_pix *pix, int a, int b)
 	copy_matrix_44(pix->comps->obj_inv, pix->obj[a][b]->m_inv);
 	if (pix->hits[a][b]->type == CYLINDER)
 		pix->comps->height = pix->obj[a][b]->height;
-	if (pix->hits[a][b]->type == PLAN)
-		copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
+	if (pix->hits[a][b]->type == PLAN || pix->hits[a][b]->type == CYLINDER)
+		copy_coord(pix->comps->object_normal, pix->obj[a][b]->v_axe);
+	//	copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
 }
 
 void	closest_obj(t_pix *pix)

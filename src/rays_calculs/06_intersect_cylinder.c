@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_intersect_cylinder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:29:35 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 19:52:00 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 14:55:16 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	cut_cylinder(t_pix *pix, int cyl_n, float t1, float t2)
 		t2 = tmp;
 	}
 	y1 = pix->hits[3][cyl_n]->r_origin->y + t1 * pix->hits[3][cyl_n]->r_dir->y;
-	if (-pix->obj[3][cyl_n]->height < y1 && y1 < pix->obj[3][cyl_n]->height)
+	if (-1 < y1 && y1 < 1)
 	{
 		pix->hits[3][cyl_n]->t1 = t1;
 		pix->hits[3][cyl_n]->t_count = 1;
 	}
 	y2 = pix->hits[3][cyl_n]->r_origin->y + t2 * pix->hits[3][cyl_n]->r_dir->y;
-	if (-pix->obj[3][cyl_n]->height < y2 && y2 < pix->obj[3][cyl_n]->height)
+	if (-1 < y2 && y2 < 1)
 	{
 		pix->hits[3][cyl_n]->t2 = t2;
 		pix->hits[3][cyl_n]->t_count++;
@@ -43,12 +43,17 @@ bool	check_cap(t_pix *pix, float t, int cyl_n)
 	float	x;
 	float	z;
 
+	
 	x = pix->hits[3][cyl_n]->r_origin->x + t * pix->hits[3][cyl_n]->r_dir->x;
 	z = pix->hits[3][cyl_n]->r_origin->z + t * pix->hits[3][cyl_n]->r_dir->z;
 	if (x * x + z * z <= 1)
+	{
+	//	printf("+");
 		return (true);
+	}	
 	return (false);
 }
+
 
 void	intersect_caps(t_pix *pix, int cyl_n)
 {
@@ -58,22 +63,27 @@ void	intersect_caps(t_pix *pix, int cyl_n)
 		return ;
 	if (pix->obj[3][cyl_n]->closed_down == true)
 	{
-		t = (-pix->obj[3][cyl_n]->height - pix->hits[3][cyl_n]->r_origin->y)
+	//	printf(".");
+		t = (-1 - pix->hits[3][cyl_n]->r_origin->y)
 			/ pix->hits[3][cyl_n]->r_dir->y;
-		if (check_cap(pix, t, cyl_n) == true)
+		if (check_cap(pix, t, cyl_n) == true && t < pix->hits[3][cyl_n]->t1 &&  t < pix->hits[3][cyl_n]->t2)
 		{
 			pix->hits[3][cyl_n]->t_count = 8;
 			pix->hits[3][cyl_n]->t2 = t;
+		//	printf("t2 %.5f, \n", pix->hits[3][cyl_n]->t2);
 		}
 	}
+	pix->obj[3][cyl_n]->closed_up = true;
 	if (pix->obj[3][cyl_n]->closed_up == true)
 	{
-		t = (pix->obj[3][cyl_n]->height - pix->hits[3][cyl_n]->r_origin->y)
+	//	printf("u");	
+		t = (1 - pix->hits[3][cyl_n]->r_origin->y)
 			/ pix->hits[3][cyl_n]->r_dir->y;
-		if (check_cap(pix, t, cyl_n) == true)
+		if (check_cap(pix, t, cyl_n) == true && t < pix->hits[3][cyl_n]->t1 && t < pix->hits[3][cyl_n]->t2)
 		{
 			pix->hits[3][cyl_n]->t_count = 9;
 			pix->hits[3][cyl_n]->t1 = t;
+		//	printf("t1 %.5f, \n", pix->hits[3][cyl_n]->t1);
 		}
 	}
 }
@@ -87,7 +97,7 @@ void	intersect_cylinder(t_pix *pix, int cyl_n)
 
 	a = pix->hits[3][cyl_n]->r_dir->x * pix->hits[3][cyl_n]->r_dir->x
 		+ pix->hits[3][cyl_n]->r_dir->z * pix->hits[3][cyl_n]->r_dir->z;
-	if (fabs(a) < EPSILON)
+	if (fabs(a) < 0.000001)// CHANGER
 		return ;
 	b = 2 * pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_dir->x
 		+ 2 * pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_dir->z;

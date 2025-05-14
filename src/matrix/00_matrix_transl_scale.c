@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_matrix_transl_scale.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:51:07 by syl               #+#    #+#             */
-/*   Updated: 2025/05/13 15:12:37 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 12:21:35 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	scaling_matrix_coord(t_obj *obj)
 	if (obj->type == CYLINDER)
 	{
 		matrix_fill(obj->m_scale, 0, 0, obj->diam);
-		matrix_fill(obj->m_scale, 1, 1, 1.0);
+		matrix_fill(obj->m_scale, 1, 1, obj->height);
 		matrix_fill(obj->m_scale, 2, 2, obj->diam);
 	}
 	else

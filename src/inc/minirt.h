@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:03:17 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/13 15:52:34 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 17:25:05 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WND_HEIGHT 900
 
 # define BAKGROUND_COLOR 12701914
-# define EPSILON 0.001
+# define EPSILON 0.00001
 # define PI 3.1415926535
 # define PIRAD 0.017453
 # define SHININESS 80.0

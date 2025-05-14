@@ -20,12 +20,19 @@ float	compute_pointlight(t_pix *pix, t_light *lux)
 	intensity = 0.0f;
 	substraction_p_to_v_na(pix->comps->v_point_to_light, lux->p_coord,
 		pix->comps->p_touch);
+
 	normalize_vector_na(pix->comps->v_point_to_light);
+	fabs(pix->comps->v_point_to_light->x);
+	fabs(pix->comps->v_point_to_light->y);
+	fabs(pix->comps->v_point_to_light->z);
 	n_dot_l = dot_product(pix->comps->v_norm_parral,
 			pix->comps->v_point_to_light);
 	if (n_dot_l > 0.0f)
 		intensity = lux->ratio * n_dot_l;
+
+	//return (0.5);
 	return (intensity);
+
 }
 
 float	compute_specular(t_pix *pix, t_light *lux)
