@@ -3,16 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   10_shadows.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:20:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 21:35:35 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/14 23:19:15 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
 bool	cut_cylinder_shad(t_pix *pix, int cyl_n, float t1, float t2);
+
+// Helper function to check if a 't' value for cylinder body shadow is valid
+static bool check_shadow_cyl_body_t(float t, t_coord *s_o_local, t_coord *s_d_local, float max_dist)
+{
+	if (t > EPSILON && t < max_dist)
+	{
+		float y_intersect = s_o_local->y + t * s_d_local->y;
+		if (y_intersect >= -1.0f && y_intersect <= 1.0f)
+			return (true);
+	}
+	return (false);
+}
+
+// Helper function to check if a 't' value for cylinder cap shadow is valid
+static bool check_shadow_cyl_cap_t(float t, t_coord *s_o_local, t_coord *s_d_local, float max_dist)
+{
+	if (t > EPSILON && t < max_dist)
+	{
+		float x_cap = s_o_local->x + t * s_d_local->x;
+		float z_cap = s_o_local->z + t * s_d_local->z;
+		if (x_cap * x_cap + z_cap * z_cap <= 1.0f)
+			return (true);
+	}
+	return (false);
+}
 
 void	prepare_v_light(t_pix *pix, int lux_num)
 {
@@ -46,8 +71,8 @@ bool	intersect_objects_shadow(t_pix *pix, int lux_num)
 				in_shadow = intersect_sphere_shadow(pix, b, lux_num);
 			else if (a == PLAN)
 				in_shadow = intersect_plan_shadow(pix, b, lux_num);
-		//	else if (a == CYLINDER)
-		//		in_shadow = intersect_cylinder_shadow(pix, b, lux_num);
+			else if (a == CYLINDER)
+				in_shadow = intersect_cylinder_shadow(pix, b, lux_num);
 			if (in_shadow)
 				return (true);
 			b++;
@@ -105,44 +130,57 @@ bool	intersect_plan_shadow(t_pix *pix, int pln_num, int lux_num)
 	return (false);
 }
 
-/*
 bool	intersect_cylinder_shadow(t_pix *pix, int cyl_num, int lux_num)
 {
-	(void)pix;
-	(void)cyl_num;
+	t_coord	s_o_world;
+	t_coord	s_d_world;
+	t_coord	s_o_local;
+	t_coord	s_d_local;
+	t_obj	*cylinder = pix->obj[CYLINDER][cyl_num];
+	float	a, b, c, discriminant, sqrt_d, t1, t2;
+
 	(void)lux_num;
+
+	scalar_mult_na(&s_o_world, pix->comps->v_norm_parral, EPSILON * 10.0f);
+	addition_na(&s_o_world, pix->comps->p_touch, &s_o_world);
+	copy_coord(&s_d_world, pix->comps->v_light_to_point);
+
+	matrix_point_multiplication_new(&s_o_local, cylinder->m_inv, &s_o_world);
+	t_coord temp_s_d_world;
+	copy_coord(&temp_s_d_world, &s_d_world);
+	temp_s_d_world.t = 0;
+	matrix_point_multiplication_new(&s_d_local, cylinder->m_inv, &temp_s_d_world);
+	normalize_vector_na(&s_d_local);
+
+	a = s_d_local.x * s_d_local.x + s_d_local.z * s_d_local.z;
+	if (fabs(a) > EPSILON)
+	{
+		b = 2.0f * (s_o_local.x * s_d_local.x + s_o_local.z * s_d_local.z);
+		c = s_o_local.x * s_o_local.x + s_o_local.z * s_o_local.z - 1.0f;
+		discriminant = b * b - 4.0f * a * c;
+		if (discriminant >= 0.0f)
+		{
+			sqrt_d = simple_sqrt(discriminant);
+			t1 = (-b - sqrt_d) / (2.0f * a);
+			if (check_shadow_cyl_body_t(t1, &s_o_local, &s_d_local, pix->comps->distance_light_p_touch))
+				return (true);
+			t2 = (-b + sqrt_d) / (2.0f * a);
+			if (check_shadow_cyl_body_t(t2, &s_o_local, &s_d_local, pix->comps->distance_light_p_touch))
+				return (true);
+		}
+	}
+
+	if (fabs(s_d_local.y) > EPSILON)
+	{
+		t1 = (-1.0f - s_o_local.y) / s_d_local.y;
+		if (check_shadow_cyl_cap_t(t1, &s_o_local, &s_d_local, pix->comps->distance_light_p_touch))
+			return (true);
+
+		t2 = (1.0f - s_o_local.y) / s_d_local.y;
+		if (check_shadow_cyl_cap_t(t2, &s_o_local, &s_d_local, pix->comps->distance_light_p_touch))
+			return (true);
+	}
 	return (false);
-
-}*/
-
-bool	intersect_cylinder_shadow(t_pix *pix, int cyl_num, int lux_num)
-{
-	float	a;
-	float	b;
-	float	c;
-	float	discriminant;
-
-	a = pix->comps->v_light_to_point->x * pix->comps->v_light_to_point->x
-		+ pix->comps->v_light_to_point->z * pix->comps->v_light_to_point->z;
-	if (fabs(a) < 0.000001)// CHANGER
-		return (false);
-	b = 2 * pix->lux[1][lux_num]->p_coord->x * pix->comps->v_light_to_point->x
-		+ 2 * pix->lux[1][lux_num]->p_coord->z * pix->comps->v_light_to_point->z;
-	c = pix->lux[1][lux_num]->p_coord->x * pix->lux[1][lux_num]->p_coord->x
-		+ pix->lux[1][lux_num]->p_coord->z * pix->lux[1][lux_num]->p_coord->z
-		- pix->obj[3][cyl_num]->radius;//radius??
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
-		return (false); // il a pas croisé
-	if (cut_cylinder_shad(pix, cyl_num,  (-b - simple_sqrt(discriminant)) / (2 * a),
-		(-b + simple_sqrt(discriminant)) / (2 * a)) == false)
-		return (false);
-	return (true);
-/*	cut_cylinder(pix, cyl_n, (-b - simple_sqrt(discriminant)) / (2 * a),
-		(-b + simple_sqrt(discriminant)) / (2 * a));
-	if (intersect_caps_shadow(pix, cyl_n == true))
-		return (true);
-	return (false);*/
 }
 
 bool	cut_cylinder_shad(t_pix *pix, int cyl_n, float t1, float t2)
@@ -169,85 +207,3 @@ bool	cut_cylinder_shad(t_pix *pix, int cyl_n, float t1, float t2)
 	}
 	return (false);
 }
-
-/*
-bool	check_cap(t_pix *pix, float t, int cyl_n)
-{
-	float	x;
-	float	z;
-
-	
-	x = pix->hits[3][cyl_n]->r_origin->x + t * pix->hits[3][cyl_n]->r_dir->x;
-	z = pix->hits[3][cyl_n]->r_origin->z + t * pix->hits[3][cyl_n]->r_dir->z;
-	if (x * x + z * z <= 1)
-	{
-	//	printf("+");
-		return (true);
-	}	
-	return (false);
-}
-
-
-void	intersect_caps_shadow(t_pix *pix, int cyl_n)
-{
-	float	t;
-
-	if (fabs(pix->hits[3][cyl_n]->r_dir->y) < EPSILON)
-		return ;
-	if (pix->obj[3][cyl_n]->closed_down == true)
-	{
-	//	printf(".");
-		t = (-1 - pix->hits[3][cyl_n]->r_origin->y)
-			/ pix->hits[3][cyl_n]->r_dir->y;
-		if (check_cap(pix, t, cyl_n) == true && t < pix->hits[3][cyl_n]->t1 &&  t < pix->hits[3][cyl_n]->t2)
-		{
-			pix->hits[3][cyl_n]->t_count = 8;
-			pix->hits[3][cyl_n]->t2 = t;
-		//	printf("t2 %.5f, \n", pix->hits[3][cyl_n]->t2);
-		}
-	}
-	pix->obj[3][cyl_n]->closed_up = true;
-	if (pix->obj[3][cyl_n]->closed_up == true)
-	{
-	//	printf("u");	
-		t = (1 - pix->hits[3][cyl_n]->r_origin->y)
-			/ pix->hits[3][cyl_n]->r_dir->y;
-		if (check_cap(pix, t, cyl_n) == true && t < pix->hits[3][cyl_n]->t1 && t < pix->hits[3][cyl_n]->t2)
-		{
-			pix->hits[3][cyl_n]->t_count = 9;
-			pix->hits[3][cyl_n]->t1 = t;
-		//	printf("t1 %.5f, \n", pix->hits[3][cyl_n]->t1);
-		}
-	}
-}*/
-
-
-
-/*
-bool	intersect_cylinder_shadow(t_pix *pix, int cyl_num, int lux_num)
-//void	intersect_cylinder(t_pix *pix, int cyl_n)
-{
-	float	a;
-	float	b;
-	float	c;
-	float	discriminant;
-
-	a = pix->hits[3][cyl_n]->r_dir->x * pix->hits[3][cyl_n]->r_dir->x
-		+ pix->hits[3][cyl_n]->r_dir->z * pix->hits[3][cyl_n]->r_dir->z;
-	if (fabs(a) < 0.000001)// CHANGER
-		return ;
-	b = 2 * pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_dir->x
-		+ 2 * pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_dir->z;
-	c = pix->hits[3][cyl_n]->r_origin->x * pix->hits[3][cyl_n]->r_origin->x
-		+ pix->hits[3][cyl_n]->r_origin->z * pix->hits[3][cyl_n]->r_origin->z
-		- 1;
-	discriminant = b * b - 4 * a * c;
-	if (discriminant < 0)
-		return (false); // il a pas croisé
-	return (true);
-	cut_cylinder(pix, cyl_n, (-b - simple_sqrt(discriminant)) / (2 * a),
-		(-b + simple_sqrt(discriminant)) / (2 * a));
-	if (intersect_caps_shadow(pix, cyl_n == true))
-		return (true);
-	return (false);
-}*/

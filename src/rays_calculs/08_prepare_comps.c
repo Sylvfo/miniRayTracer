@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 23:00:29 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 23:10:25 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	prepare_computation_pix(t_pix *pix)
 	if (pix->comps->type == CYLINDER)
 	{
 		normal_at_cyl(pix->comps);
+		// Add the v_eye check for cylinders
+		if (dot_product(pix->comps->v_norm_parral, pix->comps->v_eye) < 0)
+			negat_na(pix->comps->v_norm_parral, pix->comps->v_norm_parral);
 	}	
 	else if (pix->comps->type == PLAN)
 	{
@@ -139,28 +142,41 @@ void	normal_at_na(t_comps *comps)
 
 void	normal_at_cyl(t_comps *comps)
 {
-	matrix_point_multiplication_new(comps->p_space,
-		comps->obj_inv, comps->p_touch);
+	t_coord	local_normal_vec;
 
-	substraction_p_to_v_na(comps->object_normal,
-		comps->p_space, comps->origin_zero);
-	comps->object_normal->y = 0;
-	if (comps->t_count > 4)
+	// 1. Calculate p_space = obj_inv * p_touch (point of intersection in local object space)
+	matrix_point_multiplication_new(comps->p_space, comps->obj_inv, comps->p_touch);
+
+	// 2. Determine local normal based on intersection type
+	if (comps->t_count == 8) // Bottom cap (local normal is (0, -1, 0) for a Y-aligned cylinder)
 	{
-		comps->v_norm_parral->x = comps->obj->v_axe->x;
-		comps->v_norm_parral->y = comps->obj->v_axe->y;
-		comps->v_norm_parral->z = comps->obj->v_axe->z;
+		vector_fill(&local_normal_vec, 0, -1, 0);
 	}
-	normalize_vector_na(comps->object_normal);
+	else if (comps->t_count == 9) // Top cap (local normal is (0, 1, 0) for a Y-aligned cylinder)
+	{
+		vector_fill(&local_normal_vec, 0, 1, 0);
+	}
+	else // Cylinder body (t_count is typically 1 or 2)
+	{
+		// For a canonical cylinder aligned along Y-axis, centered at origin,
+		// the normal at a point (px, py, pz) on its surface (ignoring caps) is (px, 0, pz).
+		local_normal_vec.x = comps->p_space->x;
+		local_normal_vec.y = 0; // Normal is perpendicular to Y-axis for the body
+		local_normal_vec.z = comps->p_space->z;
+	}
+	local_normal_vec.t = 0; // Ensure it's treated as a vector
+
+	// 3. Normalize local_normal_vec (primarily for body, caps are already unit length if vector_fill sets them so)
+	normalize_vector_na(&local_normal_vec);
+
+	// 4. Calculate transp_inv = transpose(obj_inv)
 	transpose_matrix(comps->transp_inv, comps->obj_inv);
-	matrix_point_multiplication_new(comps->v_norm_parral,
-		comps->transp_inv, comps->object_normal);
+
+	// 5. Transform local_normal_vec to world space: v_norm_parral = transp_inv * local_normal_vec
+	matrix_point_multiplication_new_2(comps->v_norm_parral, comps->transp_inv, &local_normal_vec);
+	
+	// 6. Normalize the final world-space normal
 	normalize_vector_na(comps->v_norm_parral);
-	substraction_p_to_v_na(comps->object_normal,
-		comps->p_space, comps->origin_zero);
-	comps->v_norm_parral->x = comps->p_space->x;
-	comps->v_norm_parral->y = 0;
-	comps->v_norm_parral->z = comps->p_space->z;
 }
 
 void	prepare_computation(t_pix ***pix)
