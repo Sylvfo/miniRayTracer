@@ -22,11 +22,16 @@ float	compute_pointlight(t_pix *pix, t_light *lux)
 		pix->comps->p_touch);
 
 	normalize_vector_na(pix->comps->v_point_to_light);
-	fabs(pix->comps->v_point_to_light->x);
-	fabs(pix->comps->v_point_to_light->y);
-	fabs(pix->comps->v_point_to_light->z);
 	n_dot_l = dot_product(pix->comps->v_norm_parral,
 			pix->comps->v_point_to_light);
+	if (pix->comps->type == PLAN)
+	{
+    //	printf("NORMAL: ");
+    //	print_vector(pix->comps->v_norm_parral);
+    //	printf("TO LIGHT: ");
+    //	print_vector(pix->comps->v_point_to_light);
+    //	printf("DOT: %.2f\n", n_dot_l);
+	}
 	if (n_dot_l > 0.0f)
 		intensity = lux->ratio * n_dot_l;
 

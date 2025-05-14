@@ -6,29 +6,13 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 21:39:48 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/14 21:57:02 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   08_prepare_comps.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/17 14:00:25 by syl               #+#    #+#             */
-/*   Updated: 2025/05/09 17:04:28 by syl              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../inc/minirt.h"
-
 
 void	normal_at_cyl(t_comps *comps);
-void find_normal_from_vector(t_coord *v_norm, t_coord *v_axe);
 
 void	prepare_computation_pix(t_pix *pix)
 {
@@ -49,13 +33,9 @@ void	prepare_computation_pix(t_pix *pix)
 	}	
 	else if (pix->comps->type == PLAN)
 	{
-		//find_normal_from_vector(pix->comps->v_norm_parral, pix->comps->object_normal);
-		vector_fill(pix->comps->object_normal, 0, 1, 0);
-	//	copy_coord(pix->comps->v_norm_parral, pix->comps->object_normal);
-	//	normalize_vector_na(pix->comps->v_norm_parral);
-	//	print_vector(pix->comps->object_normal);
-	//	copy_coord(pix->comps->object_normal, pix->comps->v_norm_parral);
-//		cross_product_na(pix->comps->v_norm_parral,pix->comps->object_normal, vect);
+	//	vector_fill(pix->comps->object_normal, 0, 1, 0);
+		copy_coord(pix->comps->v_norm_parral, pix->comps->object_normal);
+
 
 		
 		transpose_matrix(pix->comps->transp_inv, pix->comps->obj_inv);
@@ -68,49 +48,6 @@ void	prepare_computation_pix(t_pix *pix)
 	
 }
 
-void find_normal_from_vector(t_coord *v_norm, t_coord *v_axe)
-{
-	t_coord *w;
-//	t_coord *normal;v_norm
-	t_coord *v_2;
-//	t_coord *v_2_true;
-
-	v_2 = create_vector(1,0,0);
-//	v_2_true = create_vector(0, 0, 0);
-
-/*	if (fabs(v_axe->x) == 1 && fabs(v_axe->y) == 0 && fabs(v_axe->y) == 0)
-	{
-		 vector_fill(v_2, 0, 0, 1);
-	}*/
-	cross_product_na(v_norm, v_2, v_axe);
-//	cross_product_na(v_norm, v_2, v_axe);
-//	normalize_vector_na(v_norm);
-	free(v_2);
-}
-
-/*
-t_coord *find_normal_from_vector(t_coord *v)
-{
-	t_coord *w;
-	t_coord *normal;
-
-	normal = create_vector(0,0,0);
-
-	// Choisir un vecteur non parallèle à v
-	if (fabs(v->x) < fabs(v->y) && fabs(v->x) < fabs(v->z))
-		w = create_vector(1, 0, 0);
-	else if (fabs(v->y) < fabs(v->z))
-		w = create_vector(0, 1, 0);
-	else
-		w = create_vector(0, 0, 1);
-
-	// Produit vectoriel n = v × w
-	cross_product_na(normal, v, w);
-//	normal = cross_product(*normal, v, w);
-	normalize_vector_na(normal); // optionnel
-	free(w);
-	return (normal);
-}*/
 
 /*
 void	normal_caps(t_comps *comps)
@@ -208,9 +145,6 @@ void	normal_at_cyl(t_comps *comps)
 	comps->v_norm_parral->x = comps->p_space->x;
 	comps->v_norm_parral->y = 0;
 	comps->v_norm_parral->z = comps->p_space->z;
-//	comps->v_norm_parral->y = 0;
-//	if (comps->t_count > 4)
-//		normal_caps(comps);
 }
 
 void	prepare_computation(t_pix ***pix)
