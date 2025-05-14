@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 00:00:00 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 11:41:11 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 12:02:39 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,65 +200,91 @@ void	free_all(t_program_context *context)
 	if (!context)
 		return;
 
-	printf("Appel de free_all. Étape 1: Libération de context->pix.\n");
-	// 1. Libérer context->pix et son contenu
-	free_pix_array_memory(context);
+	// Pointeur pour stocker la référence aux objets partagés
+	t_obj		***obj_to_free = NULL;
+	// t_light		***light_to_free = NULL; // Pour les étapes futures
+	// t_camera	*camera_to_free = NULL; // Pour les étapes futures
+
+	// Capturer les pointeurs vers les données partagées avant de libérer la matrice pix
+	// Il est crucial que context->pix, context->pix[0] et context->pix[0][0] soient valides ici.
+	if (context->pix && context->pix[0] && context->pix[0][0])
+	{
+		obj_to_free = context->pix[0][0]->obj;
+		// light_to_free = context->pix[0][0]->lux; // Sera utilisé plus tard
+		// camera_to_free = context->pix[0][0]->cam; // Sera utilisé plus tard
+	}
+
+	printf("Appel de free_all.\n");
+	
+	// 1. Libérer context->pix et son contenu (les structures t_pix elles-mêmes et leurs membres non partagés)
+	printf("Étape 1: Libération de context->pix.\n");
+	free_pix_array_memory(context); // context->pix devient NULL ici
+
+	// 2. Libérer context->obj (la structure de données des objets, qui était partagée)
+	printf("Étape 2: Libération de context->obj.\n");
+	if (obj_to_free && context->num_obj)
+	{
+		free_object(obj_to_free, context->num_obj); // free_object est défini dans init_object_free.c
+		obj_to_free = NULL; // Bonne pratique
+	}
+	else
+	{
+		printf("  -> obj_to_free ou context->num_obj est NULL, rien à libérer pour les objets.\n");
+	}
 
 	// Étapes suivantes (à implémenter) :
-	// 2. Libérer context->obj et son contenu (si ce n'est pas déjà fait via pix ou si partagé différemment)
-	//    (Note: obj est partagé par tous les pix, donc il faut une libération unique)
-	//    free_obj_array(context->obj, context->num_obj);
-
-	// 3. Libérer context->light et son contenu (similaire à obj)
-	//    free_light_array(context->light, context->num_obj);
-
-	// 4. Libérer context->camera et son contenu
-	//    free_camera_content(context->camera);
-	//    free(context->camera); context->camera = NULL;
-
-	// 5. Libérer context->scene_components et son contenu
-	//    free_scene_components(context->scene_components);
-	//    free(context->scene_components); context->scene_components = NULL;
-	
-	// 6. Libérer context->num_obj
-	//    free(context->num_obj); context->num_obj = NULL;
-
-	// 7. Libérer les ressources MinilibX
-	//    Il faut s'assurer que context->ima, context->mlx_ptr, context->mlx_win sont valides.
-	//    L'ordre est important : image, puis fenêtre, puis display.
-	//    if (context->ima && context->mlx_ptr)
+	// 3. Libérer context->light (shared)
+	//    printf("Étape 3: Libération de context->light.\n");
+	//    if (light_to_free && context->num_obj)
 	//    {
-	//        if (context->ima->img)
-	//            mlx_destroy_image(context->mlx_ptr, context->ima->img);
-       // Ne pas free(context->ima) ici si c'est un pointeur vers pix[0][0]->ima
-       // et que t_image a été alloué par init_ima.
-       // La structure t_image elle-même (context->pix[0][0]->ima) doit être libérée.
-       // Cela devrait être fait après avoir libéré context->pix pour éviter d'accéder à une zone libérée.
-       // Ou, si context->ima est le seul propriétaire, le libérer ici.
-       // Pour l'instant, on suppose que la structure t_image est libérée séparément si nécessaire.
+	//        free_light_all(light_to_free, context->num_obj); // Assumer/créer free_light_all
+	//        light_to_free = NULL;
+	//    }
+
+	// 4. Libérer context->camera (shared)
+	//    printf("Étape 4: Libération de context->camera.\n");
+	//    if (camera_to_free)
+	//    {
+	//        free_camera_memory(camera_to_free); // Assumer/créer free_camera_memory
+	//        camera_to_free = NULL;
+	//    }
+
+	// 5. Libérer context->scene_components (si applicable)
+	//    free_scene_components(context->scene_components);
+
+	// 7. Libérer les ressources MinilibX (après avoir libéré les structures qui les utilisent)
+	//    printf("Étape 7: Libération des ressources MinilibX et de context->ima.\n");
+	//    if (context->ima) // context->ima pointe vers la structure t_image allouée
+	//    {
+	//        if (context->ima->mlx_ptr && context->ima->img)
+	//            mlx_destroy_image(context->ima->mlx_ptr, context->ima->img);
+	//        // La structure t_image elle-même (context->ima) sera libérée après les appels mlx_destroy_*
 	//    }
 	//    if (context->mlx_win && context->mlx_ptr)
 	//        mlx_destroy_window(context->mlx_ptr, context->mlx_win);
 	//    if (context->mlx_ptr)
-	//        mlx_destroy_display(context->mlx_ptr);
+	//        mlx_destroy_display(context->mlx_ptr); // Libère aussi mlx_ptr
 	//
-	    // Libérer la structure t_image pointée par context->ima (qui est context->pix[0][0]->ima)
-	    // Cette structure a été allouée par init_ima().
-	    // Puisque context->pix est maintenant libéré, context->pix[0][0] n'est plus accessible.
-	    // Il faut libérer context->ima (la structure t_image) avant de libérer context->mlx_ptr.
-	    // Mais après mlx_destroy_image et mlx_destroy_window.
-	    // free(context->ima); // Si context->ima est une copie ou le propriétaire.
-	    // Si context->ima pointe vers pix[0][0]->ima, et que pix[0][0]->ima est alloué par init_ima,
-	    // alors free(context->pix[0][0]->ima) aurait dû être fait avant free(context->pix[0][0]).
-	    // C'est un point délicat. Pour l'instant, je vais supposer que la structure t_image
-	    // est gérée par la libération de MinilibX ou doit être libérée explicitement.
-	    // Le plus simple est de libérer la structure t_image *avant* de détruire le display,
-	    // après avoir détruit l'image et la fenêtre qu'elle contient.
-	    // free(context->ima); // après mlx_destroy_image et mlx_destroy_window
+	//    if (context->ima) // Libérer la structure t_image
+	//    {
+	//        free(context->ima);
+	//        context->ima = NULL;
+	//    }
+	//    context->mlx_ptr = NULL; // mlx_destroy_display s'en charge
+	//    context->mlx_win = NULL; // mlx_destroy_window s'en charge
+
+	// 6. Libérer context->num_obj
+	printf("Étape 6: Libération de context->num_obj.\n");
+	if (context->num_obj)
+	{
+		free(context->num_obj);
+		context->num_obj = NULL;
+	}
 
 	// 8. Libérer la structure context elle-même
-	//    free(context);
-	//    context = NULL; // L'appelant devrait gérer cela.
+	printf("Étape 8: Libération de la structure context.\n");
+	free(context);
+	// context = NULL; // L'appelant doit gérer la mise à NULL de son pointeur
 
-	printf("Libération de context->pix terminée (théoriquement).\n");
+	printf("Libération des ressources terminée (étapes 1, 2, 6, 8 partiellement implémentées).\n");
 }
