@@ -12,6 +12,7 @@
 
 #include "../inc/minirt.h"
 
+
 void free_coord(t_coord *coord)
 {
 	if (coord)

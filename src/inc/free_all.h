@@ -28,6 +28,16 @@ void free_lux_inside(t_light ***lux);
 void free_lux_all(t_light ***lux);
 void free_lux_mid(t_light ***lux);
 void free_lux_S(t_pix *pix);
+void	free_pix2(t_pix ***pix);
+
+//Sylv 2
+void free_all2(t_pix ***pix);
+void free_coord2(t_coord **coord);
+void	free_matrix(float **m_matrix);
+void free_color2(t_color **color);
+void free_hits_array(t_hits ****hits);
+void free_hits_data2(t_hits ***hits);
+void free_hits_2(t_pix ***pix);
 
 void free_obj_S(t_pix *pix);
 void free_obj_inside(t_obj ***obj);

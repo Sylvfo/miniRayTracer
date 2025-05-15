@@ -10,23 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+
+
+
+
 
 void new_free(t_pix ***pix)
 {
 	printf("test %.2f \n",pix[0][0]->r_dir->x);
-	if (!pix)
+/*	if (!pix)
 		return;
 	printf("free enter2");
 	if (!pix[0])
 		return;
 	printf("free enter3");
 	if (!pix[0][0])
-		return;
+		return;*/
 	printf("free enter");
-//	free_hits_S(pix);
+	free_hits_S(pix);
 	printf("free hits");
-//	free_comps_S(pix);
+	free_comps_S(pix);
 //	printf("free comps");
 	free_lux_S(pix[0][0]);
 	printf("free lux");

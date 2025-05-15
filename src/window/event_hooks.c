@@ -39,7 +39,7 @@ int	ft_exit(t_program_context *context)
 {
 	printf("in ft_exit\n");
 	if (context->pix)
-		new_free(context->pix);
+		free_all2(context->pix);
 //	exit(0);
 	return (0);
 }
@@ -50,24 +50,25 @@ int	ft_keys(int keycode, t_program_context *context)
 	if (keycode == 65307)
 	{
 		printf("ESC pressed.\nWindow closed\n");
-		if (context->ima)
+	/*	if (context->ima)
 		{
 			free_image(context->ima);
 			context->ima = NULL;
-		}
+		}*/
 
 	// 2. MLX
-		if (context->mlx_ptr || context->mlx_win)
+	/*	if (context->mlx_ptr || context->mlx_win)
 		{
 			free_mlx(context->mlx_ptr, context->mlx_win);
 			context->mlx_ptr = NULL;
 			context->mlx_win = NULL;
-		}
+		}*/
 		printf("jklfj\n");
 		if (context->pix)
-			new_free(context->pix);
+			free_all2(context->pix);
+		//	new_free(context->pix);
 		printf("	OUT OF FREE IN KEYS\n");
-	//	exit(0);
+		exit(0);
 		return (0);
 	}
 	return (0);

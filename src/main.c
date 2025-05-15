@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 	raytracing(context->pix);
 	pix_to_window(context->pix);
 	image_hooks(context);
-	new_free(context->pix);
+//	new_free(context->pix);
 //	free_all(context);
 	return (EXIT_SUCCESS);
 }

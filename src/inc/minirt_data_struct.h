@@ -146,7 +146,7 @@ typedef struct s_comps
 typedef struct s_pix
 {
 	t_camera	*cam;
-	t_image		*ima;
+//	t_image		*ima;
 	t_obj		***obj;
 	t_light		***lux;
 	t_coord		*p_viewport;
