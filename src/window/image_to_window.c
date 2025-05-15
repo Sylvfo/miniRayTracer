@@ -12,13 +12,11 @@
 
 #include "../inc/minirt.h"
 
-void	pix_to_window(t_pix ***pix)
+void	pix_to_window(t_pix ***pix, t_program_context *context)
 {
 	int		x;
 	int		y;
-	t_image	*ima;
 
-	ima = pix[0][0]->ima;
 	x = 0;
 	while (x < WND_WIDTH)
 	{
@@ -26,10 +24,10 @@ void	pix_to_window(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			color_float_to_int(pix[x][y]->color);
-			my_mlx_pixel_put(ima, x, y, pix[x][y]->color->rgb);
+			my_mlx_pixel_put(context->ima, x, y, pix[x][y]->color->rgb);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(ima->mlx_ptr, ima->mlx_win, ima->img, 0, 0);
+	mlx_put_image_to_window(context->mlx_ptr, context->mlx_win, context->img, 0, 0);
 }

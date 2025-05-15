@@ -79,11 +79,12 @@ int	main(int argc, char **argv)
 	context->pix = init_data(context->num_obj);
 	if (!context->pix)
 		error_exit("Failed to initialize pixel data", context);
+	if (!init_ima(context))
+		error_exit("Failed to initialize image", context);
 	setup_window_context(context);
 	save_scene_file(argv[1], context);
 	raytracing(context->pix);
-	pix_to_window(context->pix);
+	pix_to_window(context->pix, context);
 	image_hooks(context);
-//	free_all(context);
 	return (EXIT_SUCCESS);
 }

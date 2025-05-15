@@ -24,6 +24,6 @@ int		ft_exit(t_program_context *context);
 int		ft_keys(int keycode, t_program_context *context);
 
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color);
-void	pix_to_window(t_pix ***pix);
+void	pix_to_window(t_pix ***pix, t_program_context *context);
 
 #endif
