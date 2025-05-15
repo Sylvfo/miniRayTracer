@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/05/15 16:44:01 by cmegret          ###   ########.fr        #
+#    Updated: 2025/05/15 19:16:53 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,11 +139,20 @@ SRCS = ./src/main.c \
 	./src/free/free_pixels.c \
 	./src/free/free_pixels2.c \
 
+# Détection de l'OS pour choisir la bonne version de la MLX
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	MLX_DIR := lib/minilibx_opengl
+	MLX_INC := -I$(MLX_DIR)
+	MLX_LNK := -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+else
+	MLX_DIR := lib/minilibx-linux
+	MLX_INC := -I$(MLX_DIR)
+	MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+endif
+
 # Bibliothèques
 LIBFT = lib/libft/libft.a
-MLX_DIR := lib/minilibx-linux
-MLX_INC := -I$(MLX_DIR)
-MLX_LNK := -L$(MLX_DIR) -lmlx -lXext -lX11 -lm 
 
 # Fichiers objets
 OBJ_DIR = objs
