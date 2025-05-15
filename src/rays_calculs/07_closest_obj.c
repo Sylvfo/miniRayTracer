@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 10:48:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:55:17 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 22:32:23 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@ void	save_in_comps(t_pix *pix, int a, int b)
 {
 	pix->comps->t_count = pix->hits[a][b]->t_count;
 	pix->comps->obj = pix->obj[a][b];
+	// Ajout de la copie de la couleur de l'objet touché
+	if (pix->obj[a][b] && pix->obj[a][b]->color && pix->comps->obj_color)
+		copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
 	copy_coord(pix->comps->r_dir, pix->hits[a][b]->r_dir);
 	copy_coord(pix->comps->r_origin, pix->hits[a][b]->r_origin);
 	pix->comps->type = pix->hits[a][b]->type;
-	copy_color(pix->comps->obj_color, pix->obj[a][b]->color);
 	copy_matrix_44(pix->comps->obj_inv, pix->obj[a][b]->m_inv);
 	if (pix->hits[a][b]->type == CYLINDER)
 		pix->comps->height = pix->obj[a][b]->height;
-	if (pix->hits[a][b]->type == PLAN)
-		copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
+	if (pix->hits[a][b]->type == PLAN || pix->hits[a][b]->type == CYLINDER)
+		copy_coord(pix->comps->object_normal, pix->obj[a][b]->v_axe);
+	//	copy_coord(pix->comps->v_norm_parral, pix->obj[a][b]->v_axe);
 }
 
 void	closest_obj(t_pix *pix)

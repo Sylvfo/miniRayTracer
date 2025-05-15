@@ -1,0 +1,24 @@
+# Ambiance et Caméra
+A 0.3 255,255,255
+C 0,2,15  0,-0.1,-1  70
+L -10,10,10 0.8 255,255,255
+
+# Sol (un plan)
+pl 0,-1.5,0   0,1,0   200,200,220
+
+# Corps du bonhomme de neige (sphères)
+sp 0,-0.5,0    3     240,240,240
+sp 0,1.5,0     2     240,240,240
+sp 0,3.2,0     1.5   240,240,240
+
+# Yeux (petites sphères noires)
+sp -0.3,3.5,0.65   0.2   0,0,0
+sp  0.3,3.5,0.65   0.2   0,0,0
+
+# Nez (petite sphère orange pour une carotte)
+sp 0,3.3,0.8   0.25   255,100,0
+
+# Quelques boutons (sphères noires plus petites sur le corps du milieu)
+sp 0,1.8,0.9   0.15   10,10,10
+sp 0,1.4,0.95  0.15   10,10,10
+sp 0,1.0,0.9   0.15   10,10,10

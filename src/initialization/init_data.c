@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:47:24 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 20:25:19 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 08:26:15 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static t_pix	**init_pix_row(int cols)
 	int		y;
 	int		k;
 
-	row = ft_calloc(cols, sizeof(t_pix *)); // row of t_pix* is calloc'd
+	row = ft_calloc(cols, sizeof(t_pix *));
 	if (!row)
 		return (NULL);
 	y = 0;
 	while (y < cols)
 	{
-		row[y] = ft_calloc(1, sizeof(t_pix)); // Changed malloc to ft_calloc
+		row[y] = ft_calloc(1, sizeof(t_pix));
 		if (!row[y])
 		{
 			k = 0;

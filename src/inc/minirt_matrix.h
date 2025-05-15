@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_matrix.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 08:38:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 17:48:42 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/14 19:41:47 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	matrix_rotation_rodrigues(t_obj *obj, float angle, float c, float s);
 void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p);
 void	matrix_mult_2(float *ma, float *mb);
 void	matrix_mult_3(float *res, float *ma, float *mb);
+void	matrix_point_multiplication_new_2(t_coord *result, float *m, t_coord *p);
+
 
 //matrix_inverse.c
 void	inverse_matrix_44(float *m_inverted, float *m_matrix);

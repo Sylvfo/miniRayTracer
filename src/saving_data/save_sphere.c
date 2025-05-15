@@ -30,7 +30,7 @@ static void	set_sphere_coord(t_obj *sphere, t_coord *coord)
 static void	set_sphere_defaults(t_obj *sphere, float diameter)
 {
 	sphere->diam = diameter / 2.0f;
-	sphere->radius = diameter / 4.0f;
+	sphere->radius = diameter / 2.0f; // Corrected from diameter / 4.0f
 	sphere->difuse = 0.7;
 	sphere->specular = 0.2;
 	sphere->type = SPHERE;
