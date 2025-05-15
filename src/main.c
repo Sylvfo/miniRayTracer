@@ -85,6 +85,9 @@ int	main(int argc, char **argv)
 	context->pix = init_data(context->num_obj);
 	if (!context->pix)
 		error_exit("Failed to initialize pixel data", context);
+	assign_hits_to_pix(context->pix, context->num_obj);
+	if (!init_scene_structures(context->pix))
+		return (EXIT_FAILURE);
 	setup_window_context(context);
 	save_scene_file(argv[1], context);
 	raytracing(context->pix);

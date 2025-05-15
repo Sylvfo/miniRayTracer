@@ -112,6 +112,32 @@ t_pix	***init_data(t_num_obj *num_obj)
 	if (!obj)
 		return (NULL);
 	cam = init_camera();
+	lux = init_light(num_obj);
+	if (!cam || !lux)
+	{
+		free_object(obj, num_obj);
+		free(cam);
+		return (NULL);
+	}
+	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
+	return (pix);
+}
+
+/*
+t_pix	***init_data(t_num_obj *num_obj)
+{
+	t_pix		***pix;
+	t_camera	*cam;
+	t_obj		***obj;
+	t_light		***lux;
+
+	pix = init_pix_matrix(WND_WIDTH, WND_HEIGHT, num_obj);
+	if (!pix)
+		return (NULL);
+	obj = init_object(num_obj);
+	if (!obj)
+		return (NULL);
+	cam = init_camera();
 	if (!cam)
 	{
 		free_object(obj, num_obj);
@@ -130,3 +156,4 @@ t_pix	***init_data(t_num_obj *num_obj)
 		return (NULL);
 	return (pix);
 }
+*/

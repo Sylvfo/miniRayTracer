@@ -33,7 +33,7 @@ void	free_all(t_program_context *context)
 	free_hits(context);
 	free_context_content(context);
 	if (context->pix)
-		free_pix(context->pix, context->height, context->width);
+		free_pix(context->pix, WND_WIDTH, WND_HEIGHT);
 	if (context->num_obj)
 		free(context->num_obj);
 	free(context);
