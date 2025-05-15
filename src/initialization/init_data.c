@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 21:47:24 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 20:25:19 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:30:31 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,11 @@ t_pix	***init_data(t_num_obj *num_obj)
 		return (NULL);
 	}
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
-	assign_hits_to_pix(pix, NULL, num_obj);
+	assign_hits_to_pix(pix, num_obj);
 	if (!init_scene_structures(pix))
 	{
 		//todo free all previous rows
 		return (NULL);
 	}
-	init_ima(pix);
 	return (pix);
 }

@@ -6,19 +6,17 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:51:19 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:08:46 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	pix_to_window(t_pix ***pix)
+void	pix_to_window(t_pix ***pix, t_program_context *context)
 {
 	int		x;
 	int		y;
-	t_image	*ima;
 
-	ima = pix[0][0]->ima;
 	x = 0;
 	while (x < WND_WIDTH)
 	{
@@ -26,10 +24,10 @@ void	pix_to_window(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			color_float_to_int(pix[x][y]->color);
-			my_mlx_pixel_put(ima, x, y, pix[x][y]->color->rgb);
+			my_mlx_pixel_put(context->ima, x, y, pix[x][y]->color->rgb);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(ima->mlx_ptr, ima->mlx_win, ima->img, 0, 0);
+	mlx_put_image_to_window(context->mlx_ptr, context->mlx_win, context->ima->img, 0, 0);
 }

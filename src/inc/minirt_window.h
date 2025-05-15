@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:26:47 by syl               #+#    #+#             */
-/*   Updated: 2025/05/12 09:21:41 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:08:49 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int		ft_exit(t_program_context *context);
 int		ft_keys(int keycode, t_program_context *context);
 
 void	my_mlx_pixel_put(t_image *ima, int x, int y, int color);
-void	pix_to_window(t_pix ***pix);
+void	pix_to_window(t_pix ***pix, t_program_context *context);
 
 #endif

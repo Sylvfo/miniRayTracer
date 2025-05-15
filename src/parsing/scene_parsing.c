@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:52:27 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/12 09:33:09 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 14:34:11 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,20 @@ void	process_buffer(char *buf, t_program_context *context)
 	char	*line;
 	int		i;
 
+	if (!buf || !context)
+		return;
+	
 	line = buf;
 	while (*line)
 	{
 		i = 0;
 		while (line[i] && line[i] != '\n')
 			i++;
-		line[i] = '\0';
-		parse_line(line, context);
+		if (i > 0)  // Skip empty lines
+		{
+			line[i] = '\0';
+			parse_line(line, context);
+		}
 		line += i + 1;
 	}
 }

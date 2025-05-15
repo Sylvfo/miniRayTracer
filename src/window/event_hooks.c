@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/05/15 08:39:27 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/15 13:33:04 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,37 +37,16 @@ int	mouse_hook(int keycode, t_program_context *context)
 
 int	ft_exit(t_program_context *context)
 {
-	printf("in ft_exit\n");
-	if (context->pix)
-		free_all2(context->pix);
-//	exit(0);
+	free_all(context);
+	exit(0);
 	return (0);
 }
 
 int	ft_keys(int keycode, t_program_context *context)
 {
-	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 	{
-		printf("ESC pressed.\nWindow closed\n");
-	/*	if (context->ima)
-		{
-			free_image(context->ima);
-			context->ima = NULL;
-		}*/
-
-	// 2. MLX
-	/*	if (context->mlx_ptr || context->mlx_win)
-		{
-			free_mlx(context->mlx_ptr, context->mlx_win);
-			context->mlx_ptr = NULL;
-			context->mlx_win = NULL;
-		}*/
-		printf("jklfj\n");
-		if (context->pix)
-			free_all2(context->pix);
-		//	new_free(context->pix);
-		printf("	OUT OF FREE IN KEYS\n");
+		free_all(context);
 		exit(0);
 		return (0);
 	}
@@ -76,7 +55,7 @@ int	ft_keys(int keycode, t_program_context *context)
 
 void	image_hooks(t_program_context *context)
 {
-	mlx_hook(context->mlx_win, 2, 1L << 0, ft_keys, context);
-	mlx_hook(context->mlx_win, 17, 0, ft_exit, context);
-	mlx_loop(context->mlx_ptr);
+	mlx_hook(context->ima->mlx_win, 2, 1L << 0, ft_keys, context);
+	mlx_hook(context->ima->mlx_win, 17, 0, ft_exit, context);
+	mlx_loop(context->ima->mlx_ptr);
 }

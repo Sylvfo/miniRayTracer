@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 22:31:09 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/15 13:09:24 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,41 +60,16 @@ int	main(int argc, char **argv)
 		perror("Failed to initialize pixel data");
 		error_exit(NULL, context);
 	}
+	if (!init_ima(context))
+	{
+		perror("Failed to initialize image");
+		error_exit(NULL, context);
+	}
 	context->width = WND_WIDTH;
 	context->height = WND_HEIGHT;
-	context->ima = context->pix[0][0]->ima;
-	context->mlx_ptr = context->ima->mlx_ptr;
-	context->mlx_win = context->ima->mlx_win;
 	save_scene_file(argv[1], context);
 	raytracing(context->pix);
-	pix_to_window(context->pix);
+	pix_to_window(context->pix, context);
 	image_hooks(context);
-//	new_free(context->pix);
-//	free_all(context);
 	return (EXIT_SUCCESS);
 }
-
-/*int	main(int argc, char **argv)
-{
-	t_pix		***pix;
-	t_num_obj	*num_obj;
-
-	if (check_args(argc, argv) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	pix = NULL;
-	num_obj = malloc(sizeof(t_num_obj));
-	if (!num_obj)
-	{
-		perror("Failed to allocate memory for num_obj");
-		return (EXIT_FAILURE);
-	}
-	ft_bzero(num_obj, sizeof(t_num_obj));
-	parse_scene_file(argv[1], NULL, num_obj);
-	pix = init_data(num_obj);
-	save_scene_file(argv[1], pix, num_obj);
-	raytracing(pix);
-	pix_to_window(pix);
-	image_hooks(pix[0][0]->ima);
-	free_all(pix, WND_HEIGHT, WND_WIDTH, num_obj);
-	return (EXIT_SUCCESS);
-}*/

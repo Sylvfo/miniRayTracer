@@ -6,26 +6,11 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 12:09:29 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 22:10:41 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 14:20:18 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-void	free_light_array(t_light **array, int count)
-{
-	int	i;
-
-	if (!array)
-		return ;
-	i = 0;
-	while (i < count)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
 
 void	free_light_memory(t_light ***light, int count)
 {
