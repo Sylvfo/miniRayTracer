@@ -33,10 +33,10 @@ void	rotation_from_vector(t_obj *obj)
 	normalize_vector_na(obj->v_axe_r);
 	c = cos(angle);
 	s = sin(angle);
-	matrix_rotation_rodrigues(obj, angle, c, s);
+	matrix_rotation_rodrigues(obj, c, s);
 }
 
-void	matrix_rotation_rodrigues(t_obj *obj, float angle, float c, float s)
+void	matrix_rotation_rodrigues(t_obj *obj, float c, float s)
 {
 	float	t;
 	float	axe_x;

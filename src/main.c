@@ -14,7 +14,9 @@
 
 void	error_exit(const char *msg, t_program_context *context)
 {
-	fprintf(stderr, "%s\n", msg);
+	(void) context;
+	printf("%s\n", msg);
+	//free all
 	exit(EXIT_FAILURE);
 }
 
@@ -73,7 +75,7 @@ int	main(int argc, char **argv)
 	context = init_context();
 	if (!context)
 		return (EXIT_FAILURE);
-	parse_scene_file(argv[1], NULL, context);
+	parse_scene_file(argv[1], context);
 	context->pix = init_data(context->num_obj);
 	if (!context->pix)
 		error_exit("Failed to initialize pixel data", context);
@@ -82,6 +84,6 @@ int	main(int argc, char **argv)
 	raytracing(context->pix);
 	pix_to_window(context->pix);
 	image_hooks(context);
-	free_all(context);
+//	free_all(context);
 	return (EXIT_SUCCESS);
 }

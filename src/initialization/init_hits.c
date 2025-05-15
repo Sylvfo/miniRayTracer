@@ -48,8 +48,7 @@ static int	allocate_and_initialize_comps(t_pix *pixel_ptr)
 	return (1);
 }
 
-void	assign_hits_to_pix(t_pix ***pix, t_hits ***hits,
-			t_num_obj *num_obj)
+void	assign_hits_to_pix(t_pix ***pix, t_num_obj *num_obj)
 {
 	int	i;
 	int	j;

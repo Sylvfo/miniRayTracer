@@ -21,7 +21,7 @@ void	view_camera(t_camera *cam);
 void	pixel_size(t_pix *pix);
 void	constructing_camera(t_pix ***pix);
 
-void	init_camera_pix_ray(t_pix *pix, t_camera *cam);
+void	init_camera_pix_ray(t_pix *pix);
 void	init_viewport_x_y(t_pix *pix, int x, int y);
 void	init_viewport(t_pix ***pix);
 
@@ -45,6 +45,7 @@ void	intersect_cylinder(t_pix *pix, int cyl_n);
 void	save_in_comps(t_pix *pix, int a, int b);
 void	closest_obj(t_pix *pix);
 void	find_closest_obj(t_pix ***pix);
+void	prepare_comps_plan(t_pix *pix);
 
 void	prepare_computation_pix(t_pix *pix);
 void	normal_caps(t_comps *comps);

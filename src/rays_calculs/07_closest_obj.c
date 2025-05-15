@@ -74,3 +74,11 @@ void	find_closest_obj(t_pix ***pix)
 		x++;
 	}
 }
+
+void	prepare_comps_plan(t_pix *pix)
+{
+	copy_coord(pix->comps->v_norm_parral, pix->comps->obj->v_axe);
+	normalize_vector_na(pix->comps->v_norm_parral);
+	if (dot_product(pix->comps->v_norm_parral, pix->comps->v_eye) < 0)
+		negat_na(pix->comps->v_norm_parral, pix->comps->v_norm_parral);
+}

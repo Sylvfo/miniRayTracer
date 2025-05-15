@@ -62,8 +62,7 @@ void	process_buffer(char *buf, t_program_context *context)
 /* ----------------------------------------------------------------------------
 	Lit et traite un fichier de scène.
 ---------------------------------------------------------------------------- */
-void	parse_scene_file(const char *filename, t_pix ***pix,
-		t_program_context *context)
+void	parse_scene_file(const char *filename, t_program_context *context)
 {
 	int		fd;
 	char	buf[5000];

@@ -83,13 +83,11 @@ void	init_pix_comps(t_pix ***pix)
 		{
 			if (init_comps_basic(pix[x][y]->comps, pix[x][y]) != 0)
 			{
-				fprintf(stderr,
-					"Erreur: init_comps_basic pixel [%d][%d]\n", x, y);
+				printf("Erreur: init_comps_basic pixel [%d][%d]\n", x, y);
 			}
 			if (init_comps_vectors(pix[x][y]->comps, pix[x][y]) != 0)
 			{
-				fprintf(stderr,
-					"Erreur: init_comps_vectors pixel [%d][%d]\n", x, y);
+				printf("Erreur: init_comps_vectors pixel [%d][%d]\n", x, y);
 			}
 			y++;
 		}

@@ -27,8 +27,7 @@ int		validate_orientation_vector(float ox, float oy, float oz);
 int		validate_fov(float fov);
 
 /* Parsing */
-void	parse_scene_file(const char *filename, t_pix ***pix,
-			t_program_context *context);
+void	parse_scene_file(const char *filename, t_program_context *context);
 void	process_buffer(char *buf, t_program_context *context);
 int		validate_ambient(char *line);
 int		validate_light(char *line, t_num_obj *num_obj);

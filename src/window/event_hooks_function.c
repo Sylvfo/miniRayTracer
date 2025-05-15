@@ -37,7 +37,8 @@ int	mouse_hook(int keycode, t_program_context *context)
 
 int	ft_exit(t_program_context *context)
 {
-	free_all(context);
+	(void) context;
+	//free_all(context);
 	exit(0);
 	return (0);
 }
@@ -48,7 +49,8 @@ int	ft_keys(int keycode, t_program_context *context)
 	if (keycode == 65307)
 	{
 		printf("ESC pressed.\nWindow closed\n");
-		free_all(context);
+		(void) context;
+		//free_all(context);
 		exit(0);
 		return (0);
 	}

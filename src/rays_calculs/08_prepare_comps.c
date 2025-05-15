@@ -59,12 +59,7 @@ void	prepare_computation_pix(t_pix *pix)
 			negat_na(pix->comps->v_norm_parral, pix->comps->v_norm_parral);
 	}
 	else if (pix->comps->type == PLAN)
-	{
-		copy_coord(pix->comps->v_norm_parral, pix->comps->obj->v_axe);
-		normalize_vector_na(pix->comps->v_norm_parral);
-		if (dot_product(pix->comps->v_norm_parral, pix->comps->v_eye) < 0)
-			negat_na(pix->comps->v_norm_parral, pix->comps->v_norm_parral);
-	}
+		prepare_comps_plan(pix);
 }
 
 void	normal_caps(t_comps *comps)
@@ -91,7 +86,6 @@ void	normal_caps(t_comps *comps)
 	comps->v_norm_parral->y = 0;
 	comps->v_norm_parral->z = comps->p_space->z;
 }
-
 
 void	normal_at_na(t_comps *comps)
 {

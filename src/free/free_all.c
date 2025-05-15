@@ -12,6 +12,7 @@
 
 #include "../inc/minirt.h"
 
+/*
 void free_coord(t_coord *coord)
 {
 	if (coord)
@@ -162,7 +163,7 @@ void free_camera(t_camera *cam)
 	free(cam);
 }
 
-void free_lux(t_light **lux)
+void free_lux(t_light ***lux)
 {
 	int i;
 
@@ -279,3 +280,4 @@ void	free_all(t_program_context *context)
 	// 8. Contexte
 	free(context);
 }
+*/

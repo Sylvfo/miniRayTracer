@@ -22,7 +22,7 @@ static int	parse_camera_fov(char **line, float *fov)
 
 int	validate_camera(char *line)
 {
-	t_coord	position;
+	t_coord	posi;
 	t_coord	orientation;
 	float	fov;
 
@@ -30,7 +30,7 @@ int	validate_camera(char *line)
 		return (1);
 	line++;
 	skip_whitespace((const char **)&line);
-	if (!*line || parse_coordinates(&line, &position.x, &position.y, &position.z))
+	if (!*line || parse_coordinates(&line, &posi.x, &posi.y, &posi.z))
 		return (1);
 	skip_whitespace((const char **)&line);
 	if (!*line || parse_coordinates(&line, &orientation.x,

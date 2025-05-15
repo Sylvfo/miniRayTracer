@@ -45,7 +45,7 @@ bool	check_matrix_44_44(float *m_a, float *m_b);
 
 //matrix_rotation_rodrigues.c 
 void	rotation_from_vector(t_obj *obj);
-void	matrix_rotation_rodrigues(t_obj *obj, float angle, float c, float s);
+void	matrix_rotation_rodrigues(t_obj *obj, float c, float s);
 
 //matrix_multiplication.c
 void	matrix_point_multiplication_new(t_coord *result, float *m, t_coord *p);

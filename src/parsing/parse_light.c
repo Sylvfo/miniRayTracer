@@ -35,7 +35,7 @@ int	validate_ambient(char *line)
 
 int	validate_light(char *line, t_num_obj *num_obj)
 {
-	t_coord	position;
+	t_coord	posi;
 	float	brightness;
 	t_color	color;
 
@@ -43,7 +43,7 @@ int	validate_light(char *line, t_num_obj *num_obj)
 		return (1);
 	line++;
 	skip_whitespace((const char **)&line);
-	if (!*line || parse_coordinates(&line, &position.x, &position.y, &position.z))
+	if (!*line || parse_coordinates(&line, &posi.x, &posi.y, &posi.z))
 		return (1);
 	if (!*line)
 		return (1);

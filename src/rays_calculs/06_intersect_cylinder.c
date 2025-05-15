@@ -71,7 +71,7 @@ bool	handle_cap(t_pix *pix, int cyl_n, float y_pos, int cap_type)
 
 void	intersect_caps(t_pix *pix, int cyl_n)
 {
-	if (fabs(pix->hits[3][cyl_n]->r_dir->y) < EPSILON)
+	if (fabs(pix->hits[3][cyl_n]->r_dir->y) < 0.0001)
 		return ;
 	if (pix->obj[3][cyl_n]->closed_down == true)
 		handle_cap(pix, cyl_n, -1, 8);

@@ -60,8 +60,7 @@ void		clear_obj_members(t_obj *obj_ptr);
 void		free_obj_array_items(t_obj **obj_array, int count);
 
 t_hits		***init_hits(t_num_obj *num_obj);
-void		assign_hits_to_pix(t_pix ***pix, t_hits ***hits,
-				t_num_obj *num_obj);
+void		assign_hits_to_pix(t_pix ***pix, t_num_obj *num_obj);
 void		init_hits_spheres(t_hits ***hits, t_num_obj *num_obj);
 void		init_hits_plans(t_hits ***hits, t_num_obj *num_obj);
 void		init_hits_cylinders(t_hits ***hits, t_num_obj *num_obj);

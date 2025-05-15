@@ -44,7 +44,6 @@ void	view_camera(t_camera *cam)
 void	pixel_size(t_pix *pix)
 {
 	float	half_view;
-	float	half_height;
 	float	aspect;
 
 	half_view = tan(pix->cam->fov / 2);

@@ -44,12 +44,92 @@ NAME = minirt
 CC = cc
 
 # Flags de compilation
-CFLAGS = #-Wall -Wextra -Werror #-Iincludes
+CFLAGS = -Wall -Wextra -Werror #-Iincludes
 LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources
 SRC_DIR = ./src
-SRCS = ${shell find ${SRC_DIR} -type f -name '*.c'}\
+#SRCS = ${shell find ${SRC_DIR} -type f -name '*.c'}\
+
+SRCS = ./src/main.c \
+	./src/initialization/init_camera.c \
+	./src/initialization/init_data.c \
+	./src/initialization/init_hits_alloc.c \
+	./src/initialization/init_hits_background.c \
+	./src/initialization/init_hits.c \
+	./src/initialization/init_hits_cylinders.c \
+	./src/initialization/init_hits_init.c \
+	./src/initialization/init_hits_plans.c \
+	./src/initialization/init_hits_spheres.c \
+	./src/initialization/init_light_alloc.c \
+	./src/initialization/init_light.c \
+	./src/initialization/init_light_init.c \
+	./src/initialization/init_object_alloc.c \
+	./src/initialization/init_object.c \
+	./src/initialization/init_object_free.c \
+	./src/initialization/init_object_free_utils.c \
+	./src/initialization/init_object_init.c \
+	./src/initialization/init_scene.c \
+	./src/initialization/init_scene_camera.c \
+	./src/initialization/init_scene_comps.c \
+	./src/initialization/init_scene_hits.c \
+	./src/initialization/init_scene_obj.c \
+	./src/initialization/init_scene_viewport.c \
+	./src/matrix/00_matrix_check.c \
+	./src/matrix/00_matrix_creation.c \
+	./src/matrix/00_matrix_multiplication.c \
+	./src/matrix/00_matrix_operations.c \
+	./src/matrix/00_matrix_rotation_rodrigues.c \
+	./src/matrix/00_matrix_transl_scale.c \
+	./src/matrix/00_matrix_transposing.c \
+	./src/matrix/00_matrix_utils.c \
+	./src/matrix/matrix_inverse.c \
+	./src/matrix/matrix_minor_det.c \
+	./src/matrix/matrix_submatrix.c \
+	./src/parsing/parse_camera.c \
+	./src/parsing/parse_checks.c \
+	./src/parsing/parse_color.c \
+	./src/parsing/parse_light.c \
+	./src/parsing/parse_plane.c \
+	./src/parsing/parse_sphere_cylinder.c \
+	./src/parsing/parse_utils.c \
+	./src/parsing/scene_parsing.c \
+	./src/parsing_terminate/init_matrix_ima.c \
+	./src/parsing_terminate/s_create_point_vector.c \
+	./src/rays_calculs/00_raytracing_main.c \
+	./src/rays_calculs/01_camera_construction.c \
+	./src/rays_calculs/02_viewport_construction.c \
+	./src/rays_calculs/03_m_transformations.c \
+	./src/rays_calculs/04_intersect_main.c \
+	./src/rays_calculs/05_intersect_sphere_plan.c \
+	./src/rays_calculs/06_intersect_cylinder.c \
+	./src/rays_calculs/07_closest_obj.c \
+	./src/rays_calculs/08_prepare_comps.c \
+	./src/rays_calculs/09_light_shadow_main.c \
+	./src/rays_calculs/10_shadows.c \
+	./src/rays_calculs/11_light.c \
+	./src/rays_calculs/shadows_cylinder.c \
+	./src/rays_calculs/shadows_plan.c \
+	./src/rays_calculs/shadows_sphere.c \
+	./src/saving_data/save_camera.c \
+	./src/saving_data/save_cylinder.c \
+	./src/saving_data/save_light.c \
+	./src/saving_data/save_plane.c \
+	./src/saving_data/save_scene_file.c \
+	./src/saving_data/save_sphere.c \
+	./src/vect_point_color/add_substr.c \
+	./src/vect_point_color/check_type_coord.c \
+	./src/vect_point_color/colors_operation.c \
+	./src/vect_point_color/copy_coord.c \
+	./src/vect_point_color/math.c \
+	./src/vect_point_color/print_vector_point.c \
+	./src/vect_point_color/set_colors.c \
+	./src/vect_point_color/vector_operations.c \
+	./src/vect_point_color/vector_operations_length.c \
+	./src/window/event_hooks.c \
+	./src/window/event_hooks_function.c \
+	./src/window/image_to_window.c \
+	./src/window/pixel_put.c \
 
 # Bibliothèques
 LIBFT = lib/libft/libft.a

@@ -12,7 +12,7 @@
 
 #include "../inc/minirt.h"
 
-void	init_camera_pix_ray(t_pix *pix, t_camera *cam)
+void	init_camera_pix_ray(t_pix *pix)
 {
 	matrix_point_multiplication_new(pix->r_origin, pix->cam->m_inverse,
 		pix->cam->p_zero);
@@ -42,7 +42,7 @@ void	init_viewport(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			init_viewport_x_y(pix[x][y], x, y);
-			init_camera_pix_ray(pix[x][y], pix[x][y]->cam);
+			init_camera_pix_ray(pix[x][y]);
 			y++;
 		}
 		x++;
