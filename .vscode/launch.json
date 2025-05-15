@@ -10,7 +10,7 @@
 			"name": "Debug",
 			"program": "${workspaceFolder}/minirt",
 			"args": [
-				"${workspaceFolder}/image/snowman.rt"
+				"${workspaceFolder}/image/simple.rt"
 			],
 			"cwd": "${workspaceFolder}"
 		},
@@ -20,7 +20,7 @@
             "name": "Debug + Make",
             "program": "${workspaceFolder}/minirt",
             "args": [
-                "${workspaceFolder}/image/boulier.rt"
+                "${workspaceFolder}/image/simple.rt"
             ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "make debug"

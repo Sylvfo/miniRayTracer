@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:46:52 by syl               #+#    #+#             */
-/*   Updated: 2025/05/15 08:28:22 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 11:51:09 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_hits	***init_hits(t_num_obj *num_obj)
 	if (!hits)
 		return (NULL);
 	if (!allocate_hits_arrays(hits, num_obj))
-		return (NULL); // La libération de 'hits' devrait être gérée dans allocate_hits_arrays ou ici
+		return (NULL);
 	initialize_hits_arrays(hits, num_obj);
 	return (hits);
 }

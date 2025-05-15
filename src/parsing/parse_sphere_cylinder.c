@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:16:28 by cmegret           #+#    #+#             */
-/*   Updated: 2025/04/21 19:06:30 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 12:10:56 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 static int	parse_object_center(char **line, t_coord *center)
 {
+	if (!line || !*line || !center || !**line)
+		return (1);
 	return (parse_coordinates(line, &center->x, &center->y, &center->z));
 }
 
 static int	parse_object_color(char **line, t_color *color)
 {
+	if (!line || !*line || !color || !**line)
+		return (1);
 	return (parse_color(line, &color->r, &color->g, &color->b));
 }
 
@@ -28,15 +32,15 @@ int	validate_sphere(char *line, t_num_obj *num_obj)
 	float	diameter;
 	t_color	color;
 
-	if (line[0] != 's' || line[1] != 'p')
+	if (!line || !num_obj || line[0] != 's' || line[1] != 'p')
 		return (1);
 	line += 2;
 	skip_whitespace((const char **)&line);
-	if (parse_object_center(&line, &center))
+	if (!*line || parse_object_center(&line, &center))
 		return (1);
-	if (parse_dimension(&line, &diameter))
+	if (!*line || parse_dimension(&line, &diameter))
 		return (1);
-	if (parse_object_color(&line, &color) || check_only_spaces(line))
+	if (!*line || parse_object_color(&line, &color) || check_only_spaces(line))
 		return (1);
 	num_obj->sphere++;
 	return (0);
@@ -44,6 +48,8 @@ int	validate_sphere(char *line, t_num_obj *num_obj)
 
 static int	parse_cylinder_axis(char **line, t_coord *axis)
 {
+	if (!line || !*line || !axis || !**line)
+		return (1);
 	return (parse_coordinates(line, &axis->x, &axis->y, &axis->z));
 }
 
@@ -55,18 +61,20 @@ int	validate_cylinder(char *line, t_num_obj *num_obj)
 	float	height;
 	t_color	color;
 
-	if (line[0] != 'c' || line[1] != 'y')
+	if (!line || !num_obj || line[0] != 'c' || line[1] != 'y')
 		return (1);
 	line += 2;
 	skip_whitespace((const char **)&line);
-	if (parse_object_center(&line, &center))
+	if (!*line || parse_object_center(&line, &center))
 		return (1);
-	if (parse_cylinder_axis(&line, &axis)
+	if (!*line || parse_cylinder_axis(&line, &axis)
 		|| validate_orientation_vector(axis.x, axis.y, axis.z))
 		return (1);
-	if (parse_dimension(&line, &diameter) || parse_dimension(&line, &height))
+	if (!*line || parse_dimension(&line, &diameter))
 		return (1);
-	if (parse_object_color(&line, &color) || check_only_spaces(line))
+	if (!*line || parse_dimension(&line, &height))
+		return (1);
+	if (!*line || parse_object_color(&line, &color) || check_only_spaces(line))
 		return (1);
 	num_obj->cylinder++;
 	return (0);

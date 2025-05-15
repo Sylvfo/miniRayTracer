@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:04:44 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 23:37:54 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 12:11:05 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,24 @@ static int	is_valid_dimension(float dimension)
 
 int	parse_dimension(char **line, float *dimension)
 {
+	if (!line || !*line || !dimension || !**line)
+		return (1);
 	*dimension = ft_strtod(*line, line);
-	if (!is_valid_dimension(*dimension))
+	if (!is_valid_dimension(*dimension) || !*line || !**line)
 		return (1);
 	skip_whitespace((const char **)line);
+	if (!**line)
+		return (1);
 	return (0);
 }
 
 int	check_only_spaces(char *str)
 {
+	if (!str)
+		return (1);
 	while (*str)
 	{
-		if (*str != ' ')
+		if (*str != ' ' && *str != '\t')
 			return (1);
 		str++;
 	}

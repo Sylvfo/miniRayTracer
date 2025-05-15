@@ -40,12 +40,11 @@ void	matrix_point_multiplication_new_2(t_coord *result, float *m, t_coord *p)
 	y = p->y;
 	z = p->z;
 	t = p->t;
-	result->x = m[2] * x + m[3] * y + m[4] * z + m[5] ;
-	result->y = m[6] * x + m[7] * y + m[8] * z + m[9] ;
-	result->z = m[10] * x + m[11] * y + m[12] * z + m[13] ;
+	result->x = m[2] * x + m[3] * y + m[4] * z + m[5];
+	result->y = m[6] * x + m[7] * y + m[8] * z + m[9];
+	result->z = m[10] * x + m[11] * y + m[12] * z + m[13];
 	result->t = t;
 }
-
 
 void	matrix_mult_2(float *ma, float *mb)
 {

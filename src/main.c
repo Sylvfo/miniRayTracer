@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 11:24:23 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 11:53:25 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	error_exit(const char *msg, t_program_context *context)
 	exit(EXIT_FAILURE);
 }
 
-int	check_args(int argc, char **argv)
+static int	check_args(int argc, char **argv)
 {
 	if (argc != 2)
 	{
@@ -33,38 +33,51 @@ int	check_args(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-int	main(int argc, char **argv)
+static t_program_context	*init_context(void)
 {
 	t_program_context	*context;
 
-	if (check_args(argc, argv) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
 	context = malloc(sizeof(t_program_context));
 	if (!context)
 	{
 		perror("Failed to allocate memory for program context");
-		return (EXIT_FAILURE);
+		return (NULL);
 	}
 	ft_bzero(context, sizeof(t_program_context));
 	context->num_obj = malloc(sizeof(t_num_obj));
 	if (!context->num_obj)
 	{
 		perror("Failed to allocate memory for num_obj");
-		error_exit(NULL, context);
+		free(context);
+		return (NULL);
 	}
 	ft_bzero(context->num_obj, sizeof(t_num_obj));
-	parse_scene_file(argv[1], NULL, context);
-	context->pix = init_data(context->num_obj);
-	if (!context->pix)
-	{
-		perror("Failed to initialize pixel data");
-		error_exit(NULL, context);
-	}
+	return (context);
+}
+
+static void	setup_window_context(t_program_context *context)
+{
 	context->width = WND_WIDTH;
 	context->height = WND_HEIGHT;
 	context->ima = context->pix[0][0]->ima;
 	context->mlx_ptr = context->ima->mlx_ptr;
 	context->mlx_win = context->ima->mlx_win;
+}
+
+int	main(int argc, char **argv)
+{
+	t_program_context	*context;
+
+	if (check_args(argc, argv) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	context = init_context();
+	if (!context)
+		return (EXIT_FAILURE);
+	parse_scene_file(argv[1], NULL, context);
+	context->pix = init_data(context->num_obj);
+	if (!context->pix)
+		error_exit("Failed to initialize pixel data", context);
+	setup_window_context(context);
 	save_scene_file(argv[1], context);
 	raytracing(context->pix);
 	pix_to_window(context->pix);
@@ -72,28 +85,3 @@ int	main(int argc, char **argv)
 	free_all(context);
 	return (EXIT_SUCCESS);
 }
-
-/*int	main(int argc, char **argv)
-{
-	t_pix		***pix;
-	t_num_obj	*num_obj;
-
-	if (check_args(argc, argv) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	pix = NULL;
-	num_obj = malloc(sizeof(t_num_obj));
-	if (!num_obj)
-	{
-		perror("Failed to allocate memory for num_obj");
-		return (EXIT_FAILURE);
-	}
-	ft_bzero(num_obj, sizeof(t_num_obj));
-	parse_scene_file(argv[1], NULL, num_obj);
-	pix = init_data(num_obj);
-	save_scene_file(argv[1], pix, num_obj);
-	raytracing(pix);
-	pix_to_window(pix);
-	image_hooks(pix[0][0]->ima);
-	free_all(pix, WND_HEIGHT, WND_WIDTH, num_obj);
-	return (EXIT_SUCCESS);
-}*/
