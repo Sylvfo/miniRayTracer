@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:44:59 by syl               #+#    #+#             */
-/*   Updated: 2025/05/15 11:24:37 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 11:43:19 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,6 @@ void	new_light(t_pix ***pix)
 				pix[x][y]->comps->type == PLAN ||
 				pix[x][y]->comps->type == CYLINDER)
 				scalar_mult_color(pix[x][y]->color, intensity);
-		//	pix[x][y]->color->r = (pix[x][y]->comps->v_norm_parral->x + 1) * 0.5 * 255;
-		//	pix[x][y]->color->g = (pix[x][y]->comps->v_norm_parral->y + 1) * 0.5 * 255;
-		//	pix[x][y]->color->b = (pix[x][y]->comps->v_norm_parral->z + 1) * 0.5 * 255;
-
 			y++;
 		}
 		x++;
