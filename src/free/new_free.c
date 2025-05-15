@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 22:17:57 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 23:51:16 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/15 08:43:49 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,50 @@
 
 void new_free(t_pix ***pix)
 {
-	free_hits_S(pix);
-	free_comps_S(pix);
+	printf("test %.2f \n",pix[0][0]->r_dir->x);
+	if (!pix)
+		return;
+	printf("free enter2");
+	if (!pix[0])
+		return;
+	printf("free enter3");
+	if (!pix[0][0])
+		return;
+	printf("free enter");
+//	free_hits_S(pix);
+	printf("free hits");
+//	free_comps_S(pix);
+//	printf("free comps");
 	free_lux_S(pix[0][0]);
+	printf("free lux");
 	free_obj_S(pix[0][0]);
+	printf("free cam");
 	free_camera(pix[0][0]->cam);
 	pix[0][0]->cam = NULL;
-	free_image(pix[0][0]->ima);
-//	free_pix_S(pix);
-//	free(pix);
+//	free_image(pix[0][0]->ima);
+	free_pix_S(pix);
+	free(pix);
 	pix = NULL;
+	printf("klsfjk\n");
 }
 
 void	free_pix_S(t_pix ***pix)
 {
-//	free_pix_inside(pix);
-//	free_pix_mid(pix);
-//	free_pix_all(pix);
+	free_pix_inside(pix);
+	free_pix_mid(pix);
+	free_pix_all(pix);
 }
 
 void free_pix_mid(t_pix ***pix)
 {
 	int	x;
-	int	y;
 
 	x = 0;
 	while (x < WND_WIDTH)
 	{
-		free(pix[x][y]);
-		pix[x][y] = NULL;
+		if (pix[x])
+			free(pix[x]);
+	//	pix[x] = NULL;
 	}	
 }
 
@@ -58,7 +73,7 @@ void free_pix_all(t_pix ***pix)
 		while (y < WND_HEIGHT)
 		{
 			free(pix[x][y]);
-			pix[x][y]->comps = NULL;
+			pix[x][y] = NULL;
 			y++;
 		}
 		x++;
@@ -76,10 +91,10 @@ void free_pix_inside(t_pix ***pix)
 		y = 0;
 		while (y < WND_HEIGHT)
 		{
-			free(pix[x][y]->p_viewport);
-			free(pix[x][y]->p_viewport_world);
-			free(pix[x][y]->r_origin);
-			free(pix[x][y]->r_dir);
+			free_coord(pix[x][y]->p_viewport);
+			free_coord(pix[x][y]->p_viewport_world);
+			free_coord(pix[x][y]->r_origin);
+			free_coord(pix[x][y]->r_dir);
 			free(pix[x][y]->color);
 			y++;
 		}
@@ -87,7 +102,31 @@ void free_pix_inside(t_pix ***pix)
 	}
 }
 
+/*
+void	free_obj_S(t_pix *pix)
+{
+	int	a;
+	int	b;
 
+	if (!pix || !pix->obj)
+		return ;
+	a = 0;
+	while (a < 4 && pix->obj[a])
+	{
+		b = 0;
+		while (pix->obj[a][b])
+		{
+			free_one_obj(pix->obj[a][b]);
+			pix->obj[a][b] = NULL;
+			b++;
+		}
+		free(pix->obj[a]);
+		pix->obj[a] = NULL;
+		a++;
+	}
+	free(pix->obj);
+	pix->obj = NULL;
+}*/
 
 void free_obj_inside(t_obj ***obj)
 {
@@ -95,23 +134,24 @@ void free_obj_inside(t_obj ***obj)
 	int	b;
 
 	a = 0;
-	while (obj[a] != NULL)
+	while (a < 4)
 	{
 		b = 0;
 		while (obj[a][b] != NULL)
 		{
-			free(obj[a][b]->m_transl);
+			if (obj[a][b]->m_transl)
+				free(obj[a][b]->m_transl);
 			free(obj[a][b]->m_rot);
 			free(obj[a][b]->m_scale);
 			free(obj[a][b]->m_transf);
 			free(obj[a][b]->m_inv);
-			free(obj[a][b]->p_coord);
+			free_coord(obj[a][b]->p_coord);
 			free(obj[a][b]->color);
-			free(obj[a][b]->v_axe);
-			free(obj[a][b]->v_axe_r);
-			free(obj[a][b]->from);
-			free(obj[a][b]->v_axe_r);
-			free(obj[a][b]->v_sph_camera);
+			free_coord(obj[a][b]->v_axe);
+			free_coord(obj[a][b]->v_axe_r);
+			free_coord(obj[a][b]->from);
+			free_coord(obj[a][b]->v_axe_r);
+			free_coord(obj[a][b]->v_sph_camera);
 			b++;
 		}
 		a++;
@@ -124,7 +164,7 @@ void free_obj_all(t_obj ***obj)
 	int	b;
 
 	a = 0;
-	while (obj[a] != NULL)
+	while (a < 4)
 	{
 		free(obj[a]);
 		obj[a] = NULL;
@@ -138,7 +178,7 @@ void free_obj_mid(t_obj ***obj)
 	int	b;
 
 	a = 0;
-	while (obj[a] != NULL)
+	while (a < 4)
 	{
 		b = 0;
 		while (obj[a][b] != NULL)
@@ -153,9 +193,12 @@ void free_obj_mid(t_obj ***obj)
 
 void free_obj_S(t_pix *pix)
 {
-//	free_obj_inside(pix->obj);
-	free_obj_mid(pix->obj);
-	free_obj_all(pix->obj);
+	if (pix->obj)
+		free_obj_inside(pix->obj);
+	if (pix->obj)
+		free_obj_mid(pix->obj);
+	if (pix->obj)
+		free_obj_all(pix->obj);
 	free(pix->obj);
 	pix->obj = NULL;
 }
@@ -168,7 +211,7 @@ void free_lux_inside(t_light ***lux)
 	int	b;
 
 	a = 0;
-	while (lux[a] != NULL)
+	while (a < 2)
 	{
 		b = 0;
 		while (lux[a][b] != NULL)
@@ -191,7 +234,8 @@ void free_lux_all(t_light ***lux)
 	a = 0;
 	while (lux[a] != NULL)
 	{
-		free(lux[a]);
+		if (lux[a])
+			free(lux[a]);
 		lux[a] = NULL;
 		a++;
 	}
@@ -238,7 +282,7 @@ void free_comps_S(t_pix ***pix)
 		{
 			if (pix[x][y]->comps != NULL)
 			{
-		//		free_comps_inside(pix[x][y]->comps);
+				free_comps_inside(pix[x][y]->comps);
 				free(pix[x][y]->comps);
 				pix[x][y]->comps = NULL;
 			}
@@ -250,9 +294,6 @@ void free_comps_S(t_pix ***pix)
 
 void	free_comps_inside(t_comps *comps)
 {
-	int i;
-
-	i = 0;
 	free(comps->r_origin);
 	free(comps->r_dir);
 	free(comps->obj);
@@ -287,7 +328,7 @@ void free_hits_S(t_pix ***pix)
 			if (pix[x][y]->hits != NULL)
 			{
 				free_hits_inside(pix[x][y]);
-				free_hits_inside_mid(pix[x][y]);
+			//	free_hits_inside_mid(pix[x][y]);
 				free_hits_all(pix[x][y]);
 			}
 			y++;
@@ -302,7 +343,7 @@ void free_hits_inside(t_pix *pix)
 	int	b;
 
 	a = 0;
-	while (pix->hits[a] != NULL)
+	while (a < 4)
 	{
 		b = 0;
 		while (pix->hits[a][b] != NULL)
@@ -315,7 +356,7 @@ void free_hits_inside(t_pix *pix)
 			if (pix->hits[a][b]->r_origin != NULL)
 			{
 				free(pix->hits[a][b]->r_origin);
-				pix->hits[a][b]->r_dir = NULL;
+				pix->hits[a][b]->r_origin = NULL;
 			}
 			b++;
 		}

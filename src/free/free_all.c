@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 00:00:00 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/14 22:10:03 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 08:30:52 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,10 @@ void	free_all(t_program_context *context)
 	if (!context)
 		return;
 
+	// rajouté par sylvie
+	if (context->pix)
+		free_hits_S(context->pix);
+
 	// 1. Image
 	if (context->ima)
 	{
@@ -251,7 +255,7 @@ void	free_all(t_program_context *context)
 		}
 		if (context->pix[0][0]->lux)
 		{
-			free_lux(context->pix[0][0]->lux);
+			free_lux(context->pix[0][0]->lux[1]);
 			context->pix[0][0]->lux = NULL;
 		}
 		if (context->pix[0][0]->obj)
@@ -262,9 +266,9 @@ void	free_all(t_program_context *context)
 	}
 
 	// 5. Hits (table complète)
-	if (context->pix)
-		free_hits_table(context->pix);
-
+//	if (context->pix)
+//		free_hits_table(context->pix);
+//
 	// 6. Comps (table complète)
 	if (context->pix)
 		free_comps(context->pix);

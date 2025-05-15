@@ -6,7 +6,7 @@
 /*   By: syl <syl@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:24:48 by syl               #+#    #+#             */
-/*   Updated: 2025/05/14 22:49:33 by syl              ###   ########.fr       */
+/*   Updated: 2025/05/15 08:39:27 by syl              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int	mouse_hook(int keycode, t_program_context *context)
 
 int	ft_exit(t_program_context *context)
 {
-	free_all(context);
-	exit(0);
+	printf("in ft_exit\n");
+	if (context->pix)
+		new_free(context->pix);
+//	exit(0);
 	return (0);
 }
 
@@ -48,9 +50,24 @@ int	ft_keys(int keycode, t_program_context *context)
 	if (keycode == 65307)
 	{
 		printf("ESC pressed.\nWindow closed\n");
-		new_free(context->pix);
-	//	free_all(context);
-		exit(0);
+		if (context->ima)
+		{
+			free_image(context->ima);
+			context->ima = NULL;
+		}
+
+	// 2. MLX
+		if (context->mlx_ptr || context->mlx_win)
+		{
+			free_mlx(context->mlx_ptr, context->mlx_win);
+			context->mlx_ptr = NULL;
+			context->mlx_win = NULL;
+		}
+		printf("jklfj\n");
+		if (context->pix)
+			new_free(context->pix);
+		printf("	OUT OF FREE IN KEYS\n");
+	//	exit(0);
 		return (0);
 	}
 	return (0);
@@ -59,7 +76,6 @@ int	ft_keys(int keycode, t_program_context *context)
 void	image_hooks(t_program_context *context)
 {
 	mlx_hook(context->mlx_win, 2, 1L << 0, ft_keys, context);
-	mlx_hook(context->mlx_win, 4, 1L << 2, position_mouse_pressed, context);
 	mlx_hook(context->mlx_win, 17, 0, ft_exit, context);
 	mlx_loop(context->mlx_ptr);
 }
