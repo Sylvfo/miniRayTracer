@@ -12,33 +12,10 @@
 
 #include "../inc/minirt.h"
 
-// These functions' signatures are also updated to receive the context
-int	mouse_position(int x, int y, t_program_context *context)
-{
-	(void) context;
-	printf("mouse is at : %i - %i \n", x, y);
-	return (0);
-}
-
-int	position_mouse_pressed(int button, int x, int y, t_program_context *context)
-{
-	(void) context;
-	if (button == 1)
-		printf("mouse is at : %i - %i \n", x, y);
-	return (0);
-}
-
-int	mouse_hook(int keycode, t_program_context *context)
-{
-	(void) context;
-	printf("keycode mouse: %d\n", keycode);
-	return (0);
-}
-
 int	ft_exit(t_program_context *context)
 {
 	(void) context;
-	//free_all(context);
+	free_all(context);
 	exit(0);
 	return (0);
 }
@@ -50,7 +27,7 @@ int	ft_keys(int keycode, t_program_context *context)
 	{
 		printf("ESC pressed.\nWindow closed\n");
 		(void) context;
-		//free_all(context);
+		free_all(context);
 		exit(0);
 		return (0);
 	}

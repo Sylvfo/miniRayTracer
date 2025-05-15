@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:31 by sforster          #+#    #+#             */
-/*   Updated: 2025/05/11 20:57:32 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 13:06:07 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,15 @@ static t_image	*create_image(void)
 	return (ima);
 }
 
-static void	link_pix_ima(t_pix ***pix, t_image *ima)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < WND_WIDTH)
-	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			pix[x][y]->ima = ima;
-			y++;
-		}
-		x++;
-	}
-}
-
-bool	init_ima(t_pix ***pix)
+bool	init_ima(t_program_context *context)
 {
 	t_image	*ima;
 
 	ima = create_image();
 	if (!ima)
 		return (false);
-	link_pix_ima(pix, ima);
+	context->ima = ima;
+	context->mlx_ptr = ima->mlx_ptr;
+	context->mlx_win = ima->mlx_win;
 	return (true);
 }

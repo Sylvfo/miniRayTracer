@@ -27,7 +27,6 @@ t_camera	*init_camera(void);
 
 t_light		***init_light(t_num_obj *num_obj);
 
-void		free_light_array(t_light **array, int count);
 void		free_light_memory(t_light ***light, int count);
 t_light		***init_light(t_num_obj *num_obj);
 t_light		***allocate_light_arrays(t_num_obj *num_obj);
@@ -44,7 +43,7 @@ bool		allocate_hits_arrays(t_hits ***hits, t_num_obj *num_obj);
 
 t_color		*init_color(void);
 
-bool		init_ima(t_pix ***pix);
+bool		init_ima(t_program_context *context);
 
 // Initialisation avancée de la scène
 bool		init_scene_structures(t_pix ***pix);

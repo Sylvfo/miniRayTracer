@@ -52,10 +52,7 @@ static t_pix	***init_pix_matrix(int rows, int cols, t_num_obj *num_obj)
 	{
 		pix[x] = init_pix_row(cols);
 		if (!pix[x])
-		{
-			//todo free all previous rows
 			return (NULL);
-		}
 		x++;
 	}
 	return (pix);
@@ -92,13 +89,9 @@ void	assign_camera_obj_light_to_pix(t_pix ***pix, t_camera *cam,
 			pix[x][y]->lux = lux;
 			pix[x][y]->color = init_color();
 			if (!pix[x][y])
-			{
 				printf("PIX[%d][%d] is NULL !!\n", x, y);
-			}
 			else if (!pix[x][y]->cam || !pix[x][y]->obj || !pix[x][y]->lux)
-			{
 				printf("PIX[%d][%d] has NULL sub-pointers !!\n", x, y);
-			}
 			y++;
 		}
 		x++;
@@ -117,32 +110,23 @@ t_pix	***init_data(t_num_obj *num_obj)
 		return (NULL);
 	obj = init_object(num_obj);
 	if (!obj)
-	{
-		//todo free all previous rows
 		return (NULL);
-	}
 	cam = init_camera();
 	if (!cam)
 	{
 		free_object(obj, num_obj);
-		//todo free all previous rows
 		return (NULL);
 	}
 	lux = init_light(num_obj);
 	if (!lux)
 	{
 		free_object(obj, num_obj);
-		//todo free all previous rows
 		free(cam);
 		return (NULL);
 	}
 	assign_camera_obj_light_to_pix(pix, cam, obj, lux);
 	assign_hits_to_pix(pix, num_obj);
 	if (!init_scene_structures(pix))
-	{
-		//todo free all previous rows
 		return (NULL);
-	}
-	init_ima(pix);
 	return (pix);
 }

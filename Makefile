@@ -6,7 +6,7 @@
 #    By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 08:32:46 by cmegret           #+#    #+#              #
-#    Updated: 2025/05/11 17:45:32 by cmegret          ###   ########.fr        #
+#    Updated: 2025/05/15 16:44:01 by cmegret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ NAME = minirt
 # Compilateur
 CC = cc
 
-# Flags de compilation
-CFLAGS = -Wall -Wextra -Werror #-Iincludes
+# Flags de compilation -Wall -Wextra -Werror
+CFLAGS =  #-Iincludes
 LIBFLAGS = -Llib/libft -lft
 
 # Fichiers sources
@@ -130,6 +130,14 @@ SRCS = ./src/main.c \
 	./src/window/event_hooks_function.c \
 	./src/window/image_to_window.c \
 	./src/window/pixel_put.c \
+	./src/free/free_all.c \
+	./src/free/free_basics.c \
+	./src/free/free_components.c \
+	./src/free/free_comps.c \
+	./src/free/free_hits.c \
+	./src/free/free_lights.c \
+	./src/free/free_pixels.c \
+	./src/free/free_pixels2.c \
 
 # Bibliothèques
 LIBFT = lib/libft/libft.a

@@ -12,21 +12,6 @@
 
 #include "../inc/minirt.h"
 
-void	free_light_array(t_light **array, int count)
-{
-	int	i;
-
-	if (!array)
-		return ;
-	i = 0;
-	while (i < count)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 void	free_light_memory(t_light ***light, int count)
 {
 	int	i;

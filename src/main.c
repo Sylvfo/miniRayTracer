@@ -6,7 +6,7 @@
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 15:30:46 by cmegret           #+#    #+#             */
-/*   Updated: 2025/05/15 11:53:25 by cmegret          ###   ########.fr       */
+/*   Updated: 2025/05/15 16:50:49 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error_exit(const char *msg, t_program_context *context)
 {
 	(void) context;
 	printf("%s\n", msg);
-	//free all
+	free_all(context);
 	exit(EXIT_FAILURE);
 }
 
@@ -54,6 +54,10 @@ static t_program_context	*init_context(void)
 		return (NULL);
 	}
 	ft_bzero(context->num_obj, sizeof(t_num_obj));
+	context->num_obj->sphere = 0;
+	context->num_obj->plan = 0;
+	context->num_obj->cylinder = 0;
+	context->num_obj->light = 0;
 	return (context);
 }
 
@@ -61,9 +65,11 @@ static void	setup_window_context(t_program_context *context)
 {
 	context->width = WND_WIDTH;
 	context->height = WND_HEIGHT;
-	context->ima = context->pix[0][0]->ima;
-	context->mlx_ptr = context->ima->mlx_ptr;
-	context->mlx_win = context->ima->mlx_win;
+	if (!init_ima(context))
+	{
+		perror("Failed to initialize image");
+		error_exit(NULL, context);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -79,8 +85,6 @@ int	main(int argc, char **argv)
 	context->pix = init_data(context->num_obj);
 	if (!context->pix)
 		error_exit("Failed to initialize pixel data", context);
-	if (!init_ima(context))
-		error_exit("Failed to initialize image", context);
 	setup_window_context(context);
 	save_scene_file(argv[1], context);
 	raytracing(context->pix);

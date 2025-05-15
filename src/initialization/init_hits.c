@@ -61,16 +61,9 @@ void	assign_hits_to_pix(t_pix ***pix, t_num_obj *num_obj)
 		{
 			pix[i][j]->hits = init_hits(num_obj);
 			if (!pix[i][j]->hits)
-			{
-				// Gérer l'échec de init_hits, potentiellement libérer ce qui a déjà été alloué pour pix
-				// et retourner ou sortir proprement. Pour l'instant, on retourne.
 				return ;
-			}
 			if (!allocate_and_initialize_comps(pix[i][j]))
-			{
-				// Gérer l'échec, libérer pix[i][j]->hits et potentiellement le reste.
 				return ;
-			}
 			j++;
 		}
 		i++;

@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_to_window.c                                  :+:      :+:    :+:   */
+/*   free_components.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmegret <cmegret@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 11:21:36 by syl               #+#    #+#             */
-/*   Updated: 2025/05/11 20:51:19 by cmegret          ###   ########.fr       */
+/*   Created: 2025/05/15 14:20:00 by cmegret           #+#    #+#             */
+/*   Updated: 2025/05/15 16:40:16 by cmegret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	pix_to_window(t_pix ***pix, t_program_context *context)
+void	free_obj(t_obj *obj)
 {
-	int		x;
-	int		y;
+	if (!obj)
+		return ;
+	free_coord(obj->p_coord);
+	free_coord(obj->v_axe);
+	free_color(obj->color);
+	free(obj);
+}
 
-	x = 0;
-	while (x < WND_WIDTH)
+void	free_obj_array(t_obj **objs)
+{
+	int	i;
+
+	if (!objs)
+		return ;
+	i = 0;
+	while (objs[i])
 	{
-		y = 0;
-		while (y < WND_HEIGHT)
-		{
-			color_float_to_int(pix[x][y]->color);
-			my_mlx_pixel_put(context->ima, x, y, pix[x][y]->color->rgb);
-			y++;
-		}
-		x++;
+		free_obj(objs[i]);
+		i++;
 	}
-	mlx_put_image_to_window(context->mlx_ptr,
-		context->mlx_win, context->ima->img, 0, 0);
+	free(objs);
 }
