@@ -1,0 +1,158 @@
+==11034== Memcheck, a memory error detector
+==11034== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==11034== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==11034== Command: ./minirt image/cyl_shad.rt
+==11034== 
+==11034== Syscall param writev(vector[0]) points to uninitialised byte(s)
+==11034==    at 0x4BCC864: writev (writev.c:26)
+==11034==    by 0x4CC3ACA: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==11034==    by 0x4CC3C4E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==11034==    by 0x4CC4D7E: xcb_writev (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==11034==    by 0x48BE0B8: _XSend (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==11034==    by 0x48C3148: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==11034==    by 0x48C352B: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==11034==    by 0x118D05: mlx_int_wait_first_expose (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118A45: mlx_new_window (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111195: create_image (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111232: init_ima (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10ABB7: setup_window_context (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==  Address 0x1521afdec is 28 bytes inside a block of size 16,384 alloc'd
+==11034==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11034==    by 0x48AD42D: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==11034==    by 0x1187F6: mlx_init (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111146: create_image (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111232: init_ima (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10ABB7: setup_window_context (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10ACC4: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x116040: is_vector (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116729: cross_product_na (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10EBC2: rotation_from_vector (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111DB0: set_transformation_obj (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111E79: set_transformation (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x111EF7: matrix_transformations (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x1113AB: raytracing (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10ACED: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x116040: is_vector (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116AA4: normalize_vector_na (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x1134C3: prepare_comps_plan (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x113808: prepare_computation_pix (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x113AF8: prepare_computation (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x1113F1: raytracing (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10ACED: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x116040: is_vector (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116A04: length_vector (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116ACB: normalize_vector_na (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x1134C3: prepare_comps_plan (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x113808: prepare_computation_pix (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x113AF8: prepare_computation (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x1113F1: raytracing (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10ACED: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+keycode: 65505
+keycode: 93
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CB39: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CB49: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CB59: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CB79: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CB89: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CB99: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== Conditional jump or move depends on uninitialised value(s)
+==11034==    at 0x10CAC4: free_and_null (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CBA9: clear_obj_members (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10C8F6: free_obj_background (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10CA53: free_object (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116E42: free_context_content (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116EE1: free_all (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116C0A: ft_exit (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x118BCE: mlx_loop (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x116BEB: image_hooks (in /home/syl/42/miniRT_mercredi/minirt)
+==11034==    by 0x10AD0F: main (in /home/syl/42/miniRT_mercredi/minirt)
+==11034== 
+==11034== 
+==11034== HEAP SUMMARY:
+==11034==     in use at exit: 57,600,192 bytes in 3,600,012 blocks
+==11034==   total heap usage: 60,001,547 allocs, 56,401,535 frees, 1,612,930,553 bytes allocated
+==11034== 
+==11034== LEAK SUMMARY:
+==11034==    definitely lost: 57,600,192 bytes in 3,600,012 blocks
+==11034==    indirectly lost: 0 bytes in 0 blocks
+==11034==      possibly lost: 0 bytes in 0 blocks
+==11034==    still reachable: 0 bytes in 0 blocks
+==11034==         suppressed: 0 bytes in 0 blocks
+==11034== Rerun with --leak-check=full to see details of leaked memory
+==11034== 
+==11034== Use --track-origins=yes to see where uninitialised values come from
+==11034== For lists of detected and suppressed errors, rerun with: -s
+==11034== ERROR SUMMARY: 1132774 errors from 11 contexts (suppressed: 0 from 0)
